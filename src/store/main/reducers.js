@@ -1,5 +1,5 @@
-import INITIAL_STATE from 'store/state';
-import {TOGGLE_DRAWER} from 'store/actions';
+import INITIAL_STATE from 'store/main/state';
+import {TOGGLE_DRAWER} from 'store/main/actions';
 
 function appReducer(state = INITIAL_STATE, action) {
     switch (action.type) {

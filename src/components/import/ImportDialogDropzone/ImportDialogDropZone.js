@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {importData} from 'store/actions';
+import {importData} from 'store/main/actions';
 import {DialogContent, TextField, Typography, withStyles} from '@material-ui/core';
 import Dropzone from 'react-dropzone';
 import Paper from '@material-ui/core/Paper';

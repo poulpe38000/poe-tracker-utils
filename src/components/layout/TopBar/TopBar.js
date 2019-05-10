@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {AppBar, IconButton, Toolbar, Typography} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
-import {toggleDrawer} from 'store/actions';
+import {toggleDrawer} from 'store/main/actions';
 import ImportData from 'components/import/ImportData/ImportData';
 import ExportData from 'components/export/ExportData/ExportData';
 

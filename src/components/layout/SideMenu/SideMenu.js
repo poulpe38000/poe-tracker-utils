@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {Drawer, List, ListItem, ListItemIcon, ListItemText, withStyles} from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import ListAltIcon from '@material-ui/icons/ListAlt';
-import {toggleDrawer} from 'store/actions';
+import {toggleDrawer} from 'store/main/actions';
 
 const styles = theme => ({
     root: {

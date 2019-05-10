@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {importData} from 'store/actions';
+import {importData} from 'store/main/actions';
 import {Button, createMuiTheme, Dialog, DialogActions, DialogTitle, MuiThemeProvider} from '@material-ui/core';
 import {indigo, pink} from '@material-ui/core/colors';
 import ImportDialogDropzone from 'components/import/ImportDialogDropzone/ImportDialogDropZone';

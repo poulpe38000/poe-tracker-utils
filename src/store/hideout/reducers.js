@@ -1,6 +1,6 @@
 import INITIAL_STATE from 'store/hideout/state';
 import {HIDEOUT_TOGGLE_UNLOCKED} from 'store/hideout/actions';
-import {IMPORT_DATA, INITIALIZE_APP} from 'store/actions';
+import {IMPORT_DATA, INITIALIZE_APP} from 'store/main/actions';
 
 function hideoutReducer(state = INITIAL_STATE, action) {
     let unlocked;

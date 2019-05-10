@@ -5,7 +5,7 @@ import {
     A_INCURSION_ROOM_INCOMPLETE,
     A_INCURSION_ROOM_NOT_IN_PROGRESS
 } from 'store/incursion/actions';
-import {IMPORT_DATA, INITIALIZE_APP} from 'store/actions';
+import {IMPORT_DATA, INITIALIZE_APP} from 'store/main/actions';
 
 function incursionReducer(state = INITIAL_STATE, action) {
     let completedRooms = state.completed.slice();

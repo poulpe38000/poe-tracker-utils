@@ -6,7 +6,7 @@ import HomePage from 'components/home/HomePage/HomePage';
 import IncursionPage from 'components/incursion/IncursionPage/IncursionPage';
 import HideoutPage from 'components/hideout/HideoutPage/HideoutPage';
 import {connect} from 'react-redux';
-import {initializeApp} from 'store/actions';
+import {initializeApp} from 'store/main/actions';
 
 
 const styles = theme => ({

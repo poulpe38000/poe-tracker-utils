@@ -1,6 +1,6 @@
 import INITIAL_STATE from 'store/import-export/state';
 import {IMPORT_UPDATE_TEXT_DATA, TOGGLE_EXPORT_DIALOG, TOGGLE_IMPORT_DIALOG} from 'store/import-export/actions';
-import {IMPORT_DATA} from 'store/actions';
+import {IMPORT_DATA} from 'store/main/actions';
 
 function importExportReducer(state = INITIAL_STATE, action) {
     switch (action.type) {

@@ -1,5 +1,5 @@
 import {combineReducers, createStore} from 'redux';
-import appReducer from 'store/reducers';
+import appReducer from 'store/main/reducers';
 import importExportReducer from 'store/import-export/reducers';
 import incursionReducer from 'store/incursion/reducers';
 import hideoutReducer from 'store/hideout/reducers';
