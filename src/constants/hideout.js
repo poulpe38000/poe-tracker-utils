@@ -1,4 +1,4 @@
-const HIDEOUT_CONSTANTS = [
+export const HIDEOUT_CONSTANTS = [
     {
         id: 'backstreet',
         name: 'Backstreet Hideout',
@@ -243,4 +243,9 @@ const HIDEOUT_CONSTANTS = [
     },
 ];
 
-export default HIDEOUT_CONSTANTS;
+export const HIDEOUT_RARITIES = {
+    '1': 'Common',
+    '10': 'Rare',
+    '99': 'MTX-Only',
+};
+
