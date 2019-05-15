@@ -1,8 +1,12 @@
 import {
+    Button,
     Checkbox,
     FormControl,
-    Grid, GridList, GridListTile,
-    IconButton, InputLabel, ListItemText, ListSubheader,
+    GridList,
+    GridListTile,
+    IconButton,
+    InputLabel,
+    ListItemText,
     MenuItem,
     Paper,
     Popper,
@@ -13,7 +17,7 @@ import {
 import FilterListIcon from '@material-ui/icons/FilterList';
 import React from 'react';
 import {connect} from 'react-redux';
-import {hideoutUpdateSearchText} from 'store/hideout/actions';
+import {hideoutResetFilters, hideoutUpdateFilters} from 'store/hideout/actions';
 import * as PropTypes from 'prop-types';
 
 const styles = theme => ({
@@ -34,7 +38,6 @@ const styles = theme => ({
     },
     selectFormControl: {
         flex: '1 1 calc(50% - 24px)',
-        marginRight: '24px',
         marginBottom: '24px',
     },
 });
@@ -54,7 +57,14 @@ class ExtendedTableFilter extends React.Component {
 
 
     handleChange = filterKey => event => {
-        this.props.onFilterUpdate(filterKey, event.target.value);
+        this.props.hideoutUpdateFilters({
+            [filterKey]: event.target.value
+        });
+    };
+
+
+    handleResetFilters = () => {
+        this.props.hideoutResetFilters();
     };
 
     renderDropDown(col, index) {
@@ -139,7 +149,7 @@ class ExtendedTableFilter extends React.Component {
                 >
                     <Paper className={classes.popper}>
                         <Typography variant="h6">Filters</Typography>
-                        <GridList cellHeight="auto" cols={2} className={classes.gridList}>
+                        <GridList cellHeight="auto" cols={2} spacing={16} className={classes.gridList}>
                             {cols
                                 .filter(col => (!col.hasOwnProperty('options') || !col.options.hasOwnProperty('filtrable') || col.options.filtrable === true))
                                 .map((col, index) => {
@@ -151,7 +161,9 @@ class ExtendedTableFilter extends React.Component {
                                         : this.renderDropDown(col, index);
                                 })
                             }
-
+                            <GridListTile style={{textAlign: 'right'}} cols={2}>
+                                <Button onClick={this.handleResetFilters}>Reset</Button>
+                            </GridListTile>
                         </GridList>
                     </Paper>
                 </Popper>
@@ -162,15 +174,14 @@ class ExtendedTableFilter extends React.Component {
 
 ExtendedTableFilter.propTypes = {
     cols: PropTypes.array.isRequired,
-    onFilterUpdate: PropTypes.func.isRequired,
-    filters: PropTypes.object.isRequired,
 };
 
 export default connect(
     state => ({
-        searchText: state.hideout.searchText,
+        filters: state.hideout.filters,
     }),
     dispatch => ({
-        hideoutUpdateSearchText: searchText => (dispatch(hideoutUpdateSearchText(searchText))),
+        hideoutUpdateFilters: filters => (dispatch(hideoutUpdateFilters(filters))),
+        hideoutResetFilters: () => (dispatch(hideoutResetFilters())),
     })
 )(withStyles(styles)(ExtendedTableFilter));

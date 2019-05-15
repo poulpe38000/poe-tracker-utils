@@ -102,7 +102,7 @@ class HideoutTable extends React.Component {
         );
         return (
             <Paper>
-                <ExtendedTable data={data} cols={this.cols}/>
+                <ExtendedTable data={data} cols={this.cols} title="Hideouts unlock tracker"/>
             </Paper>
         );
     }

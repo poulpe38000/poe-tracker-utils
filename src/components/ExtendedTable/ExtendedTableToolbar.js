@@ -44,7 +44,7 @@ class ExtendedTableToolbar extends React.Component {
 
 
     render() {
-        const {classes, cols, filters, onFilterUpdate} = this.props;
+        const {classes, title, cols} = this.props;
         return (
             <Toolbar>
                 <div className={classes.title}>
@@ -73,7 +73,7 @@ class ExtendedTableToolbar extends React.Component {
                         />
                     ) : (
                         <Typography variant="h6">
-                            Hideouts list
+                            {title || ""}
                         </Typography>
                     )}
                 </div>
@@ -82,7 +82,7 @@ class ExtendedTableToolbar extends React.Component {
                     <IconButton aria-label="Search" onClick={this.handleToggleSearch}>
                         <SearchIcon />
                     </IconButton>
-                    <ExtendedTableFilter cols={cols} filters={filters} onFilterUpdate={onFilterUpdate}/>
+                    <ExtendedTableFilter cols={cols}/>
                 </div>
             </Toolbar>
         );
@@ -90,8 +90,7 @@ class ExtendedTableToolbar extends React.Component {
 }
 ExtendedTableToolbar.propTypes = {
     cols: PropTypes.array.isRequired,
-    filters: PropTypes.object.isRequired,
-    onFilterUpdate: PropTypes.func.isRequired,
+    title: PropTypes.string,
 };
 
 export default connect(

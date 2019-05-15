@@ -1,5 +1,10 @@
 import INITIAL_STATE from 'store/hideout/state';
-import {HIDEOUT_TOGGLE_UNLOCKED, HIDEOUT_UPDATE_SEARCH_TEXT} from 'store/hideout/actions';
+import {
+    HIDEOUT_RESET_FILTERS,
+    HIDEOUT_TOGGLE_UNLOCKED,
+    HIDEOUT_UPDATE_FILTERS,
+    HIDEOUT_UPDATE_SEARCH_TEXT
+} from 'store/hideout/actions';
 import {IMPORT_DATA, INITIALIZE_APP} from 'store/main/actions';
 
 function hideoutReducer(state = INITIAL_STATE, action) {
@@ -22,6 +27,19 @@ function hideoutReducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 searchText: action.payload
+            };
+        case HIDEOUT_UPDATE_FILTERS:
+            return {
+                ...state,
+                filters: {
+                    ...state.filters,
+                    ...action.payload
+                }
+            };
+        case HIDEOUT_RESET_FILTERS:
+            return {
+                ...state,
+                filters: {}
             };
         case INITIALIZE_APP:
             try {

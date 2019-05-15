@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
     searchText: '',
+    filters: {},
     unlocked: []
 };
 

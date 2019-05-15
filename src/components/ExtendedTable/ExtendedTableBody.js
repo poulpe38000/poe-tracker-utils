@@ -38,12 +38,12 @@ function applyFilters(filters, row) {
     const filterKeys = Object.keys(filters);
     return filterKeys.length === 0
         || filterKeys
-            .filter(filterKey => {
+            .every(filterKey => {
                 const values = filters[filterKey];
                 return (values.length === 0)
                     || (Array.isArray(values) && values.findIndex(val => val === row[filterKey].toString()) !== -1)
                     || (row[filterKey].toString() === values.toString());
-            }).length > 0;
+            });
 }
 
 class ExtendedTableBody extends React.Component {
@@ -99,5 +99,6 @@ ExtendedTableBody.propTypes = {
 export default connect(
     state => ({
         searchText: state.hideout.searchText,
+        filters: state.hideout.filters,
     }),
 )(ExtendedTableBody);
