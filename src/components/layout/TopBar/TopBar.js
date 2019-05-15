@@ -5,6 +5,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import {toggleDrawer} from 'store/main/actions';
 import ImportData from 'components/import/ImportData/ImportData';
 import ExportData from 'components/export/ExportData/ExportData';
+import ResetData from 'components/ResetData/ResetData';
 
 class TopBar extends React.Component {
 
@@ -26,6 +27,7 @@ class TopBar extends React.Component {
                         <Typography variant="h6" color="inherit" style={{flexGrow: 1}}>
                             PoE Tracker Helpers
                         </Typography>
+                        <ResetData/>
                         <ImportData/>
                         <ExportData/>
                     </Toolbar>

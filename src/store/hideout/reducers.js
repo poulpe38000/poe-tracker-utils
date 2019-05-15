@@ -1,11 +1,14 @@
 import INITIAL_STATE from 'store/hideout/state';
 import {
+    HIDEOUT_RESET_DATA,
     HIDEOUT_RESET_FILTERS,
     HIDEOUT_TOGGLE_UNLOCKED,
     HIDEOUT_UPDATE_FILTERS,
     HIDEOUT_UPDATE_SEARCH_TEXT
 } from 'store/hideout/actions';
-import {IMPORT_DATA, INITIALIZE_APP} from 'store/main/actions';
+import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL} from 'store/main/actions';
+
+const HIDEOUT_UNLOCKED_STORAGE = 'hideoutUnlocked';
 
 function hideoutReducer(state = INITIAL_STATE, action) {
     let unlocked;
@@ -18,7 +21,7 @@ function hideoutReducer(state = INITIAL_STATE, action) {
             } else {
                 unlocked = [...state.unlocked, action.payload];
             }
-            localStorage.setItem('unlockedHideouts', JSON.stringify(unlocked));
+            localStorage.setItem(HIDEOUT_UNLOCKED_STORAGE, JSON.stringify(unlocked));
             return {
                 ...state,
                 unlocked: unlocked
@@ -41,11 +44,23 @@ function hideoutReducer(state = INITIAL_STATE, action) {
                 ...state,
                 filters: {}
             };
+        case HIDEOUT_RESET_DATA:
+            localStorage.removeItem(HIDEOUT_UNLOCKED_STORAGE);
+            return {
+                ...state,
+                unlocked: []
+            };
+        case RESET_ALL:
+            localStorage.removeItem(HIDEOUT_UNLOCKED_STORAGE);
+            return {
+                ...state,
+                unlocked: []
+            };
         case INITIALIZE_APP:
             try {
                 return {
                     ...state,
-                    unlocked: JSON.parse(localStorage.getItem('unlockedHideouts')) || []
+                    unlocked: JSON.parse(localStorage.getItem(HIDEOUT_UNLOCKED_STORAGE)) || []
                 };
             } catch (e) {
                 return {...state};
@@ -54,7 +69,7 @@ function hideoutReducer(state = INITIAL_STATE, action) {
             unlocked = action.payload.hideout && action.payload.hideout.unlocked
                 ? action.payload.hideout.unlocked
                 : [];
-            localStorage.setItem('unlockedHideouts', JSON.stringify(unlocked));
+            localStorage.setItem(HIDEOUT_UNLOCKED_STORAGE, JSON.stringify(unlocked));
             return {
                 ...state,
                 unlocked: unlocked
