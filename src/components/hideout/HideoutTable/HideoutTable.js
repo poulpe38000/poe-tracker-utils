@@ -15,6 +15,9 @@ class HideoutTable extends React.Component {
         {
             id: 'name',
             label: 'Name',
+            options: {
+                filtrable: false,
+            },
             cellOptions: {component: 'th', scope: 'row'},
         },
         {
@@ -22,6 +25,8 @@ class HideoutTable extends React.Component {
             label: 'Rarity',
             options: {
                 searchable: false,
+                filterOptions: HIDEOUT_RARITIES,
+                filterType: 'multiselect',
                 renderValue: row => HIDEOUT_RARITIES[row.rarity]
             },
             headerOptions: {align: 'right'},
@@ -31,7 +36,8 @@ class HideoutTable extends React.Component {
             id: 'location',
             label: 'Location(s)',
             options: {
-                renderValue: (row) => row.location.join(', ')
+                filtrable: false,
+                renderValue: (row) => row.location.join(', '),
             },
             headerOptions: {align: 'right'},
             cellOptions: {align: 'right'},
@@ -41,6 +47,11 @@ class HideoutTable extends React.Component {
             label: 'Map',
             options: {
                 searchable: false,
+                filterLabel: 'Found in Maps',
+                filterOptions: {
+                    true: 'Yes',
+                    false: 'No'
+                },
                 renderCell: row => <YesNo value={row.fromMap}/>,
             },
             headerOptions: {align: 'right'},
@@ -51,7 +62,12 @@ class HideoutTable extends React.Component {
             label: 'MTX',
             options: {
                 searchable: false,
-                renderCell: row => <YesNo value={row.fromMap}/>,
+                filterLabel: 'Show MTX',
+                filterOptions: {
+                    true: 'Yes',
+                    false: 'No'
+                },
+                renderCell: row => <YesNo value={row.fromMtx}/>,
             },
             headerOptions: {align: 'right'},
             cellOptions: {align: 'right'},
@@ -61,6 +77,10 @@ class HideoutTable extends React.Component {
             label: 'Unlocked',
             options: {
                 searchable: false,
+                filterOptions: {
+                    true: 'Yes',
+                    false: 'No'
+                },
                 renderCell: row => {
                     return (<Icon component={row.unlocked ? CheckIcon : CloseIcon} onClick={this.hideoutToggleUnlocked(row.id)}/>);
                 }

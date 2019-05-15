@@ -34,6 +34,18 @@ function findText(text, row, cols) {
             });
 }
 
+function applyFilters(filters, row) {
+    const filterKeys = Object.keys(filters);
+    return filterKeys.length === 0
+        || filterKeys
+            .filter(filterKey => {
+                const values = filters[filterKey];
+                return (values.length === 0)
+                    || (Array.isArray(values) && values.findIndex(val => val === row[filterKey].toString()) !== -1)
+                    || (row[filterKey].toString() === values.toString());
+            }).length > 0;
+}
+
 class ExtendedTableBody extends React.Component {
     stableSort = (array, cmp) => {
         const stabilizedThis = array.map((el, index) => [el, index]);
@@ -46,10 +58,11 @@ class ExtendedTableBody extends React.Component {
     };
 
     render() {
-        const {order, orderBy, data, cols} = this.props;
+        const {order, orderBy, data, cols, filters} = this.props;
         return (
             <TableBody>
                 {this.stableSort(data, getSorting(order, orderBy))
+                    .filter(row => applyFilters(filters, row, cols))
                     .filter(row => findText(this.props.searchText, row, cols))
                     .map(row => {
                         return (

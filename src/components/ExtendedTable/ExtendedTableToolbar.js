@@ -1,10 +1,11 @@
-import {TextField, InputAdornment, Toolbar, IconButton, withStyles, Typography} from '@material-ui/core';
+import {IconButton, InputAdornment, TextField, Toolbar, Typography, withStyles} from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
 import SearchIcon from '@material-ui/icons/Search';
-import FilterListIcon from '@material-ui/icons/FilterList';
 import React from 'react';
 import {connect} from 'react-redux';
 import {hideoutUpdateSearchText} from 'store/hideout/actions';
+import {ExtendedTableFilter} from 'components/ExtendedTable/index';
+import * as PropTypes from 'prop-types';
 
 const styles = theme => ({
     spacer: {
@@ -43,7 +44,7 @@ class ExtendedTableToolbar extends React.Component {
 
 
     render() {
-        const {classes} = this.props;
+        const {classes, cols, filters, onFilterUpdate} = this.props;
         return (
             <Toolbar>
                 <div className={classes.title}>
@@ -81,14 +82,17 @@ class ExtendedTableToolbar extends React.Component {
                     <IconButton aria-label="Search" onClick={this.handleToggleSearch}>
                         <SearchIcon />
                     </IconButton>
-                    <IconButton aria-label="Filter list">
-                        <FilterListIcon />
-                    </IconButton>
+                    <ExtendedTableFilter cols={cols} filters={filters} onFilterUpdate={onFilterUpdate}/>
                 </div>
             </Toolbar>
         );
     }
 }
+ExtendedTableToolbar.propTypes = {
+    cols: PropTypes.array.isRequired,
+    filters: PropTypes.object.isRequired,
+    onFilterUpdate: PropTypes.func.isRequired,
+};
 
 export default connect(
     state => ({

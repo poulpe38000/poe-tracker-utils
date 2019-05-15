@@ -7,6 +7,7 @@ class ExtendedTable extends React.Component {
     state = {
         order: 'asc',
         orderBy: 'name',
+        filters: {}
     };
 
     handleRequestSort = (event, property) => {
@@ -20,12 +21,21 @@ class ExtendedTable extends React.Component {
         this.setState({order, orderBy});
     };
 
+    handleFilterUpdate = (filterKey, value) => {
+        this.setState({
+            filters: {
+                ...this.state.filters,
+                [filterKey]: value
+            }
+        });
+    };
+
     render() {
-        const {order, orderBy} = this.state;
+        const {order, orderBy, filters} = this.state;
         const {cols, data} = this.props;
         return (
             <React.Fragment>
-                <ExtendedTableToolbar/>
+                <ExtendedTableToolbar cols={cols} filters={filters} onFilterUpdate={this.handleFilterUpdate}/>
                 <Table>
                     <ExtendedTableHead
                         cols={cols}
@@ -38,6 +48,7 @@ class ExtendedTable extends React.Component {
                         data={data}
                         order={order}
                         orderBy={orderBy}
+                        filters={filters}
                     />
                 </Table>
             </React.Fragment>
