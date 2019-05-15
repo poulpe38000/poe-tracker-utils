@@ -1,4 +1,5 @@
 const INITIAL_STATE = {
+    searchText: '',
     unlocked: []
 };
 
