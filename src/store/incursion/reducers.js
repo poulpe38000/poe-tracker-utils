@@ -17,7 +17,7 @@ function incursionReducer(state = INITIAL_STATE, action) {
     let inProgressRooms = state.in_progress.slice();
     switch (action.type) {
         case INCURSION_ROOM_COMPLETED:
-            if (!completedRooms.find((room) => room === action.payload)) {
+            if (!completedRooms.find((room) => room.id === action.payload.id)) {
                 completedRooms.push(action.payload);
             }
             localStorage.setItem(INCURSION_COMPLETED_STORAGE, JSON.stringify(completedRooms));
@@ -26,14 +26,14 @@ function incursionReducer(state = INITIAL_STATE, action) {
                 completed: completedRooms
             };
         case INCURSION_ROOM_INCOMPLETE:
-            completedRooms = state.completed.filter((room) => room !== action.payload);
+            completedRooms = state.completed.filter((room) => room.id !== action.payload.id);
             localStorage.setItem(INCURSION_COMPLETED_STORAGE, JSON.stringify(completedRooms));
             return {
                 ...state,
                 completed: completedRooms
             };
         case INCURSION_ROOM_IN_PROGRESS:
-            if (!inProgressRooms.find((room) => room === action.payload)) {
+            if (!inProgressRooms.find((room) => room.id === action.payload.id)) {
                 inProgressRooms.push(action.payload);
             }
             localStorage.setItem(INCURSION_IN_PROGRESS_STORAGE, JSON.stringify(inProgressRooms));
@@ -42,7 +42,7 @@ function incursionReducer(state = INITIAL_STATE, action) {
                 in_progress: inProgressRooms
             };
         case INCURSION_ROOM_NOT_IN_PROGRESS:
-            inProgressRooms = state.in_progress.filter((room) => room !== action.payload);
+            inProgressRooms = state.in_progress.filter((room) => room.id !== action.payload.id);
             localStorage.setItem(INCURSION_IN_PROGRESS_STORAGE, JSON.stringify(inProgressRooms));
             return {
                 ...state,

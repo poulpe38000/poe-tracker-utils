@@ -5,11 +5,12 @@ import {IncursionTieredRoom} from 'components/Incursion';
 
 class IncursionTieredRooms extends React.Component {
     render() {
+        const upgradeableKeys = Object.keys(INCURSION_CONSTANTS.rooms.upgradeable);
         return (
             <React.Fragment>
                 {
-                    INCURSION_CONSTANTS.rooms.upgradeable.map((rooms, idx) => (
-                            <IncursionTieredRoom key={idx} rooms={rooms}/>
+                    upgradeableKeys.map((idx) => (
+                            <IncursionTieredRoom key={idx} rooms={INCURSION_CONSTANTS.rooms.upgradeable[idx]}/>
                         )
                     )
                 }
