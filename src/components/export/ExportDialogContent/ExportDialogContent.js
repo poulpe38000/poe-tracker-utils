@@ -6,9 +6,8 @@ import {toggleExportDialog} from 'store/import-export/actions';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const styles = theme => ({
-    rightIcon: {
-        marginLeft: theme.spacing.unit,
-    },
+    button: {margin: theme.spacing.unit},
+    rightIcon: { marginLeft: theme.spacing.unit},
 });
 
 class ExportDialogContent extends React.Component {
@@ -52,11 +51,11 @@ class ExportDialogContent extends React.Component {
                         </Button>
                     </CopyToClipboard>
                     <Button variant="contained" elevation={0} size="large" color="primary" autoFocus
-                            onClick={this.downloadTrackerFile}>
+                            className={classes.button} onClick={this.downloadTrackerFile}>
                         Download file
                         <CloudDownloadIcon className={classes.rightIcon}/>
                     </Button>
-                    <Button onClick={this.handleCloseDialog}>
+                    <Button className={classes.button} onClick={this.handleCloseDialog}>
                         Close
                     </Button>
                 </DialogActions>

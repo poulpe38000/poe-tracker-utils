@@ -1,5 +1,6 @@
 const INITIAL_STATE = {
-    showDrawer: false
+    showDrawer: false,
+    showSettingsDialog: false,
 };
 
 export default INITIAL_STATE;

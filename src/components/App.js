@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter as Router, Route} from 'react-router-dom';
+import {BrowserRouter, Route} from 'react-router-dom';
 import {withStyles} from '@material-ui/core';
 import {SideMenu, TopBar} from 'components/layout';
 import HomePage from 'components/home/HomePage/HomePage';
@@ -7,6 +7,7 @@ import IncursionPage from 'components/incursion/IncursionPage/IncursionPage';
 import HideoutPage from 'components/hideout/HideoutPage/HideoutPage';
 import {connect} from 'react-redux';
 import {initializeApp} from 'store/main/actions';
+import APP_CONSTANTS from 'constants/app';
 
 
 const styles = theme => ({
@@ -25,7 +26,7 @@ class App extends React.Component {
     render() {
         const {classes} = this.props;
         return (
-            <Router>
+            <BrowserRouter basename={APP_CONSTANTS.basename}>
                 <TopBar/>
                 <SideMenu/>
                 <div className={classes.root}>
@@ -33,7 +34,7 @@ class App extends React.Component {
                     <Route path="/incursion" component={IncursionPage}/>
                     <Route path="/hideout" component={HideoutPage}/>
                 </div>
-            </Router>
+            </BrowserRouter>
         );
     }
 }

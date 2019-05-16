@@ -1,5 +1,5 @@
 import INITIAL_STATE from 'store/main/state';
-import {TOGGLE_DRAWER} from 'store/main/actions';
+import {TOGGLE_DRAWER, TOGGLE_SETTINGS_DIALOG} from 'store/main/actions';
 
 function appReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
@@ -7,6 +7,11 @@ function appReducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 showDrawer: action.payload
+            };
+        case TOGGLE_SETTINGS_DIALOG:
+            return {
+                ...state,
+                showSettingsDialog: action.payload
             };
         default :
             return state;

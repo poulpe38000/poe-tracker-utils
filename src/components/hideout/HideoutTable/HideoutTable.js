@@ -82,7 +82,8 @@ class HideoutTable extends React.Component {
                     false: 'No'
                 },
                 renderCell: row => {
-                    return (<Icon component={row.unlocked ? CheckIcon : CloseIcon} onClick={this.hideoutToggleUnlocked(row.id)}/>);
+                    return (<Icon component={row.unlocked ? CheckIcon : CloseIcon}
+                                  onClick={this.hideoutToggleUnlocked(row.id)}/>);
                 }
             },
             headerOptions: {align: 'right'},
@@ -95,11 +96,12 @@ class HideoutTable extends React.Component {
     };
 
     render() {
-        const data = HIDEOUT_CONSTANTS.map(hideout => ({
-                ...hideout,
-                unlocked: !!this.props.unlockedHideouts.find(hideoutId => hideoutId === hideout.id)
-            })
-        );
+        const data = HIDEOUT_CONSTANTS
+            .map(hideout => ({
+                    ...hideout,
+                    unlocked: !!this.props.unlockedHideouts.find(hideoutId => hideoutId === hideout.id)
+                })
+            );
         return (
             <Paper>
                 <ExtendedTable data={data} cols={this.cols} title="Hideouts unlock tracker"/>

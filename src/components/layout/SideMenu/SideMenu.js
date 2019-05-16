@@ -1,7 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {NavLink} from 'react-router-dom';
-import PropTypes from 'prop-types';
 import {Drawer, List, ListItem, ListItemIcon, ListItemText, withStyles} from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import ListAltIcon from '@material-ui/icons/ListAlt';
@@ -57,10 +56,6 @@ class SideMenu extends React.Component {
         );
     }
 }
-
-SideMenu.propTypes = {
-    classes: PropTypes.object.isRequired,
-};
 
 export default connect(
     state => ({

@@ -1,17 +1,21 @@
 import React from 'react';
-import {Typography} from '@material-ui/core';
+import {Typography, withStyles} from '@material-ui/core';
 import IncursionBaseRooms from 'components/incursion/IncursionBaseRooms/IncursionBaseRooms';
 import IncursionTieredRooms from 'components/incursion/IncursionTieredRooms/IncursionTieredRooms';
 
+const styles = theme => ({
+    pageTitle: {textAlign: 'center'},
+});
 
-function IncursionPage() {
+function IncursionPage(props) {
+    const {classes} = props;
     return (
         <React.Fragment>
-            <Typography variant="h3" style={{textAlign: 'center'}}>Incursion room completion tracker</Typography>
+            <Typography variant="h3" className={classes.pageTitle}>Incursion room completion tracker</Typography>
             <IncursionBaseRooms/>
             <IncursionTieredRooms/>
         </React.Fragment>
     );
 }
 
-export default IncursionPage;
+export default withStyles(styles)(IncursionPage);

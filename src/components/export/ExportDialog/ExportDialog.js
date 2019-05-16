@@ -1,20 +1,9 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {createMuiTheme, Dialog, DialogTitle, MuiThemeProvider} from '@material-ui/core';
-import {indigo, pink} from '@material-ui/core/colors';
+import {DialogTitle} from '@material-ui/core';
 import {toggleExportDialog} from 'store/import-export/actions';
 import ExportDialogContent from 'components/export/ExportDialogContent/ExportDialogContent';
-
-const dialogTheme = createMuiTheme({
-    palette: {
-        primary: indigo,
-        secondary: pink,
-        type: 'light'
-    },
-    typography: {
-        useNextVariants: true,
-    },
-});
+import AppDialog from 'components/AppDialog/AppDialog';
 
 class ExportDialog extends React.Component {
     handleCloseDialog = () => {
@@ -22,19 +11,17 @@ class ExportDialog extends React.Component {
     };
 
     render() {
+        const {showDialog} = this.props;
         return (
-            <MuiThemeProvider theme={dialogTheme}>
-                <Dialog
-                    open={this.props.showDialog}
+                <AppDialog
+                    open={showDialog}
                     onClose={this.handleCloseDialog}
                     fullWidth
                     maxWidth="md"
                 >
-
                     <DialogTitle>Export tracker data</DialogTitle>
                     <ExportDialogContent/>
-                </Dialog>
-            </MuiThemeProvider>
+                </AppDialog>
         );
     }
 }
