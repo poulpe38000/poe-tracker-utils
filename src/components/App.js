@@ -1,11 +1,10 @@
 import React from 'react';
-import {BrowserRouter, Route} from 'react-router-dom';
+import {Route} from 'react-router-dom';
 import {withStyles} from '@material-ui/core';
 import {SideMenu, TopBar} from 'components/pages/layout';
 import {HideoutPage, HomePage, IncursionPage} from 'components/pages';
 import {connect} from 'react-redux';
 import {initializeApp} from 'store/main/actions';
-import APP_CONSTANTS from 'constants/app';
 
 
 const styles = theme => ({
@@ -24,7 +23,7 @@ class App extends React.Component {
     render() {
         const {classes} = this.props;
         return (
-            <BrowserRouter basename={APP_CONSTANTS.basename}>
+            <React.Fragment>
                 <TopBar/>
                 <SideMenu/>
                 <div className={classes.root}>
@@ -32,7 +31,7 @@ class App extends React.Component {
                     <Route path="/incursion" component={IncursionPage}/>
                     <Route path="/hideout" component={HideoutPage}/>
                 </div>
-            </BrowserRouter>
+            </React.Fragment>
         );
     }
 }

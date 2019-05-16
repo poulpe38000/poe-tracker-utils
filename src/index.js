@@ -9,6 +9,8 @@ import {CssBaseline} from '@material-ui/core';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 
 import {indigo, pink} from '@material-ui/core/colors';
+import {BrowserRouter} from 'react-router-dom';
+import APP_CONSTANTS from 'constants/app';
 
 const theme = createMuiTheme({
     palette: {
@@ -23,10 +25,12 @@ const theme = createMuiTheme({
 
 ReactDOM.render(
     <Provider store={store}>
-        <MuiThemeProvider theme={theme}>
-            <CssBaseline />
-            <App />
-        </MuiThemeProvider>
+        <BrowserRouter basename={APP_CONSTANTS.basename}>
+            <MuiThemeProvider theme={theme}>
+                <CssBaseline />
+                <App />
+            </MuiThemeProvider>
+        </BrowserRouter>
     </Provider>
     , document.getElementById('root'));
 
