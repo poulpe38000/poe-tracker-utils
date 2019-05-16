@@ -1,0 +1,89 @@
+import React from 'react'
+import {connect} from "react-redux";
+import {Button, DialogActions, DialogContent, DialogTitle, TextField, withStyles} from '@material-ui/core';
+import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import {toggleExportDialog} from 'store/import-export/actions';
+import {AppDialog} from 'components/shared';
+import {CopyToClipboard} from 'react-copy-to-clipboard';
+
+const styles = theme => ({
+    button: {margin: theme.spacing.unit},
+    rightIcon: { marginLeft: theme.spacing.unit},
+});
+
+class ExportDialog extends React.Component {
+    handleCloseDialog = () => {
+        this.props.toggleExportDialog(false);
+    };
+
+    downloadTrackerFile = () => {
+        const exportText = JSON.stringify(this.props.exportData, null, 2);
+        const element = document.createElement("a");
+        const file = new Blob([exportText], {type: 'text/plain'});
+        element.href = URL.createObjectURL(file);
+        element.download = "default.poetracker";
+        document.body.appendChild(element); // Required for this to work in FireFox
+        element.click();
+    };
+
+    render() {
+        const {classes, exportData, showDialog} = this.props;
+        const exportText = JSON.stringify(exportData, null, 2);
+        return (
+                <AppDialog
+                    open={showDialog}
+                    onClose={this.handleCloseDialog}
+                    fullWidth
+                    maxWidth="md"
+                >
+                    <DialogTitle>Export tracker data</DialogTitle>
+                    <DialogContent>
+                        <TextField
+                            fullWidth
+                            multiline
+                            rows="4"
+                            value={exportText}
+                            margin="normal"
+                            variant="outlined"
+                            InputProps={{
+                                readOnly: true,
+                            }}
+                        />
+                    </DialogContent>
+                    <DialogActions>
+                        <CopyToClipboard text={exportText}>
+                            <Button>
+                                Copy data
+                            </Button>
+                        </CopyToClipboard>
+                        <Button variant="contained" elevation={0} size="large" color="primary" autoFocus
+                                className={classes.button} onClick={this.downloadTrackerFile}>
+                            Download file
+                            <CloudDownloadIcon className={classes.rightIcon}/>
+                        </Button>
+                        <Button className={classes.button} onClick={this.handleCloseDialog}>
+                            Close
+                        </Button>
+                    </DialogActions>
+                </AppDialog>
+        );
+    }
+}
+
+export default connect(
+    state => ({
+        showDialog: state.importExport.showExportDialog,
+        exportData: {
+            hideout: {
+                unlocked: state.hideout.unlocked,
+            },
+            incursion: {
+                completed: state.incursion.completed,
+                in_progress: state.incursion.in_progress,
+            },
+        },
+    }),
+    dispatch => ({
+        toggleExportDialog: (payload) => (dispatch(toggleExportDialog(payload))),
+    }),
+)(withStyles(styles)(ExportDialog));

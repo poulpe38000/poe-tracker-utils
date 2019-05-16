@@ -1,10 +1,8 @@
 import React from 'react';
 import {BrowserRouter, Route} from 'react-router-dom';
 import {withStyles} from '@material-ui/core';
-import {SideMenu, TopBar} from 'components/layout';
-import HomePage from 'components/home/HomePage/HomePage';
-import IncursionPage from 'components/incursion/IncursionPage/IncursionPage';
-import HideoutPage from 'components/hideout/HideoutPage/HideoutPage';
+import {SideMenu, TopBar} from 'components/pages/layout';
+import {HideoutPage, HomePage, IncursionPage} from 'components/pages';
 import {connect} from 'react-redux';
 import {initializeApp} from 'store/main/actions';
 import APP_CONSTANTS from 'constants/app';

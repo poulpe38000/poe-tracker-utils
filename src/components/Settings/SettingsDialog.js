@@ -16,7 +16,7 @@ import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore'
 import {resetAll, toggleSettingsDialog} from 'store/main/actions';
 import {incursionResetCompletedData, incursionResetInProgressData} from 'store/incursion/actions';
 import {hideoutResetData} from 'store/hideout/actions';
-import AppDialog from 'components/AppDialog/AppDialog';
+import {AppDialog} from 'components/shared';
 
 const styles = theme => ({
     button: {margin: theme.spacing.unit},
