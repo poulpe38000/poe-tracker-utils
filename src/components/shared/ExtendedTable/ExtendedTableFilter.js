@@ -15,6 +15,7 @@ import {
     withStyles
 } from '@material-ui/core';
 import FilterListIcon from '@material-ui/icons/FilterList';
+import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 import React from 'react';
 import {connect} from 'react-redux';
 import {hideoutResetFilters, hideoutUpdateFilters} from 'store/hideout/actions';
@@ -40,6 +41,8 @@ const styles = theme => ({
         flex: '1 1 calc(50% - 24px)',
         marginBottom: '24px',
     },
+    button: {margin: theme.spacing.unit},
+    leftIcon: {marginRight: theme.spacing.unit},
 });
 
 class ExtendedTableFilter extends React.Component {
@@ -170,8 +173,11 @@ class ExtendedTableFilter extends React.Component {
                                 })
                             }
                             <GridListTile style={{textAlign: 'right'}} cols={2}>
-                                <Button color="secondary" onClick={this.handleResetFilters}>Reset filters</Button>
-                                <Button onClick={this.handleOpenFilterPopper}>Close</Button>
+                                <Button className={classes.button} onClick={this.handleResetFilters}>
+                                    <SettingsBackupRestoreIcon color="secondary" className={classes.leftIcon}/>
+                                    <Typography variant="button" color="secondary">Reset filters</Typography>
+                                </Button>
+                                <Button variant="outlined" className={classes.button} onClick={this.handleOpenFilterPopper}>Close</Button>
                             </GridListTile>
                         </GridList>
                     </Paper>

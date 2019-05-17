@@ -11,6 +11,7 @@ import {
     Typography,
     withStyles
 } from '@material-ui/core';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import {importUpdateTextData, toggleImportDialog} from 'store/import-export/actions';
 import {AppDialog} from 'components/shared';
 import {importData} from 'store/main/actions';
@@ -34,6 +35,14 @@ const styles = theme => ({
         height: '100%',
         opacity: .3
     },
+    button: {margin: theme.spacing.unit},
+    leftIcon: {marginRight: theme.spacing.unit},
+    actions: {
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: 'column',
+            alignItems: 'stretch'
+        }
+    }
 });
 
 class ImportDialog extends React.Component {
@@ -118,11 +127,12 @@ class ImportDialog extends React.Component {
                             )}
                         </Dropzone>
                     </DialogContent>
-                    <DialogActions>
-                        <Button onClick={this.handleContentDataLoad} color="primary" autoFocus>
+                    <DialogActions className={classes.actions}>
+                        <Button variant="contained" className={classes.button} onClick={this.handleContentDataLoad} color="primary" autoFocus>
+                            <CloudUploadIcon className={classes.leftIcon}/>
                             Import
                         </Button>
-                        <Button onClick={this.handleCloseDialog}>
+                        <Button variant="outlined" className={classes.button} onClick={this.handleCloseDialog}>
                             Cancel
                         </Button>
                     </DialogActions>

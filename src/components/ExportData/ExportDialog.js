@@ -2,13 +2,21 @@ import React from 'react'
 import {connect} from "react-redux";
 import {Button, DialogActions, DialogContent, DialogTitle, TextField, withStyles} from '@material-ui/core';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import {toggleExportDialog} from 'store/import-export/actions';
 import {AppDialog} from 'components/shared';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const styles = theme => ({
     button: {margin: theme.spacing.unit},
+    leftIcon: {marginRight: theme.spacing.unit},
     rightIcon: { marginLeft: theme.spacing.unit},
+    actions: {
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: 'column',
+            alignItems: 'stretch'
+        }
+    }
 });
 
 class ExportDialog extends React.Component {
@@ -50,18 +58,19 @@ class ExportDialog extends React.Component {
                             }}
                         />
                     </DialogContent>
-                    <DialogActions>
+                    <DialogActions className={classes.actions}>
                         <CopyToClipboard text={exportText}>
-                            <Button>
+                            <Button className={classes.button}>
+                                <FileCopyOutlinedIcon className={classes.leftIcon}/>
                                 Copy data
                             </Button>
                         </CopyToClipboard>
                         <Button variant="contained" elevation={0} size="large" color="primary" autoFocus
                                 className={classes.button} onClick={this.downloadTrackerFile}>
+                            <CloudDownloadIcon className={classes.leftIcon}/>
                             Download file
-                            <CloudDownloadIcon className={classes.rightIcon}/>
                         </Button>
-                        <Button className={classes.button} onClick={this.handleCloseDialog}>
+                        <Button variant="outlined" className={classes.button} onClick={this.handleCloseDialog}>
                             Close
                         </Button>
                     </DialogActions>

@@ -1,7 +1,6 @@
 import React from 'react';
 import {Button, withStyles} from '@material-ui/core';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import {ImportDialog} from 'components/ImportData';
 import {connect} from 'react-redux';
 import {toggleImportDialog} from 'store/import-export/actions';
 
@@ -23,16 +22,13 @@ class ImportData extends React.Component {
                     <CloudUploadIcon className={classes.leftIcon}/>
                     Import
                 </Button>
-                <ImportDialog/>
             </React.Fragment>
         );
     }
 }
 
 export default connect(
-    state => ({
-        showDialog: state.importExport.showImportDialog,
-    }),
+    null,
     dispatch => ({
         toggleImportDialog: (payload) => (dispatch(toggleImportDialog(payload))),
     }),

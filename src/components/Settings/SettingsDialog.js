@@ -20,6 +20,12 @@ import {AppDialog} from 'components/shared';
 
 const styles = theme => ({
     button: {margin: theme.spacing.unit},
+    actions: {
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: 'column',
+            alignItems: 'stretch'
+        }
+    },
 });
 
 class SettingsDialog extends React.Component {
@@ -96,8 +102,8 @@ class SettingsDialog extends React.Component {
                             </ListItem>
                         </List>
                     </DialogContent>
-                    <DialogActions>
-                        <Button className={classes.button} onClick={this.handleCloseDialog}>
+                    <DialogActions className={classes.actions}>
+                        <Button variant="outlined" className={classes.button} onClick={this.handleCloseDialog}>
                             Close
                         </Button>
                     </DialogActions>
