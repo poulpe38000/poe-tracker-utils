@@ -67,7 +67,9 @@ class ExtendedTableBody extends React.Component {
                     .map(row => {
                         return (
                             <TableRow key={row.id}>
-                                {cols.map(col => {
+                                {cols
+                                    .filter(col => !col.hasOwnProperty('options') || !col.options.hasOwnProperty('displayed') || col.options.displayed === true)
+                                    .map(col => {
                                     const renderValue = !!col.options && !!col.options.renderValue
                                         ? col.options.renderValue(row)
                                         : row[col.id].toString();

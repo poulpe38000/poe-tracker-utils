@@ -1,23 +1,40 @@
 import React from 'react';
 import INCURSION_CONSTANTS from 'constants/incursion';
 import {IncursionTieredRoom} from 'components/Incursion';
+import {Divider, Paper, Typography, withStyles} from '@material-ui/core';
 
+const styles = theme => ({
+    root: {
+        ...theme.mixins.gutters(),
+        paddingTop: theme.spacing.unit * 2,
+        paddingBottom: theme.spacing.unit * 2,
+        marginTop: theme.spacing.unit * 2,
+        marginBottom: theme.spacing.unit * 2,
+    },
+});
 
 class IncursionTieredRooms extends React.Component {
     render() {
-        const upgradeableKeys = Object.keys(INCURSION_CONSTANTS.rooms.upgradeable);
+        const {classes} = this.props;
+        const roomsKeys = Object.keys(INCURSION_CONSTANTS.rooms.upgradeable);
         return (
             <React.Fragment>
+                <Typography variant="h6">Upgradeable rooms</Typography>
+                <Paper className={classes.root}>
                 {
-                    upgradeableKeys.map((idx) => (
-                            <IncursionTieredRoom key={idx} rooms={INCURSION_CONSTANTS.rooms.upgradeable[idx]}/>
+                    roomsKeys.map((roomsKey, idx) => (
+                            <React.Fragment>
+                                <IncursionTieredRoom key={roomsKey} roomKey={roomsKey} rooms={INCURSION_CONSTANTS.rooms.upgradeable[roomsKey]}/>
+                                {idx < roomsKeys.length -1 && <Divider/>}
+                            </React.Fragment>
                         )
                     )
                 }
+                </Paper>
             </React.Fragment>
 
         );
     }
 }
 
-export default IncursionTieredRooms;
+export default withStyles(styles)(IncursionTieredRooms);

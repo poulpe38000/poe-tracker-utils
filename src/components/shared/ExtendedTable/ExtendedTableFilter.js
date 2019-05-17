@@ -8,7 +8,7 @@ import {
     InputLabel,
     ListItemText,
     MenuItem,
-    Paper,
+    Paper, Popover,
     Popper,
     Select,
     Typography,
@@ -141,11 +141,19 @@ class ExtendedTableFilter extends React.Component {
                 <IconButton aria-label="Filter list" onClick={this.handleOpenFilterPopper}>
                     <FilterListIcon/>
                 </IconButton>
-                <Popper
+                <Popover
                     id="simple-popper"
                     open={showPopper}
                     anchorEl={anchorEl}
-                    placement="bottom-end"
+                    onClose={this.handleOpenFilterPopper}
+                    anchorOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'right',
+                    }}
                 >
                     <Paper className={classes.popper}>
                         <Typography variant="h6">Filters</Typography>
@@ -167,7 +175,7 @@ class ExtendedTableFilter extends React.Component {
                             </GridListTile>
                         </GridList>
                     </Paper>
-                </Popper>
+                </Popover>
             </React.Fragment>
         );
     }

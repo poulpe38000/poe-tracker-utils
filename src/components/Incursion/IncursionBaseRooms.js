@@ -15,14 +15,18 @@ const styles = theme => ({
 
 class IncursionBaseRooms extends React.Component {
     render() {
+        const roomKeys = Object.keys(INCURSION_CONSTANTS.rooms.non_upgradeable);
         const {classes} = this.props;
         return (
-            <div>
+            <React.Fragment>
+                <Typography variant="h6">Non-upgradeable rooms</Typography>
                 <Paper className={classes.root}>
-                    <Typography>Non-upgradeable rooms</Typography>
-                    {INCURSION_CONSTANTS.rooms.non_upgradeable.map((room) => (<IncursionRoom key={room.id} room={room}/>))}
+                    {roomKeys.map((roomKey) => {
+                        const room = INCURSION_CONSTANTS.rooms.non_upgradeable[roomKey];
+                        return (<IncursionRoom key={room.id} roomKey={roomKey} room={room}/>);
+                    })}
                 </Paper>
-            </div>
+            </React.Fragment>
         );
     }
 }

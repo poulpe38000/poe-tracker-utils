@@ -10,6 +10,7 @@ import {initializeApp} from 'store/main/actions';
 const styles = theme => ({
     root: {
         padding: theme.spacing.unit * 2,
+        paddingTop: 64 + theme.spacing.unit * 2,
         flexGrow: 1
     },
 });

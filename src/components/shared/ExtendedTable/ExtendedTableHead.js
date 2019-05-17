@@ -14,17 +14,24 @@ class ExtendedTableHead extends React.Component {
         return (
             <TableHead>
                 <TableRow>
-                    {cols.map(col => (
-                        <TableCell {...col.headerOptions} sortDirection={orderBy === col.id ? order : false} key={col.id}>
-                            <TableSortLabel
-                                active={orderBy === col.id}
-                                direction={order}
-                                onClick={this.createSortHandler(col.id)}
+                    {cols
+                        .filter(col => !col.hasOwnProperty('options') || !col.options.hasOwnProperty('displayed') || col.options.displayed === true)
+                        .map(col => (
+                            <TableCell
+                                {...col.headerOptions}
+                                variant="head"
+                                sortDirection={orderBy === col.id ? order : false}
+                                key={col.id}
                             >
-                                {col.label}
-                            </TableSortLabel>
-                        </TableCell>
-                    ))}
+                                <TableSortLabel
+                                    active={orderBy === col.id}
+                                    direction={order}
+                                    onClick={this.createSortHandler(col.id)}
+                                >
+                                    {col.label}
+                                </TableSortLabel>
+                            </TableCell>
+                        ))}
                 </TableRow>
             </TableHead>
         );

@@ -3,12 +3,17 @@ import {connect} from 'react-redux';
 import {AppBar, IconButton, Toolbar, Typography, withStyles} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
 import {toggleDrawer} from 'store/main/actions';
-import {ImportData} from 'components/ImportData';
-import {ExportData} from 'components/ExportData';
-import {Settings} from 'components/Settings';
+import {TopBarActions} from 'components/pages/layout/index';
 
 const styles = theme => ({
-    root: {paddingLeft: theme.spacing.unit, paddingRight: theme.spacing.unit},
+    root: {
+        paddingLeft: theme.spacing.unit,
+        paddingRight: theme.spacing.unit,
+        [theme.breakpoints.down('sm')]: {
+            paddingLeft: 0,
+            paddingRight: 0,
+        },
+    },
     menuButton: {marginRight: theme.spacing.unit * 2},
     appTitle: {flexGrow: 1},
 });
@@ -23,22 +28,15 @@ class TopBar extends React.Component {
         const {classes} = this.props;
         return (
             <React.Fragment>
-                <AppBar position="static">
+                <AppBar position="fixed" style={{top: 0}}>
                     <Toolbar className={classes.root}>
-                        <IconButton
-                            color="inherit"
-                            aria-label="Menu"
-                            onClick={this.handleOpenMenu()}
-                            className={classes.menuButton}
-                        >
+                        <IconButton aria-label="Menu" onClick={this.handleOpenMenu()} className={classes.menuButton}>
                             <MenuIcon/>
                         </IconButton>
                         <Typography variant="h6" color="inherit" className={classes.appTitle}>
                             PoE Tracker Helpers
                         </Typography>
-                        <ImportData/>
-                        <ExportData/>
-                        <Settings/>
+                        <TopBarActions/>
                     </Toolbar>
                 </AppBar>
             </React.Fragment>

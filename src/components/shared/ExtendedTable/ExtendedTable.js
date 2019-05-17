@@ -22,14 +22,14 @@ class ExtendedTable extends React.Component {
 
     render() {
         const {order, orderBy} = this.state;
-        const {cols, data, title} = this.props;
+        const {cols, data, title, className} = this.props;
         return (
             <React.Fragment>
                 <ExtendedTableToolbar
                     cols={cols}
                     title={title}
                 />
-                <Table>
+                <Table className={className}>
                     <ExtendedTableHead
                         cols={cols}
                         order={order}

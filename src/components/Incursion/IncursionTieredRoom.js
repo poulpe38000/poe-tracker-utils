@@ -1,33 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Paper, withStyles} from '@material-ui/core';
 import {IncursionRoom} from 'components/Incursion';
-
-const styles = theme => ({
-    root: {
-        ...theme.mixins.gutters(),
-        paddingTop: theme.spacing.unit * 2,
-        paddingBottom: theme.spacing.unit * 2,
-        marginTop: theme.spacing.unit * 2,
-        marginBottom: theme.spacing.unit * 2,
-    },
-});
 
 class IncursionTieredRoom extends React.Component {
     render() {
-        const {classes} = this.props;
+        const {roomKey} = this.props;
         return (
-            <div>
-                <Paper className={classes.root}>
-                    {this.props.rooms.map((room) => (<IncursionRoom key={room.id} room={room}/>))}
-                </Paper>
-            </div>
+            <React.Fragment>
+                {this.props.rooms.map((room) => (<IncursionRoom key={room.id} roomKey={roomKey} room={room}/>))}
+            </React.Fragment>
         );
     }
 }
 
 IncursionTieredRoom.propTypes = {
+    roomKey: PropTypes.string.isRequired,
     rooms: PropTypes.array.isRequired,
 };
 
-export default withStyles(styles)(IncursionTieredRoom);
+export default IncursionTieredRoom;
