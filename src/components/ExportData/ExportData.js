@@ -2,7 +2,7 @@ import React from 'react';
 import {Button, withStyles} from '@material-ui/core';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import {connect} from 'react-redux';
-import {toggleExportDialog} from 'store/import-export/actions';
+import {toggleExportDialog} from 'store/main/actions';
 
 const styles = theme => ({
     button: {margin: theme.spacing.unit},

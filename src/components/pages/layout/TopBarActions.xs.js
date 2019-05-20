@@ -5,7 +5,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import SettingsIcon from '@material-ui/icons/Settings';
 import {connect} from 'react-redux';
-import {toggleExportDialog, toggleImportDialog} from 'store/import-export/actions';
+import {toggleExportDialog, toggleImportDialog} from 'store/main/actions';
 import {toggleSettingsDialog} from 'store/main/actions';
 
 class TopBarActionsXs extends React.Component {
@@ -30,6 +30,7 @@ class TopBarActionsXs extends React.Component {
         this.props.toggleExportDialog(true);
         this.handleClose();
     };
+
 
     handleToggleSettingsDialog = () => {
         this.props.toggleSettingsDialog(true);

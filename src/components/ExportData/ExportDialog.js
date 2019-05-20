@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {Button, DialogContent, DialogTitle, TextField, withStyles} from '@material-ui/core';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
-import {toggleExportDialog} from 'store/import-export/actions';
+import {toggleExportDialog} from 'store/main/actions';
 import {AppDialog, AppDialogActions} from 'components/shared';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
@@ -67,7 +67,7 @@ class ExportDialog extends React.Component {
 
 export default connect(
     state => ({
-        showDialog: state.importExport.showExportDialog,
+        showDialog: state.main.showExportDialog,
         exportData: {
             hideout: {
                 unlocked: state.hideout.unlocked,
