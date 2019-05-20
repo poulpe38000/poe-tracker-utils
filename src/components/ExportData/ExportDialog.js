@@ -12,7 +12,7 @@ const styles = theme => ({
     leftIcon: {marginRight: theme.spacing.unit},
     rightIcon: { marginLeft: theme.spacing.unit},
     inputExportIndicator: {
-        color: theme.palette.secondary.main,
+        color: theme.palette.success.main,
         textAlign: 'center',
     }
 });
