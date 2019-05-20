@@ -10,13 +10,6 @@ const styles = {
     root: {
         width: '100%',
     },
-    tableWrapper: {
-        overflowX: 'auto',
-    },
-    table: {
-        minWidth: 500,
-        tableLayout: 'fixed',
-    }
 };
 
 class HideoutTable extends React.Component {
@@ -122,9 +115,7 @@ class HideoutTable extends React.Component {
             );
         return (
             <Paper className={classes.root}>
-                <div className={classes.tableWrapper}>
-                    <ExtendedTable data={data} cols={this.cols} title="Hideouts list" className={classes.table}/>
-                </div>
+                <ExtendedTable data={data} cols={this.cols} title="Hideouts list"/>
             </Paper>
         );
     }

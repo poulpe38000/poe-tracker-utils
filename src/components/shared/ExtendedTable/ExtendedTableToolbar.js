@@ -1,4 +1,4 @@
-import {IconButton, InputAdornment, TextField, Toolbar, Typography, withStyles} from '@material-ui/core';
+import {FormControl, IconButton, InputAdornment, TextField, Toolbar, Typography, withStyles} from '@material-ui/core';
 import ClearIcon from '@material-ui/icons/Clear';
 import SearchIcon from '@material-ui/icons/Search';
 import React from 'react';
@@ -9,14 +9,15 @@ import * as PropTypes from 'prop-types';
 
 const styles = theme => ({
     spacer: {
-        flex: '1 1 100%',
+        flex: '0 0 auto',
+        flexGrow: 1,
     },
     actions: {
         color: theme.palette.text.secondary,
         display: 'flex'
     },
     title: {
-        flex: '0 0 auto',
+        flex: '1 1 auto',
     },
 });
 
@@ -49,28 +50,30 @@ class ExtendedTableToolbar extends React.Component {
             <Toolbar>
                 <div className={classes.title}>
                     {this.state.showSearchBar ? (
-                        <TextField
-                            className={classes.margin}
-                            autoFocus={true}
-                            label="Search"
-                            inputRef={this.searchField}
-                            onChange={this.handleSearchTextUpdate}
-                            value={this.props.searchText}
-                            InputProps={{
-                                startAdornment: (
-                                    <InputAdornment position="start">
-                                        <SearchIcon />
-                                    </InputAdornment>
-                                ),
-                                endAdornment: (
-                                    <InputAdornment position="end">
-                                        <IconButton aria-label="Delete" onClick={this.handleToggleSearch}>
-                                            <ClearIcon />
-                                        </IconButton>
-                                    </InputAdornment>
-                                )
-                            }}
-                        />
+                        <FormControl fullWidth>
+                            <TextField
+                                className={classes.margin}
+                                autoFocus={true}
+                                label="Search"
+                                inputRef={this.searchField}
+                                onChange={this.handleSearchTextUpdate}
+                                value={this.props.searchText}
+                                InputProps={{
+                                    startAdornment: (
+                                        <InputAdornment position="start">
+                                            <SearchIcon />
+                                        </InputAdornment>
+                                    ),
+                                    endAdornment: (
+                                        <InputAdornment position="end">
+                                            <IconButton aria-label="Delete" onClick={this.handleToggleSearch}>
+                                                <ClearIcon />
+                                            </IconButton>
+                                        </InputAdornment>
+                                    )
+                                }}
+                            />
+                        </FormControl>
                     ) : (
                         <Typography variant="h6">
                             {title || ""}

@@ -27,6 +27,7 @@ const styles = theme => ({
     },
     gridList: {
         width: 500,
+        maxWidth: '100%'
     },
     selectRoot: {
         display: 'flex',
@@ -40,6 +41,16 @@ const styles = theme => ({
     selectFormControl: {
         flex: '1 1 calc(50% - 24px)',
         marginBottom: '24px',
+    },
+    gridListActions: {
+        textAlign: 'right',
+    },
+    actions: {
+        [theme.breakpoints.down('xs')]: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'stretch'
+        },
     },
     button: {margin: theme.spacing.unit},
     leftIcon: {marginRight: theme.spacing.unit},
@@ -172,12 +183,15 @@ class ExtendedTableFilter extends React.Component {
                                         : this.renderDropDown(col, index);
                                 })
                             }
-                            <GridListTile style={{textAlign: 'right'}} cols={2}>
-                                <Button className={classes.button} onClick={this.handleResetFilters}>
-                                    <SettingsBackupRestoreIcon color="secondary" className={classes.leftIcon}/>
-                                    <Typography variant="button" color="secondary">Reset filters</Typography>
-                                </Button>
-                                <Button variant="outlined" className={classes.button} onClick={this.handleOpenFilterPopper}>Close</Button>
+                            <GridListTile className={classes.gridListActions} cols={2}>
+                                <div className={classes.actions}>
+                                    <Button className={classes.button} onClick={this.handleResetFilters}>
+                                        <SettingsBackupRestoreIcon color="secondary" className={classes.leftIcon}/>
+                                        <Typography variant="button" color="secondary">Reset filters</Typography>
+                                    </Button>
+                                    <Button variant="outlined" className={classes.button}
+                                            onClick={this.handleOpenFilterPopper}>Close</Button>
+                                </div>
                             </GridListTile>
                         </GridList>
                     </Paper>

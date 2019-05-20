@@ -2,6 +2,17 @@ import React from 'react';
 import Table from '@material-ui/core/Table';
 import {ExtendedTableBody, ExtendedTableHead, ExtendedTableToolbar} from 'components/shared/ExtendedTable';
 import * as PropTypes from 'prop-types';
+import {withStyles} from '@material-ui/core';
+
+const styles = {
+    tableWrapper: {
+        overflowX: 'auto',
+    },
+    table: {
+        minWidth: 500,
+        tableLayout: 'fixed',
+    }
+};
 
 class ExtendedTable extends React.Component {
     state = {
@@ -22,27 +33,29 @@ class ExtendedTable extends React.Component {
 
     render() {
         const {order, orderBy} = this.state;
-        const {cols, data, title, className} = this.props;
+        const {cols, data, title, classes} = this.props;
         return (
             <React.Fragment>
                 <ExtendedTableToolbar
                     cols={cols}
                     title={title}
                 />
-                <Table className={className}>
-                    <ExtendedTableHead
-                        cols={cols}
-                        order={order}
-                        orderBy={orderBy}
-                        onRequestSort={this.handleRequestSort}
-                    />
-                    <ExtendedTableBody
-                        cols={cols}
-                        data={data}
-                        order={order}
-                        orderBy={orderBy}
-                    />
-                </Table>
+                <div className={classes.tableWrapper}>
+                    <Table className={classes.table}>
+                        <ExtendedTableHead
+                            cols={cols}
+                            order={order}
+                            orderBy={orderBy}
+                            onRequestSort={this.handleRequestSort}
+                        />
+                        <ExtendedTableBody
+                            cols={cols}
+                            data={data}
+                            order={order}
+                            orderBy={orderBy}
+                        />
+                    </Table>
+                </div>
             </React.Fragment>
         );
     }
@@ -54,4 +67,4 @@ ExtendedTable.propTypes = {
     cols: PropTypes.array.isRequired,
 };
 
-export default ExtendedTable;
+export default withStyles(styles)(ExtendedTable);
