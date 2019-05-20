@@ -1,3 +1,4 @@
 export {default as HomePage} from './HomePage';
-export {default as HideoutPage} from './HideoutPage';
-export {default as IncursionPage} from './IncursionPage';
+export {default as TrackersPage} from './TrackersPage';
+export {default as HideoutPage} from './Trackers/HideoutPage';
+export {default as IncursionPage} from './Trackers/IncursionPage';

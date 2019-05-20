@@ -36,19 +36,12 @@ class SideMenu extends React.Component {
                             <ListItemText primary="Home"/>
                         </ListItem>
 
-                        <ListItem component={NavLink} to="/incursion" onClick={this.handleCloseMenu()}
+                        <ListItem component={NavLink} to="/trackers" onClick={this.handleCloseMenu()}
                                   activeClassName={classes.selectedLink} button>
                             <ListItemIcon>
                                 <ListAltIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Incursion room completion tracker"/>
-                        </ListItem>
-                        <ListItem component={NavLink} to="/hideout" onClick={this.handleCloseMenu()}
-                                  activeClassName={classes.selectedLink} button>
-                            <ListItemIcon>
-                                <ListAltIcon/>
-                            </ListItemIcon>
-                            <ListItemText primary="Hideouts unlock tracker"/>
+                            <ListItemText primary="Trackers"/>
                         </ListItem>
                     </List>
                 </div>

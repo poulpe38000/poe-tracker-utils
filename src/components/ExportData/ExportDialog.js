@@ -1,22 +1,16 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {Button, DialogActions, DialogContent, DialogTitle, TextField, withStyles} from '@material-ui/core';
+import {Button, DialogContent, DialogTitle, TextField, withStyles} from '@material-ui/core';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import {toggleExportDialog} from 'store/import-export/actions';
-import {AppDialog} from 'components/shared';
+import {AppDialog, AppDialogActions} from 'components/shared';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 
 const styles = theme => ({
     button: {margin: theme.spacing.unit},
     leftIcon: {marginRight: theme.spacing.unit},
     rightIcon: { marginLeft: theme.spacing.unit},
-    actions: {
-        [theme.breakpoints.down('xs')]: {
-            flexDirection: 'column',
-            alignItems: 'stretch'
-        }
-    }
 });
 
 class ExportDialog extends React.Component {
@@ -38,12 +32,7 @@ class ExportDialog extends React.Component {
         const {classes, exportData, showDialog} = this.props;
         const exportText = JSON.stringify(exportData, null, 2);
         return (
-                <AppDialog
-                    open={showDialog}
-                    onClose={this.handleCloseDialog}
-                    fullWidth
-                    maxWidth="md"
-                >
+                <AppDialog open={showDialog} onClose={this.handleCloseDialog} fullWidth maxWidth="md">
                     <DialogTitle>Export tracker data</DialogTitle>
                     <DialogContent>
                         <TextField
@@ -53,27 +42,24 @@ class ExportDialog extends React.Component {
                             value={exportText}
                             margin="normal"
                             variant="outlined"
-                            InputProps={{
-                                readOnly: true,
-                            }}
+                            InputProps={{readOnly: true}}
                         />
                     </DialogContent>
-                    <DialogActions className={classes.actions}>
+                    <AppDialogActions>
+                        <Button variant="contained" color="primary" autoFocus className={classes.button} onClick={this.downloadTrackerFile}>
+                            <CloudDownloadIcon className={classes.leftIcon}/>
+                            Download file
+                        </Button>
                         <CopyToClipboard text={exportText}>
-                            <Button className={classes.button}>
+                            <Button variant="contained" color="default" className={classes.button}>
                                 <FileCopyOutlinedIcon className={classes.leftIcon}/>
                                 Copy data
                             </Button>
                         </CopyToClipboard>
-                        <Button variant="contained" elevation={0} size="large" color="primary" autoFocus
-                                className={classes.button} onClick={this.downloadTrackerFile}>
-                            <CloudDownloadIcon className={classes.leftIcon}/>
-                            Download file
-                        </Button>
                         <Button variant="outlined" className={classes.button} onClick={this.handleCloseDialog}>
                             Close
                         </Button>
-                    </DialogActions>
+                    </AppDialogActions>
                 </AppDialog>
         );
     }

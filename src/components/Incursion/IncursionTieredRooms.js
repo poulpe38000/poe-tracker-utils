@@ -23,8 +23,8 @@ class IncursionTieredRooms extends React.Component {
                 <Paper className={classes.root}>
                 {
                     roomsKeys.map((roomsKey, idx) => (
-                            <React.Fragment>
-                                <IncursionTieredRoom key={roomsKey} roomKey={roomsKey} rooms={INCURSION_CONSTANTS.rooms.upgradeable[roomsKey]}/>
+                            <React.Fragment key={roomsKey}>
+                                <IncursionTieredRoom roomKey={roomsKey} rooms={INCURSION_CONSTANTS.rooms.upgradeable[roomsKey]}/>
                                 {idx < roomsKeys.length -1 && <Divider/>}
                             </React.Fragment>
                         )

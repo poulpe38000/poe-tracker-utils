@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from "react-redux";
 import {
     Button,
-    DialogActions,
     DialogContent,
     DialogTitle,
     List,
@@ -16,16 +15,10 @@ import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore'
 import {resetAll, toggleSettingsDialog} from 'store/main/actions';
 import {incursionResetCompletedData, incursionResetInProgressData} from 'store/incursion/actions';
 import {hideoutResetData} from 'store/hideout/actions';
-import {AppDialog} from 'components/shared';
+import {AppDialog, AppDialogActions} from 'components/shared';
 
 const styles = theme => ({
     button: {margin: theme.spacing.unit},
-    actions: {
-        [theme.breakpoints.down('xs')]: {
-            flexDirection: 'column',
-            alignItems: 'stretch'
-        }
-    },
 });
 
 class SettingsDialog extends React.Component {
@@ -102,11 +95,11 @@ class SettingsDialog extends React.Component {
                             </ListItem>
                         </List>
                     </DialogContent>
-                    <DialogActions className={classes.actions}>
+                    <AppDialogActions>
                         <Button variant="outlined" className={classes.button} onClick={this.handleCloseDialog}>
                             Close
                         </Button>
-                    </DialogActions>
+                    </AppDialogActions>
                 </AppDialog>
         );
     }

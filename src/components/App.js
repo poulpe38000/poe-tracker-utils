@@ -2,16 +2,18 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 import {withStyles} from '@material-ui/core';
 import {SideMenu, TopBar} from 'components/pages/layout';
-import {HideoutPage, HomePage, IncursionPage} from 'components/pages';
+import {HomePage, TrackersPage} from 'components/pages';
 import {connect} from 'react-redux';
 import {initializeApp} from 'store/main/actions';
 
 
 const styles = theme => ({
     root: {
-        padding: theme.spacing.unit * 2,
-        paddingTop: 64 + theme.spacing.unit * 2,
-        flexGrow: 1
+        paddingTop: 64,
+        flexGrow: 1,
+        [theme.breakpoints.down('xs')]: {
+            paddingTop: 56,
+        }
     },
 });
 
@@ -29,8 +31,7 @@ class App extends React.Component {
                 <SideMenu/>
                 <div className={classes.root}>
                     <Route path="/" exact component={HomePage}/>
-                    <Route path="/incursion" component={IncursionPage}/>
-                    <Route path="/hideout" component={HideoutPage}/>
+                    <Route path="/trackers" component={TrackersPage}/>
                 </div>
             </React.Fragment>
         );

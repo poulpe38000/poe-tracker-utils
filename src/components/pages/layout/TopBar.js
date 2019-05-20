@@ -32,7 +32,7 @@ class TopBar extends React.Component {
         const {classes, width} = this.props;
         return (
             <React.Fragment>
-                <AppBar position="fixed" style={{top: 0}}>
+                <AppBar position="fixed">
                     <Toolbar className={classes.root}>
                         <IconButton aria-label="Menu" onClick={this.handleOpenMenu()} className={classes.menuButton}>
                             <MenuIcon/>

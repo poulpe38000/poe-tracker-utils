@@ -1,19 +1,9 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {
-    Button,
-    DialogActions,
-    DialogContent,
-    DialogTitle,
-    Grid,
-    Paper,
-    TextField,
-    Typography,
-    withStyles
-} from '@material-ui/core';
+import {Button, DialogContent, DialogTitle, Grid, Paper, TextField, Typography, withStyles} from '@material-ui/core';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import {importUpdateTextData, toggleImportDialog} from 'store/import-export/actions';
-import {AppDialog} from 'components/shared';
+import {AppDialog, AppDialogActions} from 'components/shared';
 import {importData} from 'store/main/actions';
 import Dropzone from 'react-dropzone';
 
@@ -37,12 +27,6 @@ const styles = theme => ({
     },
     button: {margin: theme.spacing.unit},
     leftIcon: {marginRight: theme.spacing.unit},
-    actions: {
-        [theme.breakpoints.down('xs')]: {
-            flexDirection: 'column',
-            alignItems: 'stretch'
-        }
-    }
 });
 
 class ImportDialog extends React.Component {
@@ -127,15 +111,15 @@ class ImportDialog extends React.Component {
                             )}
                         </Dropzone>
                     </DialogContent>
-                    <DialogActions className={classes.actions}>
+                    <AppDialogActions>
                         <Button variant="contained" className={classes.button} onClick={this.handleContentDataLoad} color="primary" autoFocus>
                             <CloudUploadIcon className={classes.leftIcon}/>
                             Import
                         </Button>
                         <Button variant="outlined" className={classes.button} onClick={this.handleCloseDialog}>
-                            Cancel
+                            Close
                         </Button>
-                    </DialogActions>
+                    </AppDialogActions>
                 </AppDialog>
         );
     }
