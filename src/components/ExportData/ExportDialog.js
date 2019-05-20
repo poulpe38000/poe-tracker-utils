@@ -1,6 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {Button, DialogContent, DialogTitle, TextField, withStyles} from '@material-ui/core';
+import {Button, DialogContent, DialogTitle, Fade, FormHelperText, TextField, withStyles} from '@material-ui/core';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import {toggleExportDialog} from 'store/main/actions';
@@ -11,11 +11,38 @@ const styles = theme => ({
     button: {margin: theme.spacing.unit},
     leftIcon: {marginRight: theme.spacing.unit},
     rightIcon: { marginLeft: theme.spacing.unit},
+    inputExportIndicator: {
+        color: theme.palette.secondary.main,
+        textAlign: 'center',
+    }
 });
 
 class ExportDialog extends React.Component {
+    state = {
+        copySuccess: false,
+    };
+    timer;
+
+    handleResetState = () => {
+        this.setState({
+            copySuccess: false,
+        });
+    };
+
     handleCloseDialog = () => {
         this.props.toggleExportDialog(false);
+    };
+
+    handleCopySuccess = () => {
+        this.setState({
+            copySuccess: true,
+        });
+        if (!!this.timer) {
+            clearTimeout(this.timer);
+        }
+        this.timer = setTimeout(() => {
+            this.setState({ copySuccess: false });
+        }, 3000);
     };
 
     downloadTrackerFile = () => {
@@ -30,9 +57,16 @@ class ExportDialog extends React.Component {
 
     render() {
         const {classes, exportData, showDialog} = this.props;
+        const {copySuccess} = this.state;
         const exportText = JSON.stringify(exportData, null, 2);
         return (
-                <AppDialog open={showDialog} onClose={this.handleCloseDialog} fullWidth maxWidth="md">
+                <AppDialog
+                    open={showDialog}
+                    onEntering={this.handleResetState}
+                    onClose={this.handleCloseDialog}
+                    fullWidth
+                    maxWidth="md"
+                >
                     <DialogTitle>Export tracker data</DialogTitle>
                     <DialogContent>
                         <TextField
@@ -44,14 +78,19 @@ class ExportDialog extends React.Component {
                             variant="outlined"
                             InputProps={{readOnly: true}}
                         />
+                        <FormHelperText className={classes.inputExportIndicator}>
+                            <Fade in={copySuccess}>
+                                <span>Tracker data copied to clipboard !</span>
+                            </Fade>
+                        </FormHelperText>
                     </DialogContent>
                     <AppDialogActions>
-                        <Button variant="contained" color="primary" autoFocus className={classes.button} onClick={this.downloadTrackerFile}>
+                        <Button variant="contained" color="secondary" autoFocus className={classes.button} onClick={this.downloadTrackerFile}>
                             <CloudDownloadIcon className={classes.leftIcon}/>
                             Download file
                         </Button>
-                        <CopyToClipboard text={exportText}>
-                            <Button variant="contained" color="default" className={classes.button}>
+                        <CopyToClipboard text={exportText} className={classes.button} onCopy={this.handleCopySuccess}>
+                            <Button variant="contained" color="secondary">
                                 <FileCopyOutlinedIcon className={classes.leftIcon}/>
                                 Copy data
                             </Button>

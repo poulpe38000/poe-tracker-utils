@@ -186,8 +186,8 @@ class ExtendedTableFilter extends React.Component {
                             <GridListTile className={classes.gridListActions} cols={2}>
                                 <div className={classes.actions}>
                                     <Button className={classes.button} onClick={this.handleResetFilters}>
-                                        <SettingsBackupRestoreIcon color="secondary" className={classes.leftIcon}/>
-                                        <Typography variant="button" color="secondary">Reset filters</Typography>
+                                        <SettingsBackupRestoreIcon color="error" className={classes.leftIcon}/>
+                                        <Typography variant="button" color="error">Reset filters</Typography>
                                     </Button>
                                     <Button variant="outlined" className={classes.button}
                                             onClick={this.handleOpenFilterPopper}>Close</Button>

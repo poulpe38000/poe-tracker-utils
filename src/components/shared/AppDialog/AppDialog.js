@@ -1,11 +1,11 @@
 import React from 'react'
 import {createMuiTheme, Dialog, MuiThemeProvider} from '@material-ui/core';
-import {indigo, pink} from '@material-ui/core/colors';
+import {amber, blueGrey} from '@material-ui/core/colors';
 
 const dialogTheme = createMuiTheme({
     palette: {
-        primary: indigo,
-        secondary: pink,
+        primary: blueGrey,
+        secondary: amber,
         type: 'light'
     },
     typography: {

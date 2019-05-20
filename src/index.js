@@ -8,14 +8,14 @@ import {Provider} from "react-redux";
 import {CssBaseline} from '@material-ui/core';
 import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
 
-import {indigo, pink} from '@material-ui/core/colors';
+import {blueGrey, amber} from '@material-ui/core/colors';
 import {BrowserRouter} from 'react-router-dom';
 import APP_CONSTANTS from 'constants/app';
 
 const theme = createMuiTheme({
     palette: {
-        primary: indigo,
-        secondary: pink,
+        primary: blueGrey,
+        secondary: amber,
         type: 'dark', // Switching the dark mode on is a single property value change.
     },
     typography: {

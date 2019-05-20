@@ -145,7 +145,7 @@ class ImportDialog extends React.Component {
                         </Dropzone>
                     </DialogContent>
                     <AppDialogActions>
-                        <Button variant="contained" className={classes.button} onClick={this.handleContentDataLoad} color="primary" autoFocus>
+                        <Button variant="contained" color="secondary" className={classes.button} onClick={this.handleContentDataLoad} autoFocus>
                             <CloudUploadIcon className={classes.leftIcon}/>
                             Import
                         </Button>
