@@ -28,7 +28,8 @@ const styles = theme => (mergeStyles({
     },
     gridList: {
         width: 500,
-        maxWidth: '100%'
+        maxWidth: '100%',
+        justifyContent: 'center',
     },
     selectRoot: {
         display: 'flex',

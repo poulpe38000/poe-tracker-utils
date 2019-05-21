@@ -1,6 +1,6 @@
 import React from 'react';
 import {AppPage} from 'components/pages/layout';
-import HideoutList from 'components/Hideout/HideoutList';
+import {HideoutList} from 'components/Hideout';
 
 function HideoutPage() {
     return (
