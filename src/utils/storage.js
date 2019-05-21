@@ -11,6 +11,7 @@ export const setObj = (key, value) => {
     return value;
 };
 
-export const clearObj = (key) => {
+export const clearObj = (key, fallback = {}) => {
     localStorage.removeItem(key);
+    return fallback;
 };

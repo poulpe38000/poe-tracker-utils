@@ -18,62 +18,53 @@ function hideoutReducer(state = INITIAL_STATE, action) {
             const i = state.unlocked.findIndex((hideout) => hideout === action.payload);
             if (i !== -1) {
                 unlocked = state.unlocked.filter((hideout) => hideout !== action.payload);
-
             } else {
                 unlocked = [...state.unlocked, action.payload];
             }
-            setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked);
             return {
                 ...state,
-                unlocked: unlocked
+                unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked),
             };
         case HIDEOUT_UPDATE_SEARCH_TEXT:
             return {
                 ...state,
-                searchText: action.payload
+                searchText: action.payload,
             };
         case HIDEOUT_UPDATE_FILTERS:
             return {
                 ...state,
                 filters: {
                     ...state.filters,
-                    ...action.payload
+                    ...action.payload,
                 }
             };
         case HIDEOUT_RESET_FILTERS:
             return {
                 ...state,
-                filters: {}
+                filters: {},
             };
         case HIDEOUT_RESET_DATA:
-            clearObj(HIDEOUT_UNLOCKED_STORAGE);
-            return {
-                ...state,
-                unlocked: []
-            };
         case RESET_ALL:
-            clearObj(HIDEOUT_UNLOCKED_STORAGE);
             return {
                 ...state,
-                unlocked: []
+                unlocked: clearObj(HIDEOUT_UNLOCKED_STORAGE, []),
             };
         case INITIALIZE_APP:
             try {
                 return {
                     ...state,
-                    unlocked: getObj(HIDEOUT_UNLOCKED_STORAGE, [])
+                    unlocked: getObj(HIDEOUT_UNLOCKED_STORAGE, []),
                 };
             } catch (e) {
-                return {...state};
+                return state;
             }
         case IMPORT_DATA:
             unlocked = action.payload.hideout && action.payload.hideout.unlocked
                 ? action.payload.hideout.unlocked
                 : [];
-            setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked);
             return {
                 ...state,
-                unlocked: unlocked
+                unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked),
             };
         default:
             return state;

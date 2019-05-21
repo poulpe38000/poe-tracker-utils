@@ -25,10 +25,9 @@ function incursionReducer(state = INITIAL_STATE, action) {
                     completedRooms.push(action.payload);
                 }
             }
-            setObj(INCURSION_COMPLETED_STORAGE, completedRooms);
             return {
                 ...state,
-                completed: completedRooms
+                completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
             };
         case INCURSION_ROOM_TOGGLE_IN_PROGRESS:
             const inProgressRoomSet = inProgressRooms.find((room) => room.id === action.payload.id);
@@ -40,10 +39,9 @@ function incursionReducer(state = INITIAL_STATE, action) {
                     inProgressRooms.push(action.payload);
                 }
             }
-            setObj(INCURSION_IN_PROGRESS_STORAGE, inProgressRooms);
             return {
                 ...state,
-                in_progress: inProgressRooms
+                in_progress: setObj(INCURSION_IN_PROGRESS_STORAGE, inProgressRooms),
             };
         case INCURSION_ROOM_VALIDATE_IN_PROGRESS:
             inProgressRooms.forEach(inProgressRoom => {
@@ -54,21 +52,17 @@ function incursionReducer(state = INITIAL_STATE, action) {
                     completedRooms.push(inProgressRoom);
                 }
             });
-            setObj(INCURSION_COMPLETED_STORAGE, completedRooms);
-            clearObj(INCURSION_IN_PROGRESS_STORAGE);
             return {
                 ...state,
-                completed: completedRooms,
-                in_progress: []
+                completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
+                in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
             };
         case INITIALIZE_APP:
             try {
-                completedRooms = getObj(INCURSION_COMPLETED_STORAGE, []);
-                inProgressRooms = getObj(INCURSION_IN_PROGRESS_STORAGE, []);
                 return {
                     ...state,
-                    completed: completedRooms,
-                    in_progress: inProgressRooms,
+                    completed: getObj(INCURSION_COMPLETED_STORAGE, []),
+                    in_progress: getObj(INCURSION_IN_PROGRESS_STORAGE, []),
                 };
             } catch (e) {
                 return {...state};
@@ -80,32 +74,26 @@ function incursionReducer(state = INITIAL_STATE, action) {
             inProgressRooms = action.payload.incursion && action.payload.incursion.in_progress
                 ? action.payload.incursion.in_progress
                 : null;
-            setObj(INCURSION_COMPLETED_STORAGE, completedRooms);
-            setObj(INCURSION_IN_PROGRESS_STORAGE, inProgressRooms);
             return {
                 ...state,
-                completed: completedRooms,
-                in_progress: inProgressRooms,
+                completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
+                in_progress: setObj(INCURSION_IN_PROGRESS_STORAGE, inProgressRooms),
             };
         case INCURSION_RESET_IN_PROGRESS_DATA:
-            clearObj(INCURSION_IN_PROGRESS_STORAGE);
             return {
                 ...state,
-                in_progress: []
+                in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
             };
         case INCURSION_RESET_COMPLETED_DATA:
-            clearObj(INCURSION_COMPLETED_STORAGE);
             return {
                 ...state,
-                completed: []
+                completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
             };
         case RESET_ALL:
-            clearObj(INCURSION_IN_PROGRESS_STORAGE);
-            clearObj(INCURSION_COMPLETED_STORAGE);
             return {
                 ...state,
-                in_progress: [],
-                completed: []
+                in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
+                completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
             };
         default :
             return state;
