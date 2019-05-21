@@ -3,6 +3,11 @@ import PropTypes from 'prop-types';
 import {IncursionRoom} from 'components/Incursion';
 
 class IncursionTieredRoom extends React.Component {
+    static propTypes = {
+        roomKey: PropTypes.string.isRequired,
+        rooms: PropTypes.array.isRequired,
+    };
+
     render() {
         const {roomKey} = this.props;
         return (
@@ -12,10 +17,5 @@ class IncursionTieredRoom extends React.Component {
         );
     }
 }
-
-IncursionTieredRoom.propTypes = {
-    roomKey: PropTypes.string.isRequired,
-    rooms: PropTypes.array.isRequired,
-};
 
 export default IncursionTieredRoom;

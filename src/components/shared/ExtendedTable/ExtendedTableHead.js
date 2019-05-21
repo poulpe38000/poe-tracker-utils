@@ -3,6 +3,12 @@ import {TableCell, TableHead, TableRow, TableSortLabel} from '@material-ui/core'
 import * as PropTypes from 'prop-types';
 
 class ExtendedTableHead extends React.Component {
+    static propTypes = {
+        cols: PropTypes.array.isRequired,
+        onRequestSort: PropTypes.func.isRequired,
+        order: PropTypes.string.isRequired,
+        orderBy: PropTypes.string.isRequired,
+    };
 
     createSortHandler = property => event => {
         this.props.onRequestSort(event, property);
@@ -37,12 +43,5 @@ class ExtendedTableHead extends React.Component {
         );
     }
 }
-
-ExtendedTableHead.propTypes = {
-    cols: PropTypes.array.isRequired,
-    onRequestSort: PropTypes.func.isRequired,
-    order: PropTypes.string.isRequired,
-    orderBy: PropTypes.string.isRequired,
-};
 
 export default ExtendedTableHead;

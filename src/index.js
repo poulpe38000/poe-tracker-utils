@@ -6,28 +6,15 @@ import store from './store/index'
 import * as serviceWorker from './serviceWorker';
 import {Provider} from "react-redux";
 import {CssBaseline} from '@material-ui/core';
-import {MuiThemeProvider, createMuiTheme} from '@material-ui/core/styles';
-
-import {blueGrey, amber, green} from '@material-ui/core/colors';
+import {MuiThemeProvider} from '@material-ui/core/styles';
 import {BrowserRouter} from 'react-router-dom';
-import APP_CONSTANTS from 'constants/app';
-
-const theme = createMuiTheme({
-    palette: {
-        primary: blueGrey,
-        secondary: amber,
-        success: {main: green['500']},
-        type: 'dark', // Switching the dark mode on is a single property value change.
-    },
-    typography: {
-        useNextVariants: true,
-    }
-});
+import APP_CONSTANTS from 'constants/app.constants';
+import {mainTheme} from 'components/shared/themes';
 
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter basename={APP_CONSTANTS.basename}>
-            <MuiThemeProvider theme={theme}>
+            <MuiThemeProvider theme={mainTheme}>
                 <CssBaseline />
                 <App />
             </MuiThemeProvider>

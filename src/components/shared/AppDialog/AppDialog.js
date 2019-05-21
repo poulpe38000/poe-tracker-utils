@@ -1,18 +1,6 @@
 import React from 'react'
-import {createMuiTheme, Dialog, MuiThemeProvider} from '@material-ui/core';
-import {amber, blueGrey, green} from '@material-ui/core/colors';
-
-const dialogTheme = createMuiTheme({
-    palette: {
-        primary: blueGrey,
-        secondary: amber,
-        success: {main: green['500']},
-        type: 'light'
-    },
-    typography: {
-        useNextVariants: true,
-    },
-});
+import {Dialog, MuiThemeProvider} from '@material-ui/core';
+import {dialogTheme} from 'components/shared/themes';
 
 class AppDialog extends React.Component {
 

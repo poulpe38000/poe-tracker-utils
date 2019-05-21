@@ -47,6 +47,14 @@ function applyFilters(filters, row) {
 }
 
 class ExtendedTableBody extends React.Component {
+
+    static propTypes = {
+        data: PropTypes.array.isRequired,
+        cols: PropTypes.array.isRequired,
+        order: PropTypes.string.isRequired,
+        orderBy: PropTypes.string.isRequired,
+    };
+
     stableSort = (array, cmp) => {
         const stabilizedThis = array.map((el, index) => [el, index]);
         stabilizedThis.sort((a, b) => {
@@ -90,13 +98,6 @@ class ExtendedTableBody extends React.Component {
         );
     }
 }
-
-ExtendedTableBody.propTypes = {
-    data: PropTypes.array.isRequired,
-    cols: PropTypes.array.isRequired,
-    order: PropTypes.string.isRequired,
-    orderBy: PropTypes.string.isRequired,
-};
 
 export default connect(
     state => ({

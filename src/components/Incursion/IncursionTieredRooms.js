@@ -1,5 +1,5 @@
 import React from 'react';
-import INCURSION_CONSTANTS from 'constants/incursion';
+import INCURSION_CONSTANTS from 'constants/incursion.constants';
 import {IncursionTieredRoom} from 'components/Incursion';
 import {Divider, Paper, Typography, withStyles} from '@material-ui/core';
 

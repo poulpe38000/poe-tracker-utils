@@ -15,6 +15,13 @@ const styles = {
 };
 
 class ExtendedTable extends React.Component {
+
+    static propTypes = {
+        data: PropTypes.array.isRequired,
+        title: PropTypes.string,
+        cols: PropTypes.array.isRequired,
+    };
+
     state = {
         order: 'asc',
         orderBy: 'name',
@@ -60,11 +67,5 @@ class ExtendedTable extends React.Component {
         );
     }
 }
-
-ExtendedTable.propTypes = {
-    data: PropTypes.array.isRequired,
-    title: PropTypes.string,
-    cols: PropTypes.array.isRequired,
-};
 
 export default withStyles(styles)(ExtendedTable);

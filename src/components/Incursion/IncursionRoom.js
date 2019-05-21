@@ -6,6 +6,11 @@ import {incursionRoomToggleCompleted, incursionRoomToggleInProgress} from 'store
 
 class IncursionRoom extends React.Component {
 
+    static propTypes = {
+        roomKey: PropTypes.string.isRequired,
+        room: PropTypes.object.isRequired,
+    };
+
     toggleCompleted = (id, tier) => () => {
         this.props.incursionRoomToggleCompleted(id, tier);
     };
@@ -38,12 +43,6 @@ class IncursionRoom extends React.Component {
         );
     }
 }
-
-
-IncursionRoom.propTypes = {
-    roomKey: PropTypes.string.isRequired,
-    room: PropTypes.object.isRequired,
-};
 
 export default connect(
     state => ({

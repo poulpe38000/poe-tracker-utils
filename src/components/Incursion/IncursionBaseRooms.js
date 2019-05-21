@@ -1,6 +1,6 @@
 import React from 'react';
 import {Paper, Typography, withStyles} from '@material-ui/core';
-import INCURSION_CONSTANTS from 'constants/incursion';
+import INCURSION_CONSTANTS from 'constants/incursion.constants';
 import {IncursionRoom} from 'components/Incursion';
 
 const styles = theme => ({

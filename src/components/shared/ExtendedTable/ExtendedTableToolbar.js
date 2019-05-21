@@ -23,14 +23,19 @@ const styles = theme => ({
 
 class ExtendedTableToolbar extends React.Component {
 
-    constructor(props) {
-        super(props);
-        this.searchField = React.createRef();
-    }
+    static propTypes = {
+        cols: PropTypes.array.isRequired,
+        title: PropTypes.string,
+    };
 
     state = {
         showSearchBar: false,
     };
+
+    constructor(props) {
+        super(props);
+        this.searchField = React.createRef();
+    }
 
     handleToggleSearch = () => {
         this.setState({
@@ -91,10 +96,6 @@ class ExtendedTableToolbar extends React.Component {
         );
     }
 }
-ExtendedTableToolbar.propTypes = {
-    cols: PropTypes.array.isRequired,
-    title: PropTypes.string,
-};
 
 export default connect(
     state => ({

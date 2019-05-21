@@ -6,6 +6,7 @@ import {
     INCURSION_ROOM_TOGGLE_IN_PROGRESS, INCURSION_ROOM_VALIDATE_IN_PROGRESS
 } from 'store/incursion/actions';
 import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL} from 'store/main/actions';
+import {clearObj, getObj, setObj} from 'utils/storage.utils';
 
 const INCURSION_COMPLETED_STORAGE = 'incursionCompleted';
 const INCURSION_IN_PROGRESS_STORAGE = 'incursionInProgress';
@@ -24,7 +25,7 @@ function incursionReducer(state = INITIAL_STATE, action) {
                     completedRooms.push(action.payload);
                 }
             }
-            localStorage.setItem(INCURSION_COMPLETED_STORAGE, JSON.stringify(completedRooms));
+            setObj(INCURSION_COMPLETED_STORAGE, completedRooms);
             return {
                 ...state,
                 completed: completedRooms
@@ -39,7 +40,7 @@ function incursionReducer(state = INITIAL_STATE, action) {
                     inProgressRooms.push(action.payload);
                 }
             }
-            localStorage.setItem(INCURSION_IN_PROGRESS_STORAGE, JSON.stringify(inProgressRooms));
+            setObj(INCURSION_IN_PROGRESS_STORAGE, inProgressRooms);
             return {
                 ...state,
                 in_progress: inProgressRooms
@@ -53,8 +54,8 @@ function incursionReducer(state = INITIAL_STATE, action) {
                     completedRooms.push(inProgressRoom);
                 }
             });
-            localStorage.setItem(INCURSION_COMPLETED_STORAGE, JSON.stringify(completedRooms));
-            localStorage.removeItem(INCURSION_IN_PROGRESS_STORAGE);
+            setObj(INCURSION_COMPLETED_STORAGE, completedRooms);
+            clearObj(INCURSION_IN_PROGRESS_STORAGE);
             return {
                 ...state,
                 completed: completedRooms,
@@ -62,8 +63,8 @@ function incursionReducer(state = INITIAL_STATE, action) {
             };
         case INITIALIZE_APP:
             try {
-                completedRooms = JSON.parse(localStorage.getItem(INCURSION_COMPLETED_STORAGE)) || [];
-                inProgressRooms = JSON.parse(localStorage.getItem(INCURSION_IN_PROGRESS_STORAGE)) || [];
+                completedRooms = getObj(INCURSION_COMPLETED_STORAGE, []);
+                inProgressRooms = getObj(INCURSION_IN_PROGRESS_STORAGE, []);
                 return {
                     ...state,
                     completed: completedRooms,
@@ -79,28 +80,28 @@ function incursionReducer(state = INITIAL_STATE, action) {
             inProgressRooms = action.payload.incursion && action.payload.incursion.in_progress
                 ? action.payload.incursion.in_progress
                 : null;
-            localStorage.setItem(INCURSION_COMPLETED_STORAGE, JSON.stringify(completedRooms));
-            localStorage.setItem(INCURSION_IN_PROGRESS_STORAGE, JSON.stringify(inProgressRooms));
+            setObj(INCURSION_COMPLETED_STORAGE, completedRooms);
+            setObj(INCURSION_IN_PROGRESS_STORAGE, inProgressRooms);
             return {
                 ...state,
                 completed: completedRooms,
                 in_progress: inProgressRooms,
             };
         case INCURSION_RESET_IN_PROGRESS_DATA:
-            localStorage.removeItem(INCURSION_IN_PROGRESS_STORAGE);
+            clearObj(INCURSION_IN_PROGRESS_STORAGE);
             return {
                 ...state,
                 in_progress: []
             };
         case INCURSION_RESET_COMPLETED_DATA:
-            localStorage.removeItem(INCURSION_COMPLETED_STORAGE);
+            clearObj(INCURSION_COMPLETED_STORAGE);
             return {
                 ...state,
                 completed: []
             };
         case RESET_ALL:
-            localStorage.removeItem(INCURSION_IN_PROGRESS_STORAGE);
-            localStorage.removeItem(INCURSION_COMPLETED_STORAGE);
+            clearObj(INCURSION_IN_PROGRESS_STORAGE);
+            clearObj(INCURSION_COMPLETED_STORAGE);
             return {
                 ...state,
                 in_progress: [],

@@ -7,6 +7,7 @@ import {
     HIDEOUT_UPDATE_SEARCH_TEXT
 } from 'store/hideout/actions';
 import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL} from 'store/main/actions';
+import {clearObj, getObj, setObj} from 'utils/storage.utils';
 
 const HIDEOUT_UNLOCKED_STORAGE = 'hideoutUnlocked';
 
@@ -21,7 +22,7 @@ function hideoutReducer(state = INITIAL_STATE, action) {
             } else {
                 unlocked = [...state.unlocked, action.payload];
             }
-            localStorage.setItem(HIDEOUT_UNLOCKED_STORAGE, JSON.stringify(unlocked));
+            setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked);
             return {
                 ...state,
                 unlocked: unlocked
@@ -45,13 +46,13 @@ function hideoutReducer(state = INITIAL_STATE, action) {
                 filters: {}
             };
         case HIDEOUT_RESET_DATA:
-            localStorage.removeItem(HIDEOUT_UNLOCKED_STORAGE);
+            clearObj(HIDEOUT_UNLOCKED_STORAGE);
             return {
                 ...state,
                 unlocked: []
             };
         case RESET_ALL:
-            localStorage.removeItem(HIDEOUT_UNLOCKED_STORAGE);
+            clearObj(HIDEOUT_UNLOCKED_STORAGE);
             return {
                 ...state,
                 unlocked: []
@@ -60,7 +61,7 @@ function hideoutReducer(state = INITIAL_STATE, action) {
             try {
                 return {
                     ...state,
-                    unlocked: JSON.parse(localStorage.getItem(HIDEOUT_UNLOCKED_STORAGE)) || []
+                    unlocked: getObj(HIDEOUT_UNLOCKED_STORAGE, [])
                 };
             } catch (e) {
                 return {...state};
@@ -69,7 +70,7 @@ function hideoutReducer(state = INITIAL_STATE, action) {
             unlocked = action.payload.hideout && action.payload.hideout.unlocked
                 ? action.payload.hideout.unlocked
                 : [];
-            localStorage.setItem(HIDEOUT_UNLOCKED_STORAGE, JSON.stringify(unlocked));
+            setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked);
             return {
                 ...state,
                 unlocked: unlocked

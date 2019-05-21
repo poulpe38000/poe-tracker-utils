@@ -57,6 +57,11 @@ const styles = theme => ({
 });
 
 class ExtendedTableFilter extends React.Component {
+
+    static propTypes = {
+        cols: PropTypes.array.isRequired,
+    };
+
     state = {
         anchorEl: null,
         showPopper: false,
@@ -200,10 +205,6 @@ class ExtendedTableFilter extends React.Component {
         );
     }
 }
-
-ExtendedTableFilter.propTypes = {
-    cols: PropTypes.array.isRequired,
-};
 
 export default connect(
     state => ({

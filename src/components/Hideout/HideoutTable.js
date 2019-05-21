@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import Paper from '@material-ui/core/Paper';
-import {HIDEOUT_CONSTANTS, HIDEOUT_RARITIES} from 'constants/hideout';
+import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import {hideoutToggleUnlocked} from 'store/hideout/actions';
 import {ExtendedTable, YesNo} from 'components/shared';
 import {Checkbox, withStyles} from '@material-ui/core';
@@ -63,9 +63,9 @@ class HideoutTable extends React.Component {
             label: 'Rarity',
             options: {
                 searchable: false,
-                filterOptions: HIDEOUT_RARITIES,
+                filterOptions: HIDEOUT_CONSTANTS.rarity,
                 filterType: 'multiselect',
-                renderValue: row => HIDEOUT_RARITIES[row.rarity]
+                renderValue: row => HIDEOUT_CONSTANTS.rarity[row.rarity]
             },
             headerOptions: {
                 style: {width: '120px'},
@@ -108,6 +108,7 @@ class HideoutTable extends React.Component {
     render() {
         const {classes} = this.props;
         const data = HIDEOUT_CONSTANTS
+            .hideouts
             .map(hideout => ({
                     ...hideout,
                     unlocked: !!this.props.unlockedHideouts.find(hideoutId => hideoutId === hideout.id)
