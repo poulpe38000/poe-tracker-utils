@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {List, Paper} from '@material-ui/core';
+import {Divider, List, Paper} from '@material-ui/core';
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import {HideoutListHeader, HideoutListItem} from 'components/Hideout';
 
@@ -45,16 +45,20 @@ class HideoutList extends React.Component {
                     ...hideout,
                     unlocked: !!this.props.unlockedHideouts.find(hideoutId => hideoutId === hideout.id)
                 })
-            );
+            )
+            .filter(hideout => applyFilters(filters, hideout))
+            .filter(hideout => findText(searchText, hideout));
         return (
             <Paper>
                 <HideoutListHeader title="Hideouts list" filterOptions={this.filterOptions}/>
+                <Divider/>
                 <List>
                     {data
-                        .filter(hideout => applyFilters(filters, hideout))
-                        .filter(hideout => findText(searchText, hideout))
-                        .map(hideout => (
-                            <HideoutListItem key={hideout.id} hideout={hideout}/>
+                        .map((hideout, idx) => (
+                            <React.Fragment>
+                                <HideoutListItem key={hideout.id} hideout={hideout}/>
+                                {idx < data.length - 1 && <Divider/>}
+                            </React.Fragment>
                         ))}
                 </List>
             </Paper>
