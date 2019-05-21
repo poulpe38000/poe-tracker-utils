@@ -52,7 +52,8 @@ class HideoutList extends React.Component {
                     ...hideout,
                     unlocked: !!this.props.unlockedHideouts.find(hideoutId => hideoutId === hideout.id)
                 })
-            )
+            );
+        const filteredData = data
             .filter(hideout => applyFilters(filters, hideout))
             .filter(hideout => findText(searchText, hideout));
         return (
@@ -61,16 +62,16 @@ class HideoutList extends React.Component {
                 <HideoutFilterStatus filterOptions={this.filterOptions}/>
                 <Divider/>
                 <List>
-                    {data.length === 0 && (
+                    {filteredData.length === 0 && (
                         <ListItem dense className={classes.notFound}>
                             <Typography variant="h6"><em>No Hideouts found</em></Typography>
                         </ListItem>
                     )}
-                    {data
+                    {filteredData
                         .map((hideout, idx) => (
                             <React.Fragment>
                                 <HideoutListItem key={hideout.id} hideout={hideout}/>
-                                {idx < data.length - 1 && <Divider/>}
+                                {idx < filteredData.length - 1 && <Divider/>}
                             </React.Fragment>
                         ))}
                 </List>
