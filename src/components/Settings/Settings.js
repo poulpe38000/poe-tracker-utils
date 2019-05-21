@@ -3,10 +3,7 @@ import {IconButton, withStyles} from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
 import {connect} from 'react-redux';
 import {toggleSettingsDialog} from 'store/main/actions';
-
-const styles = theme => ({
-    button: {margin: theme.spacing.unit},
-});
+import {buttonStyles} from 'utils/themes';
 
 class Settings extends React.Component {
     handleOpenDialog = () => {
@@ -34,4 +31,4 @@ export default connect(
     dispatch => ({
         toggleSettingsDialog: (payload) => (dispatch(toggleSettingsDialog(payload))),
     }),
-)(withStyles(styles)(Settings));
+)(withStyles(buttonStyles)(Settings));

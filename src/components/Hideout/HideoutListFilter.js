@@ -1,3 +1,5 @@
+import React from 'react';
+import {connect} from 'react-redux';
 import {
     Button,
     Checkbox,
@@ -16,12 +18,11 @@ import {
 } from '@material-ui/core';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
-import React from 'react';
-import {connect} from 'react-redux';
 import {hideoutResetFilters, hideoutUpdateFilters} from 'store/hideout/actions';
+import {buttonStyles, mergeStyles} from 'utils/themes';
 import * as PropTypes from 'prop-types';
 
-const styles = theme => ({
+const styles = theme => (mergeStyles({
     popper: {
         padding: theme.spacing.unit * 2
     },
@@ -52,14 +53,12 @@ const styles = theme => ({
             alignItems: 'stretch'
         },
     },
-    button: {margin: theme.spacing.unit},
-    leftIcon: {marginRight: theme.spacing.unit},
-});
+}, buttonStyles(theme)));
 
-class ExtendedTableFilter extends React.Component {
+class HideoutListFilter extends React.Component {
 
     static propTypes = {
-        cols: PropTypes.array.isRequired,
+        filterOptions: PropTypes.array.isRequired,
     };
 
     state = {
@@ -86,29 +85,26 @@ class ExtendedTableFilter extends React.Component {
         this.props.hideoutResetFilters();
     };
 
-    renderDropDown(col, index) {
+    renderDropDown(filter, index, fallback = '') {
         const {classes, filters} = this.props;
-        const filterKeys = Object.keys(col.options.filterOptions);
-        const filterLabel = col.hasOwnProperty('options') && col.options.hasOwnProperty('filterLabel')
-            ? col.options.filterLabel
-            : col.label;
+        const filterKeys = Object.keys(filter.filterOptions);
         return (
             <GridListTile key={index}>
                 <div className={classes.selectRoot}>
                     <FormControl className={classes.selectFormControl} key={index}>
-                        <InputLabel shrink htmlFor={col.id}>{filterLabel}</InputLabel>
+                        <InputLabel shrink htmlFor={filter.id}>{filter.label}</InputLabel>
                         <Select
                             displayEmpty
-                            value={filters[col.id] || ""}
-                            onChange={this.handleChange(col.id)}
-                            name={col.id}
+                            value={filters[filter.id] || fallback}
+                            onChange={this.handleChange(filter.id)}
+                            name={filter.id}
                         >
                             <MenuItem value="">
                                 <em>All</em>
                             </MenuItem>
                             {filterKeys.map(filterKey => (
                                 <MenuItem value={filterKey} key={filterKey}>
-                                    {col.options.filterOptions[filterKey]}
+                                    {filter.filterOptions[filterKey]}
                                 </MenuItem>
                             ))}
                         </Select>
@@ -118,31 +114,31 @@ class ExtendedTableFilter extends React.Component {
         );
     }
 
-    renderMultiselect(col, index) {
+    renderMultiselect(filter, index, fallback = []) {
         const {classes, filters} = this.props;
-        const filterKeys = Object.keys(col.options.filterOptions);
-        const filterLabel = col.hasOwnProperty('options') && col.options.hasOwnProperty('filterLabel')
-            ? col.options.filterLabel
-            : col.label;
+        const filterKeys = Object.keys(filter.filterOptions);
+        const renderValue = selected => {
+            return selected.length > 0 ? selected.map(elt => filter.filterOptions[elt]).join(', ') : (<em>All</em>)
+        };
         return (
             <GridListTile key={index}>
                 <div className={classes.selectRoot}>
                     <FormControl className={classes.selectFormControl} key={index}>
-                        <InputLabel shrink htmlFor={col.id}>{filterLabel}</InputLabel>
+                        <InputLabel shrink htmlFor={filter.id}>{filter.label}</InputLabel>
                         <Select
                             style={{flexGrow: 1}}
                             multiple
                             displayEmpty
-                            value={filters[col.id] || []}
-                            renderValue={selected => selected.map(elt => col.options.filterOptions[elt]).join(', ')}
-                            onChange={this.handleChange(col.id)}
-                            name={col.id}
+                            value={filters[filter.id] || fallback}
+                            renderValue={renderValue}
+                            onChange={this.handleChange(filter.id)}
+                            name={filter.id}
                         >
                             {filterKeys.map(filterKey => (
                                 <MenuItem value={filterKey} key={filterKey}>
                                     <Checkbox
-                                        checked={!!(filters[col.id] && filters[col.id].indexOf(filterKey) >= 0)}/>
-                                    <ListItemText primary={col.options.filterOptions[filterKey]}/>
+                                        checked={!!(filters[filter.id] && filters[filter.id].indexOf(filterKey) >= 0)}/>
+                                    <ListItemText primary={filter.filterOptions[filterKey]}/>
                                 </MenuItem>
                             ))}
                         </Select>
@@ -153,7 +149,7 @@ class ExtendedTableFilter extends React.Component {
     }
 
     render() {
-        const {classes, cols} = this.props;
+        const {classes, filterOptions} = this.props;
         const {anchorEl, showPopper} = this.state;
         return (
             <React.Fragment>
@@ -177,15 +173,14 @@ class ExtendedTableFilter extends React.Component {
                     <Paper className={classes.popper}>
                         <Typography variant="h6">Filters</Typography>
                         <GridList cellHeight="auto" cols={2} spacing={16} className={classes.gridList}>
-                            {cols
-                                .filter(col => (!col.hasOwnProperty('options') || !col.options.hasOwnProperty('filtrable') || col.options.filtrable === true))
-                                .map((col, index) => {
-                                    const filterType = col.hasOwnProperty('options') && col.options.hasOwnProperty('filterType')
-                                        ? col.options.filterType
+                            {filterOptions
+                                .map((filter, index) => {
+                                    const filterType = filter.hasOwnProperty('filterType')
+                                        ? filter.filterType
                                         : 'dropdown';
                                     return filterType === 'multiselect'
-                                        ? this.renderMultiselect(col, index)
-                                        : this.renderDropDown(col, index);
+                                        ? this.renderMultiselect(filter, index)
+                                        : this.renderDropDown(filter, index);
                                 })
                             }
                             <GridListTile className={classes.gridListActions} cols={2}>
@@ -214,4 +209,4 @@ export default connect(
         hideoutUpdateFilters: filters => (dispatch(hideoutUpdateFilters(filters))),
         hideoutResetFilters: () => (dispatch(hideoutResetFilters())),
     })
-)(withStyles(styles)(ExtendedTableFilter));
+)(withStyles(styles)(HideoutListFilter));

@@ -1,23 +1,13 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {
-    Button,
-    DialogContent,
-    DialogTitle,
-    FormHelperText,
-    Grid,
-    Paper,
-    TextField,
-    Typography,
-    withStyles
-} from '@material-ui/core';
+import {Button, DialogContent, FormHelperText, Grid, Paper, TextField, Typography, withStyles} from '@material-ui/core';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import {toggleImportDialog} from 'store/main/actions';
+import {importData, toggleImportDialog} from 'store/main/actions';
 import {AppDialog, AppDialogActions} from 'components/shared';
-import {importData} from 'store/main/actions';
 import Dropzone from 'react-dropzone';
+import {buttonStyles, mergeStyles} from 'utils/themes';
 
-const styles = theme => ({
+const styles = theme => (mergeStyles({
     dragContainer: {
         position: 'relative'
     },
@@ -36,9 +26,7 @@ const styles = theme => ({
         opacity: .3
     },
     inputErrorText: {textAlign: 'center'},
-    button: {margin: theme.spacing.unit},
-    leftIcon: {marginRight: theme.spacing.unit},
-});
+}, buttonStyles(theme)));
 
 class ImportDialog extends React.Component {
     state = {
@@ -102,9 +90,9 @@ class ImportDialog extends React.Component {
                     onClose={this.handleCloseDialog}
                     fullWidth
                     maxWidth="md"
+                    titleText="Import tracker data"
                 >
 
-                    <DialogTitle>Import tracker data</DialogTitle>
                     <DialogContent>
                         <Dropzone
                             noClick={true}

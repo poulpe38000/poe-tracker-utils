@@ -6,7 +6,7 @@ import {
     INCURSION_ROOM_TOGGLE_IN_PROGRESS, INCURSION_ROOM_VALIDATE_IN_PROGRESS
 } from 'store/incursion/actions';
 import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL} from 'store/main/actions';
-import {clearObj, getObj, setObj} from 'utils/storage.utils';
+import {clearObj, getObj, setObj} from 'utils/storage';
 
 const INCURSION_COMPLETED_STORAGE = 'incursionCompleted';
 const INCURSION_IN_PROGRESS_STORAGE = 'incursionInProgress';

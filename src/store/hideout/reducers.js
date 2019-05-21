@@ -7,7 +7,7 @@ import {
     HIDEOUT_UPDATE_SEARCH_TEXT
 } from 'store/hideout/actions';
 import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL} from 'store/main/actions';
-import {clearObj, getObj, setObj} from 'utils/storage.utils';
+import {clearObj, getObj, setObj} from 'utils/storage';
 
 const HIDEOUT_UNLOCKED_STORAGE = 'hideoutUnlocked';
 

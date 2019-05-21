@@ -3,7 +3,6 @@ import {connect} from "react-redux";
 import {
     Button,
     DialogContent,
-    DialogTitle,
     List,
     ListItem,
     ListItemIcon,
@@ -16,10 +15,7 @@ import {resetAll, toggleSettingsDialog} from 'store/main/actions';
 import {incursionResetCompletedData, incursionResetInProgressData} from 'store/incursion/actions';
 import {hideoutResetData} from 'store/hideout/actions';
 import {AppDialog, AppDialogActions} from 'components/shared';
-
-const styles = theme => ({
-    button: {margin: theme.spacing.unit},
-});
+import {buttonStyles} from 'utils/themes';
 
 class SettingsDialog extends React.Component {
     handleCloseDialog = () => {
@@ -50,8 +46,8 @@ class SettingsDialog extends React.Component {
                     onClose={this.handleCloseDialog}
                     fullWidth
                     maxWidth="sm"
+                    titleText="Settings"
                 >
-                    <DialogTitle>Settings</DialogTitle>
                     <DialogContent>
                         <List
                             subheader={<ListSubheader component="div">Reset data</ListSubheader>}
@@ -116,4 +112,4 @@ export default connect(
         hideoutResetData: () => (dispatch(hideoutResetData())),
         resetAll: () => (dispatch(resetAll())),
     }),
-)(withStyles(styles)(SettingsDialog));
+)(withStyles(buttonStyles)(SettingsDialog));

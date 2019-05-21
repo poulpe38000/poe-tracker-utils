@@ -3,11 +3,7 @@ import {Button, withStyles} from '@material-ui/core';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import {connect} from 'react-redux';
 import {toggleExportDialog} from 'store/main/actions';
-
-const styles = theme => ({
-    button: {margin: theme.spacing.unit},
-    leftIcon: {marginRight: theme.spacing.unit},
-});
+import {buttonStyles} from 'utils/themes';
 
 class ExportData extends React.Component {
     handleOpenDialog = () => {
@@ -32,4 +28,4 @@ export default connect(
     dispatch => ({
         toggleExportDialog: (payload) => (dispatch(toggleExportDialog(payload))),
     }),
-)(withStyles(styles)(ExportData));
+)(withStyles(buttonStyles)(ExportData));

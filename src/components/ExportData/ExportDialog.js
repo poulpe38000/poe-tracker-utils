@@ -1,21 +1,19 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {Button, DialogContent, DialogTitle, Fade, FormHelperText, TextField, withStyles} from '@material-ui/core';
+import {Button, DialogContent, Fade, FormHelperText, TextField, withStyles} from '@material-ui/core';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import {toggleExportDialog} from 'store/main/actions';
 import {AppDialog, AppDialogActions} from 'components/shared';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
+import {buttonStyles, mergeStyles} from 'utils/themes';
 
-const styles = theme => ({
-    button: {margin: theme.spacing.unit},
-    leftIcon: {marginRight: theme.spacing.unit},
-    rightIcon: { marginLeft: theme.spacing.unit},
+const styles = theme => (mergeStyles({
     inputExportIndicator: {
         color: theme.palette.success.main,
         textAlign: 'center',
     }
-});
+}, buttonStyles(theme)));
 
 class ExportDialog extends React.Component {
     state = {
@@ -41,7 +39,7 @@ class ExportDialog extends React.Component {
             clearTimeout(this.timer);
         }
         this.timer = setTimeout(() => {
-            this.setState({ copySuccess: false });
+            this.setState({copySuccess: false});
         }, 3000);
     };
 
@@ -60,46 +58,47 @@ class ExportDialog extends React.Component {
         const {copySuccess} = this.state;
         const exportText = JSON.stringify(exportData, null, 2);
         return (
-                <AppDialog
-                    open={showDialog}
-                    onEntering={this.handleResetState}
-                    onClose={this.handleCloseDialog}
-                    fullWidth
-                    maxWidth="md"
-                >
-                    <DialogTitle>Export tracker data</DialogTitle>
-                    <DialogContent>
-                        <TextField
-                            fullWidth
-                            multiline
-                            rows="4"
-                            value={exportText}
-                            margin="normal"
-                            variant="outlined"
-                            InputProps={{readOnly: true}}
-                        />
-                        <FormHelperText className={classes.inputExportIndicator}>
-                            <Fade in={copySuccess}>
-                                <span>Tracker data copied to clipboard !</span>
-                            </Fade>
-                        </FormHelperText>
-                    </DialogContent>
-                    <AppDialogActions>
-                        <Button variant="contained" color="secondary" autoFocus className={classes.button} onClick={this.downloadTrackerFile}>
-                            <CloudDownloadIcon className={classes.leftIcon}/>
-                            Download file
+            <AppDialog
+                open={showDialog}
+                onEntering={this.handleResetState}
+                onClose={this.handleCloseDialog}
+                fullWidth
+                maxWidth="md"
+                titleText="Export tracker data"
+            >
+                <DialogContent>
+                    <TextField
+                        fullWidth
+                        multiline
+                        rows="4"
+                        value={exportText}
+                        margin="normal"
+                        variant="outlined"
+                        InputProps={{readOnly: true}}
+                    />
+                    <FormHelperText className={classes.inputExportIndicator}>
+                        <Fade in={copySuccess}>
+                            <span>Tracker data copied to clipboard !</span>
+                        </Fade>
+                    </FormHelperText>
+                </DialogContent>
+                <AppDialogActions>
+                    <Button variant="contained" color="secondary" autoFocus className={classes.button}
+                            onClick={this.downloadTrackerFile}>
+                        <CloudDownloadIcon className={classes.leftIcon}/>
+                        Download file
+                    </Button>
+                    <CopyToClipboard text={exportText} className={classes.button} onCopy={this.handleCopySuccess}>
+                        <Button variant="contained" color="secondary">
+                            <FileCopyOutlinedIcon className={classes.leftIcon}/>
+                            Copy data
                         </Button>
-                        <CopyToClipboard text={exportText} className={classes.button} onCopy={this.handleCopySuccess}>
-                            <Button variant="contained" color="secondary">
-                                <FileCopyOutlinedIcon className={classes.leftIcon}/>
-                                Copy data
-                            </Button>
-                        </CopyToClipboard>
-                        <Button variant="outlined" className={classes.button} onClick={this.handleCloseDialog}>
-                            Close
-                        </Button>
-                    </AppDialogActions>
-                </AppDialog>
+                    </CopyToClipboard>
+                    <Button variant="outlined" className={classes.button} onClick={this.handleCloseDialog}>
+                        Close
+                    </Button>
+                </AppDialogActions>
+            </AppDialog>
         );
     }
 }

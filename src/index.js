@@ -9,7 +9,7 @@ import {CssBaseline} from '@material-ui/core';
 import {MuiThemeProvider} from '@material-ui/core/styles';
 import {BrowserRouter} from 'react-router-dom';
 import APP_CONSTANTS from 'constants/app.constants';
-import {mainTheme} from 'components/shared/themes';
+import {mainTheme} from 'utils/themes';
 
 ReactDOM.render(
     <Provider store={store}>

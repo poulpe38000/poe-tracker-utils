@@ -1,7 +1,7 @@
 import React from "react";
 import {Typography, withStyles} from "@material-ui/core";
-import {pagesStyles} from 'components/pages/utils';
 import {AppPage} from 'components/pages/layout';
+import {pagesStyles} from 'utils/themes';
 
 function HomePage(props) {
     const {classes} = props;

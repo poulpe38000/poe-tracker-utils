@@ -1,11 +1,11 @@
 import React from 'react';
-import {HideoutTable} from 'components/Hideout';
 import {AppPage} from 'components/pages/layout';
+import HideoutList from 'components/Hideout/HideoutList';
 
 function HideoutPage() {
     return (
         <AppPage>
-            <HideoutTable/>
+            <HideoutList/>
         </AppPage>
     );
 }

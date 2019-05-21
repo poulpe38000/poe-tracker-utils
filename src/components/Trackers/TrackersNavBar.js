@@ -19,7 +19,7 @@ class TrackersNavBar extends React.Component {
             <React.Fragment>
                 <AppBar position="fixed" className={classes.root}>
                     <Tabs value={history.location.pathname} centered>
-                        <Tab component={Link} label="Hideouts unlock" to={`${match.path}/hideout`} value={`${match.path}/hideout`}/>
+                        <Tab component={Link} label="Hideouts unlocks" to={`${match.path}/hideout`} value={`${match.path}/hideout`}/>
                         <Tab component={Link} label="Incursion rooms" to={`${match.path}/incursion`}  value={`${match.path}/incursion`}/>
                     </Tabs>
                 </AppBar>
