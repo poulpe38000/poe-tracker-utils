@@ -1,8 +1,15 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {Divider, List, Paper} from '@material-ui/core';
+import {Divider, List, ListItem, Paper, Typography, withStyles} from '@material-ui/core';
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import {HideoutListHeader, HideoutListItem} from 'components/Hideout';
+
+const styles = {
+    notFound: {
+        display: 'flex',
+        justifyContent: 'center',
+    },
+};
 
 const yesNoFilter = {
     true: 'Yes',
@@ -38,7 +45,7 @@ class HideoutList extends React.Component {
     ];
 
     render() {
-        const {searchText, filters} = this.props;
+        const {classes, searchText, filters} = this.props;
         const data = HIDEOUT_CONSTANTS
             .hideouts
             .map(hideout => ({
@@ -53,6 +60,11 @@ class HideoutList extends React.Component {
                 <HideoutListHeader title="Hideouts list" filterOptions={this.filterOptions}/>
                 <Divider/>
                 <List>
+                    {data.length === 0 && (
+                        <ListItem dense className={classes.notFound}>
+                            <Typography variant="h6"><em>No Hideouts found</em></Typography>
+                        </ListItem>
+                    )}
                     {data
                         .map((hideout, idx) => (
                             <React.Fragment>
@@ -72,4 +84,4 @@ export default connect(
         searchText: state.hideout.searchText,
         filters: state.hideout.filters,
     }),
-)(HideoutList);
+)(withStyles(styles)(HideoutList));
