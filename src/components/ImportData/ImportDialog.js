@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {createRef} from 'react'
 import {connect} from "react-redux";
 import {
     Button,
@@ -81,6 +81,10 @@ class ImportDialog extends React.Component {
         });
     };
 
+    handleDropZoneOpen = (dropzoneRef) => () => {
+        dropzoneRef.current.open();
+    };
+
     handleContentDataLoad = () => {
         try {
             this.props.importData(JSON.parse(this.state.importTextData));
@@ -95,6 +99,7 @@ class ImportDialog extends React.Component {
     render() {
         const {classes, width, showDialog} = this.props;
         const {importTextData, importErrorText} = this.state;
+        const dropzoneRef = createRef();
         return (
             <AppDialog
                 open={showDialog}
@@ -106,9 +111,10 @@ class ImportDialog extends React.Component {
             >
 
                 <DialogContent>
-                    <Dropzone noClick={true} onDrop={this.onDrop} multiple={false}>
+                    <Dropzone ref={dropzoneRef} noClick={true} onDrop={this.onDrop} multiple={false}>
                         {({getRootProps, getInputProps, isDragActive}) => (
                             <div {...getRootProps({className: classes.dragContainer})}>
+                                <input {...getInputProps()} />
                                 <TextField
                                     placeholder="Copy your import data here, or drag a tracker file to import it."
                                     fullWidth
@@ -140,19 +146,10 @@ class ImportDialog extends React.Component {
                 </DialogContent>
                 <AppDialogActions>
                     {isWidthDown('xs', width) && (
-                        <Dropzone onDrop={this.onDrop} multiple={false}>
-                            {({getRootProps, getInputProps}) => (
-                                <Button {...getRootProps({
-                                    variant: "contained",
-                                    color: "secondary",
-                                    className: classes.button,
-                                })}>
-                                    <input {...getInputProps()} />
-                                    <AttachFileIcon className={classes.leftIcon}/>
-                                    Load Tracker File
-                                </Button>
-                            )}
-                        </Dropzone>
+                        <Button variant="contained" color="secondary" className={classes.button} onClick={this.handleDropZoneOpen(dropzoneRef)}>
+                            <AttachFileIcon className={classes.leftIcon}/>
+                            Load Tracker File
+                        </Button>
                     )}
                     <Button variant="contained" color="secondary" className={classes.button} onClick={this.handleContentDataLoad} autoFocus>
                         <CloudUploadIcon className={classes.leftIcon}/>
