@@ -15,14 +15,28 @@ const styles = theme => ({
         flexDirection: 'row',
         [theme.breakpoints.down('xs')]: {
             flexDirection: 'column'
-        }
+        },
     },
     itemText: {
         flex: '1 1 100%',
         alignSelf: 'center',
         paddingLeft: theme.spacing.unit,
         paddingRight: theme.spacing.unit,
+        [theme.breakpoints.down('xs')]: {
+            alignSelf: 'auto',
+        },
     },
+    itemDetails: {
+        [theme.breakpoints.down('xs')]: {
+            position: 'relative',
+            marginLeft: theme.spacing.unit,
+            '&::before': {
+                content: '"-"',
+                position: 'absolute',
+                left: theme.spacing.unit * -1,
+            }
+        },
+    }
 });
 
 class IncursionRoom extends React.Component {
@@ -66,14 +80,14 @@ class IncursionRoom extends React.Component {
                     <Typography variant="caption" className={classes.itemText}>
                         {room.notable.length > 0 && (
                             <React.Fragment>
-                                {room.notable.map(item => (<div>{item}</div>))}
+                                {room.notable.map(item => (<div className={classes.itemDetails}>{item}</div>))}
                             </React.Fragment>
                         )}
                     </Typography>
                     <Typography variant="caption" className={classes.itemText}>
                         {room.mods.length > 0 && (
                             <React.Fragment>
-                                {room.mods.map(item => (<div>{item}</div>))}
+                                {room.mods.map(item => (<div className={classes.itemDetails}>{item}</div>))}
                             </React.Fragment>
                         )}
                     </Typography>
