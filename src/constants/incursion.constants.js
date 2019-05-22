@@ -10,42 +10,18 @@ const INCURSION_CONSTANTS = {
         ],
         rooms: {
             non_upgradeable: {
-                antechamber: {
-                    id: 'antechamber', name: 'Antechamber', tier: 0, mods: [], notable: [],
-                },
-                banquet_hall: {
-                    id: 'banquet_hall', name: 'Banquet Hall', tier: 0, mods: [], notable: [],
-                },
-                apex_of_atzoatl: {
-                    id: 'apex_of_atzoatl', name: 'Apex of Atzoatl', tier: 0, mods: [], notable: [],
-                },
-                cellar: {
-                    id: 'cellar', name: 'Cellar', tier: 0, mods: [], notable: [],
-                },
-                chasm: {
-                    id: 'chasm', name: 'Chasm', tier: 0, mods: [], notable: [],
-                },
-                cloister: {
-                    id: 'cloister', name: 'Cloister', tier: 0, mods: [], notable: [],
-                },
-                entrance: {
-                    id: 'entrance', name: 'Entrance', tier: 0, mods: [], notable: [],
-                },
-                halls: {
-                    id: 'halls', name: 'Halls', tier: 0, mods: [], notable: [],
-                },
-                passageways: {
-                    id: 'passageways', name: 'Passageways', tier: 0, mods: [], notable: [],
-                },
-                pits: {
-                    id: 'pits', name: 'Pits', tier: 0, mods: [], notable: [],
-                },
-                tombs: {
-                    id: 'tombs', name: 'Tombs', tier: 0, mods: [], notable: [],
-                },
-                tunnels: {
-                    id: 'tunnels', name: 'Tunnels', tier: 0, mods: [], notable: [],
-                },
+                antechamber: [{id: 'antechamber', name: 'Antechamber', tier: 0, mods: [], notable: []}],
+                banquet_hall: [{id: 'banquet_hall', name: 'Banquet Hall', tier: 0, mods: [], notable: []}],
+                apex_of_atzoatl: [{id: 'apex_of_atzoatl', name: 'Apex of Atzoatl', tier: 0, mods: [], notable: []}],
+                cellar: [{id: 'cellar', name: 'Cellar', tier: 0, mods: [], notable: []}],
+                chasm: [{id: 'chasm', name: 'Chasm', tier: 0, mods: [], notable: []}],
+                cloister: [{id: 'cloister', name: 'Cloister', tier: 0, mods: [], notable: []}],
+                entrance: [{id: 'entrance', name: 'Entrance', tier: 0, mods: [], notable: []}],
+                halls: [{id: 'halls', name: 'Halls', tier: 0, mods: [], notable: []}],
+                passageways: [{id: 'passageways', name: 'Passageways', tier: 0, mods: [], notable: []}],
+                pits: [{id: 'pits', name: 'Pits', tier: 0, mods: [], notable: []}],
+                tombs: [{id: 'tombs', name: 'Tombs', tier: 0, mods: [], notable: []}],
+                tunnels: [{id: 'tunnels', name: 'Tunnels', tier: 0, mods: [], notable: []}],
             },
             upgradeable: {
                 chamber_of_iron: [

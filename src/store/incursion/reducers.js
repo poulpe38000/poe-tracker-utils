@@ -4,7 +4,8 @@ import {
     INCURSION_RESET_IN_PROGRESS_DATA,
     INCURSION_ROOM_TOGGLE_COMPLETED,
     INCURSION_ROOM_TOGGLE_IN_PROGRESS,
-    INCURSION_ROOM_VALIDATE_IN_PROGRESS
+    INCURSION_ROOM_VALIDATE_IN_PROGRESS,
+    INCURSION_UPDATE_SEARCH_TEXT
 } from 'store/incursion/actions';
 import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL} from 'store/main/actions';
 import {clearObj, getObj, setObj} from 'utils/storage';
@@ -58,6 +59,11 @@ function incursionReducer(state = INITIAL_STATE, action) {
                 ...state,
                 completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
                 in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
+            };
+        case INCURSION_UPDATE_SEARCH_TEXT:
+            return {
+                ...state,
+                searchText: action.payload,
             };
         case INITIALIZE_APP:
             try {

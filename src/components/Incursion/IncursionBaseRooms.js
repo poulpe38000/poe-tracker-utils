@@ -2,6 +2,7 @@ import React from 'react';
 import {List, Paper, Typography, withStyles} from '@material-ui/core';
 import INCURSION_CONSTANTS from 'constants/incursion.constants';
 import {IncursionRoom, IncursionRoomHeader} from 'components/Incursion';
+import {connect} from 'react-redux';
 
 const styles = theme => ({
     root: {
@@ -10,10 +11,26 @@ const styles = theme => ({
     },
 });
 
+function findText(text, rooms) {
+    return text === ''
+        || rooms.some(room => room.name.toLowerCase().search(text.toLowerCase()) !== -1);
+}
+
+function filteredData(rooms, searchText) {
+    return Object.keys(rooms)
+        .reduce((result, roomsKey) => {
+            if (findText(searchText, rooms[roomsKey])) {
+                result[roomsKey] = rooms[roomsKey];
+            }
+            return result;
+        }, {});
+}
+
 class IncursionBaseRooms extends React.Component {
     render() {
-        const roomKeys = Object.keys(INCURSION_CONSTANTS.rooms.non_upgradeable);
-        const {classes} = this.props;
+        const {classes, searchText} = this.props;
+        const data = filteredData(INCURSION_CONSTANTS.rooms.non_upgradeable, searchText);
+        const roomKeys = Object.keys(data);
         return (
             <React.Fragment>
                 <Typography variant="h6">Non-upgradeable rooms</Typography>
@@ -21,8 +38,13 @@ class IncursionBaseRooms extends React.Component {
                     <List>
                         <IncursionRoomHeader/>
                         {roomKeys.map((roomKey) => {
-                            const room = INCURSION_CONSTANTS.rooms.non_upgradeable[roomKey];
-                            return (<IncursionRoom key={room.id} roomKey={roomKey} room={room}/>);
+                            const rooms = data[roomKey];
+                            return (
+                                <React.Fragment>
+                                    {rooms.map((room) => (
+                                        <IncursionRoom key={room.id} roomKey={roomKey} room={room}/>))}
+                                </React.Fragment>
+                            );
                         })}
                     </List>
                 </Paper>
@@ -31,4 +53,8 @@ class IncursionBaseRooms extends React.Component {
     }
 }
 
-export default withStyles(styles)(IncursionBaseRooms);
+export default connect(
+    state => ({
+        searchText: state.incursion.searchText,
+    }),
+)(withStyles(styles)(IncursionBaseRooms));

@@ -2,7 +2,10 @@ import React from 'react';
 import {ListItem, Typography, withStyles} from '@material-ui/core';
 
 const styles = theme => ({
-    root: {display: 'flex',},
+    root: {
+        display: 'flex',
+        paddingBottom: 0,
+    },
     itemCheckbox: {
         width: '64px',
         textAlign: 'center'

@@ -1,7 +1,8 @@
 import React from 'react';
 import INCURSION_CONSTANTS from 'constants/incursion.constants';
-import {IncursionRoomHeader, IncursionTieredRoom} from 'components/Incursion';
+import {IncursionTieredRoom} from 'components/Incursion';
 import {Divider, List, Paper, Typography, withStyles} from '@material-ui/core';
+import {connect} from 'react-redux';
 
 const styles = theme => ({
     root: {
@@ -10,16 +11,32 @@ const styles = theme => ({
     },
 });
 
+function findText(text, rooms) {
+    return text === ''
+        || rooms.some(room => room.name.toLowerCase().search(text.toLowerCase()) !== -1);
+}
+
+function filteredData(rooms, searchText) {
+    return Object.keys(rooms)
+        .reduce((result, roomsKey) => {
+            if (findText(searchText, rooms[roomsKey])) {
+                result[roomsKey] = rooms[roomsKey];
+            }
+            return result;
+        }, {});
+}
+
+
 class IncursionTieredRooms extends React.Component {
     render() {
-        const {classes} = this.props;
-        const roomsKeys = Object.keys(INCURSION_CONSTANTS.rooms.upgradeable);
+        const {classes, searchText} = this.props;
+        const data = filteredData(INCURSION_CONSTANTS.rooms.upgradeable, searchText);
+        const roomsKeys = Object.keys(data);
         return (
             <React.Fragment>
                 <Typography variant="h6">Upgradeable rooms</Typography>
                 <Paper className={classes.root}>
                     <List>
-                        <IncursionRoomHeader/>
                         {
                             roomsKeys.map((roomsKey, idx) => (
                                     <React.Fragment key={roomsKey}>
@@ -38,4 +55,8 @@ class IncursionTieredRooms extends React.Component {
     }
 }
 
-export default withStyles(styles)(IncursionTieredRooms);
+export default connect(
+    state => ({
+        searchText: state.incursion.searchText,
+    }),
+)(withStyles(styles)(IncursionTieredRooms));

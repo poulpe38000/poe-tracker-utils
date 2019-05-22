@@ -42,6 +42,10 @@ class HideoutListHeader extends React.Component {
         this.searchField = React.createRef();
     }
 
+    componentWillUnmount() {
+        this.props.hideoutUpdateSearchText('');
+    }
+
     handleToggleSearch = () => {
         this.setState({showSearchBar: !this.state.showSearchBar});
         this.props.hideoutUpdateSearchText('');
