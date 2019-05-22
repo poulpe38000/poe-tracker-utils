@@ -3,7 +3,9 @@ import {DialogContent, withStyles} from '@material-ui/core';
 
 const styles = theme => ({
     root: {
-        padding: theme.spacing.unit * 2,
+        [theme.breakpoints.down('xs')]: {
+            padding: theme.spacing.unit * 2
+        },
     }
 });
 

@@ -5,7 +5,9 @@ import * as PropTypes from 'prop-types';
 
 const styles = theme => ({
     dialogTitle: {
-        padding: theme.spacing.unit * 2,
+        [theme.breakpoints.down('xs')]: {
+            padding: theme.spacing.unit * 2
+        },
     },
 });
 
