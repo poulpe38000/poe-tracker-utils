@@ -7,6 +7,7 @@ import {
 } from 'store/incursion/actions';
 import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL} from 'store/main/actions';
 import {clearObj, getObj, setObj} from 'utils/storage';
+import INCURSION_CONSTANTS from 'constants/incursion.constants';
 
 const INCURSION_COMPLETED_STORAGE = 'incursionCompleted';
 const INCURSION_IN_PROGRESS_STORAGE = 'incursionInProgress';
@@ -21,8 +22,18 @@ function incursionReducer(state = INITIAL_STATE, action) {
                 completedRooms.push(action.payload);
             } else {
                 completedRooms = state.completed.filter((room) => room.id !== action.payload.id);
-                if (completedRoomSet.tier !== action.payload.tier && action.payload.tier >= 0) {
-                    completedRooms.push(action.payload);
+
+                if (completedRoomSet.tier !== action.payload.tier) {
+                    // Case 1, non upgradeable room
+                    if (!!INCURSION_CONSTANTS.rooms.non_upgradeable[action.payload.id]) {
+                        completedRooms.push({
+                            ...action.payload,
+                            tier: 0
+                        });
+                    }
+                    if (!!INCURSION_CONSTANTS.rooms.upgradeable[action.payload.id] && action.payload.tier > 0) {
+                        completedRooms.push(action.payload);
+                    }
                 }
             }
             return {
@@ -35,8 +46,17 @@ function incursionReducer(state = INITIAL_STATE, action) {
                 inProgressRooms.push(action.payload);
             } else {
                 inProgressRooms = state.completed.filter((room) => room.id !== action.payload.id);
-                if (inProgressRoomSet.tier !== action.payload.tier && action.payload.tier >= 0) {
-                    inProgressRooms.push(action.payload);
+                if (inProgressRoomSet.tier !== action.payload.tier) {
+                    // Case 1, non upgradeable room
+                    if (!!INCURSION_CONSTANTS.rooms.non_upgradeable[action.payload.id]) {
+                        inProgressRooms.push({
+                            ...action.payload,
+                            tier: 0
+                        });
+                    }
+                    if (!!INCURSION_CONSTANTS.rooms.upgradeable[action.payload.id] && action.payload.tier > 0) {
+                        inProgressRooms.push(action.payload);
+                    }
                 }
             }
             return {
