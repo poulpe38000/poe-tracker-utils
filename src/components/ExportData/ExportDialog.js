@@ -1,10 +1,10 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {Button, DialogContent, Fade, FormHelperText, TextField, withStyles} from '@material-ui/core';
+import {Button, Fade, FormHelperText, TextField, withStyles} from '@material-ui/core';
 import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import {toggleExportDialog} from 'store/main/actions';
-import {AppDialog, AppDialogActions} from 'components/shared';
+import {AppDialog, AppDialogActions, AppDialogContent} from 'components/shared';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 
@@ -66,11 +66,11 @@ class ExportDialog extends React.Component {
                 maxWidth="md"
                 titleText="Export tracker data"
             >
-                <DialogContent>
+                <AppDialogContent>
                     <TextField
                         fullWidth
                         multiline
-                        rows="4"
+                        rows="8"
                         value={exportText}
                         margin="normal"
                         variant="outlined"
@@ -81,7 +81,7 @@ class ExportDialog extends React.Component {
                             <span>Tracker data copied to clipboard !</span>
                         </Fade>
                     </FormHelperText>
-                </DialogContent>
+                </AppDialogContent>
                 <AppDialogActions>
                     <Button variant="contained" color="secondary" autoFocus className={classes.button}
                             onClick={this.downloadTrackerFile}>

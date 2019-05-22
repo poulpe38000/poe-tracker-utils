@@ -1,7 +1,13 @@
 import React from 'react'
-import {Dialog, DialogTitle, MuiThemeProvider} from '@material-ui/core';
+import {Dialog, DialogTitle, MuiThemeProvider, withStyles} from '@material-ui/core';
 import {dialogTheme} from 'utils/themes';
 import * as PropTypes from 'prop-types';
+
+const styles = theme => ({
+    dialogTitle: {
+        padding: theme.spacing.unit * 2,
+    },
+});
 
 class AppDialog extends React.Component {
     static propTypes = {
@@ -13,12 +19,12 @@ class AppDialog extends React.Component {
     };
 
     render() {
-        const {children, titleText} = this.props;
+        const {classes, children, titleText} = this.props;
         return (
             <MuiThemeProvider theme={dialogTheme}>
                 <Dialog {...this.props}>
                     {titleText !== null && (
-                        <DialogTitle>{titleText}</DialogTitle>
+                        <DialogTitle className={classes.dialogTitle}>{titleText}</DialogTitle>
                     )}
                     {children}
                 </Dialog>
@@ -27,4 +33,4 @@ class AppDialog extends React.Component {
     }
 }
 
-export default AppDialog;
+export default withStyles(styles)(AppDialog);

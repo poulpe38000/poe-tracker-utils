@@ -1,21 +1,11 @@
 import React, {createRef} from 'react'
 import {connect} from "react-redux";
-import {
-    Button,
-    DialogContent,
-    FormHelperText,
-    Grid,
-    Paper,
-    TextField,
-    Typography,
-    withStyles,
-    withWidth
-} from '@material-ui/core';
+import {Button, FormHelperText, Grid, Paper, TextField, Typography, withStyles, withWidth} from '@material-ui/core';
 import {isWidthDown} from '@material-ui/core/withWidth';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import {importData, toggleImportDialog} from 'store/main/actions';
-import {AppDialog, AppDialogActions} from 'components/shared';
+import {AppDialog, AppDialogActions, AppDialogContent} from 'components/shared';
 import Dropzone from 'react-dropzone';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 
@@ -110,7 +100,7 @@ class ImportDialog extends React.Component {
                 titleText="Import tracker data"
             >
 
-                <DialogContent>
+                <AppDialogContent>
                     <Dropzone ref={dropzoneRef} noClick={true} onDrop={this.onDrop} multiple={false}>
                         {({getRootProps, getInputProps, isDragActive}) => (
                             <div {...getRootProps({className: classes.dragContainer})}>
@@ -119,7 +109,7 @@ class ImportDialog extends React.Component {
                                     placeholder="Copy your import data here, or drag a tracker file to import it."
                                     fullWidth
                                     multiline
-                                    rows="4"
+                                    rows="8"
                                     value={importTextData}
                                     onChange={this.handleContentDataChange}
                                     margin="normal"
@@ -143,12 +133,12 @@ class ImportDialog extends React.Component {
                             </div>
                         )}
                     </Dropzone>
-                </DialogContent>
+                </AppDialogContent>
                 <AppDialogActions>
                     {isWidthDown('xs', width) && (
                         <Button variant="contained" color="secondary" className={classes.button} onClick={this.handleDropZoneOpen(dropzoneRef)}>
                             <AttachFileIcon className={classes.leftIcon}/>
-                            Load Tracker File
+                            Load File
                         </Button>
                     )}
                     <Button variant="contained" color="secondary" className={classes.button} onClick={this.handleContentDataLoad} autoFocus>

@@ -1,20 +1,11 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {
-    Button,
-    DialogContent,
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemText,
-    ListSubheader,
-    withStyles
-} from '@material-ui/core';
+import {Button, List, ListItem, ListItemIcon, ListItemText, ListSubheader, withStyles} from '@material-ui/core';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 import {resetAll, toggleSettingsDialog} from 'store/main/actions';
 import {incursionResetCompletedData, incursionResetInProgressData} from 'store/incursion/actions';
 import {hideoutResetData} from 'store/hideout/actions';
-import {AppDialog, AppDialogActions} from 'components/shared';
+import {AppDialog, AppDialogActions, AppDialogContent} from 'components/shared';
 import {buttonStyles} from 'utils/themes';
 
 class SettingsDialog extends React.Component {
@@ -48,7 +39,7 @@ class SettingsDialog extends React.Component {
                     maxWidth="sm"
                     titleText="Settings"
                 >
-                    <DialogContent>
+                    <AppDialogContent>
                         <List
                             subheader={<ListSubheader component="div">Reset data</ListSubheader>}
                             className={classes.root}
@@ -90,7 +81,7 @@ class SettingsDialog extends React.Component {
                                 />
                             </ListItem>
                         </List>
-                    </DialogContent>
+                    </AppDialogContent>
                     <AppDialogActions>
                         <Button variant="outlined" className={classes.button} onClick={this.handleCloseDialog}>
                             Close
