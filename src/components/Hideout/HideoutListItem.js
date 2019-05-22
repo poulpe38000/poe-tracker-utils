@@ -7,7 +7,7 @@ import * as PropTypes from 'prop-types';
 
 const styles = theme => ({
     root: {display: 'flex',},
-    hideoutTextContainer: {
+    itemTextContainer: {
         flex: '1 1 100%',
         display: 'flex',
         flexDirection: 'row',
@@ -15,8 +15,9 @@ const styles = theme => ({
             flexDirection: 'column'
         }
     },
-    hideoutText: {
+    itemText: {
         flex: '1 1 100%',
+        alignSelf: 'center',
         paddingLeft: theme.spacing.unit,
         paddingRight: theme.spacing.unit,
     },
@@ -45,16 +46,16 @@ class HideoutListItem extends React.Component {
                     onChange={this.hideoutToggleUnlocked(hideout.id)}
                     value="checked"
                 />
-                <div className={classes.hideoutTextContainer}>
-                    <Typography variant="subtitle2" className={classes.hideoutText}>
+                <div className={classes.itemTextContainer}>
+                    <Typography variant="subtitle2" className={classes.itemText}>
                         {hideout.name}
                     </Typography>
-                    <Typography variant="caption" className={classes.hideoutText}>
+                    <Typography variant="caption" className={classes.itemText}>
                         <em>
                             Rarity: <span className={classes[`rarity${hideout.rarity}`]}>{hideoutRarity}</span>
                         </em>
                     </Typography>
-                    <Typography variant="caption" className={classes.hideoutText}>
+                    <Typography variant="caption" className={classes.itemText}>
                         {!!hideoutLocation && <em>Location: {hideoutLocation}</em>}
                     </Typography>
                 </div>
