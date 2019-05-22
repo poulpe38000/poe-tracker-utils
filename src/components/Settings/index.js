@@ -1,2 +1,2 @@
-export {default as Settings} from './Settings';
-export {default as SettingsDialog} from './SettingsDialog';
+export {default as SettingsData} from './SettingsData';
+export {default as SettingsStorage} from './SettingsStorage';

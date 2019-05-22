@@ -7,11 +7,10 @@ import {
     INCURSION_ROOM_VALIDATE_IN_PROGRESS,
     INCURSION_UPDATE_SEARCH_TEXT
 } from 'store/incursion/actions';
-import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL} from 'store/main/actions';
-import {clearObj, getObj, setObj} from 'utils/storage';
+import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL, SET_ALL} from 'store/main/actions';
+import {clearObj, getObj, INCURSION_COMPLETED_STORAGE, INCURSION_IN_PROGRESS_STORAGE, setObj} from 'utils/storage';
 
-const INCURSION_COMPLETED_STORAGE = 'incursionCompleted';
-const INCURSION_IN_PROGRESS_STORAGE = 'incursionInProgress';
+
 
 function incursionReducer(state = INITIAL_STATE, action) {
     let completedRooms = state.completed.slice();
@@ -102,6 +101,12 @@ function incursionReducer(state = INITIAL_STATE, action) {
                 ...state,
                 in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
                 completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
+            };
+        case SET_ALL:
+            return {
+                ...state,
+                in_progress: setObj(INCURSION_IN_PROGRESS_STORAGE, state.in_progress),
+                completed: setObj(INCURSION_COMPLETED_STORAGE, state.completed),
             };
         default :
             return state;

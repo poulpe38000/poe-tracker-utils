@@ -6,10 +6,9 @@ import {
     HIDEOUT_UPDATE_FILTERS,
     HIDEOUT_UPDATE_SEARCH_TEXT
 } from 'store/hideout/actions';
-import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL} from 'store/main/actions';
-import {clearObj, getObj, setObj} from 'utils/storage';
+import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL, SET_ALL} from 'store/main/actions';
+import {clearObj, getObj, HIDEOUT_UNLOCKED_STORAGE, setObj} from 'utils/storage';
 
-const HIDEOUT_UNLOCKED_STORAGE = 'hideoutUnlocked';
 
 function hideoutReducer(state = INITIAL_STATE, action) {
     let unlocked;
@@ -48,6 +47,11 @@ function hideoutReducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 unlocked: clearObj(HIDEOUT_UNLOCKED_STORAGE, []),
+            };
+        case SET_ALL:
+            return {
+                ...state,
+                unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, state.unlocked),
             };
         case INITIALIZE_APP:
             try {

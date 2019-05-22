@@ -2,7 +2,7 @@ import React from 'react';
 import {Route} from 'react-router-dom';
 import {withStyles} from '@material-ui/core';
 import {SideMenu, TopBar} from 'components/pages/layout';
-import {HomePage, TrackersPage} from 'components/pages';
+import {HomePage, SettingsPage, TrackersPage} from 'components/pages';
 import {connect} from 'react-redux';
 import {initializeApp} from 'store/main/actions';
 
@@ -32,6 +32,7 @@ class App extends React.Component {
                 <div className={classes.root}>
                     <Route path="/" exact component={HomePage}/>
                     <Route path="/trackers" component={TrackersPage}/>
+                    <Route path="/settings" component={SettingsPage}/>
                 </div>
             </React.Fragment>
         );

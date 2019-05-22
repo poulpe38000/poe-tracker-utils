@@ -7,7 +7,6 @@ import {TopBarActions, TopBarActionsXs} from 'components/pages/layout/index';
 import {isWidthDown} from '@material-ui/core/withWidth';
 import {ImportDialog} from 'components/ImportData';
 import {ExportDialog} from 'components/ExportData';
-import {SettingsDialog} from 'components/Settings';
 
 const styles = theme => ({
     root: {
@@ -43,7 +42,6 @@ class TopBar extends React.Component {
                         {isWidthDown('xs', width) ? <TopBarActionsXs/> : <TopBarActions/>}
                         <ImportDialog/>
                         <ExportDialog/>
-                        <SettingsDialog/>
                     </Toolbar>
                 </AppBar>
             </React.Fragment>

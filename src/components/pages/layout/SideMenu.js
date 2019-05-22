@@ -4,6 +4,7 @@ import {NavLink} from 'react-router-dom';
 import {Drawer, List, ListItem, ListItemIcon, ListItemText, withStyles} from '@material-ui/core';
 import HomeIcon from '@material-ui/icons/Home';
 import ListAltIcon from '@material-ui/icons/ListAlt';
+import SettingsIcon from '@material-ui/icons/Settings';
 import {toggleDrawer} from 'store/main/actions';
 
 const styles = theme => ({
@@ -42,6 +43,14 @@ class SideMenu extends React.Component {
                                 <ListAltIcon/>
                             </ListItemIcon>
                             <ListItemText primary="Trackers"/>
+                        </ListItem>
+
+                        <ListItem component={NavLink} to="/settings" onClick={this.handleCloseMenu()}
+                                  activeClassName={classes.selectedLink} button>
+                            <ListItemIcon>
+                                <SettingsIcon/>
+                            </ListItemIcon>
+                            <ListItemText primary="Settings"/>
                         </ListItem>
                     </List>
                 </div>
