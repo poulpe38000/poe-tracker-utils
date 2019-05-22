@@ -1,7 +1,19 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {Button, DialogContent, FormHelperText, Grid, Paper, TextField, Typography, withStyles} from '@material-ui/core';
+import {
+    Button,
+    DialogContent,
+    FormHelperText,
+    Grid,
+    Paper,
+    TextField,
+    Typography,
+    withStyles,
+    withWidth
+} from '@material-ui/core';
+import {isWidthDown} from '@material-ui/core/withWidth';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import AttachFileIcon from '@material-ui/icons/AttachFile';
 import {importData, toggleImportDialog} from 'store/main/actions';
 import {AppDialog, AppDialogActions} from 'components/shared';
 import Dropzone from 'react-dropzone';
@@ -81,67 +93,76 @@ class ImportDialog extends React.Component {
     };
 
     render() {
-        const {classes, showDialog} = this.props;
-        const {importTextData,importErrorText} = this.state;
+        const {classes, width, showDialog} = this.props;
+        const {importTextData, importErrorText} = this.state;
         return (
-                <AppDialog
-                    open={showDialog}
-                    onEntering={this.handleResetState}
-                    onClose={this.handleCloseDialog}
-                    fullWidth
-                    maxWidth="md"
-                    titleText="Import tracker data"
-                >
+            <AppDialog
+                open={showDialog}
+                onEntering={this.handleResetState}
+                onClose={this.handleCloseDialog}
+                fullWidth
+                maxWidth="md"
+                titleText="Import tracker data"
+            >
 
-                    <DialogContent>
-                        <Dropzone
-                            noClick={true}
-                            onDrop={this.onDrop}
-                            multiple={false}
-                        >
-                            {({getRootProps, getInputProps, isDragActive}) => (
-                                <div {...getRootProps({
-                                    className: classes.dragContainer
-                                })}>
-                                    <TextField
-                                        placeholder="Copy your import data here, or drag a tracker file to import it."
-                                        fullWidth
-                                        multiline
-                                        rows="4"
-                                        value={importTextData}
-                                        onChange={this.handleContentDataChange}
-                                        margin="normal"
-                                        variant="outlined"
-                                        error={!!importErrorText}
-                                    />
-                                    <FormHelperText error className={classes.inputErrorText}>{importErrorText}</FormHelperText>
-                                    {isDragActive && (
+                <DialogContent>
+                    <Dropzone noClick={true} onDrop={this.onDrop} multiple={false}>
+                        {({getRootProps, getInputProps, isDragActive}) => (
+                            <div {...getRootProps({className: classes.dragContainer})}>
+                                <TextField
+                                    placeholder="Copy your import data here, or drag a tracker file to import it."
+                                    fullWidth
+                                    multiline
+                                    rows="4"
+                                    value={importTextData}
+                                    onChange={this.handleContentDataChange}
+                                    margin="normal"
+                                    variant="outlined"
+                                    error={!!importErrorText}
+                                />
+                                <FormHelperText error className={classes.inputErrorText}>
+                                    {importErrorText}
+                                </FormHelperText>
+                                {
+                                    isDragActive && (
                                         <Paper elevation={0} className={classes.dragActiveWrapper}>
-                                            <Grid container direction="column" alignItems="center" justify="center"
-                                                  className={classes.dragActive}>
+                                            <Grid container direction="column" alignItems="center" justify="center" className={classes.dragActive}>
                                                 <Grid item>
-                                                    <Typography variant="h4">
-                                                        Drop your file here
-                                                    </Typography>
+                                                    <Typography variant="h4">Drop your file here</Typography>
                                                 </Grid>
                                             </Grid>
-
                                         </Paper>
-                                    )}
-                                </div>
+                                    )
+                                }
+                            </div>
+                        )}
+                    </Dropzone>
+                </DialogContent>
+                <AppDialogActions>
+                    {isWidthDown('xs', width) && (
+                        <Dropzone onDrop={this.onDrop} multiple={false}>
+                            {({getRootProps, getInputProps}) => (
+                                <Button {...getRootProps({
+                                    variant: "contained",
+                                    color: "secondary",
+                                    className: classes.button,
+                                })}>
+                                    <input {...getInputProps()} />
+                                    <AttachFileIcon className={classes.leftIcon}/>
+                                    Load Tracker File
+                                </Button>
                             )}
                         </Dropzone>
-                    </DialogContent>
-                    <AppDialogActions>
-                        <Button variant="contained" color="secondary" className={classes.button} onClick={this.handleContentDataLoad} autoFocus>
-                            <CloudUploadIcon className={classes.leftIcon}/>
-                            Import
-                        </Button>
-                        <Button variant="outlined" className={classes.button} onClick={this.handleCloseDialog}>
-                            Close
-                        </Button>
-                    </AppDialogActions>
-                </AppDialog>
+                    )}
+                    <Button variant="contained" color="secondary" className={classes.button} onClick={this.handleContentDataLoad} autoFocus>
+                        <CloudUploadIcon className={classes.leftIcon}/>
+                        Import
+                    </Button>
+                    <Button variant="outlined" className={classes.button} onClick={this.handleCloseDialog}>
+                        Close
+                    </Button>
+                </AppDialogActions>
+            </AppDialog>
         );
     }
 }
@@ -154,4 +175,4 @@ export default connect(
         toggleImportDialog: (payload) => (dispatch(toggleImportDialog(payload))),
         importData: (payload) => (dispatch(importData(payload))),
     }),
-)(withStyles(styles)(ImportDialog));
+)(withStyles(styles)(withWidth()(ImportDialog)));
