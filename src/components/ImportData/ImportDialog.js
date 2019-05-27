@@ -52,7 +52,7 @@ class ImportDialog extends React.Component {
         const reader = new FileReader();
         reader.onload = () => {
             try {
-                const fileData = JSON.parse(reader.result);
+                const fileData = JSON.parse(reader.result.toString());
                 this.props.importData(fileData);
                 this.handleCloseDialog();
             } catch (e) {

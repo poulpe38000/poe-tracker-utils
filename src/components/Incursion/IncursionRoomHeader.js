@@ -1,7 +1,7 @@
 import React from 'react';
 import {ListItem, Typography, withStyles} from '@material-ui/core';
 
-const styles = theme => ({
+const styles = {
     root: {
         display: 'flex',
         paddingBottom: 0,
@@ -10,7 +10,7 @@ const styles = theme => ({
         width: '64px',
         textAlign: 'center'
     },
-});
+};
 
 class IncursionRoomHeader extends React.Component {
 
