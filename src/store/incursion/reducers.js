@@ -11,7 +11,6 @@ import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL, SET_ALL} from 'store/main/action
 import {clearObj, getObj, INCURSION_COMPLETED_STORAGE, INCURSION_IN_PROGRESS_STORAGE, setObj} from 'utils/storage';
 
 
-
 function incursionReducer(state = INITIAL_STATE, action) {
     let completedRooms = state.completed.slice();
     let inProgressRooms = state.in_progress.slice();
@@ -75,12 +74,18 @@ function incursionReducer(state = INITIAL_STATE, action) {
                 return {...state};
             }
         case IMPORT_DATA:
-            completedRooms = action.payload.incursion && action.payload.incursion.completed
-                ? action.payload.incursion.completed
-                : null;
-            inProgressRooms = action.payload.incursion && action.payload.incursion.in_progress
-                ? action.payload.incursion.in_progress
-                : null;
+            const ignoreCompleted = action.payload.opts && !!action.payload.opts.ignoreCompletedIncursions;
+            const ignoreInProgress = action.payload.opts && !!action.payload.opts.ignoreInProgressIncursions;
+            if (!ignoreCompleted) {
+                completedRooms = action.payload.data && action.payload.data.incursion && action.payload.data.incursion.completed
+                    ? action.payload.data.incursion.completed
+                    : [];
+            }
+            if (!ignoreInProgress) {
+                inProgressRooms = action.payload.data && action.payload.data.incursion && action.payload.data.incursion.in_progress
+                    ? action.payload.data.incursion.in_progress
+                    : [];
+            }
             return {
                 ...state,
                 completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),

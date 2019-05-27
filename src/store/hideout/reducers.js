@@ -11,14 +11,14 @@ import {clearObj, getObj, HIDEOUT_UNLOCKED_STORAGE, setObj} from 'utils/storage'
 
 
 function hideoutReducer(state = INITIAL_STATE, action) {
-    let unlocked;
+    let unlocked = state.unlocked.slice();
     switch (action.type) {
         case HIDEOUT_TOGGLE_UNLOCKED:
-            const i = state.unlocked.findIndex((hideout) => hideout === action.payload);
+            const i = unlocked.findIndex((hideout) => hideout === action.payload);
             if (i !== -1) {
-                unlocked = state.unlocked.filter((hideout) => hideout !== action.payload);
+                unlocked = unlocked.filter((hideout) => hideout !== action.payload);
             } else {
-                unlocked = [...state.unlocked, action.payload];
+                unlocked = [...unlocked, action.payload];
             }
             return {
                 ...state,
@@ -51,7 +51,7 @@ function hideoutReducer(state = INITIAL_STATE, action) {
         case SET_ALL:
             return {
                 ...state,
-                unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, state.unlocked),
+                unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked),
             };
         case INITIALIZE_APP:
             try {
@@ -63,9 +63,12 @@ function hideoutReducer(state = INITIAL_STATE, action) {
                 return state;
             }
         case IMPORT_DATA:
-            unlocked = action.payload.hideout && action.payload.hideout.unlocked
-                ? action.payload.hideout.unlocked
-                : [];
+            const ignoreHideouts = action.payload.opts && !!action.payload.opts.ignoreHideouts;
+            if (!ignoreHideouts) {
+                unlocked = action.payload.data && action.payload.data.hideout && action.payload.data.hideout.unlocked
+                    ? action.payload.data.hideout.unlocked
+                    : [];
+            }
             return {
                 ...state,
                 unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked),

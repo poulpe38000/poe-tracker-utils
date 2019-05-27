@@ -10,6 +10,7 @@ import Dropzone from 'react-dropzone';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 import {compose} from 'redux';
 import {sanitizeTrackerData} from 'utils/sanitizer';
+import ImportSettings from 'components/ImportData/ImportSettings';
 
 const styles = theme => (mergeStyles({
     dragContainer: {
@@ -35,7 +36,10 @@ const styles = theme => (mergeStyles({
 class ImportDialog extends React.Component {
     state = {
         importTextData: '',
-        importErrorText: ''
+        importErrorText: '',
+        ignoreHideouts: false,
+        ignoreInProgressIncursions: false,
+        ignoreCompletedIncursions: false,
     };
 
     changeImportText = (text) => {
@@ -45,7 +49,22 @@ class ImportDialog extends React.Component {
         });
     };
 
-    handleResetState = () => this.changeImportText('');
+    handleToggleSettings = (value) => {
+        this.setState({
+            ...this.state,
+            [value]: !this.state[value]
+        });
+    };
+
+    handleResetState = () => {
+        this.setState({
+            importTextData: '',
+            importErrorText: '',
+            ignoreHideouts: false,
+            ignoreInProgressIncursions: false,
+            ignoreCompletedIncursions: false,
+        });
+    };
 
     handleCloseDialog = () => this.props.toggleImportDialog(false);
 
@@ -70,8 +89,16 @@ class ImportDialog extends React.Component {
     handleDropZoneOpen = (dropzoneRef) => () => dropzoneRef.current.open();
 
     handleContentDataLoad = () => {
+        const {importTextData, ignoreHideouts, ignoreInProgressIncursions, ignoreCompletedIncursions} = this.state;
         try {
-            this.props.importData(JSON.parse(this.state.importTextData));
+            this.props.importData({
+                data: JSON.parse(importTextData),
+                opts: {
+                    ignoreHideouts,
+                    ignoreInProgressIncursions,
+                    ignoreCompletedIncursions,
+                }
+            });
             this.handleCloseDialog();
         } catch (e) {
             this.setState({
@@ -82,7 +109,8 @@ class ImportDialog extends React.Component {
 
     render() {
         const {classes, width, showDialog} = this.props;
-        const {importTextData, importErrorText} = this.state;
+        const {importTextData, importErrorText,  ignoreHideouts, ignoreInProgressIncursions, ignoreCompletedIncursions} = this.state;
+        const canImportData = !(ignoreHideouts && ignoreInProgressIncursions && ignoreCompletedIncursions) && importTextData.length > 0;
         const dropzoneRef = createRef();
         return (
             <AppDialog
@@ -128,6 +156,9 @@ class ImportDialog extends React.Component {
                             </div>
                         )}
                     </Dropzone>
+                    <ImportSettings
+                        opts={{ignoreHideouts, ignoreInProgressIncursions, ignoreCompletedIncursions}}
+                        onClick={this.handleToggleSettings}/>
                 </AppDialogContent>
                 <AppDialogActions>
                     {isWidthDown('xs', width) && (
@@ -138,7 +169,7 @@ class ImportDialog extends React.Component {
                         </Button>
                     )}
                     <Button variant="contained" color="secondary" className={classes.button}
-                            onClick={this.handleContentDataLoad} autoFocus>
+                            onClick={this.handleContentDataLoad} disabled={!canImportData}>
                         <CloudUploadIcon className={classes.leftIcon}/>
                         Import
                     </Button>

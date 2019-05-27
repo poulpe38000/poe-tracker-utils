@@ -1,6 +1,29 @@
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import INCURSION_CONSTANTS from 'constants/incursion.constants';
 
+function getRoomsTierBoundaries(rooms) {
+    const roomsKeys = Object.keys(rooms);
+    return roomsKeys.reduce((res, key) => {
+        const roomTiers = rooms[key].map(room => room.tier);
+        res[key] = {
+            min: Math.min(...roomTiers),
+            max: Math.max(...roomTiers)
+        };
+        return res;
+    }, {});
+}
+
+function sanitizeHideouts(hideouts) {
+    const availableHideouts = HIDEOUT_CONSTANTS.hideouts.map(hideout => hideout.id);
+    return hideouts.filter(hideout => availableHideouts.find(item => item === hideout));
+}
+
+function sanitizeRooms(rooms, availableRooms) {
+    return rooms
+        .filter(room => !!availableRooms[room.id] && availableRooms[room.id].min <= room.tier)
+        .map(room => ({id: room.id, tier: Math.min(room.tier, availableRooms[room.id].max)}));
+}
+
 export function sanitizeTrackerData(data) {
     let sanitized = {};
     if (typeof data === 'object') {
@@ -9,12 +32,7 @@ export function sanitizeTrackerData(data) {
             && data.hideout.hasOwnProperty('unlocked')
             && Array.isArray(data.hideout.unlocked)) {
             // Sanitize unlocked hideouts array
-            const availableHideouts = HIDEOUT_CONSTANTS.hideouts.map(hideout => hideout.id);
-            const sanitizedHideouts = data.hideout.unlocked.filter(hideout => availableHideouts.find(item => item === hideout));
-            sanitized = {
-                ...sanitized,
-                hideout: {unlocked: sanitizedHideouts}
-            }
+            sanitized = {...sanitized, hideout: {unlocked: sanitizeHideouts(data.hideout.unlocked)}};
         }
         if (
             data.hasOwnProperty('incursion')
@@ -23,53 +41,28 @@ export function sanitizeTrackerData(data) {
                 || (data.incursion.hasOwnProperty('in_progress') && Array.isArray(data.incursion.in_progress))
             )
         ) {
-            const nonUpgradableKeys = Object.keys(INCURSION_CONSTANTS.rooms.non_upgradeable);
-            const upgradableKeys = Object.keys(INCURSION_CONSTANTS.rooms.upgradeable);
             const availableRooms = Object.assign({},
-                nonUpgradableKeys.reduce((res, key) => {
-                    const roomTiers = INCURSION_CONSTANTS.rooms.non_upgradeable[key].map(room => room.tier);
-                    res[key] = {
-                        min: Math.min(...roomTiers),
-                        max: Math.max(...roomTiers)
-                    };
-                    return res;
-                }, {}),
-                upgradableKeys.reduce((res, key) => {
-                    const roomTiers = INCURSION_CONSTANTS.rooms.upgradeable[key].map(room => room.tier);
-                    res[key] = {
-                        min: Math.min(...roomTiers),
-                        max: Math.max(...roomTiers)
-                    };
-                    return res;
-                }, {}),
+                getRoomsTierBoundaries(INCURSION_CONSTANTS.rooms.non_upgradeable),
+                getRoomsTierBoundaries(INCURSION_CONSTANTS.rooms.upgradeable),
             );
-            sanitized = {
-                ...sanitized,
-                incursion: {}
-            };
+            sanitized = {...sanitized, incursion: {}};
             if (data.incursion.hasOwnProperty('completed') && Array.isArray(data.incursion.completed)) {
                 // Sanitize completed incursion rooms array
-                const sanitizedCompleted = data.incursion.completed
-                    .filter(room => !!availableRooms[room.id] && availableRooms[room.id].min <= room.tier)
-                    .map(room => ({id: room.id, tier: Math.min(room.tier, availableRooms[room.id].max)}));
                 sanitized = {
                     ...sanitized,
                     incursion: {
                         ...sanitized.incursion,
-                        completed: sanitizedCompleted
+                        completed: sanitizeRooms(data.incursion.completed, availableRooms)
                     }
                 };
             }
             if (data.incursion.hasOwnProperty('in_progress') && Array.isArray(data.incursion.in_progress)) {
                 // Sanitize in progress incursion rooms array
-                const sanitizedInProgress = data.incursion.in_progress
-                    .filter(room => !!availableRooms[room.id] && availableRooms[room.id].min <= room.tier)
-                    .map(room => ({id: room.id, tier: Math.min(room.tier, availableRooms[room.id].max)}));
                 sanitized = {
                     ...sanitized,
                     incursion: {
                         ...sanitized.incursion,
-                        in_progress: sanitizedInProgress
+                        in_progress: sanitizeRooms(data.incursion.in_progress, availableRooms)
                     }
                 };
             }
