@@ -1,17 +1,12 @@
 import React from "react";
-import {Typography, withStyles} from "@material-ui/core";
-import {AppPage} from 'components/pages/layout';
-import {pagesStyles} from 'utils/themes';
+import {Page} from 'components/pages/layout/Page';
 
-function HomePage(props) {
-    const {classes} = props;
-    return (
-        <AppPage>
-            <Typography variant="h2" className={classes.pageTitle}>
-                Welcome to PoE Tracker Helpers
-            </Typography>
-        </AppPage>
-    );
+class HomePage extends React.Component {
+    render() {
+        return (
+            <Page title="Welcome to PoE Tracker Helpers"/>
+        );
+    }
 }
 
-export default withStyles(pagesStyles)(HomePage);
+export default HomePage;

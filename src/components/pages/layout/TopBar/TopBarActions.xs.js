@@ -11,22 +11,22 @@ class TopBarActionsXs extends React.Component {
         anchorEl: null,
     };
 
-    handleMenu = event => {
-        this.setState({ anchorEl: event.currentTarget });
+    handleOpenMenu = event => {
+        this.setState({anchorEl: event.currentTarget});
     };
 
-    handleClose = () => {
-        this.setState({ anchorEl: null });
+    handleCloseMenu = () => {
+        this.setState({anchorEl: null});
     };
 
     handleToggleImportDialog = () => {
         this.props.toggleImportDialog(true);
-        this.handleClose();
+        this.handleCloseMenu();
     };
 
     handleToggleExportDialog = () => {
         this.props.toggleExportDialog(true);
-        this.handleClose();
+        this.handleCloseMenu();
     };
 
     render() {
@@ -38,7 +38,7 @@ class TopBarActionsXs extends React.Component {
                 <IconButton
                     aria-owns={open ? 'menu-appbar' : undefined}
                     aria-haspopup="true"
-                    onClick={this.handleMenu}
+                    onClick={this.handleOpenMenu}
                 >
                     <MoreVertIcon/>
                 </IconButton>
@@ -46,16 +46,10 @@ class TopBarActionsXs extends React.Component {
                 <Menu
                     id="menu-appbar"
                     anchorEl={anchorEl}
-                    anchorOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
+                    anchorOrigin={{vertical: 'top', horizontal: 'right'}}
+                    transformOrigin={{vertical: 'top', horizontal: 'right'}}
                     open={open}
-                    onClose={this.handleClose}
+                    onClose={this.handleCloseMenu}
                 >
                     <MenuItem onClick={this.handleToggleImportDialog}>
                         <ListItemIcon>

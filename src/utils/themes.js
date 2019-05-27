@@ -26,10 +26,6 @@ export const dialogTheme = createMuiTheme({
     },
 });
 
-export const pagesStyles = {
-    pageTitle: {textAlign: 'center'},
-};
-
 export const buttonStyles = (theme) => ({
     button: {margin: theme.spacing.unit},
     leftIcon: {marginRight: theme.spacing.unit},

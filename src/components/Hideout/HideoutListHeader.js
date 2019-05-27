@@ -7,6 +7,7 @@ import {hideoutUpdateSearchText} from 'store/hideout/actions';
 import * as PropTypes from 'prop-types';
 import {HideoutListFilter} from 'components/Hideout';
 import Fade from '@material-ui/core/Fade';
+import {compose} from 'redux';
 
 const styles = theme => ({
     spacer: {
@@ -106,11 +107,14 @@ class HideoutListHeader extends React.Component {
     }
 }
 
-export default connect(
-    state => ({
-        searchText: state.hideout.searchText,
-    }),
-    dispatch => ({
-        hideoutUpdateSearchText: searchText => (dispatch(hideoutUpdateSearchText(searchText))),
-    })
-)(withStyles(styles)(HideoutListHeader));
+export default compose(
+    connect(
+        state => ({
+            searchText: state.hideout.searchText,
+        }),
+        dispatch => ({
+            hideoutUpdateSearchText: searchText => (dispatch(hideoutUpdateSearchText(searchText))),
+        })
+    ),
+    withStyles(styles)
+)(HideoutListHeader);

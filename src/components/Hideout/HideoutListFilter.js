@@ -21,6 +21,7 @@ import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore'
 import {hideoutResetFilters, hideoutUpdateFilters} from 'store/hideout/actions';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 import * as PropTypes from 'prop-types';
+import {compose} from 'redux';
 
 const styles = theme => (mergeStyles({
     popper: {
@@ -202,12 +203,15 @@ class HideoutListFilter extends React.Component {
     }
 }
 
-export default connect(
-    state => ({
-        filters: state.hideout.filters,
-    }),
-    dispatch => ({
-        hideoutUpdateFilters: filters => (dispatch(hideoutUpdateFilters(filters))),
-        hideoutResetFilters: () => (dispatch(hideoutResetFilters())),
-    })
-)(withStyles(styles)(HideoutListFilter));
+export default compose(
+    connect(
+        state => ({
+            filters: state.hideout.filters,
+        }),
+        dispatch => ({
+            hideoutUpdateFilters: filters => (dispatch(hideoutUpdateFilters(filters))),
+            hideoutResetFilters: () => (dispatch(hideoutResetFilters())),
+        })
+    ),
+    withStyles(styles)
+)(HideoutListFilter);

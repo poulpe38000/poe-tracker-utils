@@ -1,11 +1,13 @@
 import React from 'react';
 import {Route} from 'react-router-dom';
 import {withStyles} from '@material-ui/core';
-import {SideMenu, TopBar} from 'components/pages/layout';
 import {HomePage, SettingsPage, TrackersPage} from 'components/pages';
 import {connect} from 'react-redux';
 import {initializeApp} from 'store/main/actions';
 import {compose} from 'redux';
+import {SideMenu} from 'components/pages/layout/SideMenu';
+import {TopBar} from 'components/pages/layout/TopBar';
+import {Dialogs} from 'components/pages/layout/Dialogs';
 
 
 const styles = theme => ({
@@ -30,6 +32,7 @@ class App extends React.Component {
             <React.Fragment>
                 <TopBar/>
                 <SideMenu/>
+                <Dialogs/>
                 <div className={classes.root}>
                     <Route path="/" exact component={HomePage}/>
                     <Route path="/trackers" component={TrackersPage}/>

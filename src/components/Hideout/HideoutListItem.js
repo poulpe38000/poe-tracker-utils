@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {hideoutToggleUnlocked} from 'store/hideout/actions';
 import {Checkbox, ListItem, Typography, withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
+import {compose} from 'redux';
 
 const styles = theme => ({
     root: {display: 'flex',},
@@ -64,9 +65,12 @@ class HideoutListItem extends React.Component {
     }
 }
 
-export default connect(
-    null,
-    dispatch => ({
-        hideoutToggleUnlocked: hideoutId => (dispatch(hideoutToggleUnlocked(hideoutId))),
-    }),
-)(withStyles(styles)(HideoutListItem));
+export default compose(
+    connect(
+        null,
+        dispatch => ({
+            hideoutToggleUnlocked: hideoutId => (dispatch(hideoutToggleUnlocked(hideoutId))),
+        }),
+    ),
+    withStyles(styles)
+)(HideoutListItem);

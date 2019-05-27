@@ -1,7 +1,7 @@
 import React from 'react';
 import {IncursionBaseRooms, IncursionSummary, IncursionTieredRooms} from 'components/Incursion';
 
-class IncursionTable extends React.Component {
+class IncursionList extends React.Component {
 
     render() {
         return (
@@ -14,4 +14,4 @@ class IncursionTable extends React.Component {
     }
 }
 
-export default IncursionTable;
+export default IncursionList;

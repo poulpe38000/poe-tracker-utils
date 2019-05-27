@@ -1,20 +1,16 @@
 import React from "react";
-import {Typography, withStyles} from "@material-ui/core";
-import {AppPage} from 'components/pages/layout';
-import {pagesStyles} from 'utils/themes';
 import {SettingsData, SettingsStorage} from 'components/Settings';
+import {Page} from 'components/pages/layout/Page';
 
-function SettingsPage(props) {
-    const {classes} = props;
-    return (
-        <AppPage>
-            <Typography variant="h2" className={classes.pageTitle}>
-                Settings
-            </Typography>
-            <SettingsStorage/>
-            <SettingsData/>
-        </AppPage>
-    );
+class SettingsPage extends React.Component {
+    render() {
+        return (
+            <Page title="Settings">
+                <SettingsStorage/>
+                <SettingsData/>
+            </Page>
+        );
+    }
 }
 
-export default withStyles(pagesStyles)(SettingsPage);
+export default SettingsPage;

@@ -1,13 +1,10 @@
 import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import {AppBar, IconButton, Toolbar, Typography, withStyles, withWidth} from '@material-ui/core';
-import MenuIcon from '@material-ui/icons/Menu';
+import {AppBar, Toolbar, Typography, withStyles, withWidth} from '@material-ui/core';
 import {toggleDrawer} from 'store/main/actions';
-import {TopBarActions, TopBarActionsXs} from 'components/pages/layout/index';
 import {isWidthDown} from '@material-ui/core/withWidth';
-import {ImportDialog} from 'components/ImportData';
-import {ExportDialog} from 'components/ExportData';
+import {TopBarActions, TopBarActionsXs, TopBarMenuButton} from 'components/pages/layout/TopBar';
 
 const styles = theme => ({
     root: {
@@ -18,7 +15,6 @@ const styles = theme => ({
             paddingRight: 0,
         },
     },
-    menuButton: {marginRight: theme.spacing.unit * 2},
     appTitle: {flexGrow: 1},
 });
 
@@ -33,15 +29,11 @@ class TopBar extends React.Component {
         return (
             <AppBar position="fixed">
                 <Toolbar className={classes.root}>
-                    <IconButton aria-label="Menu" onClick={this.handleOpenMenu} className={classes.menuButton}>
-                        <MenuIcon/>
-                    </IconButton>
+                    <TopBarMenuButton onClick={this.handleOpenMenu}/>
                     <Typography variant="h6" color="inherit" className={classes.appTitle}>
                         PoE Tracker Helpers
                     </Typography>
                     {isWidthDown('xs', width) ? <TopBarActionsXs/> : <TopBarActions/>}
-                    <ImportDialog/>
-                    <ExportDialog/>
                 </Toolbar>
             </AppBar>
         );
@@ -49,10 +41,7 @@ class TopBar extends React.Component {
 }
 
 export default compose(
-    connect(
-        state => ({
-            showDrawer: state.main.showDrawer
-        }),
+    connect(null,
         dispatch => ({
             toggleDrawer: toggle => dispatch(toggleDrawer(toggle))
         }),

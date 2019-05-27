@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {Divider, List, ListItem, Paper, Typography, withStyles} from '@material-ui/core';
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import {HideoutListHeader, HideoutListItem, HideoutFilterStatus} from 'components/Hideout';
+import {compose} from 'redux';
 
 const styles = {
     notFound: {
@@ -80,10 +81,13 @@ class HideoutList extends React.Component {
     }
 }
 
-export default connect(
-    state => ({
-        unlockedHideouts: state.hideout.unlocked,
-        searchText: state.hideout.searchText,
-        filters: state.hideout.filters,
-    }),
-)(withStyles(styles)(HideoutList));
+export default compose(
+    connect(
+        state => ({
+            unlockedHideouts: state.hideout.unlocked,
+            searchText: state.hideout.searchText,
+            filters: state.hideout.filters,
+        }),
+    ),
+    withStyles(styles)
+)(HideoutList);

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {hideoutUpdateFilters} from 'store/hideout/actions';
 import {Chip, withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
+import {compose} from 'redux';
 
 const styles = theme => ({
     root: {
@@ -71,26 +72,29 @@ class HideoutFilterStatus extends React.Component {
             <React.Fragment>
                 {chipList.length > 0 && (
                     <div className={classes.root}>
-                    {chipList.map(chip => (
-                        <Chip
-                            color="primary"
-                            label={chip.label}
-                            onDelete={this.handleFilterRemove(chip.key, chip.value, chip.type)}
-                            className={classes.chip}
-                        />
-                    ))}
-                </div>
+                        {chipList.map(chip => (
+                            <Chip
+                                color="primary"
+                                label={chip.label}
+                                onDelete={this.handleFilterRemove(chip.key, chip.value, chip.type)}
+                                className={classes.chip}
+                            />
+                        ))}
+                    </div>
                 )}
             </React.Fragment>
         )
     }
 }
 
-export default connect(
-    state => ({
-        filters: state.hideout.filters,
-    }),
-    dispatch => ({
-        hideoutUpdateFilters: filters => (dispatch(hideoutUpdateFilters(filters))),
-    })
-)(withStyles(styles)(HideoutFilterStatus));
+export default compose(
+    connect(
+        state => ({
+            filters: state.hideout.filters,
+        }),
+        dispatch => ({
+            hideoutUpdateFilters: filters => (dispatch(hideoutUpdateFilters(filters))),
+        })
+    ),
+    withStyles(styles)
+)(HideoutFilterStatus);
