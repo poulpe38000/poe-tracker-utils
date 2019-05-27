@@ -37,12 +37,14 @@ class ImportDialog extends React.Component {
         importErrorText: ''
     };
 
-    handleResetState = () => {
+    changeImportText = (text) => {
         this.setState({
-            importTextData: '',
+            importTextData: text,
             importErrorText: ''
         });
     };
+
+    handleResetState = () => this.changeImportText('');
 
     handleCloseDialog = () => {
         this.props.toggleImportDialog(false);
@@ -53,8 +55,7 @@ class ImportDialog extends React.Component {
         reader.onload = () => {
             try {
                 const fileData = JSON.parse(reader.result.toString());
-                this.props.importData(fileData);
-                this.handleCloseDialog();
+                this.changeImportText(JSON.stringify(fileData, null, 2));
             } catch (e) {
                 this.setState({
                     importErrorText: 'Unable to read tracker file.'
@@ -65,12 +66,7 @@ class ImportDialog extends React.Component {
         acceptedFiles.forEach(file => reader.readAsBinaryString(file));
     };
 
-    handleContentDataChange = event => {
-        this.setState({
-            importTextData: event.target.value,
-            importErrorText: ''
-        });
-    };
+    handleContentDataChange = event => this.changeImportText(event.target.value);
 
     handleDropZoneOpen = (dropzoneRef) => () => {
         dropzoneRef.current.open();
