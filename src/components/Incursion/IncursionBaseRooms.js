@@ -40,7 +40,7 @@ class IncursionBaseRooms extends React.Component {
                         {roomKeys.map((roomKey) => {
                             const rooms = data[roomKey];
                             return (
-                                <React.Fragment>
+                                <React.Fragment key={roomKey} >
                                     {rooms.map((room) => (
                                         <IncursionRoom key={room.id} roomKey={roomKey} room={room}/>))}
                                 </React.Fragment>

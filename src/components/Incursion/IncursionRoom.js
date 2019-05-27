@@ -80,14 +80,14 @@ class IncursionRoom extends React.Component {
                     <Typography variant="caption" className={classes.itemText}>
                         {room.notable.length > 0 && (
                             <React.Fragment>
-                                {room.notable.map(item => (<div className={classes.itemDetails}>{item}</div>))}
+                                {room.notable.map((item, key) => (<div key={key} className={classes.itemDetails}>{item}</div>))}
                             </React.Fragment>
                         )}
                     </Typography>
                     <Typography variant="caption" className={classes.itemText}>
                         {room.mods.length > 0 && (
                             <React.Fragment>
-                                {room.mods.map(item => (<div className={classes.itemDetails}>{item}</div>))}
+                                {room.mods.map((item, key) => (<div key={key} className={classes.itemDetails}>{item}</div>))}
                             </React.Fragment>
                         )}
                     </Typography>
