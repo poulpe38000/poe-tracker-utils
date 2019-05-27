@@ -9,6 +9,7 @@ import {AppDialog, AppDialogActions, AppDialogContent} from 'components/shared';
 import Dropzone from 'react-dropzone';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 import {compose} from 'redux';
+import {sanitizeTrackerData} from 'utils/sanitizer';
 
 const styles = theme => (mergeStyles({
     dragContainer: {
@@ -46,15 +47,13 @@ class ImportDialog extends React.Component {
 
     handleResetState = () => this.changeImportText('');
 
-    handleCloseDialog = () => {
-        this.props.toggleImportDialog(false);
-    };
+    handleCloseDialog = () => this.props.toggleImportDialog(false);
 
     onDrop = acceptedFiles => {
         const reader = new FileReader();
         reader.onload = () => {
             try {
-                const fileData = JSON.parse(reader.result.toString());
+                const fileData = sanitizeTrackerData(JSON.parse(reader.result.toString()));
                 this.changeImportText(JSON.stringify(fileData, null, 2));
             } catch (e) {
                 this.setState({
@@ -68,9 +67,7 @@ class ImportDialog extends React.Component {
 
     handleContentDataChange = event => this.changeImportText(event.target.value);
 
-    handleDropZoneOpen = (dropzoneRef) => () => {
-        dropzoneRef.current.open();
-    };
+    handleDropZoneOpen = (dropzoneRef) => () => dropzoneRef.current.open();
 
     handleContentDataLoad = () => {
         try {
@@ -145,7 +142,8 @@ class ImportDialog extends React.Component {
                         <CloudUploadIcon className={classes.leftIcon}/>
                         Import
                     </Button>
-                    <Button variant="outlined" className={classes.button} onClick={this.handleCloseDialog}>
+                    <Button variant="outlined" className={classes.button}
+                            onClick={this.handleCloseDialog}>
                         Close
                     </Button>
                 </AppDialogActions>
