@@ -1,4 +1,5 @@
 import React from 'react';
+import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {AppBar, IconButton, Toolbar, Typography, withStyles, withWidth} from '@material-ui/core';
 import MenuIcon from '@material-ui/icons/Menu';
@@ -23,37 +24,39 @@ const styles = theme => ({
 
 class TopBar extends React.Component {
 
-    handleOpenMenu = () => () => {
+    handleOpenMenu = () => {
         this.props.toggleDrawer(true);
     };
 
     render() {
         const {classes, width} = this.props;
         return (
-            <React.Fragment>
-                <AppBar position="fixed">
-                    <Toolbar className={classes.root}>
-                        <IconButton aria-label="Menu" onClick={this.handleOpenMenu()} className={classes.menuButton}>
-                            <MenuIcon/>
-                        </IconButton>
-                        <Typography variant="h6" color="inherit" className={classes.appTitle}>
-                            PoE Tracker Helpers
-                        </Typography>
-                        {isWidthDown('xs', width) ? <TopBarActionsXs/> : <TopBarActions/>}
-                        <ImportDialog/>
-                        <ExportDialog/>
-                    </Toolbar>
-                </AppBar>
-            </React.Fragment>
+            <AppBar position="fixed">
+                <Toolbar className={classes.root}>
+                    <IconButton aria-label="Menu" onClick={this.handleOpenMenu} className={classes.menuButton}>
+                        <MenuIcon/>
+                    </IconButton>
+                    <Typography variant="h6" color="inherit" className={classes.appTitle}>
+                        PoE Tracker Helpers
+                    </Typography>
+                    {isWidthDown('xs', width) ? <TopBarActionsXs/> : <TopBarActions/>}
+                    <ImportDialog/>
+                    <ExportDialog/>
+                </Toolbar>
+            </AppBar>
         );
     }
 }
 
-export default connect(
-    state => ({
-        showDrawer: state.main.showDrawer
-    }),
-    dispatch => ({
-        toggleDrawer: toggle => dispatch(toggleDrawer(toggle))
-    }),
-)(withStyles(styles)(withWidth()(TopBar)));
+export default compose(
+    connect(
+        state => ({
+            showDrawer: state.main.showDrawer
+        }),
+        dispatch => ({
+            toggleDrawer: toggle => dispatch(toggleDrawer(toggle))
+        }),
+    ),
+    withStyles(styles),
+    withWidth()
+)(TopBar);

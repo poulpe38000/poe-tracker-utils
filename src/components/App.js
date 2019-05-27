@@ -5,6 +5,7 @@ import {SideMenu, TopBar} from 'components/pages/layout';
 import {HomePage, SettingsPage, TrackersPage} from 'components/pages';
 import {connect} from 'react-redux';
 import {initializeApp} from 'store/main/actions';
+import {compose} from 'redux';
 
 
 const styles = theme => ({
@@ -39,9 +40,12 @@ class App extends React.Component {
     }
 }
 
-export default connect(
-    null,
-    dispatch => ({
-        initializeApp: () => (dispatch(initializeApp())),
-    }),
-)(withStyles(styles)(App));
+export default compose(
+    connect(
+        null,
+        dispatch => ({
+            initializeApp: () => (dispatch(initializeApp())),
+        }),
+    ),
+    withStyles(styles)
+)(App);

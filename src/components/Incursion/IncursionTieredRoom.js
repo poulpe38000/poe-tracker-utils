@@ -9,11 +9,11 @@ class IncursionTieredRoom extends React.Component {
     };
 
     render() {
-        const {roomKey} = this.props;
+        const {roomKey, rooms} = this.props;
         return (
             <React.Fragment>
                 <IncursionRoomHeader/>
-                {this.props.rooms.map((room) => (<IncursionRoom key={room.id} roomKey={roomKey} room={room}/>))}
+                {rooms.map((room) => <IncursionRoom key={room.id} roomKey={roomKey} room={room}/>)}
             </React.Fragment>
         );
     }

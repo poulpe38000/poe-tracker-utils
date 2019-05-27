@@ -4,7 +4,7 @@ import {dialogTheme} from 'utils/themes';
 import * as PropTypes from 'prop-types';
 
 const styles = theme => ({
-    dialogTitle: {
+    title: {
         [theme.breakpoints.down('xs')]: {
             padding: theme.spacing.unit * 2
         },
@@ -21,12 +21,13 @@ class AppDialog extends React.Component {
     };
 
     render() {
-        const {classes, children, titleText} = this.props;
+        const {classes, titleText, ...dialogProps} = this.props;
+        const {children} = this.props;
         return (
             <MuiThemeProvider theme={dialogTheme}>
-                <Dialog {...this.props}>
+                <Dialog {...dialogProps}>
                     {titleText !== null && (
-                        <DialogTitle className={classes.dialogTitle}>{titleText}</DialogTitle>
+                        <DialogTitle className={classes.title}>{titleText}</DialogTitle>
                     )}
                     {children}
                 </Dialog>

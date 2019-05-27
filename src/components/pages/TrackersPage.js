@@ -3,6 +3,7 @@ import {Route, withRouter} from 'react-router-dom';
 import TrackersNavBar from 'components/Trackers/TrackersNavBar';
 import {HideoutPage, IncursionPage} from 'components/pages/index';
 import {withStyles} from '@material-ui/core';
+import {compose} from 'redux';
 
 const styles = theme => ({
     root: {
@@ -43,4 +44,7 @@ class TrackersPage extends React.Component {
     }
 }
 
-export default withRouter(withStyles(styles)(TrackersPage));
+export default compose(
+    withRouter,
+    withStyles(styles)
+)(TrackersPage);

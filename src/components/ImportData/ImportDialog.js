@@ -8,6 +8,7 @@ import {importData, toggleImportDialog} from 'store/main/actions';
 import {AppDialog, AppDialogActions, AppDialogContent} from 'components/shared';
 import Dropzone from 'react-dropzone';
 import {buttonStyles, mergeStyles} from 'utils/themes';
+import {compose} from 'redux';
 
 const styles = theme => (mergeStyles({
     dragContainer: {
@@ -122,7 +123,8 @@ class ImportDialog extends React.Component {
                                 {
                                     isDragActive && (
                                         <Paper elevation={0} className={classes.dragActiveWrapper}>
-                                            <Grid container direction="column" alignItems="center" justify="center" className={classes.dragActive}>
+                                            <Grid container direction="column" alignItems="center" justify="center"
+                                                  className={classes.dragActive}>
                                                 <Grid item>
                                                     <Typography variant="h4">Drop your file here</Typography>
                                                 </Grid>
@@ -136,12 +138,14 @@ class ImportDialog extends React.Component {
                 </AppDialogContent>
                 <AppDialogActions>
                     {isWidthDown('xs', width) && (
-                        <Button variant="contained" color="secondary" className={classes.button} onClick={this.handleDropZoneOpen(dropzoneRef)}>
+                        <Button variant="contained" color="secondary" className={classes.button}
+                                onClick={this.handleDropZoneOpen(dropzoneRef)}>
                             <AttachFileIcon className={classes.leftIcon}/>
                             Load File
                         </Button>
                     )}
-                    <Button variant="contained" color="secondary" className={classes.button} onClick={this.handleContentDataLoad} autoFocus>
+                    <Button variant="contained" color="secondary" className={classes.button}
+                            onClick={this.handleContentDataLoad} autoFocus>
                         <CloudUploadIcon className={classes.leftIcon}/>
                         Import
                     </Button>
@@ -154,12 +158,16 @@ class ImportDialog extends React.Component {
     }
 }
 
-export default connect(
-    state => ({
-        showDialog: state.main.showImportDialog,
-    }),
-    dispatch => ({
-        toggleImportDialog: (payload) => (dispatch(toggleImportDialog(payload))),
-        importData: (payload) => (dispatch(importData(payload))),
-    }),
-)(withStyles(styles)(withWidth()(ImportDialog)));
+export default compose(
+    connect(
+        state => ({
+            showDialog: state.main.showImportDialog,
+        }),
+        dispatch => ({
+            toggleImportDialog: (payload) => (dispatch(toggleImportDialog(payload))),
+            importData: (payload) => (dispatch(importData(payload))),
+        }),
+    ),
+    withStyles(styles),
+    withWidth()
+)(ImportDialog);

@@ -69,8 +69,8 @@ class HideoutList extends React.Component {
                     )}
                     {filteredData
                         .map((hideout, idx) => (
-                            <React.Fragment>
-                                <HideoutListItem key={hideout.id} hideout={hideout}/>
+                            <React.Fragment key={hideout.id}>
+                                <HideoutListItem hideout={hideout}/>
                                 {idx < filteredData.length - 1 && <Divider/>}
                             </React.Fragment>
                         ))}

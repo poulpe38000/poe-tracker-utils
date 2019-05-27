@@ -10,10 +10,10 @@ const styles = theme => ({
 });
 
 function AppPage(props) {
-    const {classes} = props;
+    const {classes, children} = props;
     return (
         <div className={classes.root}>
-            {props.children}
+            {children}
         </div>
     )
 }

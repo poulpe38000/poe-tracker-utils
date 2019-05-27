@@ -1,5 +1,4 @@
 import React from 'react';
-import {getLocalStorageSettings, toggleLocalStorageSettings} from 'utils/storage';
 import {List, ListItem, ListItemIcon, ListItemText, Paper, Typography, withStyles} from '@material-ui/core';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 import {connect} from 'react-redux';

@@ -51,7 +51,6 @@ class IncursionSummary extends React.Component {
                 <FormControl fullWidth>
                     <TextField
                         className={classes.margin}
-                        autoFocus={true}
                         inputRef={this.searchField}
                         onChange={this.handleSearchTextUpdate}
                         value={searchText}

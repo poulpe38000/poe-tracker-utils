@@ -7,6 +7,7 @@ import {toggleExportDialog} from 'store/main/actions';
 import {AppDialog, AppDialogActions, AppDialogContent} from 'components/shared';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {buttonStyles, mergeStyles} from 'utils/themes';
+import {compose} from 'redux';
 
 const styles = theme => (mergeStyles({
     inputExportIndicator: {
@@ -103,20 +104,23 @@ class ExportDialog extends React.Component {
     }
 }
 
-export default connect(
-    state => ({
-        showDialog: state.main.showExportDialog,
-        exportData: {
-            hideout: {
-                unlocked: state.hideout.unlocked,
+export default compose(
+    connect(
+        state => ({
+            showDialog: state.main.showExportDialog,
+            exportData: {
+                hideout: {
+                    unlocked: state.hideout.unlocked,
+                },
+                incursion: {
+                    completed: state.incursion.completed,
+                    in_progress: state.incursion.in_progress,
+                },
             },
-            incursion: {
-                completed: state.incursion.completed,
-                in_progress: state.incursion.in_progress,
-            },
-        },
-    }),
-    dispatch => ({
-        toggleExportDialog: (payload) => (dispatch(toggleExportDialog(payload))),
-    }),
-)(withStyles(styles)(ExportDialog));
+        }),
+        dispatch => ({
+            toggleExportDialog: (payload) => (dispatch(toggleExportDialog(payload))),
+        }),
+    ),
+    withStyles(styles)
+)(ExportDialog);

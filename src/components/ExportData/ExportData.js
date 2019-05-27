@@ -4,6 +4,7 @@ import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
 import {connect} from 'react-redux';
 import {toggleExportDialog} from 'store/main/actions';
 import {buttonStyles} from 'utils/themes';
+import {compose} from 'redux';
 
 class ExportData extends React.Component {
     handleOpenDialog = () => {
@@ -14,7 +15,8 @@ class ExportData extends React.Component {
         const {classes} = this.props;
         return (
             <React.Fragment>
-                <Button variant="contained" className={classes.button} color="secondary" onClick={this.handleOpenDialog}>
+                <Button variant="contained" className={classes.button} color="secondary"
+                        onClick={this.handleOpenDialog}>
                     <CloudDownloadIcon className={classes.leftIcon}/>
                     Export
                 </Button>
@@ -23,9 +25,12 @@ class ExportData extends React.Component {
     }
 }
 
-export default connect(
-    null,
-    dispatch => ({
-        toggleExportDialog: (payload) => (dispatch(toggleExportDialog(payload))),
-    }),
-)(withStyles(buttonStyles)(ExportData));
+export default compose(
+    connect(
+        null,
+        dispatch => ({
+            toggleExportDialog: (payload) => (dispatch(toggleExportDialog(payload))),
+        }),
+    ),
+    withStyles(buttonStyles)
+)(ExportData);

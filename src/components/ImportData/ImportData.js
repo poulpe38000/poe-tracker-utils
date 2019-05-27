@@ -4,6 +4,7 @@ import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import {connect} from 'react-redux';
 import {toggleImportDialog} from 'store/main/actions';
 import {buttonStyles} from 'utils/themes';
+import {compose} from 'redux';
 
 class ImportData extends React.Component {
     handleOpenDialog = () => {
@@ -23,9 +24,12 @@ class ImportData extends React.Component {
     }
 }
 
-export default connect(
-    null,
-    dispatch => ({
-        toggleImportDialog: (payload) => (dispatch(toggleImportDialog(payload))),
-    }),
-)(withStyles(buttonStyles)(ImportData));
+export default compose(
+    connect(
+        null,
+        dispatch => ({
+            toggleImportDialog: (payload) => (dispatch(toggleImportDialog(payload))),
+        }),
+    ),
+    withStyles(buttonStyles)
+)(ImportData);
