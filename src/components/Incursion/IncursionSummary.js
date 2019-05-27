@@ -61,11 +61,13 @@ class IncursionSummary extends React.Component {
                                 </InputAdornment>
                             ),
                             endAdornment: (
-                                <InputAdornment position="end">
-                                    <IconButton aria-label="Delete" onClick={this.handleToggleSearch}>
-                                        <ClearIcon/>
-                                    </IconButton>
-                                </InputAdornment>
+                                <React.Fragment>
+                                    {searchText && (<InputAdornment position="end">
+                                        <IconButton aria-label="Delete" onClick={this.handleToggleSearch}>
+                                            <ClearIcon/>
+                                        </IconButton>
+                                    </InputAdornment>)}
+                                </React.Fragment>
                             )
                         }}
                     />
