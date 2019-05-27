@@ -8,8 +8,8 @@ import {AppDialog, AppDialogActions, AppDialogContent} from 'components/shared';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 import {compose} from 'redux';
-import ExportSettings from 'components/ExportData/ExportSettings';
 import cloneDeep from 'lodash/cloneDeep';
+import {ExportSettings} from 'components/ExportData';
 
 const styles = theme => (mergeStyles({
     inputExportIndicator: {

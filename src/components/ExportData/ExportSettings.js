@@ -1,6 +1,7 @@
 import React from 'react'
-import {List, ListItem, ListItemSecondaryAction, ListItemText, Switch, withStyles} from '@material-ui/core';
+import {List, withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
+import {ExportSettingsItem} from 'components/ExportData';
 
 const styles = {
     root: {
@@ -37,33 +38,12 @@ class ExportSettings extends React.Component {
         return (
             <div className={classes.root}>
                 <List className={classes.list}>
-                    <ListItem dense button onClick={this.handleSettingsSwitch('includeHideouts')}>
-                        <ListItemText primary="Export Hideouts"/>
-                        <ListItemSecondaryAction>
-                            <Switch
-                                onChange={this.handleSettingsSwitch('includeHideouts')}
-                                checked={opts.includeHideouts}
-                            />
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem dense button onClick={this.handleSettingsSwitch('includeInProgressIncursions')}>
-                        <ListItemText primary="Export In-Progress Incursions"/>
-                        <ListItemSecondaryAction>
-                            <Switch
-                                onChange={this.handleSettingsSwitch('includeInProgressIncursions')}
-                                checked={opts.includeInProgressIncursions}
-                            />
-                        </ListItemSecondaryAction>
-                    </ListItem>
-                    <ListItem dense button onClick={this.handleSettingsSwitch('includeCompletedIncursions')}>
-                        <ListItemText primary="Export Completed Incursions"/>
-                        <ListItemSecondaryAction>
-                            <Switch
-                                onChange={this.handleSettingsSwitch('includeCompletedIncursions')}
-                                checked={opts.includeCompletedIncursions}
-                            />
-                        </ListItemSecondaryAction>
-                    </ListItem>
+                    <ExportSettingsItem label="Export Hideouts" value={opts.includeHideouts}
+                                        onClick={this.handleSettingsSwitch('includeHideouts')}/>
+                    <ExportSettingsItem label="Export In-Progress Incursions" value={opts.includeInProgressIncursions}
+                                        onClick={this.handleSettingsSwitch('includeInProgressIncursions')}/>
+                    <ExportSettingsItem label="Export Completed Incursions" value={opts.includeCompletedIncursions}
+                                        onClick={this.handleSettingsSwitch('includeCompletedIncursions')}/>
                 </List>
             </div>
         );

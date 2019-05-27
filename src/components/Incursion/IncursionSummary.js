@@ -20,6 +20,14 @@ const styles = theme => (mergeStyles({
         marginTop: theme.spacing.unit * 2,
         marginBottom: theme.spacing.unit * 2,
     },
+    actions: {
+        display: 'flex',
+        justifyContent: 'flex-end',
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: 'column',
+            alignItems: 'stretch'
+        }
+    },
 }, buttonStyles(theme)));
 
 class IncursionSummary extends React.Component {
@@ -40,14 +48,6 @@ class IncursionSummary extends React.Component {
         const {classes, searchText} = this.props;
         return (
             <Paper className={classes.root}>
-                <Button variant="outlined" onClick={this.handleValidateInProgress} className={classes.button}>
-                    <CheckIcon className={classes.leftIcon}/>
-                    Complete Current Rooms
-                </Button>
-                <Button variant="outlined" onClick={this.handleResetInProgress} className={classes.button}>
-                    <SettingsBackupRestoreIcon className={classes.leftIcon}/>
-                    Reset Current Rooms
-                </Button>
                 <FormControl fullWidth>
                     <TextField
                         className={classes.margin}
@@ -70,6 +70,16 @@ class IncursionSummary extends React.Component {
                         }}
                     />
                 </FormControl>
+                <div className={classes.actions}>
+                    <Button variant="outlined" onClick={this.handleResetInProgress} className={classes.button}>
+                        <SettingsBackupRestoreIcon className={classes.leftIcon}/>
+                        Reset Current Rooms
+                    </Button>
+                    <Button variant="outlined" onClick={this.handleValidateInProgress} className={classes.button}>
+                        <CheckIcon className={classes.leftIcon}/>
+                        Complete Current Rooms
+                    </Button>
+                </div>
             </Paper>
         );
     }

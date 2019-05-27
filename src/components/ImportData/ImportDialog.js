@@ -10,7 +10,7 @@ import Dropzone from 'react-dropzone';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 import {compose} from 'redux';
 import {sanitizeTrackerData} from 'utils/sanitizer';
-import ImportSettings from 'components/ImportData/ImportSettings';
+import {ImportSettings} from 'components/ImportData';
 
 const styles = theme => (mergeStyles({
     dragContainer: {
@@ -45,7 +45,7 @@ class ImportDialog extends React.Component {
     changeImportText = (text) => {
         this.setState({
             importTextData: text,
-            importErrorText: ''
+            importErrorText: '',
         });
     };
 
