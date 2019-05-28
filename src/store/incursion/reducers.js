@@ -9,50 +9,27 @@ import {
 } from 'store/incursion/actions';
 import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL, SET_ALL} from 'store/main/actions';
 import {clearObj, getObj, INCURSION_COMPLETED_STORAGE, INCURSION_IN_PROGRESS_STORAGE, setObj} from 'utils/storage';
+import {importIncursionData, toggleIncursionRoom, validateInProgressIncursion} from 'store/incursion/functions';
 
 
 function incursionReducer(state = INITIAL_STATE, action) {
     let completedRooms = state.completed.slice();
     let inProgressRooms = state.in_progress.slice();
     switch (action.type) {
-        case INCURSION_ROOM_TOGGLE_COMPLETED:
-            const completedRoomSet = completedRooms.find((room) => room.id === action.payload.id);
-            if (!completedRoomSet) {
-                completedRooms.push(action.payload);
-            } else {
-                completedRooms = state.completed.filter((room) => room.id !== action.payload.id);
-
-                if (completedRoomSet.tier !== action.payload.tier) {
-                    completedRooms.push(action.payload);
-                }
-            }
-            return {
-                ...state,
-                completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
-            };
         case INCURSION_ROOM_TOGGLE_IN_PROGRESS:
-            const inProgressRoomSet = inProgressRooms.find((room) => room.id === action.payload.id);
-            if (!inProgressRoomSet && action.payload.tier >= 0) {
-                inProgressRooms.push(action.payload);
-            } else {
-                inProgressRooms = state.completed.filter((room) => room.id !== action.payload.id);
-                if (inProgressRoomSet.tier !== action.payload.tier) {
-                    inProgressRooms.push(action.payload);
-                }
-            }
+            inProgressRooms = toggleIncursionRoom(inProgressRooms, action.payload);
             return {
                 ...state,
                 in_progress: setObj(INCURSION_IN_PROGRESS_STORAGE, inProgressRooms),
             };
+        case INCURSION_ROOM_TOGGLE_COMPLETED:
+            completedRooms = toggleIncursionRoom(completedRooms, action.payload);
+            return {
+                ...state,
+                completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
+            };
         case INCURSION_ROOM_VALIDATE_IN_PROGRESS:
-            inProgressRooms.forEach(inProgressRoom => {
-                const completedRoomIndex = completedRooms.findIndex((room) => room.id === inProgressRoom.id);
-                if (completedRoomIndex !== -1 && completedRooms[completedRoomIndex].tier < inProgressRoom.tier) {
-                    completedRooms[completedRoomIndex].tier = inProgressRoom.tier;
-                } else {
-                    completedRooms.push(inProgressRoom);
-                }
-            });
+            completedRooms = validateInProgressIncursion(inProgressRooms, completedRooms);
             return {
                 ...state,
                 completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
@@ -74,18 +51,14 @@ function incursionReducer(state = INITIAL_STATE, action) {
                 return {...state};
             }
         case IMPORT_DATA:
-            const ignoreCompleted = action.payload.opts && !!action.payload.opts.ignoreCompletedIncursions;
-            const ignoreInProgress = action.payload.opts && !!action.payload.opts.ignoreInProgressIncursions;
-            if (!ignoreCompleted) {
-                completedRooms = action.payload.data && action.payload.data.incursion && action.payload.data.incursion.completed
-                    ? action.payload.data.incursion.completed
-                    : [];
-            }
-            if (!ignoreInProgress) {
-                inProgressRooms = action.payload.data && action.payload.data.incursion && action.payload.data.incursion.in_progress
-                    ? action.payload.data.incursion.in_progress
-                    : [];
-            }
+            completedRooms = importIncursionData(completedRooms, action.payload.data, action.payload.opts, {
+                ignoreKey: 'ignoreCompletedIncursions',
+                dataKey: 'completed'
+            });
+            inProgressRooms = importIncursionData(inProgressRooms, action.payload.data, action.payload.opts, {
+                ignoreKey: 'ignoreInProgressIncursions',
+                dataKey: 'in_progress'
+            });
             return {
                 ...state,
                 completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
