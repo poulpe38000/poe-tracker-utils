@@ -164,15 +164,16 @@ class HideoutListFilter extends React.Component {
                     anchorEl={anchorEl}
                     onClose={this.handleOpenFilterPopper}
                     anchorOrigin={{
-                        vertical: 'top',
+                        vertical: 'bottom',
                         horizontal: 'right',
                     }}
                     transformOrigin={{
                         vertical: 'top',
                         horizontal: 'right',
                     }}
+                    elevation={24}
                 >
-                    <Paper className={classes.popper}>
+                    <Paper className={classes.popper} elevation={0}>
                         <Typography variant="h6">Filters</Typography>
                         <GridList cellHeight="auto" cols={2} spacing={16} className={classes.gridList}>
                             {filterOptions
