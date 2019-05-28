@@ -1,7 +1,7 @@
 import React from 'react';
-import {Route} from 'react-router-dom';
+import {Route, Switch} from 'react-router-dom';
 import {withStyles} from '@material-ui/core';
-import {HomePage, SettingsPage, TrackersPage} from 'components/pages';
+import {HomePage, NotFoundPage, SettingsPage, TrackersPage} from 'components/pages';
 import {connect} from 'react-redux';
 import {initializeApp} from 'store/main/actions';
 import {compose} from 'redux';
@@ -34,9 +34,12 @@ class App extends React.Component {
                 <SideMenu/>
                 <Dialogs/>
                 <div className={classes.root}>
-                    <Route path="/" exact component={HomePage}/>
-                    <Route path="/trackers" component={TrackersPage}/>
-                    <Route path="/settings" component={SettingsPage}/>
+                    <Switch>
+                        <Route path="/" exact component={HomePage}/>
+                        <Route path="/trackers" component={TrackersPage}/>
+                        <Route path="/settings" component={SettingsPage}/>
+                        <Route component={NotFoundPage}/>
+                    </Switch>
                 </div>
             </React.Fragment>
         );

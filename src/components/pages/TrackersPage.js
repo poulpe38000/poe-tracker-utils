@@ -1,11 +1,12 @@
 import React from 'react';
-import {Route, withRouter} from 'react-router-dom';
+import {Route, Switch, withRouter} from 'react-router-dom';
 import TrackersNavBar from 'components/Trackers/TrackersNavBar';
 import {withStyles} from '@material-ui/core';
 import {compose} from 'redux';
 import {Page} from 'components/pages/layout/Page';
 import {HideoutList} from 'components/Hideout';
 import {IncursionList} from 'components/Incursion';
+import {NotFoundPage} from 'components/pages/index';
 
 const styles = {
     root: {
@@ -39,8 +40,13 @@ class TrackersPage extends React.Component {
                 <TrackersNavBar/>
                 <div className={classes.root}>
                     <Page>
-                        <Route path={`${match.path}/hideout`} component={HideoutList}/>
-                        <Route path={`${match.path}/incursion`} component={IncursionList}/>
+                        <Switch>
+                            <Route path={`${match.path}/hideout`} component={HideoutList}/>
+                            <Route path={`${match.path}/incursion`} component={IncursionList}/>
+                            <Route render={props => (
+                                <NotFoundPage {...props} to={`${match.path}`} />
+                            )}/>
+                        </Switch>
                     </Page>
                 </div>
             </React.Fragment>
