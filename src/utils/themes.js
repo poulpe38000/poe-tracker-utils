@@ -9,9 +9,6 @@ export const mainTheme = createMuiTheme({
         success: {main: green['500']},
         type: 'dark', // Switching the dark mode on is a single property value change.
     },
-    typography: {
-        useNextVariants: true,
-    }
 });
 
 export const dialogTheme = createMuiTheme({
@@ -20,9 +17,6 @@ export const dialogTheme = createMuiTheme({
         secondary: amber,
         success: {main: green['500']},
         type: 'light'
-    },
-    typography: {
-        useNextVariants: true,
     },
 });
 

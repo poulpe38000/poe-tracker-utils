@@ -1,4 +1,5 @@
 const ALLOW_LOCAL_STORAGE = 'allowStorage';
+
 export const HIDEOUT_UNLOCKED_STORAGE = 'hideoutUnlocked';
 export const INCURSION_COMPLETED_STORAGE = 'incursionCompleted';
 export const INCURSION_IN_PROGRESS_STORAGE = 'incursionInProgress';
