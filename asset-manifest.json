@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/poetracker/static/css/main.d2718870.chunk.css",
-    "main.js": "/poetracker/static/js/main.a1c41b41.chunk.js",
-    "main.js.map": "/poetracker/static/js/main.a1c41b41.chunk.js.map",
-    "runtime~main.js": "/poetracker/static/js/runtime~main.f2b7c437.js",
-    "runtime~main.js.map": "/poetracker/static/js/runtime~main.f2b7c437.js.map",
-    "static/js/2.e229d57e.chunk.js": "/poetracker/static/js/2.e229d57e.chunk.js",
-    "static/js/2.e229d57e.chunk.js.map": "/poetracker/static/js/2.e229d57e.chunk.js.map",
-    "index.html": "/poetracker/index.html",
-    "precache-manifest.591293da021bd444b160d4c8fbdb624c.js": "/poetracker/precache-manifest.591293da021bd444b160d4c8fbdb624c.js",
-    "service-worker.js": "/poetracker/service-worker.js",
-    "static/css/main.d2718870.chunk.css.map": "/poetracker/static/css/main.d2718870.chunk.css.map"
+    "main.css": "/poe-tracker-utils/static/css/main.d2718870.chunk.css",
+    "main.js": "/poe-tracker-utils/static/js/main.eea2cfd4.chunk.js",
+    "main.js.map": "/poe-tracker-utils/static/js/main.eea2cfd4.chunk.js.map",
+    "runtime~main.js": "/poe-tracker-utils/static/js/runtime~main.0fa18275.js",
+    "runtime~main.js.map": "/poe-tracker-utils/static/js/runtime~main.0fa18275.js.map",
+    "static/js/2.e229d57e.chunk.js": "/poe-tracker-utils/static/js/2.e229d57e.chunk.js",
+    "static/js/2.e229d57e.chunk.js.map": "/poe-tracker-utils/static/js/2.e229d57e.chunk.js.map",
+    "index.html": "/poe-tracker-utils/index.html",
+    "precache-manifest.d6120aa8afa74f44249fa1b218b98aae.js": "/poe-tracker-utils/precache-manifest.d6120aa8afa74f44249fa1b218b98aae.js",
+    "service-worker.js": "/poe-tracker-utils/service-worker.js",
+    "static/css/main.d2718870.chunk.css.map": "/poe-tracker-utils/static/css/main.d2718870.chunk.css.map"
   }
 }
