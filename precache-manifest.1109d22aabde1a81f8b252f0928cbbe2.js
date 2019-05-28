@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "605311da1f6466969c28356c5bcd853c",
+    "revision": "6229172112a530f63e7a620fac26a4d5",
     "url": "/poe-tracker-utils/index.html"
   },
   {
