@@ -3,8 +3,10 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {AppBar, Toolbar, Typography, withStyles, withWidth} from '@material-ui/core';
 import {toggleDrawer} from 'store/main/actions';
-import {isWidthDown} from '@material-ui/core/withWidth';
+import {isWidthDown, isWidthUp} from '@material-ui/core/withWidth';
 import {TopBarActions, TopBarActionsXs, TopBarMenuButton} from 'components/pages/layout/TopBar';
+import HideoutStats from 'components/Hideout/HideoutStats/HideoutStats';
+import IncursionStats from 'components/Incursion/IncursionStats/IncursionStats';
 
 const styles = theme => ({
     root: {
@@ -16,6 +18,9 @@ const styles = theme => ({
         },
     },
     appTitle: {flexGrow: 1},
+    stats: {
+        textAlign: 'right',
+    },
 });
 
 class TopBar extends React.Component {
@@ -33,6 +38,16 @@ class TopBar extends React.Component {
                     <Typography variant="h6" color="inherit" className={classes.appTitle}>
                         PoE Tracker Helpers
                     </Typography>
+                    {isWidthUp('xs', width, false) && (
+                        <div>
+                            <div className={classes.stats}>
+                                <HideoutStats/>
+                            </div>
+                            <div className={classes.stats}>
+                                <IncursionStats/>
+                            </div>
+                        </div>
+                    )}
                     {isWidthDown('xs', width) ? <TopBarActionsXs/> : <TopBarActions/>}
                 </Toolbar>
             </AppBar>

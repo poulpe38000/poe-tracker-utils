@@ -2,7 +2,7 @@ import React from 'react';
 import {IconButton, ListItemIcon, ListItemText, Menu, MenuItem} from '@material-ui/core';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import GetAppIcon from '@material-ui/icons/GetApp';
 import {connect} from 'react-redux';
 import {toggleExportDialog, toggleImportDialog} from 'store/main/actions';
 
@@ -58,7 +58,7 @@ class TopBarActionsXs extends React.Component {
                     </MenuItem>
                     <MenuItem onClick={this.handleToggleExportDialog}>
                         <ListItemIcon>
-                            <CloudDownloadIcon/>
+                            <GetAppIcon/>
                         </ListItemIcon>
                         <ListItemText>Export</ListItemText>
                     </MenuItem>
