@@ -1,7 +1,7 @@
 import INITIAL_STATE from 'store/main/state';
 import {TOGGLE_DRAWER, TOGGLE_EXPORT_DIALOG, TOGGLE_IMPORT_DIALOG} from 'store/main/actions';
 
-function appReducer(state = INITIAL_STATE, action) {
+function mainReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
         case TOGGLE_DRAWER:
             return {
@@ -25,4 +25,4 @@ function appReducer(state = INITIAL_STATE, action) {
     }
 }
 
-export default appReducer;
+export default mainReducer;

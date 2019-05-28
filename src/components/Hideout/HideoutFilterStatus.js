@@ -10,10 +10,10 @@ const styles = theme => ({
         display: 'flex',
         justifyContent: 'flex-end',
         flexWrap: 'wrap',
-        padding: theme.spacing.unit / 2,
+        padding: theme.spacing(.5),
     },
     chip: {
-        margin: theme.spacing.unit / 2,
+        margin: theme.spacing(.5),
     },
 });
 

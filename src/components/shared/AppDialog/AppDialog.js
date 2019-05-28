@@ -6,7 +6,7 @@ import * as PropTypes from 'prop-types';
 const styles = theme => ({
     title: {
         [theme.breakpoints.down('xs')]: {
-            padding: theme.spacing.unit * 2
+            padding: theme.spacing(2),
         },
     },
 });

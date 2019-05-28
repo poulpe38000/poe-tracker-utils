@@ -1,6 +1,6 @@
 import React from 'react';
 import {Button, withStyles} from '@material-ui/core';
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import GetAppIcon from '@material-ui/icons/GetApp';
 import {connect} from 'react-redux';
 import {toggleExportDialog} from 'store/main/actions';
 import {buttonStyles} from 'utils/themes';
@@ -17,7 +17,7 @@ class ExportData extends React.Component {
             <React.Fragment>
                 <Button variant="contained" className={classes.button} color="secondary"
                         onClick={this.handleOpenDialog}>
-                    <CloudDownloadIcon className={classes.leftIcon}/>
+                    <GetAppIcon className={classes.leftIcon}/>
                     Export
                 </Button>
             </React.Fragment>

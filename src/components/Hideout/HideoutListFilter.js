@@ -25,7 +25,7 @@ import {compose} from 'redux';
 
 const styles = theme => (mergeStyles({
     popper: {
-        padding: theme.spacing.unit * 2
+        padding: theme.spacing(2),
     },
     gridList: {
         width: 500,

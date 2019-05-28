@@ -6,8 +6,8 @@ import {connect} from 'react-redux';
 
 const styles = theme => ({
     root: {
-        marginTop: theme.spacing.unit * 2,
-        marginBottom: theme.spacing.unit * 2,
+        marginTop: theme.spacing(2),
+        marginBottom: theme.spacing(2),
     },
 });
 

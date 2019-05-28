@@ -19,8 +19,8 @@ const styles = theme => ({
     itemText: {
         flex: '1 1 100%',
         alignSelf: 'center',
-        paddingLeft: theme.spacing.unit,
-        paddingRight: theme.spacing.unit,
+        paddingLeft: theme.spacing(1),
+        paddingRight: theme.spacing(1),
     },
     rarity1: {},
     rarity10: {color: 'yellow'},

@@ -32,7 +32,6 @@ class TopBarActionsXs extends React.Component {
     render() {
         const {anchorEl} = this.state;
         const open = Boolean(anchorEl);
-        console.log(anchorEl);
         return (
             <React.Fragment>
                 <IconButton

@@ -1,19 +1,18 @@
 import React from 'react'
-import {List, withStyles} from '@material-ui/core';
+import {withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 import {ExportSettingsItem} from 'components/ExportData';
 
-const styles = {
+const styles = theme => ({
     root: {
         display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        justifyContent: 'space-between',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column',
+            alignItems: 'stretch',
+        },
     },
-    list: {
-        width: '100%',
-        maxWidth: 360,
-    },
-};
+});
 
 class ExportSettings extends React.Component {
     static propTypes = {
@@ -37,14 +36,12 @@ class ExportSettings extends React.Component {
         const {classes, opts} = this.props;
         return (
             <div className={classes.root}>
-                <List className={classes.list}>
-                    <ExportSettingsItem label="Export Hideouts" value={opts.includeHideouts}
-                                        onClick={this.handleSettingsSwitch('includeHideouts')}/>
-                    <ExportSettingsItem label="Export In-Progress Incursions" value={opts.includeInProgressIncursions}
-                                        onClick={this.handleSettingsSwitch('includeInProgressIncursions')}/>
-                    <ExportSettingsItem label="Export Completed Incursions" value={opts.includeCompletedIncursions}
-                                        onClick={this.handleSettingsSwitch('includeCompletedIncursions')}/>
-                </List>
+                <ExportSettingsItem label="Export Hideouts" value={opts.includeHideouts}
+                                    onClick={this.handleSettingsSwitch('includeHideouts')}/>
+                <ExportSettingsItem label="Export In-Progress Incursions" value={opts.includeInProgressIncursions}
+                                    onClick={this.handleSettingsSwitch('includeInProgressIncursions')}/>
+                <ExportSettingsItem label="Export Completed Incursions" value={opts.includeCompletedIncursions}
+                                    onClick={this.handleSettingsSwitch('includeCompletedIncursions')}/>
             </div>
         );
     }

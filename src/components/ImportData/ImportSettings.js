@@ -1,19 +1,18 @@
 import React from 'react'
-import {List, withStyles} from '@material-ui/core';
+import {withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 import {ImportSettingsItem} from 'components/ImportData';
 
-const styles = {
+const styles = theme => ({
     root: {
         display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
+        justifyContent: 'space-between',
+        [theme.breakpoints.down('sm')]: {
+            flexDirection: 'column',
+            alignItems: 'stretch',
+        },
     },
-    list: {
-        width: '100%',
-        maxWidth: 360,
-    },
-};
+});
 
 class ImportSettings extends React.Component {
     static propTypes = {
@@ -37,14 +36,12 @@ class ImportSettings extends React.Component {
         const {classes, opts} = this.props;
         return (
             <div className={classes.root}>
-                <List className={classes.list}>
-                    <ImportSettingsItem label="Import Hideouts" value={!opts.ignoreHideouts}
-                                        onClick={this.handleSettingsSwitch('ignoreHideouts')}/>
-                    <ImportSettingsItem label="Import In-Progress Incursions" value={!opts.ignoreInProgressIncursions}
-                                        onClick={this.handleSettingsSwitch('ignoreInProgressIncursions')}/>
-                    <ImportSettingsItem label="Import Completed Incursions" value={!opts.ignoreCompletedIncursions}
-                                        onClick={this.handleSettingsSwitch('ignoreCompletedIncursions')}/>
-                </List>
+                <ImportSettingsItem label="Import Hideouts" value={!opts.ignoreHideouts}
+                                    onClick={this.handleSettingsSwitch('ignoreHideouts')}/>
+                <ImportSettingsItem label="Import In-Progress Incursions" value={!opts.ignoreInProgressIncursions}
+                                    onClick={this.handleSettingsSwitch('ignoreInProgressIncursions')}/>
+                <ImportSettingsItem label="Import Completed Incursions" value={!opts.ignoreCompletedIncursions}
+                                    onClick={this.handleSettingsSwitch('ignoreCompletedIncursions')}/>
             </div>
         );
     }

@@ -25,8 +25,8 @@ const styles = theme => (mergeStyles({
     },
     dragActive: {
         borderStyle: 'dashed',
-        borderWidth: theme.spacing.unit / 2,
-        borderRadius: theme.spacing.unit * 2,
+        borderWidth: theme.spacing(.5),
+        borderRadius: theme.spacing(2),
         height: '100%',
         opacity: .3
     },

@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from "react-redux";
 import {Button, Fade, FormHelperText, TextField, withStyles} from '@material-ui/core';
-import CloudDownloadIcon from '@material-ui/icons/CloudDownload';
+import GetAppIcon from '@material-ui/icons/GetApp';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import {toggleExportDialog} from 'store/main/actions';
 import {AppDialog, AppDialogActions, AppDialogContent} from 'components/shared';
@@ -121,7 +121,7 @@ class ExportDialog extends React.Component {
                 <AppDialogActions>
                     <Button variant="contained" color="secondary" autoFocus className={classes.button}
                             onClick={this.downloadTrackerFile} disabled={!canExportData}>
-                        <CloudDownloadIcon className={classes.leftIcon}/>
+                        <GetAppIcon className={classes.leftIcon}/>
                         Download file
                     </Button>
                     <CopyToClipboard text={exportText} className={classes.button} onCopy={this.handleCopySuccess}>

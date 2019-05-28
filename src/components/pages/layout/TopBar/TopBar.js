@@ -8,8 +8,8 @@ import {TopBarActions, TopBarActionsXs, TopBarMenuButton} from 'components/pages
 
 const styles = theme => ({
     root: {
-        paddingLeft: theme.spacing.unit,
-        paddingRight: theme.spacing.unit,
+        paddingLeft: theme.spacing(1),
+        paddingRight: theme.spacing(1),
         [theme.breakpoints.down('sm')]: {
             paddingLeft: 0,
             paddingRight: 0,

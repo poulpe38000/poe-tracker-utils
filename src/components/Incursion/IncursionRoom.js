@@ -20,8 +20,8 @@ const styles = theme => ({
     itemText: {
         flex: '1 1 100%',
         alignSelf: 'center',
-        paddingLeft: theme.spacing.unit,
-        paddingRight: theme.spacing.unit,
+        paddingLeft: theme.spacing(1),
+        paddingRight: theme.spacing(1),
         [theme.breakpoints.down('xs')]: {
             alignSelf: 'auto',
         },
@@ -29,11 +29,11 @@ const styles = theme => ({
     itemDetails: {
         [theme.breakpoints.down('xs')]: {
             position: 'relative',
-            marginLeft: theme.spacing.unit,
+            marginLeft: theme.spacing(1),
             '&::before': {
                 content: '"-"',
                 position: 'absolute',
-                left: theme.spacing.unit * -1,
+                left: theme.spacing(-1),
             }
         },
     }

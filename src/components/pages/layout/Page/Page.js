@@ -5,8 +5,8 @@ import * as PropTypes from 'prop-types';
 
 const styles = theme => ({
     root: {
-        padding: theme.spacing.unit * 2,
-        paddingTop: theme.spacing.unit * 2,
+        padding: theme.spacing(2),
+        paddingTop: theme.spacing(2),
         flexGrow: 1,
     },
 });

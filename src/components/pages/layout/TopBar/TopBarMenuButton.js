@@ -4,7 +4,7 @@ import MenuIcon from '@material-ui/icons/Menu';
 import * as PropTypes from 'prop-types';
 
 const styles = theme => ({
-    menuButton: {marginRight: theme.spacing.unit * 2},
+    menuButton: {marginRight: theme.spacing(2)},
 });
 
 class TopBarMenuButton extends React.Component {

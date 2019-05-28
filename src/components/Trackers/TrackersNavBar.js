@@ -1,6 +1,7 @@
 import React from 'react';
 import {Link, withRouter} from 'react-router-dom';
 import {AppBar, Tab, Tabs, withStyles} from '@material-ui/core';
+import {compose} from 'redux';
 
 const styles = theme => ({
     root: {
@@ -13,14 +14,24 @@ const styles = theme => ({
 });
 
 class TrackersNavBar extends React.Component {
+
+    constructor(props) {
+        super(props);
+        this.tabs = [
+            {label: 'Hideouts unlocks', to: '/hideout', value: '/hideout'},
+            {label: 'Incursion rooms', to: '/incursion', value: '/incursion'},
+        ];
+    }
+
     render() {
         const {history, match, classes} = this.props;
         return (
             <React.Fragment>
                 <AppBar position="fixed" className={classes.root}>
                     <Tabs value={history.location.pathname} centered>
-                        <Tab component={Link} label="Hideouts unlocks" to={`${match.path}/hideout`} value={`${match.path}/hideout`}/>
-                        <Tab component={Link} label="Incursion rooms" to={`${match.path}/incursion`}  value={`${match.path}/incursion`}/>
+                        {this.tabs.map((tab, key) => (
+                            <Tab component={Link} key={key} label={tab.label} to={`${match.path}${tab.to}`} value={`${match.path}${tab.value}`}/>
+                        ))}
                     </Tabs>
                 </AppBar>
             </React.Fragment>
@@ -28,4 +39,7 @@ class TrackersNavBar extends React.Component {
     }
 }
 
-export default withRouter(withStyles(styles)(TrackersNavBar));
+export default compose(
+    withRouter,
+    withStyles(styles),
+)(TrackersNavBar);
