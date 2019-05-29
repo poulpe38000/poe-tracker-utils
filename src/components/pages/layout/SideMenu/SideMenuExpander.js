@@ -6,8 +6,10 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import {withStyles} from '@material-ui/core';
+import {Icon, withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
+import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
     root: {
@@ -32,12 +34,16 @@ class SideMenuExpander extends React.Component {
         return (
             <List disablePadding={true}>
                 <ListItem className={classes.root} button onClick={() => onClick()}>
-                    <ListItemIcon>
-                        <Avatar className={classes.avatar}>
-                            {expanded ? <ChevronLeftIcon/> : <ChevronRightIcon/>}
-                        </Avatar>
-                    </ListItemIcon>
-                    <ListItemText primary="Collapsed"/>
+                    <Tooltip title={expanded ? '' : (
+                        <Typography variant="body1">Expand menu</Typography>
+                    )} placement="right">
+                        <ListItemIcon>
+                            <Avatar className={classes.avatar}>
+                                <Icon component={expanded ? ChevronLeftIcon : ChevronRightIcon}/>
+                            </Avatar>
+                        </ListItemIcon>
+                    </Tooltip>
+                    <ListItemText primary="Collapse menu"/>
                 </ListItem>
             </List>
         );

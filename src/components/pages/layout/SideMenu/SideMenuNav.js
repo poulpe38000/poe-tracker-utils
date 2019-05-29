@@ -13,6 +13,7 @@ import {connect} from 'react-redux';
 import {toggleSidenav} from 'store/main/actions';
 import {isWidthDown} from '@material-ui/core/withWidth';
 import noop from 'lodash/noop';
+import * as PropTypes from 'prop-types';
 
 const styles = theme => ({
     toolbarSpacer: {
@@ -25,6 +26,10 @@ const styles = theme => ({
 
 class SideMenuNav extends React.Component {
 
+    static propTypes = {
+        expanded: PropTypes.bool.isRequired,
+    };
+
     constructor(props) {
         super(props);
         this.items = [
@@ -36,7 +41,7 @@ class SideMenuNav extends React.Component {
     }
 
     render() {
-        const {classes, toggleSidenav, width} = this.props;
+        const {classes, toggleSidenav, width, expanded} = this.props;
         return (
             <React.Fragment>
                 <Toolbar className={classes.toolbarSpacer}>
@@ -53,6 +58,7 @@ class SideMenuNav extends React.Component {
                                              icon={item.icon}
                                              avatar={item.avatar}
                                              exact={item.exact}
+                                             showTooltip = {!isWidthDown('xs', width) && !expanded}
                                              onClick={isWidthDown('xs', width) ? toggleSidenav : noop}
                             />
                         )
@@ -66,7 +72,9 @@ class SideMenuNav extends React.Component {
 
 export default compose(
     connect(
-        null,
+        state => ({
+
+        }),
         dispatch => ({
             toggleSidenav: () => dispatch(toggleSidenav())
         }),

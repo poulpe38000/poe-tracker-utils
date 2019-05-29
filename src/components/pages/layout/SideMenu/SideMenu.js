@@ -66,7 +66,7 @@ class SideMenu extends React.Component {
                     }),
                 }}
             >
-                <SideMenuNav/>
+                <SideMenuNav expanded={sidenavExpanded}/>
                 {isWidthUp('sm', width) && <SideMenuExpander expanded={sidenavExpanded} onClick={this.handleToggleMenu}/>}
             </Drawer>
         );

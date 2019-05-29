@@ -1,12 +1,9 @@
 import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import {AppBar, Toolbar, Typography, withStyles, withWidth} from '@material-ui/core';
+import {AppBar, Toolbar, Typography, withStyles} from '@material-ui/core';
 import {toggleSidenav} from 'store/main/actions';
-import {isWidthDown, isWidthUp} from '@material-ui/core/withWidth';
-import {TopBarActions, TopBarActionsXs, TopBarMenuButton} from 'components/pages/layout/TopBar';
-import HideoutStats from 'components/Hideout/HideoutStats/HideoutStats';
-import IncursionStats from 'components/Incursion/IncursionStats/IncursionStats';
+import {TopBarActions, TopBarMenuButton, TopBarStats} from 'components/pages/layout/TopBar';
 
 const styles = theme => ({
     root: {
@@ -18,10 +15,7 @@ const styles = theme => ({
             paddingRight: theme.spacing(1),
         },
     },
-    appTitle: {flexGrow: 1},
-    stats: {
-        textAlign: 'right',
-    },
+    title: {flexGrow: 1},
 });
 
 class TopBar extends React.Component {
@@ -31,25 +25,16 @@ class TopBar extends React.Component {
     };
 
     render() {
-        const {classes, width} = this.props;
+        const {classes} = this.props;
         return (
             <AppBar position="fixed" className={classes.root}>
                 <Toolbar className={classes.toolbar}>
-                    {isWidthDown('xs', width) && <TopBarMenuButton onClick={this.handleOpenMenu}/>}
-                    <Typography variant="h6" color="inherit" className={classes.appTitle}>
+                    <TopBarMenuButton onClick={this.handleOpenMenu}/>
+                    <Typography variant="h6" color="inherit" className={classes.title}>
                         PoE Tracker Helpers
                     </Typography>
-                    {isWidthUp('xs', width, false) && (
-                        <div>
-                            <div className={classes.stats}>
-                                <HideoutStats/>
-                            </div>
-                            <div className={classes.stats}>
-                                <IncursionStats/>
-                            </div>
-                        </div>
-                    )}
-                    {isWidthDown('xs', width) ? <TopBarActionsXs/> : <TopBarActions/>}
+                    <TopBarStats/>
+                    <TopBarActions/>
                 </Toolbar>
             </AppBar>
         );
@@ -63,5 +48,4 @@ export default compose(
         }),
     ),
     withStyles(styles),
-    withWidth()
 )(TopBar);

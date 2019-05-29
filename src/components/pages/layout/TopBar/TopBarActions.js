@@ -1,14 +1,20 @@
 import React from 'react';
-import {ImportData} from 'components/ImportData';
-import {ExportData} from 'components/ExportData';
+import {withWidth} from '@material-ui/core';
+import {isWidthDown} from '@material-ui/core/withWidth';
+import {TopBarActionsDesktop, TopBarActionsMobile} from 'components/pages/layout/TopBar';
 
-function TopBarActions() {
-    return (
-        <React.Fragment>
-            <ImportData/>
-            <ExportData/>
-        </React.Fragment>
-    );
+class TopBarActions extends React.Component {
+    render() {
+        const {width} = this.props;
+        return (
+            <React.Fragment>
+                {isWidthDown('xs', width)
+                    ? <TopBarActionsMobile/>
+                    : <TopBarActionsDesktop/>
+                }
+            </React.Fragment>
+        );
+    }
 }
 
-export default TopBarActions;
+export default withWidth()(TopBarActions);

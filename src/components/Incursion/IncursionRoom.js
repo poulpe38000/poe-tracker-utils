@@ -7,11 +7,12 @@ import {incursionRoomToggleCompleted, incursionRoomToggleInProgress} from 'store
 const styles = theme => ({
     root: {display: 'flex',},
     itemCheckbox: {
+        minWidth: '64px',
         width: '64px',
         textAlign: 'center',
     },
     itemTextContainer: {
-        flex: '1 1 100%',
+        flexGrow: 1,
         display: 'flex',
         flexDirection: 'row',
         [theme.breakpoints.down('xs')]: {
