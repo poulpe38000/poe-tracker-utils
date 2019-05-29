@@ -9,6 +9,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import {Icon, withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
     root: {
@@ -33,7 +34,9 @@ class SideMenuExpander extends React.Component {
         return (
             <List disablePadding={true}>
                 <ListItem className={classes.root} button onClick={() => onClick()}>
-                    <Tooltip title={expanded ? '' : 'Expand menu'} placement="right">
+                    <Tooltip title={expanded ? '' : (
+                        <Typography variant="body1">Expand menu</Typography>
+                    )} placement="right">
                         <ListItemIcon>
                             <Avatar className={classes.avatar}>
                                 <Icon component={expanded ? ChevronLeftIcon : ChevronRightIcon}/>

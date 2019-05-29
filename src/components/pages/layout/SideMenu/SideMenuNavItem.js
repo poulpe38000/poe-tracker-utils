@@ -6,6 +6,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import noop from 'lodash/noop';
 import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
     root: {
@@ -43,7 +44,9 @@ class SideMenuNavItem extends React.Component {
             <ListItem component={NavLink} exact={exact} to={path} className={classes.root}
                       activeClassName={classes.active} button onClick={() => onClick()}>
                 {icon && (
-                    <Tooltip title={showTooltip ? text : ''} placement="right">
+                    <Tooltip title={showTooltip ? (
+                        <Typography variant="body1">{text}</Typography>
+                    ) : ''} placement="right">
                         <ListItemIcon>
                             <Avatar className={classes.avatar}>
                                 <Icon component={icon}/>
@@ -52,7 +55,9 @@ class SideMenuNavItem extends React.Component {
                     </Tooltip>
                 )}
                 {avatar && (
-                    <Tooltip title={showTooltip ? text : ''} placement="right">
+                    <Tooltip title={showTooltip ? (
+                        <Typography variant="body1">{text}</Typography>
+                    ) : ''} placement="right">
                         <ListItemAvatar>
                             <Avatar className={classes.avatar} alt={text} src={avatar}/>
                         </ListItemAvatar>
