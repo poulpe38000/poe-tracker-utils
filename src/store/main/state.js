@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-    showDrawer: false,
+    sidenavExpanded: false,
     showImportDialog: false,
     showExportDialog: false,
 };

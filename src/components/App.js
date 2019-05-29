@@ -1,13 +1,14 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import {withStyles} from '@material-ui/core';
-import {HomePage, NotFoundPage, SettingsPage, TrackersPage} from 'components/pages';
+import {HideoutsPage, HomePage, IncursionsPage, NotFoundPage, SettingsPage} from 'components/pages';
 import {connect} from 'react-redux';
 import {initializeApp} from 'store/main/actions';
 import {compose} from 'redux';
 import {SideMenu} from 'components/pages/layout/SideMenu';
 import {TopBar} from 'components/pages/layout/TopBar';
 import {Dialogs} from 'components/pages/layout/Dialogs';
+import APP_CONSTANTS from 'constants/app.constants';
 
 
 const styles = theme => ({
@@ -35,9 +36,10 @@ class App extends React.Component {
                 <Dialogs/>
                 <div className={classes.root}>
                     <Switch>
-                        <Route path="/" exact component={HomePage}/>
-                        <Route path="/trackers" component={TrackersPage}/>
-                        <Route path="/settings" component={SettingsPage}/>
+                        <Route path={APP_CONSTANTS.routes.root} exact component={HomePage}/>
+                        <Route path={APP_CONSTANTS.routes.hideouts.root} component={HideoutsPage}/>
+                        <Route path={APP_CONSTANTS.routes.incursions.root} component={IncursionsPage}/>
+                        <Route path={APP_CONSTANTS.routes.settings.root} component={SettingsPage}/>
                         <Route component={NotFoundPage}/>
                     </Switch>
                 </div>
