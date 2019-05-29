@@ -6,7 +6,7 @@ import GetAppIcon from '@material-ui/icons/GetApp';
 import {connect} from 'react-redux';
 import {toggleExportDialog, toggleImportDialog} from 'store/main/actions';
 
-class TopBarActionsXs extends React.Component {
+class TopBarActionsMobile extends React.Component {
     state = {
         anchorEl: null,
     };
@@ -74,4 +74,4 @@ export default connect(
         toggleImportDialog: (payload) => (dispatch(toggleImportDialog(payload))),
         toggleExportDialog: (payload) => (dispatch(toggleExportDialog(payload))),
     }),
-)(TopBarActionsXs);
+)(TopBarActionsMobile);
