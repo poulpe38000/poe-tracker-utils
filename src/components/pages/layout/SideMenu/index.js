@@ -1,2 +1,4 @@
 export {default as SideMenu} from 'components/pages/layout/SideMenu/SideMenu';
-export {default as SideMenuItem} from 'components/pages/layout/SideMenu/SideMenuItem';
+export {default as SideMenuNav} from 'components/pages/layout/SideMenu/SideMenuNav';
+export {default as SideMenuNavItem} from 'components/pages/layout/SideMenu/SideMenuNavItem';
+export {default as SideMenuExpander} from 'components/pages/layout/SideMenu/SideMenuExpander';

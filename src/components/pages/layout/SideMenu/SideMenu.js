@@ -1,50 +1,73 @@
 import React from 'react';
+import clsx from 'clsx';
 import {connect} from 'react-redux';
-import {Drawer, List, withStyles} from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
-import ListAltIcon from '@material-ui/icons/ListAlt';
-import SettingsIcon from '@material-ui/icons/Settings';
-import {toggleDrawer} from 'store/main/actions';
+import {Drawer, withStyles, withWidth} from '@material-ui/core';
+import {toggleSidenav} from 'store/main/actions';
 import {compose} from 'redux';
-import {SideMenuItem} from 'components/pages/layout/SideMenu';
+import {SideMenuExpander, SideMenuNav} from 'components/pages/layout/SideMenu';
+import {isWidthDown, isWidthUp} from '@material-ui/core/withWidth';
+import APP_CONSTANTS from 'constants/app.constants';
+
+const drawerWidth = APP_CONSTANTS.drawerWidth;
 
 const styles = theme => ({
     root: {
-        width: 250,
+        width: drawerWidth,
         backgroundColor: theme.palette.background.paper,
     },
+    drawer: {
+        width: drawerWidth,
+        flexShrink: 0,
+        whiteSpace: 'nowrap',
+    },
+    drawerOpen: {
+        width: drawerWidth,
+        overflowX: 'hidden',
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.enteringScreen,
+        }),
+    },
+    drawerClose: {
+        overflowX: 'hidden',
+        transition: theme.transitions.create('width', {
+            easing: theme.transitions.easing.sharp,
+            duration: theme.transitions.duration.leavingScreen,
+        }),
+        width: theme.spacing(8) + 1,
+    },
+    avatar: {
+        background: 'transparent',
+        color: 'inherit',
+    }
 });
 
 class SideMenu extends React.Component {
 
-
-    constructor(props) {
-        super(props);
-        this.items = [
-            {path: '/', text: 'Home', icon: HomeIcon},
-            {path: '/trackers', text: 'Trackers', icon: ListAltIcon},
-            {path: '/settings', text: 'Settings', icon: SettingsIcon},
-        ]
-    }
-
-    handleCloseMenu = () => {
-        this.props.toggleDrawer(false);
+    handleToggleMenu = () => {
+        this.props.toggleSidenav();
     };
 
     render() {
-        const {classes, showDrawer} = this.props;
+        const {classes, width, sidenavExpanded} = this.props;
         return (
-            <Drawer variant="temporary" open={showDrawer} onClose={this.handleCloseMenu}>
-                <div className={classes.root}>
-                    <List component="nav">
-                        {this.items.map((item, key) => (
-                                <SideMenuItem key={key}
-                                              path={item.path} text={item.text} icon={item.icon}
-                                              onClick={this.handleCloseMenu}/>
-                            )
-                        )}
-                    </List>
-                </div>
+            <Drawer
+                variant={isWidthDown('xs', width) ? "temporary" : "permanent"}
+                open={sidenavExpanded}
+                onClose={this.handleToggleMenu}
+                className={clsx(classes.drawer, {
+                    [classes.drawerOpen]: sidenavExpanded,
+                    [classes.drawerClose]: !sidenavExpanded,
+                })}
+                classes={{
+                    paper: clsx({
+                        [classes.drawerOpen]: sidenavExpanded,
+                        [classes.drawerClose]: !sidenavExpanded,
+                    }),
+                }}
+            >
+                <SideMenuNav/>
+                {isWidthUp('sm', width) && <SideMenuExpander expanded={sidenavExpanded} onClick={this.handleToggleMenu}/>}
             </Drawer>
         );
     }
@@ -53,11 +76,12 @@ class SideMenu extends React.Component {
 export default compose(
     connect(
         state => ({
-            showDrawer: state.main.showDrawer,
+            sidenavExpanded: state.main.sidenavExpanded,
         }),
         dispatch => ({
-            toggleDrawer: toggle => dispatch(toggleDrawer(toggle))
+            toggleSidenav: () => dispatch(toggleSidenav())
         }),
     ),
-    withStyles(styles)
+    withStyles(styles),
+    withWidth()
 )(SideMenu);

@@ -1,12 +1,12 @@
 import INITIAL_STATE from 'store/main/state';
-import {TOGGLE_DRAWER, TOGGLE_EXPORT_DIALOG, TOGGLE_IMPORT_DIALOG} from 'store/main/actions';
+import {TOGGLE_SIDENAV, TOGGLE_EXPORT_DIALOG, TOGGLE_IMPORT_DIALOG} from 'store/main/actions';
 
 function mainReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
-        case TOGGLE_DRAWER:
+        case TOGGLE_SIDENAV:
             return {
                 ...state,
-                showDrawer: action.payload
+                sidenavExpanded: !state.sidenavExpanded,
             };
         case TOGGLE_IMPORT_DIALOG:
             return {

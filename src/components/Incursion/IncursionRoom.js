@@ -8,6 +8,7 @@ const styles = theme => ({
     root: {display: 'flex',},
     itemCheckbox: {
         width: '64px',
+        textAlign: 'center',
     },
     itemTextContainer: {
         flex: '1 1 100%',
@@ -61,18 +62,20 @@ class IncursionRoom extends React.Component {
         const isCompleted = !!completed.find((completedRoom) => (completedRoom.id === roomKey && completedRoom.tier >= room.tier));
         return (
             <ListItem dense disableGutters className={classes.root}>
+                <div className={classes.itemCheckbox}>
                 <Checkbox
-                    className={classes.itemCheckbox}
                     checked={isInProgress}
                     onChange={this.toggleInProgress(roomKey, room.tier)}
                     value="checked"
                 />
+                </div>
+                <div className={classes.itemCheckbox}>
                 <Checkbox
-                    className={classes.itemCheckbox}
                     checked={isCompleted}
                     onChange={this.toggleCompleted(roomKey, room.tier)}
                     value="checked"
                 />
+                </div>
                 <div className={classes.itemTextContainer}>
                     <Typography variant="subtitle2" className={classes.itemText}>
                         {roomTierLabel}{room.name}
