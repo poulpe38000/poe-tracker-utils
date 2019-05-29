@@ -5,7 +5,7 @@ import {Page} from 'components/pages/layout/Page';
 class SettingsPage extends React.Component {
     render() {
         return (
-            <Page title="Settings">
+            <Page>
                 <SettingsStorage/>
                 <SettingsData/>
             </Page>

@@ -5,6 +5,7 @@ import * as PropTypes from 'prop-types';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Avatar from '@material-ui/core/Avatar';
 import noop from 'lodash/noop';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = theme => ({
     root: {
@@ -26,30 +27,36 @@ class SideMenuNavItem extends React.Component {
         icon: PropTypes.func,
         avatar: PropTypes.element,
         exact: PropTypes.bool,
+        showTooltip: PropTypes.bool,
         onClick: PropTypes.func
     };
 
     static defaultProps = {
         exact: false,
+        showTooltip: false,
         onClick: noop
     };
 
     render() {
-        const {classes, path, text, icon, avatar, exact, onClick} = this.props;
+        const {classes, path, text, icon, avatar, exact, showTooltip, onClick} = this.props;
         return (
             <ListItem component={NavLink} exact={exact} to={path} className={classes.root}
                       activeClassName={classes.active} button onClick={() => onClick()}>
                 {icon && (
-                    <ListItemIcon>
-                        <Avatar className={classes.avatar}>
-                            <Icon component={icon}/>
-                        </Avatar>
-                    </ListItemIcon>
+                    <Tooltip title={showTooltip ? text : ''} placement="right">
+                        <ListItemIcon>
+                            <Avatar className={classes.avatar}>
+                                <Icon component={icon}/>
+                            </Avatar>
+                        </ListItemIcon>
+                    </Tooltip>
                 )}
                 {avatar && (
-                    <ListItemAvatar>
-                        <Avatar className={classes.avatar} alt={text} src={avatar}/>
-                    </ListItemAvatar>
+                    <Tooltip title={showTooltip ? text : ''} placement="right">
+                        <ListItemAvatar>
+                            <Avatar className={classes.avatar} alt={text} src={avatar}/>
+                        </ListItemAvatar>
+                    </Tooltip>
                 )}
                 <ListItemText primary={text}/>
             </ListItem>

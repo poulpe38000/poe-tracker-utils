@@ -35,7 +35,7 @@ class TopBar extends React.Component {
         return (
             <AppBar position="fixed" className={classes.root}>
                 <Toolbar className={classes.toolbar}>
-                    {isWidthDown('xs', width) && <TopBarMenuButton onClick={this.handleOpenMenu}/>}
+                    <TopBarMenuButton onClick={this.handleOpenMenu}/>
                     <Typography variant="h6" color="inherit" className={classes.appTitle}>
                         PoE Tracker Helpers
                     </Typography>
