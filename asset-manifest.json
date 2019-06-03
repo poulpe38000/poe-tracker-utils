@@ -1,17 +1,18 @@
 {
   "files": {
-    "main.css": "/poe-tracker-utils/static/css/main.fef9f279.chunk.css",
-    "main.js": "/poe-tracker-utils/static/js/main.07622bd8.chunk.js",
-    "main.js.map": "/poe-tracker-utils/static/js/main.07622bd8.chunk.js.map",
+    "main.css": "/poe-tracker-utils/static/css/main.47fc6397.chunk.css",
+    "main.js": "/poe-tracker-utils/static/js/main.df16482d.chunk.js",
+    "main.js.map": "/poe-tracker-utils/static/js/main.df16482d.chunk.js.map",
     "runtime~main.js": "/poe-tracker-utils/static/js/runtime~main.0fa18275.js",
     "runtime~main.js.map": "/poe-tracker-utils/static/js/runtime~main.0fa18275.js.map",
-    "static/js/2.e8c73649.chunk.js": "/poe-tracker-utils/static/js/2.e8c73649.chunk.js",
-    "static/js/2.e8c73649.chunk.js.map": "/poe-tracker-utils/static/js/2.e8c73649.chunk.js.map",
+    "static/js/2.77c31387.chunk.js": "/poe-tracker-utils/static/js/2.77c31387.chunk.js",
+    "static/js/2.77c31387.chunk.js.map": "/poe-tracker-utils/static/js/2.77c31387.chunk.js.map",
     "index.html": "/poe-tracker-utils/index.html",
-    "precache-manifest.13d120dcd97fa144960430ea5c8cbcc0.js": "/poe-tracker-utils/precache-manifest.13d120dcd97fa144960430ea5c8cbcc0.js",
+    "precache-manifest.e9607cc070369cfec6b0a27ba0fc16a9.js": "/poe-tracker-utils/precache-manifest.e9607cc070369cfec6b0a27ba0fc16a9.js",
     "service-worker.js": "/poe-tracker-utils/service-worker.js",
-    "static/css/main.fef9f279.chunk.css.map": "/poe-tracker-utils/static/css/main.fef9f279.chunk.css.map",
+    "static/css/main.47fc6397.chunk.css.map": "/poe-tracker-utils/static/css/main.47fc6397.chunk.css.map",
     "static/media/hideout_logo.png": "/poe-tracker-utils/static/media/hideout_logo.0d340437.png",
+    "static/media/home_logo.png": "/poe-tracker-utils/static/media/home_logo.3c7f2299.png",
     "static/media/incursion_logo.png": "/poe-tracker-utils/static/media/incursion_logo.4a402aac.png"
   }
 }
