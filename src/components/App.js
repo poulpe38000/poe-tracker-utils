@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Switch, withRouter} from 'react-router-dom';
 import {withStyles} from '@material-ui/core';
-import {HideoutsPage, HomePage, IncursionsPage, NotFoundPage, SettingsPage} from 'components/pages';
+import {HideoutsPage, HomePage, IncursionsPage, NotFoundPage, ImportExportPage, SettingsPage} from 'components/pages';
 import {connect} from 'react-redux';
 import {initializeApp} from 'store/main/actions';
 import {compose} from 'redux';
@@ -14,10 +14,13 @@ import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 const styles = theme => ({
     root: {
-        paddingTop: 64,
-        flexGrow: 1,
+        position: 'absolute',
+        top: 64,
+        left: 0,
+        bottom: 0,
+        right: 0,
         [theme.breakpoints.down('xs')]: {
-            paddingTop: 56,
+            top: 56,
         }
     },
 });
@@ -42,6 +45,7 @@ class App extends React.Component {
                                 <Route path={APP_CONSTANTS.routes.root} exact component={HomePage}/>
                                 <Route path={APP_CONSTANTS.routes.hideouts.root} component={HideoutsPage}/>
                                 <Route path={APP_CONSTANTS.routes.incursions.root} component={IncursionsPage}/>
+                                <Route path={APP_CONSTANTS.routes.import_export.root} component={ImportExportPage}/>
                                 <Route path={APP_CONSTANTS.routes.settings.root} component={SettingsPage}/>
                                 <Route component={NotFoundPage}/>
                             </Switch>
