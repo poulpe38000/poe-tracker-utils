@@ -1,3 +1,4 @@
+export const SET_LOADING = 'SET_LOADING';
 export const TOGGLE_SIDENAV = 'TOGGLE_SIDENAV';
 export const TOGGLE_IMPORT_DIALOG = 'TOGGLE_IMPORT_DIALOG';
 export const TOGGLE_EXPORT_DIALOG = 'TOGGLE_EXPORT_DIALOG';
@@ -8,6 +9,10 @@ export const IMPORT_DATA = 'IMPORT_DATA';
 
 export function toggleSidenav() {
     return {type: TOGGLE_SIDENAV};
+}
+
+export function setLoading(payload) {
+    return {type: SET_LOADING, payload};
 }
 
 export function toggleImportDialog(payload) {

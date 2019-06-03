@@ -10,14 +10,20 @@ import APP_CONSTANTS from 'constants/app.constants';
 const drawerWidth = APP_CONSTANTS.drawerWidth;
 
 const styles = theme => ({
+    loader: {
+        marginBottom: '-4px',
+    },
     root: {
+        flexGrow: 1,
+    },
+    pageContainer: {
         padding: theme.spacing(2),
         paddingTop: theme.spacing(2),
         flexGrow: 1,
     },
     drawerOpen: {
         [theme.breakpoints.up('sm')]: {
-            paddingLeft: theme.spacing(2) + drawerWidth + 1,
+            paddingLeft: drawerWidth,
         },
         transition: theme.transitions.create('padding-left', {
             easing: theme.transitions.easing.sharp,
@@ -26,7 +32,7 @@ const styles = theme => ({
     },
     drawerClose: {
         [theme.breakpoints.up('sm')]: {
-            paddingLeft: theme.spacing(10) + 1,
+            paddingLeft: theme.spacing(8) + 1,
         },
         transition: theme.transitions.create('padding-left', {
             easing: theme.transitions.easing.sharp,
@@ -50,13 +56,17 @@ class Page extends React.Component {
     render() {
         const {classes, title, sidenavExpanded, children} = this.props;
         return (
-            <div className={clsx(classes.root, {
-                [classes.drawerOpen]: sidenavExpanded,
-                [classes.drawerClose]: !sidenavExpanded,
-            })}>
-                {!!title && <PageTitle title={title}/>}
-                {children}
-            </div>
+            <React.Fragment>
+                <div className={clsx(classes.root, {
+                    [classes.drawerOpen]: sidenavExpanded,
+                    [classes.drawerClose]: !sidenavExpanded,
+                })}>
+                    <div className={classes.pageContainer}>
+                        {!!title && <PageTitle title={title}/>}
+                        {children}
+                    </div>
+                </div>
+            </React.Fragment>
         );
     }
 }

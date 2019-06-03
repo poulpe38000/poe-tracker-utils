@@ -1,8 +1,9 @@
 import React from 'react';
-import {List, Typography, withStyles, withWidth} from '@material-ui/core';
-import HomeIcon from '@material-ui/icons/Home';
+import {Typography, withStyles, withWidth} from '@material-ui/core';
 import SettingsIcon from '@material-ui/icons/Settings';
-import {SideMenuNavItem} from 'components/pages/layout/SideMenu';
+import ImportExportIcon from '@material-ui/icons/ImportExport';
+import {SideMenuNavList} from 'components/pages/layout/SideMenu';
+import homeLogo from './home_logo.png';
 import hideoutLogo from './hideout_logo.png';
 import incursionLogo from './incursion_logo.png';
 import APP_CONSTANTS from 'constants/app.constants';
@@ -14,8 +15,19 @@ import {toggleSidenav} from 'store/main/actions';
 import {isWidthDown} from '@material-ui/core/withWidth';
 import noop from 'lodash/noop';
 import * as PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
+import {IconAvatar, ImageAvatar} from 'components/shared';
 
 const styles = theme => ({
+    root: {
+        paddingTop: theme.spacing(1),
+        flexGrow: 1,
+        display: 'flex',
+        flexDirection: 'column',
+        [theme.breakpoints.down('xs')]: {
+            paddingTop: 0,
+        },
+    },
     toolbarSpacer: {
         ...theme.mixins.toolbar,
     },
@@ -32,12 +44,43 @@ class SideMenuNav extends React.Component {
 
     constructor(props) {
         super(props);
-        this.items = [
-            {path: APP_CONSTANTS.routes.root, text: 'Home', icon: HomeIcon, exact: true},
-            {path: APP_CONSTANTS.routes.hideouts.root, text: 'Hideouts unlocks', avatar: hideoutLogo},
-            {path: APP_CONSTANTS.routes.incursions.root, text: 'Incursion rooms', avatar: incursionLogo},
-            {path: APP_CONSTANTS.routes.settings.root, text: 'Settings', icon: SettingsIcon},
-        ]
+        this.items = {
+            pages: [
+                {
+                    to: APP_CONSTANTS.routes.root,
+                    label: 'Home',
+                    icon: homeLogo,
+                    avatar: ImageAvatar,
+                    exact: true
+                },
+                {
+                    to: APP_CONSTANTS.routes.hideouts.root,
+                    label: 'Hideouts unlocks',
+                    icon: hideoutLogo,
+                    avatar: ImageAvatar,
+                },
+                {
+                    to: APP_CONSTANTS.routes.incursions.root,
+                    label: 'Incursion rooms',
+                    icon: incursionLogo,
+                    avatar: ImageAvatar,
+                },
+            ],
+            settings: [
+                {
+                    to: APP_CONSTANTS.routes.import_export.root,
+                    label: 'Import / Export',
+                    icon: ImportExportIcon,
+                    avatar: IconAvatar,
+                },
+                {
+                    to: APP_CONSTANTS.routes.settings.root,
+                    label: 'Settings',
+                    icon: SettingsIcon,
+                    avatar: IconAvatar,
+                },
+            ]
+        }
     }
 
     render() {
@@ -50,31 +93,28 @@ class SideMenuNav extends React.Component {
                     </Typography>
                 </Toolbar>
                 <Divider/>
-                <List component="nav">
-                    {this.items.map((item, key) => (
-                            <SideMenuNavItem key={key}
-                                             path={item.path}
-                                             text={item.text}
-                                             icon={item.icon}
-                                             avatar={item.avatar}
-                                             exact={item.exact}
-                                             showTooltip = {!isWidthDown('xs', width) && !expanded}
-                                             onClick={isWidthDown('xs', width) ? toggleSidenav : noop}
-                            />
-                        )
-                    )}
-                </List>
-                <div className={classes.spacer}/>
+                <div className={classes.root}>
+                    <SideMenuNavList
+                        items={this.items.pages}
+                        showTooltip={!isWidthDown('xs', width) && !expanded}
+                        onClick={isWidthDown('xs', width) ? toggleSidenav : noop}
+                    />
+                    <div className={classes.spacer}/>
+                    <SideMenuNavList
+                        items={this.items.settings}
+                        showTooltip={!isWidthDown('xs', width) && !expanded}
+                        onClick={isWidthDown('xs', width) ? toggleSidenav : noop}
+                    />
+                </div>
             </React.Fragment>
         );
     }
 }
 
 export default compose(
+    withRouter,
     connect(
-        state => ({
-
-        }),
+        state => ({}),
         dispatch => ({
             toggleSidenav: () => dispatch(toggleSidenav())
         }),

@@ -9,6 +9,9 @@ const APP_CONSTANTS = {
         incursions: {
             root: '/incursions',
         },
+        import_export: {
+            root: '/import-export',
+        },
         settings: {
             root: '/settings',
         },
