@@ -1,6 +1,6 @@
 {
   "name": "poe-tracker",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "homepage": "https://poulpe38000.github.io/poe-tracker-utils",
   "private": true,
   "dependencies": {
