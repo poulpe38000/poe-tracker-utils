@@ -14,6 +14,8 @@ import {toggleSidenav} from 'store/main/actions';
 import {isWidthDown} from '@material-ui/core/withWidth';
 import noop from 'lodash/noop';
 import * as PropTypes from 'prop-types';
+import {withRouter} from 'react-router-dom';
+import {IconAvatar, ImageAvatar} from 'components/shared';
 
 const styles = theme => ({
     toolbarSpacer: {
@@ -33,10 +35,31 @@ class SideMenuNav extends React.Component {
     constructor(props) {
         super(props);
         this.items = [
-            {path: APP_CONSTANTS.routes.root, text: 'Home', icon: HomeIcon, exact: true},
-            {path: APP_CONSTANTS.routes.hideouts.root, text: 'Hideouts unlocks', avatar: hideoutLogo},
-            {path: APP_CONSTANTS.routes.incursions.root, text: 'Incursion rooms', avatar: incursionLogo},
-            {path: APP_CONSTANTS.routes.settings.root, text: 'Settings', icon: SettingsIcon},
+            {
+                to: APP_CONSTANTS.routes.root,
+                label: 'Home',
+                icon: HomeIcon,
+                avatar: IconAvatar,
+                exact: true
+            },
+            {
+                to: APP_CONSTANTS.routes.hideouts.root,
+                label: 'Hideouts unlocks',
+                icon: hideoutLogo,
+                avatar: ImageAvatar,
+            },
+            {
+                to: APP_CONSTANTS.routes.incursions.root,
+                label: 'Incursion rooms',
+                icon: incursionLogo,
+                avatar: ImageAvatar,
+            },
+            {
+                to: APP_CONSTANTS.routes.settings.root,
+                label: 'Settings',
+                icon: SettingsIcon,
+                avatar: IconAvatar,
+            },
         ]
     }
 
@@ -53,12 +76,12 @@ class SideMenuNav extends React.Component {
                 <List component="nav">
                     {this.items.map((item, key) => (
                             <SideMenuNavItem key={key}
-                                             path={item.path}
-                                             text={item.text}
+                                             to={item.to}
+                                             label={item.label}
                                              icon={item.icon}
                                              avatar={item.avatar}
                                              exact={item.exact}
-                                             showTooltip = {!isWidthDown('xs', width) && !expanded}
+                                             showTooltip={!isWidthDown('xs', width) && !expanded}
                                              onClick={isWidthDown('xs', width) ? toggleSidenav : noop}
                             />
                         )
@@ -71,10 +94,9 @@ class SideMenuNav extends React.Component {
 }
 
 export default compose(
+    withRouter,
     connect(
-        state => ({
-
-        }),
+        state => ({}),
         dispatch => ({
             toggleSidenav: () => dispatch(toggleSidenav())
         }),

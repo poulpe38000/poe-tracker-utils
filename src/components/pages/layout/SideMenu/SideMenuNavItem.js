@@ -1,12 +1,12 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import {Icon, ListItem, ListItemIcon, ListItemText, withStyles} from '@material-ui/core';
+import {ListItem, ListItemText, withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
 import noop from 'lodash/noop';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import {IconAvatar, ImageAvatar} from 'components/shared';
 
 const styles = theme => ({
     root: {
@@ -20,13 +20,15 @@ const styles = theme => ({
     }
 });
 
+const MenuNavLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />);
+
 class SideMenuNavItem extends React.Component {
 
     static propTypes = {
-        path: PropTypes.string.isRequired,
-        text: PropTypes.string.isRequired,
-        icon: PropTypes.func,
-        avatar: PropTypes.element,
+        to: PropTypes.string.isRequired,
+        label: PropTypes.string.isRequired,
+        icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+        avatar: PropTypes.oneOf([IconAvatar, ImageAvatar]),
         exact: PropTypes.bool,
         showTooltip: PropTypes.bool,
         onClick: PropTypes.func
@@ -39,31 +41,25 @@ class SideMenuNavItem extends React.Component {
     };
 
     render() {
-        const {classes, path, text, icon, avatar, exact, showTooltip, onClick} = this.props;
+        const {classes, to, label, icon, exact, showTooltip, onClick} = this.props;
+        const MenuAvatar = this.props.avatar;
         return (
-            <ListItem component={NavLink} exact={exact} to={path} className={classes.root}
-                      activeClassName={classes.active} button onClick={() => onClick()}>
-                {icon && (
-                    <Tooltip title={showTooltip ? (
-                        <Typography variant="body1">{text}</Typography>
-                    ) : ''} placement="right">
-                        <ListItemIcon>
-                            <Avatar className={classes.avatar}>
-                                <Icon component={icon}/>
-                            </Avatar>
-                        </ListItemIcon>
-                    </Tooltip>
-                )}
-                {avatar && (
-                    <Tooltip title={showTooltip ? (
-                        <Typography variant="body1">{text}</Typography>
-                    ) : ''} placement="right">
-                        <ListItemAvatar>
-                            <Avatar className={classes.avatar} alt={text} src={avatar}/>
-                        </ListItemAvatar>
-                    </Tooltip>
-                )}
-                <ListItemText primary={text}/>
+            <ListItem component={MenuNavLink}
+                      className={classes.root}
+                      activeClassName={classes.active}
+                      to={to}
+                      exact={exact}
+                      button
+                      onClick={() => onClick()}
+            >
+                <Tooltip title={showTooltip ? (
+                    <Typography variant="body1">{label}</Typography>
+                ) : ''} placement="right">
+                    <ListItemAvatar>
+                        <MenuAvatar label={label} value={icon}/>
+                    </ListItemAvatar>
+                </Tooltip>
+                <ListItemText primary={label}/>
             </ListItem>
         );
     }

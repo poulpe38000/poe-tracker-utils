@@ -15,7 +15,8 @@
     "react-dropzone": "^10.1.5",
     "react-redux": "^7.0.3",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "react-transition-group": "^4.1.0"
   },
   "scripts": {
     "start": "react-scripts start",

@@ -1,4 +1,5 @@
 const INITIAL_STATE = {
+    isLoading: true,
     sidenavExpanded: false,
     showImportDialog: false,
     showExportDialog: false,
