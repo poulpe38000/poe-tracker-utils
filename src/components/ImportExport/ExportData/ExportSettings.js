@@ -1,7 +1,7 @@
 import React from 'react'
 import {withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
-import {ExportSettingsItem} from 'components/ExportData';
+import {ImportExportSettingsItem} from 'components/ImportExport';
 
 const styles = theme => ({
     root: {
@@ -36,11 +36,11 @@ class ExportSettings extends React.Component {
         const {classes, opts} = this.props;
         return (
             <div className={classes.root}>
-                <ExportSettingsItem label="Export Hideouts" value={opts.includeHideouts}
+                <ImportExportSettingsItem label="Export Hideouts" value={opts.includeHideouts}
                                     onClick={this.handleSettingsSwitch('includeHideouts')}/>
-                <ExportSettingsItem label="Export In-Progress Incursions" value={opts.includeInProgressIncursions}
+                <ImportExportSettingsItem label="Export In-Progress Incursions" value={opts.includeInProgressIncursions}
                                     onClick={this.handleSettingsSwitch('includeInProgressIncursions')}/>
-                <ExportSettingsItem label="Export Completed Incursions" value={opts.includeCompletedIncursions}
+                <ImportExportSettingsItem label="Export Completed Incursions" value={opts.includeCompletedIncursions}
                                     onClick={this.handleSettingsSwitch('includeCompletedIncursions')}/>
             </div>
         );

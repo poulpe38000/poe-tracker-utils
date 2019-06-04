@@ -1,8 +1,8 @@
 import React from 'react'
-import {FormControlLabel, Switch} from '@material-ui/core';
+import {Switch, FormControlLabel} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 
-class ExportSettingsItem extends React.Component {
+class ImportExportSettingsItem extends React.Component {
     static propTypes = {
         label: PropTypes.string.isRequired,
         value: PropTypes.bool.isRequired,
@@ -22,4 +22,4 @@ class ExportSettingsItem extends React.Component {
     }
 }
 
-export default ExportSettingsItem;
+export default ImportExportSettingsItem;

@@ -29,3 +29,10 @@ export const buttonStyles = (theme) => ({
 export const mergeStyles = (...styles) => {
     return Object.assign({}, ...styles);
 };
+
+export const transitionFor = (theme, props) => {
+    return theme.transitions.create(props, {
+        easing: theme.transitions.easing.sharp,
+        duration: theme.transitions.duration.leavingScreen,
+    })
+};

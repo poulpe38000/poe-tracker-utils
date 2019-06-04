@@ -7,6 +7,7 @@ import {compose} from 'redux';
 import {SideMenuExpander, SideMenuNav} from 'components/pages/layout/SideMenu';
 import {isWidthDown, isWidthUp} from '@material-ui/core/withWidth';
 import APP_CONSTANTS from 'constants/app.constants';
+import {transitionFor} from 'utils/themes';
 
 const drawerWidth = APP_CONSTANTS.drawerWidth;
 
@@ -21,20 +22,14 @@ const styles = theme => ({
         whiteSpace: 'nowrap',
     },
     drawerOpen: {
-        width: drawerWidth,
         overflowX: 'hidden',
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.enteringScreen,
-        }),
+        width: drawerWidth,
+        transition: transitionFor(theme, 'width'),
     },
     drawerClose: {
         overflowX: 'hidden',
-        transition: theme.transitions.create('width', {
-            easing: theme.transitions.easing.sharp,
-            duration: theme.transitions.duration.leavingScreen,
-        }),
         width: theme.spacing(8) + 1,
+        transition: transitionFor(theme, 'width'),
     },
     avatar: {
         background: 'transparent',

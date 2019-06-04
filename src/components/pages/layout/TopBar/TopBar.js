@@ -3,7 +3,7 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {AppBar, Toolbar, Typography, withStyles} from '@material-ui/core';
 import {toggleSidenav} from 'store/main/actions';
-import {TopBarActions, TopBarMenuButton, TopBarStats} from 'components/pages/layout/TopBar';
+import {TopBarMenuButton, TopBarStats} from 'components/pages/layout/TopBar';
 
 const styles = theme => ({
     root: {
