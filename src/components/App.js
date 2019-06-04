@@ -1,15 +1,15 @@
 import React from 'react';
 import {Route, Switch, withRouter} from 'react-router-dom';
 import {withStyles} from '@material-ui/core';
-import {HideoutsPage, HomePage, IncursionsPage, NotFoundPage, ImportExportPage, SettingsPage} from 'components/pages';
+import {HideoutsPage, HomePage, ImportExportPage, IncursionsPage, NotFoundPage, SettingsPage} from 'components/pages';
 import {connect} from 'react-redux';
 import {initializeApp} from 'store/main/actions';
 import {compose} from 'redux';
 import {SideMenu} from 'components/pages/layout/SideMenu';
 import {TopBar} from 'components/pages/layout/TopBar';
-import {Dialogs} from 'components/pages/layout/Dialogs';
 import APP_CONSTANTS from 'constants/app.constants';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
+import {PageContainer} from 'components/pages/layout/Page';
 
 
 const styles = theme => ({
@@ -37,18 +37,19 @@ class App extends React.Component {
             <React.Fragment>
                 <TopBar/>
                 <SideMenu/>
-                <Dialogs/>
                 <div className={classes.root}>
                     <TransitionGroup>
                         <CSSTransition timeout={300} key={location.key} classNames="fade">
-                            <Switch location={location}>
-                                <Route path={APP_CONSTANTS.routes.root} exact component={HomePage}/>
-                                <Route path={APP_CONSTANTS.routes.hideouts.root} component={HideoutsPage}/>
-                                <Route path={APP_CONSTANTS.routes.incursions.root} component={IncursionsPage}/>
-                                <Route path={APP_CONSTANTS.routes.import_export.root} component={ImportExportPage}/>
-                                <Route path={APP_CONSTANTS.routes.settings.root} component={SettingsPage}/>
-                                <Route component={NotFoundPage}/>
-                            </Switch>
+                            <PageContainer>
+                                <Switch location={location}>
+                                    <Route path={APP_CONSTANTS.routes.root} exact component={HomePage}/>
+                                    <Route path={APP_CONSTANTS.routes.hideouts.root} component={HideoutsPage}/>
+                                    <Route path={APP_CONSTANTS.routes.incursions.root} component={IncursionsPage}/>
+                                    <Route path={APP_CONSTANTS.routes.import_export.root} component={ImportExportPage}/>
+                                    <Route path={APP_CONSTANTS.routes.settings.root} component={SettingsPage}/>
+                                    <Route component={NotFoundPage}/>
+                                </Switch>
+                            </PageContainer>
                         </CSSTransition>
                     </TransitionGroup>
                 </div>

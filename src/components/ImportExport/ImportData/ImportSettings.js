@@ -1,7 +1,7 @@
 import React from 'react'
 import {withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
-import {ImportSettingsItem} from 'components/ImportData';
+import {ImportExportSettingsItem} from 'components/ImportExport';
 
 const styles = theme => ({
     root: {
@@ -36,11 +36,11 @@ class ImportSettings extends React.Component {
         const {classes, opts} = this.props;
         return (
             <div className={classes.root}>
-                <ImportSettingsItem label="Import Hideouts" value={!opts.ignoreHideouts}
+                <ImportExportSettingsItem label="Import Hideouts" value={!opts.ignoreHideouts}
                                     onClick={this.handleSettingsSwitch('ignoreHideouts')}/>
-                <ImportSettingsItem label="Import In-Progress Incursions" value={!opts.ignoreInProgressIncursions}
+                <ImportExportSettingsItem label="Import In-Progress Incursions" value={!opts.ignoreInProgressIncursions}
                                     onClick={this.handleSettingsSwitch('ignoreInProgressIncursions')}/>
-                <ImportSettingsItem label="Import Completed Incursions" value={!opts.ignoreCompletedIncursions}
+                <ImportExportSettingsItem label="Import Completed Incursions" value={!opts.ignoreCompletedIncursions}
                                     onClick={this.handleSettingsSwitch('ignoreCompletedIncursions')}/>
             </div>
         );

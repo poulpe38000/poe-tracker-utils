@@ -9,7 +9,7 @@ import Dropzone from 'react-dropzone';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 import {compose} from 'redux';
 import {sanitizeTrackerData} from 'utils/sanitizer';
-import {ImportSettings} from 'components/ImportData';
+import {ImportSettings} from 'components/ImportExport/ImportData';
 import {Page} from 'components/pages/layout/Page';
 
 const styles = theme => (mergeStyles({
@@ -158,6 +158,7 @@ class ImportPage extends React.Component {
                         </Button>
                     )}
                     <Button variant="contained" color="secondary" className={classes.button}
+                            size={isWidthDown('xs', width) ? 'normal' : 'large'}
                             onClick={this.handleContentDataLoad} disabled={!canImportData}>
                         <CloudUploadIcon className={classes.leftIcon}/>
                         Import data

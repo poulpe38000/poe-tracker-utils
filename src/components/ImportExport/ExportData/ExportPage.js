@@ -1,24 +1,34 @@
 import React from 'react'
 import {connect} from "react-redux";
-import {Button, Fade, FormHelperText, TextField, withStyles} from '@material-ui/core';
+import {Button, Fade, FormHelperText, TextField, withStyles, withWidth} from '@material-ui/core';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
-import {toggleExportDialog} from 'store/main/actions';
-import {AppDialog, AppDialogActions, AppDialogContent} from 'components/shared';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 import {compose} from 'redux';
 import cloneDeep from 'lodash/cloneDeep';
-import {ExportSettings} from 'components/ExportData';
+import {ExportSettings} from 'components/ImportExport/ExportData';
+import {isWidthDown} from '@material-ui/core/withWidth';
+import {Page} from 'components/pages/layout/Page';
+import Box from '@material-ui/core/Box';
 
 const styles = theme => (mergeStyles({
     inputExportIndicator: {
         color: theme.palette.success.main,
         textAlign: 'center',
+    },
+    actions: {
+        paddingTop: theme.spacing(2),
+        display: 'flex',
+        justifyContent: 'center',
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: 'column',
+            alignItems: 'stretch'
+        },
     }
 }, buttonStyles(theme)));
 
-class ExportDialog extends React.Component {
+class ExportPage extends React.Component {
     state = {
         copySuccess: false,
         includeHideouts: true,
@@ -33,17 +43,6 @@ class ExportDialog extends React.Component {
             [value]: !this.state[value]
         });
     };
-
-    handleResetState = () => {
-        this.setState({
-            copySuccess: false,
-            includeHideouts: true,
-            includeInProgressIncursions: true,
-            includeCompletedIncursions: true,
-        });
-    };
-
-    handleCloseDialog = () => this.props.toggleExportDialog(false);
 
     getExportText = () => {
         const {includeHideouts, includeInProgressIncursions, includeCompletedIncursions} = this.state;
@@ -86,24 +85,17 @@ class ExportDialog extends React.Component {
     };
 
     render() {
-        const {classes, showDialog} = this.props;
+        const {classes, width} = this.props;
         const {copySuccess, includeHideouts, includeInProgressIncursions, includeCompletedIncursions} = this.state;
         const canExportData = includeHideouts || includeInProgressIncursions || includeCompletedIncursions;
         const exportText = this.getExportText();
         return (
-            <AppDialog
-                open={showDialog}
-                onEntering={this.handleResetState}
-                onClose={this.handleCloseDialog}
-                fullWidth
-                maxWidth="md"
-                titleText="Export tracker data"
-            >
-                <AppDialogContent>
+            <Page>
+                <Box>
                     <TextField
                         fullWidth
                         multiline
-                        rows="8"
+                        rows={isWidthDown('xs', width) ? 8 : 16}
                         value={exportText}
                         margin="normal"
                         variant="outlined"
@@ -117,24 +109,23 @@ class ExportDialog extends React.Component {
                     <ExportSettings
                         opts={{includeHideouts, includeInProgressIncursions, includeCompletedIncursions}}
                         onClick={this.handleToggleSettings}/>
-                </AppDialogContent>
-                <AppDialogActions>
-                    <Button variant="contained" color="secondary" autoFocus className={classes.button}
+                </Box>
+                <Box className={classes.actions}>
+                    <Button variant="contained" color="secondary" className={classes.button}
+                            size={isWidthDown('xs', width) ? 'normal' : 'large'}
                             onClick={this.downloadTrackerFile} disabled={!canExportData}>
                         <GetAppIcon className={classes.leftIcon}/>
                         Download file
                     </Button>
                     <CopyToClipboard text={exportText} className={classes.button} onCopy={this.handleCopySuccess}>
-                        <Button variant="contained" color="secondary" disabled={!canExportData}>
+                        <Button variant="contained" color="secondary" disabled={!canExportData}
+                                size={isWidthDown('xs', width) ? 'normal' : 'large'}>
                             <FileCopyOutlinedIcon className={classes.leftIcon}/>
                             Copy data
                         </Button>
                     </CopyToClipboard>
-                    <Button variant="outlined" className={classes.button} onClick={this.handleCloseDialog}>
-                        Close
-                    </Button>
-                </AppDialogActions>
-            </AppDialog>
+                </Box>
+            </Page>
         );
     }
 }
@@ -142,7 +133,6 @@ class ExportDialog extends React.Component {
 export default compose(
     connect(
         state => ({
-            showDialog: state.main.showExportDialog,
             exportData: {
                 hideout: {
                     unlocked: state.hideout.unlocked,
@@ -153,9 +143,7 @@ export default compose(
                 },
             },
         }),
-        dispatch => ({
-            toggleExportDialog: (payload) => (dispatch(toggleExportDialog(payload))),
-        }),
     ),
-    withStyles(styles)
-)(ExportDialog);
+    withStyles(styles),
+    withWidth(),
+)(ExportPage);

@@ -1,9 +1,9 @@
 import React from "react";
 import SwipeableViews from 'react-swipeable-views';
 import withStyles from '@material-ui/core/styles/withStyles';
-import ImportExportTabs from 'components/ImportExport/ImportExportTabs';
-import ImportPage from 'components/ImportData/ImportPage';
-import ExportPage from 'components/ExportData/ExportPage';
+import {ImportExportTabs} from 'components/ImportExport';
+import {ImportPage} from 'components/ImportExport/ImportData';
+import {ExportPage} from 'components/ImportExport/ExportData';
 import {compose} from 'redux';
 
 const styles = {
@@ -50,8 +50,8 @@ class ImportExportPage extends React.Component {
                         index={value}
                         onChangeIndex={this.handleTabChangeIndex}
                     >
-                        <ImportPage/>
-                        <ExportPage/>
+                    <ImportPage/>
+                    <ExportPage/>
                     </SwipeableViews>
                 </div>
             </React.Fragment>
