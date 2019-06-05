@@ -4,6 +4,7 @@ import {ImportPage} from 'components/ImportExport/ImportData';
 import {ExportPage} from 'components/ImportExport/ExportData';
 import {compose} from 'redux';
 import PropTypes from 'prop-types';
+import Container from '@material-ui/core/Container';
 
 const styles = {
     root: {
@@ -20,10 +21,10 @@ class ImportExportTabContent extends React.Component {
     render() {
         const {classes, value} = this.props;
         return (
-            <div className={classes.root}>
+            <Container maxWidth="lg" className={classes.root}>
                 {value === 0 && <ImportPage/>}
                 {value === 1 && <ExportPage/>}
-            </div>
+            </Container>
         );
     }
 }

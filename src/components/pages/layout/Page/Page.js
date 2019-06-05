@@ -6,8 +6,8 @@ import PageTitle from 'components/pages/layout/Page/PageTitle';
 
 const styles = theme => ({
     root: {
-        padding: theme.spacing(2),
         paddingTop: theme.spacing(2),
+        paddingBottom: theme.spacing(2),
         flexGrow: 1,
     },
 });

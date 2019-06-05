@@ -13,7 +13,7 @@ const styles = theme => (mergeStyles({
     actions: {
         paddingTop: theme.spacing(2),
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         [theme.breakpoints.down('xs')]: {
             flexDirection: 'column',
             alignItems: 'stretch'
@@ -33,12 +33,6 @@ class ExportActions extends React.Component {
         const {classes, width, onDownload, onCopy, exportText, exportEnabled} = this.props;
         return (
             <Box className={classes.actions}>
-                <Button variant="contained" color="primary" className={classes.button}
-                        size={isWidthDown('xs', width) ? 'medium' : 'large'}
-                        onClick={onDownload} disabled={!exportEnabled}>
-                    <GetAppIcon className={classes.leftIcon}/>
-                    Download file
-                </Button>
                 <CopyToClipboard text={exportText} className={classes.button} onCopy={onCopy}>
                     <Button variant="contained" color="primary" disabled={!exportEnabled}
                             size={isWidthDown('xs', width) ? 'medium' : 'large'}>
@@ -46,6 +40,12 @@ class ExportActions extends React.Component {
                         Copy data
                     </Button>
                 </CopyToClipboard>
+                <Button variant="contained" color="primary" className={classes.button}
+                        size={isWidthDown('xs', width) ? 'medium' : 'large'}
+                        onClick={onDownload} disabled={!exportEnabled}>
+                    <GetAppIcon className={classes.leftIcon}/>
+                    Download file
+                </Button>
             </Box>
         );
     }

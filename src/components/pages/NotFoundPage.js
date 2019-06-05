@@ -4,6 +4,7 @@ import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import {withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
+import Container from '@material-ui/core/Container';
 
 const styles = theme => ({
     root: {
@@ -24,11 +25,13 @@ class NotFoundPage extends React.Component {
     render() {
         const {classes, to} = this.props;
         return (
+            <Container maxWidth={false}>
             <Page title="Page not found">
                 <div className={classes.root}>
                     <Button component={Link} to={to}>Back to homepage</Button>
                 </div>
             </Page>
+            </Container>
         );
     }
 }

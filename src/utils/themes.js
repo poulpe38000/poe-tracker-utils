@@ -6,7 +6,7 @@ export const darkTheme = createMuiTheme({
     palette: {
         primary: blueGrey,
         secondary: pink,
-        type: 'dark', // Switching the dark mode on is a single property value change.
+        type: 'dark',
     },
 });
 
@@ -19,7 +19,17 @@ export const lightTheme = createMuiTheme({
 });
 
 export const buttonStyles = (theme) => ({
-    button: {margin: theme.spacing(1)},
+    button: {
+        marginTop: theme.spacing(1),
+        marginBottom: theme.spacing(1),
+        marginLeft: theme.spacing(2),
+        '&:first:child': {
+            marginLeft: 0,
+        },
+        [theme.breakpoints.down('xs')]: {
+            marginLeft: 0,
+        }
+    },
     leftIcon: {marginRight: theme.spacing(1)},
     rightIcon: {marginLeft: theme.spacing(1)},
 });
