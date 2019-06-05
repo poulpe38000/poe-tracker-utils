@@ -21,10 +21,10 @@ class App extends React.Component {
     }
 
     render() {
-        const {useDarkTheme} = this.props;
+        const {useLightTheme} = this.props;
         return (
             <BrowserRouter basename={APP_CONSTANTS.basename}>
-                <MuiThemeProvider theme={useDarkTheme ? darkTheme : lightTheme}>
+                <MuiThemeProvider theme={useLightTheme ? lightTheme : darkTheme}>
                     <CssBaseline/>
                     <SnackbarProvider
                         maxSnack={1}
@@ -46,7 +46,7 @@ class App extends React.Component {
 
 export default connect(
     state => ({
-        useDarkTheme: state.main.darkTheme,
+        useLightTheme: state.main.useLightTheme,
     }),
     dispatch => ({
         initializeApp: () => (dispatch(initializeApp())),

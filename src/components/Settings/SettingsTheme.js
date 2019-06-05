@@ -10,7 +10,7 @@ import {
     Typography,
     withStyles
 } from '@material-ui/core';
-import StorageIcon from '@material-ui/icons/Storage';
+import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import {connect} from 'react-redux';
 import {toggleTheme} from 'store/main/actions';
 
@@ -35,7 +35,7 @@ class SettingsTheme extends React.Component {
     };
 
     render() {
-        const {classes, useDarkTheme} = this.props;
+        const {classes, useLightTheme} = this.props;
         return (
             <React.Fragment>
                 <Paper className={classes.root}>
@@ -43,13 +43,13 @@ class SettingsTheme extends React.Component {
                     <List className={classes.list}>
                         <ListItem>
                             <ListItemIcon>
-                                <StorageIcon />
+                                <InvertColorsIcon />
                             </ListItemIcon>
-                            <ListItemText primary="Use Dark Theme" />
+                            <ListItemText primary="Use Light Theme" />
                             <ListItemSecondaryAction>
                                 <Switch
                                     onChange={this.handleToggleTheme}
-                                    checked={useDarkTheme}
+                                    checked={useLightTheme}
                                 />
                             </ListItemSecondaryAction>
                         </ListItem>
@@ -62,7 +62,7 @@ class SettingsTheme extends React.Component {
 
 export default connect(
     state => ({
-        useDarkTheme: state.main.darkTheme,
+        useLightTheme: state.main.useLightTheme,
     }),
     dispatch => ({
         toggleTheme: () => (dispatch(toggleTheme())),
