@@ -1,6 +1,6 @@
 const APP_CONSTANTS = {
     basename: process.env.PUBLIC_URL,
-    drawerWidth: 250,
+    drawerWidth: 240,
     routes: {
         root: '/',
         hideouts: {
