@@ -1,24 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {Provider} from "react-redux";
+
 import './index.scss';
 import App from './components/App';
 import store from './store/index'
 import * as serviceWorker from './serviceWorker';
-import {Provider} from "react-redux";
-import {CssBaseline} from '@material-ui/core';
-import {MuiThemeProvider} from '@material-ui/core/styles';
-import {BrowserRouter} from 'react-router-dom';
-import APP_CONSTANTS from 'constants/app.constants';
-import {mainTheme} from 'utils/themes';
 
 ReactDOM.render(
     <Provider store={store}>
-        <BrowserRouter basename={APP_CONSTANTS.basename}>
-            <MuiThemeProvider theme={mainTheme}>
-                <CssBaseline />
-                <App />
-            </MuiThemeProvider>
-        </BrowserRouter>
+        <App/>
     </Provider>
     , document.getElementById('root'));
 

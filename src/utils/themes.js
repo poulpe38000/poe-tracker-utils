@@ -1,22 +1,20 @@
 import {createMuiTheme} from '@material-ui/core';
-import {amber, blueGrey, green} from '@material-ui/core/colors';
+import {blueGrey, indigo, pink} from '@material-ui/core/colors';
 
 
-export const mainTheme = createMuiTheme({
+export const darkTheme = createMuiTheme({
     palette: {
         primary: blueGrey,
-        secondary: amber,
-        success: {main: green['500']},
+        secondary: pink,
         type: 'dark', // Switching the dark mode on is a single property value change.
     },
 });
 
-export const dialogTheme = createMuiTheme({
+export const lightTheme = createMuiTheme({
     palette: {
-        primary: blueGrey,
-        secondary: amber,
-        success: {main: green['500']},
-        type: 'light'
+        primary: indigo,
+        secondary: pink,
+        type: 'light',
     },
 });
 

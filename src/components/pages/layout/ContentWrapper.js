@@ -3,6 +3,7 @@ import {withStyles} from '@material-ui/core';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import clsx from 'clsx';
+
 import APP_CONSTANTS from 'constants/app.constants';
 import {transitionFor} from 'utils/themes';
 
@@ -26,7 +27,7 @@ const styles = theme => ({
     },
 });
 
-class PageContainer extends React.Component {
+class ContentWrapper extends React.Component {
 
     render() {
         const {classes, sidenavExpanded, children} = this.props;
@@ -50,4 +51,4 @@ export default compose(
         }),
     ),
     withStyles(styles),
-)(PageContainer);
+)(ContentWrapper);

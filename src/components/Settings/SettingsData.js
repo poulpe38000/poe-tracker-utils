@@ -5,6 +5,9 @@ import {connect} from 'react-redux';
 import {resetAll} from 'store/main/actions';
 import {incursionResetCompletedData, incursionResetInProgressData} from 'store/incursion/actions';
 import {hideoutResetData} from 'store/hideout/actions';
+import {snackbarAction} from 'utils/snackbar';
+import {compose} from 'redux';
+import {withSnackbar} from 'notistack';
 
 const styles = theme => ({
     root: {
@@ -21,20 +24,31 @@ const styles = theme => ({
 });
 
 class SettingsData extends React.Component {
+
+    displaySnackbar = (message, options = {}) => {
+        this.props.enqueueSnackbar(message, Object.assign({}, {
+            action: snackbarAction(this.props)
+        }, options));
+    };
+
     handleResetHideouts = () => {
         this.props.hideoutResetData();
+        this.displaySnackbar('Hideout tracker data reset');
     };
 
     handleResetInProgressIncursions = () => {
         this.props.incursionResetInProgressData();
+        this.displaySnackbar('In-progress incursion rooms tracker data reset');
     };
 
     handleResetCompletedIncursions = () => {
         this.props.incursionResetCompletedData();
+        this.displaySnackbar('Completed incursion rooms tracker data reset');
     };
 
     handleResetAll = () => {
         this.props.resetAll();
+        this.displaySnackbar('All tracker data reset');
     };
 
     render() {
@@ -46,7 +60,7 @@ class SettingsData extends React.Component {
                     <List className={classes.list}>
                         <ListItem button onClick={this.handleResetHideouts}>
                             <ListItemIcon>
-                                <SettingsBackupRestoreIcon />
+                                <SettingsBackupRestoreIcon/>
                             </ListItemIcon>
                             <ListItemText inset
                                           primary="Reset hideouts"
@@ -55,7 +69,7 @@ class SettingsData extends React.Component {
                         </ListItem>
                         <ListItem button onClick={this.handleResetInProgressIncursions}>
                             <ListItemIcon>
-                                <SettingsBackupRestoreIcon />
+                                <SettingsBackupRestoreIcon/>
                             </ListItemIcon>
                             <ListItemText inset
                                           primary="Reset in-progress incursions"
@@ -64,7 +78,7 @@ class SettingsData extends React.Component {
                         </ListItem>
                         <ListItem button onClick={this.handleResetCompletedIncursions}>
                             <ListItemIcon>
-                                <SettingsBackupRestoreIcon />
+                                <SettingsBackupRestoreIcon/>
                             </ListItemIcon>
                             <ListItemText inset
                                           primary="Reset completed incursions"
@@ -73,7 +87,7 @@ class SettingsData extends React.Component {
                         </ListItem>
                         <ListItem button onClick={this.handleResetAll}>
                             <ListItemIcon>
-                                <SettingsBackupRestoreIcon />
+                                <SettingsBackupRestoreIcon/>
                             </ListItemIcon>
                             <ListItemText inset
                                           primary="Reset all"
@@ -87,12 +101,16 @@ class SettingsData extends React.Component {
     }
 }
 
-export default connect(
-    null,
-    dispatch => ({
-        incursionResetCompletedData: () => (dispatch(incursionResetCompletedData())),
-        incursionResetInProgressData: () => (dispatch(incursionResetInProgressData())),
-        hideoutResetData: () => (dispatch(hideoutResetData())),
-        resetAll: () => (dispatch(resetAll())),
-    }),
-)(withStyles(styles)(SettingsData));
+export default compose(
+    connect(
+        null,
+        dispatch => ({
+            incursionResetCompletedData: () => (dispatch(incursionResetCompletedData())),
+            incursionResetInProgressData: () => (dispatch(incursionResetInProgressData())),
+            hideoutResetData: () => (dispatch(hideoutResetData())),
+            resetAll: () => (dispatch(resetAll())),
+        }),
+    ),
+    withStyles(styles),
+    withSnackbar,
+)(SettingsData);

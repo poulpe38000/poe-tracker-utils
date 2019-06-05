@@ -11,13 +11,15 @@ import {
     incursionUpdateSearchText
 } from 'store/incursion/actions';
 import {buttonStyles, mergeStyles} from 'utils/themes';
+import {compose} from 'redux';
+import {withSnackbar} from 'notistack';
+import {snackbarAction} from 'utils/snackbar';
 
 const styles = theme => (mergeStyles({
     root: {
         ...theme.mixins.gutters(),
         paddingTop: theme.spacing(2),
         paddingBottom: theme.spacing(2),
-        marginTop: theme.spacing(2),
         marginBottom: theme.spacing(2),
     },
     actions: {
@@ -37,8 +39,20 @@ class IncursionSummary extends React.Component {
         this.searchField = React.createRef();
     }
 
-    handleValidateInProgress = () => this.props.incursionRoomValidateInProgress();
-    handleResetInProgress = () => this.props.incursionResetInProgressData();
+    displaySnackbar = (message, options = {}) => {
+        this.props.enqueueSnackbar(message, Object.assign({}, {
+            action: snackbarAction(this.props)
+        }, options));
+    };
+
+    handleValidateInProgress = () => {
+        this.props.incursionRoomValidateInProgress();
+        this.displaySnackbar('Current incursion rooms added to the completed incursion rooms');
+    };
+    handleResetInProgress = () => {
+        this.props.incursionResetInProgressData();
+        this.displaySnackbar('Current incursion rooms successfully reset');
+    };
 
     handleToggleSearch = () => this.props.incursionUpdateSearchText('');
 
@@ -75,11 +89,11 @@ class IncursionSummary extends React.Component {
                 <div className={classes.actions}>
                     <Button variant="outlined" onClick={this.handleResetInProgress} className={classes.button}>
                         <SettingsBackupRestoreIcon className={classes.leftIcon}/>
-                        Reset Current Rooms
+                        Reset Current Incursion
                     </Button>
                     <Button variant="outlined" onClick={this.handleValidateInProgress} className={classes.button}>
                         <CheckIcon className={classes.leftIcon}/>
-                        Complete Current Rooms
+                        Complete Current Incursion
                     </Button>
                 </div>
             </Paper>
@@ -87,13 +101,17 @@ class IncursionSummary extends React.Component {
     }
 }
 
-export default connect(
-    state => ({
-        searchText: state.incursion.searchText,
-    }),
-    dispatch => ({
-        incursionUpdateSearchText: (payload) => dispatch(incursionUpdateSearchText(payload)),
-        incursionRoomValidateInProgress: () => dispatch(incursionRoomValidateInProgress()),
-        incursionResetInProgressData: () => dispatch(incursionResetInProgressData()),
-    })
-)(withStyles(styles)(IncursionSummary));
+export default compose(
+    connect(
+        state => ({
+            searchText: state.incursion.searchText,
+        }),
+        dispatch => ({
+            incursionUpdateSearchText: (payload) => dispatch(incursionUpdateSearchText(payload)),
+            incursionRoomValidateInProgress: () => dispatch(incursionRoomValidateInProgress()),
+            incursionResetInProgressData: () => dispatch(incursionResetInProgressData()),
+        })
+    ),
+    withStyles(styles),
+    withSnackbar,
+)(IncursionSummary);

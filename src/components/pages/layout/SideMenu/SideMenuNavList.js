@@ -29,7 +29,7 @@ class SideMenuNavList extends React.Component {
                                          avatar={item.avatar}
                                          exact={item.exact}
                                          showTooltip={showTooltip}
-                                         onClick={() => onClick()}
+                                         onClick={onClick}
                         />
                     )
                 )}

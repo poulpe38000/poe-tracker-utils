@@ -33,7 +33,7 @@ class SideMenuExpander extends React.Component {
         const {classes, expanded, onClick} = this.props;
         return (
             <List disablePadding={true}>
-                <ListItem className={classes.root} button onClick={() => onClick()}>
+                <ListItem className={classes.root} button onClick={onClick}>
                     <Tooltip title={expanded ? '' : (
                         <Typography variant="body1">Expand menu</Typography>
                     )} placement="right">

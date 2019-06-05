@@ -13,9 +13,7 @@ class ImportExportSettingsItem extends React.Component {
         const {label, value, onClick} = this.props;
         return (
             <FormControlLabel
-                control={
-                    <Switch checked={value} onChange={() => onClick()}/>
-                }
+                control={<Switch checked={value} onChange={onClick}/>}
                 label={label}
             />
         );

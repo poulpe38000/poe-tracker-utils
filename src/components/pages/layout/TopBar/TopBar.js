@@ -34,7 +34,6 @@ class TopBar extends React.Component {
                         PoE Tracker Helpers
                     </Typography>
                     <TopBarStats/>
-                    {/*<TopBarActions/>*/}
                 </Toolbar>
             </AppBar>
         );
