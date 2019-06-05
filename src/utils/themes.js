@@ -1,5 +1,5 @@
 import {createMuiTheme} from '@material-ui/core';
-import {blueGrey, indigo, pink} from '@material-ui/core/colors';
+import {blueGrey, pink} from '@material-ui/core/colors';
 
 
 export const darkTheme = createMuiTheme({
@@ -12,7 +12,7 @@ export const darkTheme = createMuiTheme({
 
 export const lightTheme = createMuiTheme({
     palette: {
-        primary: indigo,
+        primary: blueGrey,
         secondary: pink,
         type: 'light',
     },

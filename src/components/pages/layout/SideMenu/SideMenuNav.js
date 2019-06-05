@@ -89,7 +89,7 @@ class SideMenuNav extends React.Component {
             <React.Fragment>
                 <Toolbar className={classes.toolbarSpacer}>
                     <Typography variant="h6" color="inherit">
-                        PoE Tracker Helpers
+                        {'PoE Tracker Utils'}
                     </Typography>
                 </Toolbar>
                 <Divider/>

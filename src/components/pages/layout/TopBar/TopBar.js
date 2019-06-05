@@ -31,7 +31,7 @@ class TopBar extends React.Component {
                 <Toolbar className={classes.toolbar}>
                     <TopBarMenuButton onClick={this.handleOpenMenu}/>
                     <Typography variant="h6" color="inherit" className={classes.title}>
-                        PoE Tracker Helpers
+                        PoE Tracker Utils
                     </Typography>
                     <TopBarStats/>
                 </Toolbar>
