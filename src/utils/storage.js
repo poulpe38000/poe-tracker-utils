@@ -1,4 +1,5 @@
 const ALLOW_LOCAL_STORAGE = 'allowStorage';
+const USE_DARK_THEME = 'useDarkTheme';
 
 export const HIDEOUT_UNLOCKED_STORAGE = 'hideoutUnlocked';
 export const INCURSION_COMPLETED_STORAGE = 'incursionCompleted';
@@ -43,4 +44,16 @@ export const toggleLocalStorageSettings = () => {
         ? localStorage.removeItem(ALLOW_LOCAL_STORAGE)
         : localStorage.setItem(ALLOW_LOCAL_STORAGE, 'true');
     return !allowLocalStorage;
+};
+
+export const getUseDarkThemeSettings = () => {
+    return localStorage.getItem(USE_DARK_THEME) === 'true';
+};
+
+export const toggleUseDarkThemeSettings = () => {
+    const useDarkTheme = localStorage.getItem(USE_DARK_THEME) === 'true';
+    useDarkTheme
+        ? localStorage.removeItem(USE_DARK_THEME)
+        : localStorage.setItem(USE_DARK_THEME, 'true');
+    return !useDarkTheme;
 };

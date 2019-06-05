@@ -31,13 +31,13 @@ class ImportActions extends React.Component {
         const {classes, width, importEnabled, onImport, onAttachFile} = this.props;
         return (
             <Box className={classes.actions}>
-                <Button variant="contained" color="secondary" className={classes.button}
+                <Button variant="contained" color="primary" className={classes.button}
                         size={isWidthDown('xs', width) ? 'medium' : 'large'}
                         onClick={onAttachFile}>
                     <AttachFileIcon className={classes.leftIcon}/>
                     Load File
                 </Button>
-                <Button variant="contained" color="secondary" className={classes.button}
+                <Button variant="contained" color="primary" className={classes.button}
                         size={isWidthDown('xs', width) ? 'medium' : 'large'}
                         onClick={onImport} disabled={!importEnabled}>
                     <CloudUploadIcon className={classes.leftIcon}/>

@@ -13,7 +13,10 @@ const styles = theme => ({
         paddingLeft: theme.spacing(1.5),
         paddingRight: theme.spacing(1.5),
     },
-    active: {backgroundColor: theme.palette.secondary.main},
+    active: {
+        backgroundColor: theme.palette.primary.light,
+        color: theme.palette.primary.contrastText,
+    },
     avatar: {
         background: 'transparent',
         color: 'inherit',

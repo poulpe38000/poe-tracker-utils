@@ -7,7 +7,10 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import {compose} from 'redux';
 
 const styles = theme => ({
-    button: {marginRight: theme.spacing(2)},
+    button: {
+        marginRight: theme.spacing(2),
+        color: theme.palette.primary.contrastText,
+    },
 });
 
 class TopBarMenuButton extends React.Component {
