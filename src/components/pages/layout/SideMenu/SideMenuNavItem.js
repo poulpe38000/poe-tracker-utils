@@ -50,7 +50,7 @@ class SideMenuNavItem extends React.Component {
                       to={to}
                       exact={exact}
                       button
-                      onClick={() => onClick()}
+                      onClick={onClick}
             >
                 <Tooltip title={showTooltip ? (
                     <Typography variant="body1">{label}</Typography>

@@ -1,7 +1,8 @@
 import React from 'react';
 import {withStyles} from '@material-ui/core';
-import {PageTitle} from 'components/pages/layout/Page';
 import * as PropTypes from 'prop-types';
+
+import PageTitle from 'components/pages/layout/Page/PageTitle';
 
 const styles = theme => ({
     root: {

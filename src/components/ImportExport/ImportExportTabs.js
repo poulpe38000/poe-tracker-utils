@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import APP_CONSTANTS from 'constants/app.constants';
 import clsx from 'clsx';
 import {transitionFor} from 'utils/themes';
+import PropTypes from 'prop-types';
 
 const drawerWidth = APP_CONSTANTS.drawerWidth;
 
@@ -34,6 +35,12 @@ const styles = theme => ({
 });
 
 class ImportExportTabs extends React.Component {
+    static propTypes = {
+        tabs: PropTypes.array.isRequired,
+        value: PropTypes.number.isRequired,
+        onChange: PropTypes.func.isRequired,
+    };
+
     render() {
         const {onChange, value, classes, tabs, sidenavExpanded} = this.props;
         return (

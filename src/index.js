@@ -10,13 +10,24 @@ import {MuiThemeProvider} from '@material-ui/core/styles';
 import {BrowserRouter} from 'react-router-dom';
 import APP_CONSTANTS from 'constants/app.constants';
 import {mainTheme} from 'utils/themes';
+import {SnackbarProvider} from 'notistack';
+import Fade from '@material-ui/core/Fade';
 
 ReactDOM.render(
     <Provider store={store}>
         <BrowserRouter basename={APP_CONSTANTS.basename}>
             <MuiThemeProvider theme={mainTheme}>
-                <CssBaseline />
-                <App />
+                <CssBaseline/>
+                <SnackbarProvider
+                    maxSnack={1}
+                    hideIconVariant={true}
+                    anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}
+                    TransitionComponent={Fade}
+                    autoHideDuration={3000}
+                    preventDuplicate={true}
+                >
+                    <App/>
+                </SnackbarProvider>
             </MuiThemeProvider>
         </BrowserRouter>
     </Provider>

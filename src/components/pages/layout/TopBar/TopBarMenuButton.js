@@ -20,7 +20,7 @@ class TopBarMenuButton extends React.Component {
         return (
             <React.Fragment>
                 {isWidthDown('xs', width) && (
-                    <IconButton aria-label="Menu" onClick={() => onClick()} className={classes.button}>
+                    <IconButton aria-label="Menu" onClick={onClick} className={classes.button}>
                         <MenuIcon/>
                     </IconButton>
                 )}
