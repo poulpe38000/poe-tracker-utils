@@ -17,6 +17,14 @@ const styles = theme => ({
         backgroundColor: theme.palette.primary.light,
         color: theme.palette.primary.contrastText,
     },
+    tooltip: {
+        margin: 0,
+        marginLeft: theme.spacing(-.5),
+        height: theme.spacing(7),
+        display: 'flex',
+        alignItems: 'center',
+        borderRadius: 0,
+    },
     avatar: {
         background: 'transparent',
         color: 'inherit',
@@ -57,7 +65,7 @@ class SideMenuNavItem extends React.Component {
             >
                 <Tooltip title={showTooltip ? (
                     <Typography variant="body1">{label}</Typography>
-                ) : ''} placement="right">
+                ) : ''} placement="right" classes={{tooltipPlacementRight: classes.tooltip}}>
                     <ListItemAvatar>
                         <MenuAvatar label={label} value={icon}/>
                     </ListItemAvatar>

@@ -16,6 +16,14 @@ const styles = theme => ({
         paddingLeft: theme.spacing(1.5),
         paddingRight: theme.spacing(1.5),
     },
+    tooltip: {
+        margin: 0,
+        marginLeft: theme.spacing(-.5),
+        height: theme.spacing(7),
+        display: 'flex',
+        alignItems: 'center',
+        borderRadius: 0,
+    },
     avatar: {
         background: 'transparent',
         color: 'inherit',
@@ -36,7 +44,7 @@ class SideMenuExpander extends React.Component {
                 <ListItem className={classes.root} button onClick={onClick}>
                     <Tooltip title={expanded ? '' : (
                         <Typography variant="body1">Expand menu</Typography>
-                    )} placement="right">
+                    )} placement="right" classes={{tooltipPlacementRight: classes.tooltip}}>
                         <ListItemIcon>
                             <Avatar className={classes.avatar}>
                                 <Icon component={expanded ? ChevronLeftIcon : ChevronRightIcon}/>
