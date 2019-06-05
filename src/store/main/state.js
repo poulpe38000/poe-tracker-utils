@@ -1,6 +1,5 @@
 const INITIAL_STATE = {
-    darkTheme: false,
-    isLoading: true,
+    useLightTheme: false,
     sidenavExpanded: false,
 };
 

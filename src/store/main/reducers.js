@@ -1,6 +1,6 @@
 import INITIAL_STATE from 'store/main/state';
 import {INITIALIZE_APP, TOGGLE_SIDENAV, TOGGLE_THEME} from 'store/main/actions';
-import {getUseDarkThemeSettings, toggleUseDarkThemeSettings} from 'utils/storage';
+import {getUseLightThemeSettings, toggleUseLightThemeSettings} from 'utils/storage';
 
 function mainReducer(state = INITIAL_STATE, action) {
     switch (action.type) {
@@ -12,13 +12,13 @@ function mainReducer(state = INITIAL_STATE, action) {
         case TOGGLE_THEME:
             return {
                 ...state,
-                darkTheme: toggleUseDarkThemeSettings(),
+                useLightTheme: toggleUseLightThemeSettings(),
             };
         case INITIALIZE_APP:
             try {
                 return {
                     ...state,
-                    darkTheme: getUseDarkThemeSettings(),
+                    useLightTheme: getUseLightThemeSettings(),
                 };
             } catch (e) {
                 return {...state};
