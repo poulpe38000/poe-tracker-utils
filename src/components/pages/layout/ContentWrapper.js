@@ -32,14 +32,12 @@ class ContentWrapper extends React.Component {
     render() {
         const {classes, sidenavExpanded, children} = this.props;
         return (
-            <React.Fragment>
-                <div className={clsx(classes.root, {
-                    [classes.drawerOpen]: sidenavExpanded,
-                    [classes.drawerClose]: !sidenavExpanded,
-                })}>
-                    {children}
-                </div>
-            </React.Fragment>
+            <div className={clsx(classes.root, {
+                [classes.drawerOpen]: sidenavExpanded,
+                [classes.drawerClose]: !sidenavExpanded,
+            })}>
+                {children}
+            </div>
         );
     }
 }

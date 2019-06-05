@@ -12,7 +12,7 @@ const styles = theme => (mergeStyles({
     actions: {
         paddingTop: theme.spacing(2),
         display: 'flex',
-        justifyContent: 'center',
+        justifyContent: 'flex-end',
         [theme.breakpoints.down('xs')]: {
             flexDirection: 'column',
             alignItems: 'stretch'

@@ -8,18 +8,18 @@ import {hideoutResetData} from 'store/hideout/actions';
 import {snackbarAction} from 'utils/snackbar';
 import {compose} from 'redux';
 import {withSnackbar} from 'notistack';
+import Container from '@material-ui/core/Container';
+import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
     root: {
-        ...theme.mixins.gutters(),
-        paddingTop: theme.spacing(2),
-        paddingBottom: theme.spacing(2),
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(2),
     },
-    list: {
-        width: '100%',
-        maxWidth: 360,
+    listItem: {
+        '&:hover': {
+            backgroundColor: 'inherit',
+        }
     },
 });
 
@@ -33,17 +33,17 @@ class SettingsData extends React.Component {
 
     handleResetHideouts = () => {
         this.props.hideoutResetData();
-        this.displaySnackbar('Hideout tracker data reset');
+        this.displaySnackbar('Hideouts data reset');
     };
 
     handleResetInProgressIncursions = () => {
         this.props.incursionResetInProgressData();
-        this.displaySnackbar('In-progress incursion rooms tracker data reset');
+        this.displaySnackbar('In-progress incursions data reset');
     };
 
     handleResetCompletedIncursions = () => {
         this.props.incursionResetCompletedData();
-        this.displaySnackbar('Completed incursion rooms tracker data reset');
+        this.displaySnackbar('Completed incursions data reset');
     };
 
     handleResetAll = () => {
@@ -54,49 +54,48 @@ class SettingsData extends React.Component {
     render() {
         const {classes} = this.props;
         return (
-            <React.Fragment>
+            <Container maxWidth="md">
+                <Typography variant="h6">Reset data</Typography>
                 <Paper className={classes.root}>
-                    <Typography variant="h4">Reset data</Typography>
-                    <List className={classes.list}>
-                        <ListItem button onClick={this.handleResetHideouts}>
+                    <List disablePadding>
+                        <ListItem button disableRipple className={classes.listItem} onClick={this.handleResetHideouts}>
                             <ListItemIcon>
                                 <SettingsBackupRestoreIcon/>
                             </ListItemIcon>
-                            <ListItemText inset
-                                          primary="Reset hideouts"
-                                          secondary="Reset only hideouts unlocked data"
+                            <ListItemText primary="Reset hideouts"
+                                          secondary="Reset hideouts data only"
                             />
                         </ListItem>
-                        <ListItem button onClick={this.handleResetInProgressIncursions}>
+                        <Divider/>
+                        <ListItem button disableRipple className={classes.listItem} onClick={this.handleResetInProgressIncursions}>
                             <ListItemIcon>
                                 <SettingsBackupRestoreIcon/>
                             </ListItemIcon>
-                            <ListItemText inset
-                                          primary="Reset in-progress incursions"
-                                          secondary="Reset only in-progress incursions data"
+                            <ListItemText primary="Reset in-progress incursions"
+                                          secondary="Reset in-progress incursions data only"
                             />
                         </ListItem>
-                        <ListItem button onClick={this.handleResetCompletedIncursions}>
+                        <Divider/>
+                        <ListItem button disableRipple className={classes.listItem} onClick={this.handleResetCompletedIncursions}>
                             <ListItemIcon>
                                 <SettingsBackupRestoreIcon/>
                             </ListItemIcon>
-                            <ListItemText inset
-                                          primary="Reset completed incursions"
-                                          secondary="Reset only completed incursions data"
+                            <ListItemText primary="Reset completed incursions"
+                                          secondary="Reset completed incursions data only"
                             />
                         </ListItem>
-                        <ListItem button onClick={this.handleResetAll}>
+                        <Divider/>
+                        <ListItem button disableRipple className={classes.listItem} onClick={this.handleResetAll}>
                             <ListItemIcon>
                                 <SettingsBackupRestoreIcon/>
                             </ListItemIcon>
-                            <ListItemText inset
-                                          primary="Reset all"
-                                          secondary="Reset all data"
+                            <ListItemText primary="Reset all"
+                                          secondary="Reset all tracker data"
                             />
                         </ListItem>
                     </List>
                 </Paper>
-            </React.Fragment>
+            </Container>
         );
     }
 }
