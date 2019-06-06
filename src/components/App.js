@@ -12,7 +12,12 @@ import {initializeApp} from 'store/main/actions';
 import {SideMenu} from 'components/pages/layout/SideMenu';
 import {TopBar} from 'components/pages/layout/TopBar';
 import Routes from 'components/Routes';
+import withStyles from '@material-ui/core/styles/withStyles';
+import {compose} from 'redux';
 
+const styles = {
+    variantDefault: {minWidth: 'auto'}
+};
 
 class App extends React.Component {
 
@@ -21,22 +26,23 @@ class App extends React.Component {
     }
 
     render() {
-        const {useLightTheme} = this.props;
+        const {classes, useLightTheme} = this.props;
         return (
             <BrowserRouter basename={APP_CONSTANTS.basename}>
                 <MuiThemeProvider theme={useLightTheme ? lightTheme : darkTheme}>
                     <CssBaseline/>
                     <SnackbarProvider
                         maxSnack={1}
+                        classes={classes}
                         hideIconVariant={true}
                         anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}
                         TransitionComponent={Fade}
                         autoHideDuration={4000}
                         preventDuplicate={true}
                     >
-                <TopBar/>
-                <SideMenu/>
-                <Routes/>
+                        <TopBar/>
+                        <SideMenu/>
+                        <Routes/>
                     </SnackbarProvider>
                 </MuiThemeProvider>
             </BrowserRouter>
@@ -44,11 +50,14 @@ class App extends React.Component {
     }
 }
 
-export default connect(
-    state => ({
-        useLightTheme: state.main.useLightTheme,
-    }),
-    dispatch => ({
-        initializeApp: () => (dispatch(initializeApp())),
-    }),
+export default compose(
+    connect(
+        state => ({
+            useLightTheme: state.main.useLightTheme,
+        }),
+        dispatch => ({
+            initializeApp: () => (dispatch(initializeApp())),
+        }),
+    ),
+    withStyles(styles),
 )(App);

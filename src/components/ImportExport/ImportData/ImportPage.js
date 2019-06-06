@@ -17,7 +17,7 @@ class ImportPage extends React.Component {
         ignoreCompletedIncursions: false,
     };
 
-    displaySnackbar = () => displaySnackbar(this.props.enqueueSnackbar);
+    displaySnackbar = displaySnackbar(this.props.enqueueSnackbar);
 
     changeImportText = (text) => {
         this.setState({

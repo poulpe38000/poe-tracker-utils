@@ -24,7 +24,7 @@ const styles = theme => ({
 
 class SettingsData extends React.Component {
 
-    displaySnackbar = () => displaySnackbar(this.props.enqueueSnackbar);
+    displaySnackbar = displaySnackbar(this.props.enqueueSnackbar);
 
     handleResetHideouts = () => {
         this.props.hideoutResetData();

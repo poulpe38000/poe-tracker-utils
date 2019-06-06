@@ -1,16 +1,26 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Divider, List, ListItem, Paper, Typography, withStyles} from '@material-ui/core';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import {HideoutFilterStatus, HideoutListHeader, HideoutListItem} from 'components/Hideout';
 import {compose} from 'redux';
 
-const styles = {
+const styles = theme => ({
+    list: {
+        paddingTop: 0,
+    },
+    header: {
+        top: 64,
+        [theme.breakpoints.down('xs')]: {
+            top: 56,
+        }
+    },
     notFound: {
         display: 'flex',
         justifyContent: 'center',
     },
-};
+});
 
 const yesNoFilter = {
     true: 'Yes',
@@ -59,10 +69,14 @@ class HideoutList extends React.Component {
             .filter(hideout => findText(searchText, hideout));
         return (
             <Paper elevation={2}>
-                <HideoutListHeader title="Hideouts list" filterOptions={this.filterOptions}/>
-                <HideoutFilterStatus filterOptions={this.filterOptions}/>
-                <Divider/>
-                <List>
+                <List className={classes.list}>
+                    <ListSubheader disableGutters className={classes.header}>
+                        <Paper elevation={0}>
+                            <HideoutListHeader title="Hideouts list" filterOptions={this.filterOptions}/>
+                            <HideoutFilterStatus filterOptions={this.filterOptions}/>
+                            <Divider/>
+                        </Paper>
+                    </ListSubheader>
                     {filteredData.length === 0 && (
                         <ListItem dense className={classes.notFound}>
                             <Typography variant="h6"><em>No Hideouts found</em></Typography>

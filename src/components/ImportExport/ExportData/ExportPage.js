@@ -17,7 +17,7 @@ class ExportPage extends React.Component {
         includeCompletedIncursions: true,
     };
 
-    displaySnackbar = () => displaySnackbar(this.props.enqueueSnackbar);
+    displaySnackbar = displaySnackbar(this.props.enqueueSnackbar);
 
     handleToggleSettings = (value) => {
         this.setState((prevState) => ({

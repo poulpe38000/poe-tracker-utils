@@ -39,7 +39,7 @@ class IncursionSummary extends React.Component {
         this.searchField = React.createRef();
     }
 
-    displaySnackbar = () => displaySnackbar(this.props.enqueueSnackbar);
+    displaySnackbar = displaySnackbar(this.props.enqueueSnackbar);
 
     handleValidateInProgress = () => {
         this.props.incursionRoomValidateInProgress();
