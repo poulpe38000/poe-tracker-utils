@@ -13,7 +13,7 @@ const styles = theme => ({
         paddingRight: theme.spacing(1.5),
     },
     active: {
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: theme.palette.primary.light,
         color: theme.palette.primary.contrastText,
         pointerEvents: 'none',
     },
