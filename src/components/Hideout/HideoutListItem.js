@@ -21,6 +21,9 @@ const styles = theme => ({
         alignSelf: 'center',
         paddingLeft: theme.spacing(1),
         paddingRight: theme.spacing(1),
+        [theme.breakpoints.down('xs')]: {
+            alignSelf: 'flex-start'
+        }
     },
     rarity1: {},
     rarity10: {color: 'yellow'},

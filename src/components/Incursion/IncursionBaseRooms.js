@@ -34,7 +34,7 @@ class IncursionBaseRooms extends React.Component {
         return (
             <React.Fragment>
                 <Typography variant="h6">Non-upgradeable rooms</Typography>
-                <Paper className={classes.root}>
+                <Paper className={classes.root} elevation={2}>
                     <List>
                         <IncursionRoomHeader/>
                         {roomKeys.map((roomKey) => {

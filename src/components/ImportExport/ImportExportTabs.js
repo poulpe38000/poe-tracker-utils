@@ -32,6 +32,9 @@ const styles = theme => ({
         },
         transition: transitionFor(theme, ['left', 'width']),
     },
+    indicator: {
+        backgroundColor: theme.palette.primary.contrastText,
+    }
 });
 
 class ImportExportTabs extends React.Component {
@@ -48,7 +51,9 @@ class ImportExportTabs extends React.Component {
                 [classes.drawerOpen]: sidenavExpanded,
                 [classes.drawerClose]: !sidenavExpanded,
             })}>
-                <Tabs value={value} variant="fullWidth" onChange={onChange}>
+                <Tabs value={value} variant="fullWidth" onChange={onChange} classes={{
+                    indicator: classes.indicator
+                }}>
                     {tabs.map((tab, key) => (
                         <Tab key={key} label={tab.label}/>
                     ))}

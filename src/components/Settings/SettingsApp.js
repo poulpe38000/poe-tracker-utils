@@ -15,7 +15,6 @@ import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import StorageIcon from '@material-ui/icons/Storage';
 import {connect} from 'react-redux';
 import {setAll, toggleTheme} from 'store/main/actions';
-import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
 
 const styles = theme => ({
@@ -57,9 +56,9 @@ class SettingsApp extends React.Component {
         const {classes, useLightTheme} = this.props;
         const {allowStorage} = this.state;
         return (
-            <Container maxWidth="md">
+            <React.Fragment>
                 <Typography variant="h6">Application Settings</Typography>
-                <Paper className={classes.root}>
+                <Paper className={classes.root} elevation={2}>
                     <List disablePadding>
                         <ListItem button disableRipple className={classes.listItem} onClick={this.handleToggleTheme}>
                             <ListItemIcon>
@@ -88,7 +87,7 @@ class SettingsApp extends React.Component {
                         </ListItem>
                     </List>
                 </Paper>
-            </Container>
+            </React.Fragment>
         );
     }
 }

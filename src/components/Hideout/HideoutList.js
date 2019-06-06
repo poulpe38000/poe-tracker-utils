@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {Divider, List, ListItem, Paper, Typography, withStyles} from '@material-ui/core';
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
-import {HideoutListHeader, HideoutListItem, HideoutFilterStatus} from 'components/Hideout';
+import {HideoutFilterStatus, HideoutListHeader, HideoutListItem} from 'components/Hideout';
 import {compose} from 'redux';
 
 const styles = {
@@ -58,7 +58,7 @@ class HideoutList extends React.Component {
             .filter(hideout => applyFilters(filters, hideout))
             .filter(hideout => findText(searchText, hideout));
         return (
-            <Paper>
+            <Paper elevation={2}>
                 <HideoutListHeader title="Hideouts list" filterOptions={this.filterOptions}/>
                 <HideoutFilterStatus filterOptions={this.filterOptions}/>
                 <Divider/>

@@ -13,7 +13,7 @@ import {
 import {buttonStyles, mergeStyles} from 'utils/themes';
 import {compose} from 'redux';
 import {withSnackbar} from 'notistack';
-import {snackbarAction} from 'utils/snackbar';
+import {displaySnackbar} from 'utils/snackbar';
 
 const styles = theme => (mergeStyles({
     root: {
@@ -39,11 +39,7 @@ class IncursionSummary extends React.Component {
         this.searchField = React.createRef();
     }
 
-    displaySnackbar = (message, options = {}) => {
-        this.props.enqueueSnackbar(message, Object.assign({}, {
-            action: snackbarAction(this.props)
-        }, options));
-    };
+    displaySnackbar = () => displaySnackbar(this.props.enqueueSnackbar);
 
     handleValidateInProgress = () => {
         this.props.incursionRoomValidateInProgress();
@@ -61,7 +57,7 @@ class IncursionSummary extends React.Component {
     render() {
         const {classes, searchText} = this.props;
         return (
-            <Paper className={classes.root}>
+            <Paper className={classes.root} elevation={2}>
                 <FormControl fullWidth>
                     <TextField
                         className={classes.margin}

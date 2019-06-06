@@ -35,7 +35,7 @@ class IncursionTieredRooms extends React.Component {
         return (
             <React.Fragment>
                 <Typography variant="h6">Upgradeable rooms</Typography>
-                <Paper className={classes.root}>
+                <Paper className={classes.root} elevation={2}>
                     <List>
                         {
                             roomsKeys.map((roomsKey, idx) => (

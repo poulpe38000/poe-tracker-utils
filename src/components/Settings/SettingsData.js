@@ -5,11 +5,10 @@ import {connect} from 'react-redux';
 import {resetAll} from 'store/main/actions';
 import {incursionResetCompletedData, incursionResetInProgressData} from 'store/incursion/actions';
 import {hideoutResetData} from 'store/hideout/actions';
-import {snackbarAction} from 'utils/snackbar';
 import {compose} from 'redux';
 import {withSnackbar} from 'notistack';
-import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider';
+import {displaySnackbar} from 'utils/snackbar';
 
 const styles = theme => ({
     root: {
@@ -25,11 +24,7 @@ const styles = theme => ({
 
 class SettingsData extends React.Component {
 
-    displaySnackbar = (message, options = {}) => {
-        this.props.enqueueSnackbar(message, Object.assign({}, {
-            action: snackbarAction(this.props)
-        }, options));
-    };
+    displaySnackbar = () => displaySnackbar(this.props.enqueueSnackbar);
 
     handleResetHideouts = () => {
         this.props.hideoutResetData();
@@ -54,9 +49,9 @@ class SettingsData extends React.Component {
     render() {
         const {classes} = this.props;
         return (
-            <Container maxWidth="md">
+            <React.Fragment>
                 <Typography variant="h6">Reset data</Typography>
-                <Paper className={classes.root}>
+                <Paper className={classes.root} elevation={2}>
                     <List disablePadding>
                         <ListItem button disableRipple className={classes.listItem} onClick={this.handleResetHideouts}>
                             <ListItemIcon>
@@ -95,7 +90,7 @@ class SettingsData extends React.Component {
                         </ListItem>
                     </List>
                 </Paper>
-            </Container>
+            </React.Fragment>
         );
     }
 }

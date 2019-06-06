@@ -7,7 +7,7 @@ import {Page} from 'components/pages/layout/Page';
 import Box from '@material-ui/core/Box';
 import {compose} from 'redux';
 import {withSnackbar} from 'notistack';
-import {snackbarAction} from 'utils/snackbar';
+import {displaySnackbar} from 'utils/snackbar';
 
 class ImportPage extends React.Component {
     state = {
@@ -17,11 +17,7 @@ class ImportPage extends React.Component {
         ignoreCompletedIncursions: false,
     };
 
-    displaySnackbar = (message, options = {}) => {
-        this.props.enqueueSnackbar(message, Object.assign({}, {
-            action: snackbarAction(this.props)
-        }, options));
-    };
+    displaySnackbar = () => displaySnackbar(this.props.enqueueSnackbar);
 
     changeImportText = (text) => {
         this.setState({

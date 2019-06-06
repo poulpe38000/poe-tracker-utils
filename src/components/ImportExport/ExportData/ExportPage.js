@@ -8,7 +8,7 @@ import {isWidthDown} from '@material-ui/core/withWidth';
 import {Page} from 'components/pages/layout/Page';
 import Box from '@material-ui/core/Box';
 import {withSnackbar} from 'notistack';
-import {snackbarAction} from 'utils/snackbar';
+import {displaySnackbar} from 'utils/snackbar';
 
 class ExportPage extends React.Component {
     state = {
@@ -17,11 +17,7 @@ class ExportPage extends React.Component {
         includeCompletedIncursions: true,
     };
 
-    displaySnackbar = (message, options = {}) => {
-        this.props.enqueueSnackbar(message, Object.assign({}, {
-            action: snackbarAction(this.props)
-        }, options));
-    };
+    displaySnackbar = () => displaySnackbar(this.props.enqueueSnackbar);
 
     handleToggleSettings = (value) => {
         this.setState((prevState) => ({

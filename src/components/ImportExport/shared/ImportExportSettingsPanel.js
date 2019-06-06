@@ -33,14 +33,14 @@ class ImportExportSettingsPanel extends React.Component {
         const {classes, title, children} = this.props;
         return (
             <div>
-                <ExpansionPanel>
+                <ExpansionPanel elevation={2}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
                         <Typography className={classes.header}>{title}</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.root}>
                         <List disablePadding className={classes.list}>
-                            {children.map(child => (
-                                <React.Fragment>
+                            {children.map((child, key) => (
+                                <React.Fragment key={key}>
                                     <Divider/>
                                     {child}
                                 </React.Fragment>

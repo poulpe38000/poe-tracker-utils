@@ -6,7 +6,7 @@ import Container from '@material-ui/core/Container';
 class HideoutsPage extends React.Component {
     render() {
         return (
-            <Container maxWidth={false}>
+            <Container>
                 <Page>
                     <HideoutList/>
                 </Page>

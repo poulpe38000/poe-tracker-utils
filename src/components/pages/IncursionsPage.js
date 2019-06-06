@@ -6,10 +6,10 @@ import Container from '@material-ui/core/Container';
 class IncursionsPage extends React.Component {
     render() {
         return (
-            <Container maxWidth={false}>
-            <Page>
-                <IncursionList/>
-            </Page>
+            <Container>
+                <Page>
+                    <IncursionList/>
+                </Page>
             </Container>
         );
     }
