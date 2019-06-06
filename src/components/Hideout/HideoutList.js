@@ -11,6 +11,7 @@ const styles = theme => ({
         paddingTop: 0,
     },
     header: {
+        lineHeight: 'inherit',
         top: 64,
         [theme.breakpoints.down('xs')]: {
             top: 56,

@@ -1,13 +1,21 @@
 import React from 'react';
 import {List, Paper, Typography, withStyles} from '@material-ui/core';
-import INCURSION_CONSTANTS from 'constants/incursion.constants';
 import {IncursionRoom, IncursionRoomHeader} from 'components/Incursion';
 import {connect} from 'react-redux';
+import {getBaseRooms} from 'utils/incursion';
+import ListSubheader from '@material-ui/core/ListSubheader';
 
 const styles = theme => ({
     root: {
         marginTop: theme.spacing(2),
         marginBottom: theme.spacing(2),
+    },
+    header: {
+        lineHeight: 'inherit',
+        top: 64,
+        [theme.breakpoints.down('xs')]: {
+            top: 56,
+        }
     },
 });
 
@@ -19,7 +27,7 @@ function findText(text, rooms) {
 function filteredData(rooms, searchText) {
     return Object.keys(rooms)
         .reduce((result, roomsKey) => {
-            if (findText(searchText, rooms[roomsKey])) {
+            if (rooms[roomsKey].length === 1 && findText(searchText, rooms[roomsKey])) {
                 result[roomsKey] = rooms[roomsKey];
             }
             return result;
@@ -27,27 +35,38 @@ function filteredData(rooms, searchText) {
 }
 
 class IncursionBaseRooms extends React.Component {
+    state = {
+        roomsList: getBaseRooms(),
+    };
+
     render() {
         const {classes, searchText} = this.props;
-        const data = filteredData(INCURSION_CONSTANTS.rooms.non_upgradeable, searchText);
-        const roomKeys = Object.keys(data);
+        const {roomsList} = this.state;
+        const data = filteredData(roomsList, searchText);
+        const roomsKeys = Object.keys(data);
         return (
             <React.Fragment>
-                <Typography variant="h6">Non-upgradeable rooms</Typography>
-                <Paper className={classes.root} elevation={2}>
-                    <List>
-                        <IncursionRoomHeader/>
-                        {roomKeys.map((roomKey) => {
-                            const rooms = data[roomKey];
-                            return (
-                                <React.Fragment key={roomKey} >
-                                    {rooms.map((room) => (
-                                        <IncursionRoom key={room.id} roomKey={roomKey} room={room}/>))}
-                                </React.Fragment>
-                            );
-                        })}
-                    </List>
-                </Paper>
+                {roomsKeys.length > 0 && (
+                    <React.Fragment>
+                        <Typography variant="h6">{'Non-upgradeable rooms'}</Typography>
+                        <Paper className={classes.root} elevation={2}>
+                            <List>
+                                <ListSubheader disableGutters className={classes.header}>
+                                    <IncursionRoomHeader/>
+                                </ListSubheader>
+                                {roomsKeys.map((roomsKey) => {
+                                    const rooms = data[roomsKey];
+                                    return (
+                                        <React.Fragment key={roomsKey}>
+                                            {rooms.map((room) => (
+                                                <IncursionRoom key={room.id} roomKey={roomsKey} room={room}/>))}
+                                        </React.Fragment>
+                                    );
+                                })}
+                            </List>
+                        </Paper>
+                    </React.Fragment>
+                )}
             </React.Fragment>
         );
     }

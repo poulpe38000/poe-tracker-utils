@@ -1,5 +1,6 @@
 import React from 'react';
 import {ListItem, Typography, withStyles} from '@material-ui/core';
+import Paper from '@material-ui/core/Paper';
 
 const styles = {
     root: {
@@ -17,6 +18,7 @@ class IncursionRoomHeader extends React.Component {
     render() {
         const {classes} = this.props;
         return (
+            <Paper elevation={0}>
             <ListItem dense disableGutters className={classes.root}>
                 <div className={classes.itemCheckbox}>
                     <Typography variant="caption">Current</Typography>
@@ -26,6 +28,7 @@ class IncursionRoomHeader extends React.Component {
                 </div>
                 <div/>
             </ListItem>
+            </Paper>
         );
     }
 }

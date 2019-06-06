@@ -12,8 +12,10 @@ export function toggleIncursionRoom(roomsList, room) {
 export function validateInProgressIncursion(inProgressRooms, completedRooms) {
     inProgressRooms.forEach(inProgressRoom => {
         const completedRoomIndex = completedRooms.findIndex((room) => room.id === inProgressRoom.id);
-        if (completedRoomIndex !== -1 && completedRooms[completedRoomIndex].tier < inProgressRoom.tier) {
-            completedRooms[completedRoomIndex].tier = inProgressRoom.tier;
+        if (completedRoomIndex !== -1) {
+            if (completedRooms[completedRoomIndex].tier < inProgressRoom.tier) {
+                completedRooms[completedRoomIndex].tier = inProgressRoom.tier;
+            }
         } else {
             completedRooms.push(inProgressRoom);
         }
