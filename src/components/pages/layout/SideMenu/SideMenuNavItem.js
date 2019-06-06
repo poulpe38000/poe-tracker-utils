@@ -3,7 +3,6 @@ import {NavLink} from 'react-router-dom';
 import {ListItem, ListItemText, withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import noop from 'lodash/noop';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 import {IconAvatar, ImageAvatar} from 'components/shared';
@@ -16,14 +15,7 @@ const styles = theme => ({
     active: {
         backgroundColor: theme.palette.primary.light,
         color: theme.palette.primary.contrastText,
-    },
-    tooltip: {
-        margin: 0,
-        marginLeft: theme.spacing(-.5),
-        height: theme.spacing(7),
-        display: 'flex',
-        alignItems: 'center',
-        borderRadius: 0,
+        pointerEvents: 'none',
     },
     avatar: {
         background: 'transparent',
@@ -36,42 +28,40 @@ const MenuNavLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {..
 class SideMenuNavItem extends React.Component {
 
     static propTypes = {
-        to: PropTypes.string.isRequired,
         label: PropTypes.string.isRequired,
         icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
         avatar: PropTypes.oneOf([IconAvatar, ImageAvatar]),
-        exact: PropTypes.bool,
-        showTooltip: PropTypes.bool,
-        onClick: PropTypes.func
+        link: PropTypes.object.isRequired,
+        expanded: PropTypes.bool,
     };
 
     static defaultProps = {
-        exact: false,
-        showTooltip: false,
-        onClick: noop
+        expanded: false,
     };
 
     render() {
-        const {classes, to, label, icon, exact, showTooltip, onClick} = this.props;
-        const MenuAvatar = this.props.avatar;
+        const {classes, link, avatar, label, icon, expanded} = this.props;
+        const tooltipLabel = (<Typography variant="body1">{label}</Typography>);
+        const emptyTooltipLabel = '';
+        const MenuAvatar = avatar;
         return (
-            <ListItem component={MenuNavLink}
-                      className={classes.root}
-                      activeClassName={classes.active}
-                      to={to}
-                      exact={exact}
-                      button
-                      onClick={onClick}
+            <Tooltip title={!expanded ? tooltipLabel : emptyTooltipLabel}
+                     placement="right"
+                     disableTouchListener
+                     enterDelay={300}
             >
-                <Tooltip title={showTooltip ? (
-                    <Typography variant="body1">{label}</Typography>
-                ) : ''} placement="right" classes={{tooltipPlacementRight: classes.tooltip}}>
+                <ListItem component={MenuNavLink}
+                          className={classes.root}
+                          activeClassName={classes.active}
+                          button
+                          {...link}
+                >
                     <ListItemAvatar>
                         <MenuAvatar label={label} value={icon}/>
                     </ListItemAvatar>
-                </Tooltip>
-                <ListItemText primary={label}/>
-            </ListItem>
+                    <ListItemText primary={label}/>
+                </ListItem>
+            </Tooltip>
         );
     }
 }
