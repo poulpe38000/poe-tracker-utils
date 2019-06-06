@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {IncursionRoom} from 'components/Incursion';
 
-class IncursionTieredRoom extends React.Component {
+class IncursionTieredGroup extends React.Component {
     static propTypes = {
         roomKey: PropTypes.string.isRequired,
         rooms: PropTypes.array.isRequired,
@@ -18,4 +18,4 @@ class IncursionTieredRoom extends React.Component {
     }
 }
 
-export default IncursionTieredRoom;
+export default IncursionTieredGroup;

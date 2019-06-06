@@ -19,3 +19,17 @@ export function getTieredRooms() {
         return result;
     }, {});
 }
+
+function findText(text, rooms) {
+    return text === '' || rooms.some(room => room.name.toLowerCase().search(text.toLowerCase()) !== -1);
+}
+
+export function filteredIncursionData(rooms, accept, searchText) {
+    return Object.keys(rooms)
+        .reduce((result, roomsKey) => {
+            if (accept(rooms[roomsKey]) && findText(searchText, rooms[roomsKey])) {
+                result[roomsKey] = rooms[roomsKey];
+            }
+            return result;
+        }, {});
+}
