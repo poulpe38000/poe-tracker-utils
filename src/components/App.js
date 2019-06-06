@@ -31,7 +31,7 @@ class App extends React.Component {
                         hideIconVariant={true}
                         anchorOrigin={{vertical: 'bottom', horizontal: 'center'}}
                         TransitionComponent={Fade}
-                        autoHideDuration={3000}
+                        autoHideDuration={4000}
                         preventDuplicate={true}
                     >
                 <TopBar/>

@@ -8,28 +8,26 @@ class SideMenuNavList extends React.Component {
 
     static propTypes = {
         items: PropTypes.array.isRequired,
-        showTooltip: PropTypes.bool,
+        expanded: PropTypes.bool,
         onClick: PropTypes.func,
     };
 
     static defaultProps = {
-        showTooltip: false,
+        expanded: false,
         onClick: noop
     };
 
     render() {
-        const {showTooltip, onClick, items} = this.props;
+        const {expanded, onClick, items} = this.props;
         return (
             <List component="nav" disablePadding>
                 {items.map((item, key) => (
                         <SideMenuNavItem key={key}
-                                         to={item.to}
+                                         link={{...item.link, onClick: onClick}}
                                          label={item.label}
                                          icon={item.icon}
                                          avatar={item.avatar}
-                                         exact={item.exact}
-                                         showTooltip={showTooltip}
-                                         onClick={onClick}
+                                         expanded={expanded}
                         />
                     )
                 )}

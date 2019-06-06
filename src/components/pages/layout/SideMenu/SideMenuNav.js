@@ -37,7 +37,6 @@ const styles = theme => ({
 });
 
 class SideMenuNav extends React.Component {
-
     static propTypes = {
         expanded: PropTypes.bool.isRequired,
     };
@@ -47,20 +46,19 @@ class SideMenuNav extends React.Component {
         this.items = {
             pages: [
                 {
-                    to: APP_CONSTANTS.routes.root,
+                    link: {to: APP_CONSTANTS.routes.root, exact: true},
                     label: 'Home',
                     icon: homeLogo,
                     avatar: ImageAvatar,
-                    exact: true
                 },
                 {
-                    to: APP_CONSTANTS.routes.hideouts.root,
+                    link: {to: APP_CONSTANTS.routes.hideouts.root},
                     label: 'Hideouts unlocks',
                     icon: hideoutLogo,
                     avatar: ImageAvatar,
                 },
                 {
-                    to: APP_CONSTANTS.routes.incursions.root,
+                    link: {to: APP_CONSTANTS.routes.incursions.root},
                     label: 'Incursion rooms',
                     icon: incursionLogo,
                     avatar: ImageAvatar,
@@ -68,13 +66,13 @@ class SideMenuNav extends React.Component {
             ],
             settings: [
                 {
-                    to: APP_CONSTANTS.routes.import_export.root,
+                    link: {to: APP_CONSTANTS.routes.import_export.root},
                     label: 'Import / Export',
                     icon: ImportExportIcon,
                     avatar: IconAvatar,
                 },
                 {
-                    to: APP_CONSTANTS.routes.settings.root,
+                    link: {to: APP_CONSTANTS.routes.settings.root},
                     label: 'Settings',
                     icon: SettingsIcon,
                     avatar: IconAvatar,
@@ -96,13 +94,13 @@ class SideMenuNav extends React.Component {
                 <div className={classes.root}>
                     <SideMenuNavList
                         items={this.items.pages}
-                        showTooltip={!isWidthDown('xs', width) && !expanded}
+                        expanded={!isWidthDown('xs', width) && expanded}
                         onClick={isWidthDown('xs', width) ? toggleSidenav : noop}
                     />
                     <div className={classes.spacer}/>
                     <SideMenuNavList
                         items={this.items.settings}
-                        showTooltip={!isWidthDown('xs', width) && !expanded}
+                        expanded={!isWidthDown('xs', width) && expanded}
                         onClick={isWidthDown('xs', width) ? toggleSidenav : noop}
                     />
                 </div>
@@ -114,11 +112,11 @@ class SideMenuNav extends React.Component {
 export default compose(
     withRouter,
     connect(
-        state => ({}),
+        null,
         dispatch => ({
             toggleSidenav: () => dispatch(toggleSidenav())
         }),
     ),
     withStyles(styles),
-    withWidth()
+    withWidth(),
 )(SideMenuNav);
