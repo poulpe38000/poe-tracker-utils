@@ -13,6 +13,7 @@ const styles = theme => ({
     root: {
         zIndex: theme.zIndex.appBar - 1,
         top: 64,
+        left: 0,
         right: 'inherit',
         [theme.breakpoints.down('xs')]: {
             top: 56,

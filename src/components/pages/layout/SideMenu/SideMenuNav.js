@@ -17,6 +17,7 @@ import noop from 'lodash/noop';
 import * as PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
 import {IconAvatar, ImageAvatar} from 'components/shared';
+import AppBar from '@material-ui/core/AppBar';
 
 const styles = theme => ({
     root: {
@@ -85,12 +86,13 @@ class SideMenuNav extends React.Component {
         const {classes, toggleSidenav, width, expanded} = this.props;
         return (
             <React.Fragment>
-                <Toolbar className={classes.toolbarSpacer}>
-                    <Typography variant="h6" color="inherit">
-                        {'PoE Tracker Utils'}
-                    </Typography>
-                </Toolbar>
-                <Divider/>
+                <AppBar color="primary" position="static" elevation={isWidthDown('xs', width) ? 1 : 0}>
+                    <Toolbar color="primary" className={classes.toolbarSpacer}>
+                        <Typography variant="h6" color="inherit">
+                            {'PoE Tracker Utils'}
+                        </Typography>
+                    </Toolbar>
+                </AppBar>
                 <div className={classes.root}>
                     <SideMenuNavList
                         items={this.items.pages}
