@@ -1,5 +1,6 @@
 import React from "react";
 import {ImportExportTabContent, ImportExportTabs} from 'components/ImportExport';
+import Container from '@material-ui/core/Container';
 
 class ImportExportPage extends React.Component {
     state = {
@@ -19,10 +20,10 @@ class ImportExportPage extends React.Component {
     render() {
         const {value, tabs} = this.state;
         return (
-            <React.Fragment>
+            <Container maxWidth="lg">
                 <ImportExportTabs tabs={tabs} value={value} onChange={this.handleTabChange}/>
                 <ImportExportTabContent value={value}/>
-            </React.Fragment>
+            </Container>
         );
     }
 }

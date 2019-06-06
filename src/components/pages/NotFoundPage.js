@@ -25,12 +25,12 @@ class NotFoundPage extends React.Component {
     render() {
         const {classes, to} = this.props;
         return (
-            <Container maxWidth={false}>
-            <Page title="Page not found">
-                <div className={classes.root}>
-                    <Button component={Link} to={to}>Back to homepage</Button>
-                </div>
-            </Page>
+            <Container>
+                <Page title="Page not found">
+                    <div className={classes.root}>
+                        <Button component={Link} to={to}>Back to homepage</Button>
+                    </div>
+                </Page>
             </Container>
         );
     }

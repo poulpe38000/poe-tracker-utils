@@ -1,16 +1,27 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {Divider, List, ListItem, Paper, Typography, withStyles} from '@material-ui/core';
+import ListSubheader from '@material-ui/core/ListSubheader';
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
-import {HideoutListHeader, HideoutListItem, HideoutFilterStatus} from 'components/Hideout';
+import {HideoutFilterStatus, HideoutListHeader, HideoutListItem} from 'components/Hideout';
 import {compose} from 'redux';
 
-const styles = {
+const styles = theme => ({
+    list: {
+        paddingTop: 0,
+    },
+    header: {
+        lineHeight: 'inherit',
+        top: 64,
+        [theme.breakpoints.down('xs')]: {
+            top: 56,
+        }
+    },
     notFound: {
         display: 'flex',
         justifyContent: 'center',
     },
-};
+});
 
 const yesNoFilter = {
     true: 'Yes',
@@ -58,11 +69,15 @@ class HideoutList extends React.Component {
             .filter(hideout => applyFilters(filters, hideout))
             .filter(hideout => findText(searchText, hideout));
         return (
-            <Paper>
-                <HideoutListHeader title="Hideouts list" filterOptions={this.filterOptions}/>
-                <HideoutFilterStatus filterOptions={this.filterOptions}/>
-                <Divider/>
-                <List>
+            <Paper elevation={2}>
+                <List className={classes.list}>
+                    <ListSubheader disableGutters className={classes.header}>
+                        <Paper elevation={0}>
+                            <HideoutListHeader title="Hideouts list" filterOptions={this.filterOptions}/>
+                            <HideoutFilterStatus filterOptions={this.filterOptions}/>
+                            <Divider/>
+                        </Paper>
+                    </ListSubheader>
                     {filteredData.length === 0 && (
                         <ListItem dense className={classes.notFound}>
                             <Typography variant="h6"><em>No Hideouts found</em></Typography>

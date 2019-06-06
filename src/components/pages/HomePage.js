@@ -5,7 +5,7 @@ import Container from '@material-ui/core/Container';
 class HomePage extends React.Component {
     render() {
         return (
-            <Container maxWidth={false}>
+            <Container>
                 <Page title="Welcome to PoE Tracker Utils"/>
             </Container>
         );

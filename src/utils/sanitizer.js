@@ -41,10 +41,7 @@ export function sanitizeTrackerData(data) {
                 || (data.incursion.hasOwnProperty('in_progress') && Array.isArray(data.incursion.in_progress))
             )
         ) {
-            const availableRooms = Object.assign({},
-                getRoomsTierBoundaries(INCURSION_CONSTANTS.rooms.non_upgradeable),
-                getRoomsTierBoundaries(INCURSION_CONSTANTS.rooms.upgradeable),
-            );
+            const availableRooms = getRoomsTierBoundaries(INCURSION_CONSTANTS.rooms);
             sanitized = {...sanitized, incursion: {}};
             if (data.incursion.hasOwnProperty('completed') && Array.isArray(data.incursion.completed)) {
                 // Sanitize completed incursion rooms array
