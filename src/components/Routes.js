@@ -1,6 +1,14 @@
 import React from 'react';
 import {Route, Switch, withRouter} from 'react-router-dom';
-import {HideoutsPage, HomePage, ImportExportPage, IncursionsPage, NotFoundPage, SettingsPage} from 'components/pages';
+import {
+    FilterEditorPage,
+    HideoutsPage,
+    HomePage,
+    ImportExportPage,
+    IncursionsPage,
+    NotFoundPage,
+    SettingsPage
+} from 'components/pages';
 import APP_CONSTANTS from 'constants/app.constants';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import {compose} from 'redux';
@@ -27,6 +35,7 @@ class Routes extends React.Component {
             {path: APP_CONSTANTS.routes.root, component: HomePage, exact: true},
             {path: APP_CONSTANTS.routes.hideouts.root, component: HideoutsPage},
             {path: APP_CONSTANTS.routes.incursions.root, component: IncursionsPage},
+            {path: APP_CONSTANTS.routes.filters.root, component: FilterEditorPage},
             {path: APP_CONSTANTS.routes.import_export.root, component: ImportExportPage},
             {path: APP_CONSTANTS.routes.settings.root, component: SettingsPage},
             {component: NotFoundPage},

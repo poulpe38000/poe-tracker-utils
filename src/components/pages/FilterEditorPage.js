@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import {withStyles} from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import APP_CONSTANTS from 'constants/app.constants';
+import Typography from '@material-ui/core/Typography';
 
 const styles = theme => ({
     root: {
@@ -13,13 +14,17 @@ const styles = theme => ({
     }
 });
 
-class NotFoundPage extends React.Component {
+class FilterEditorPage extends React.Component {
+
     render() {
         const {classes} = this.props;
         return (
             <Container>
-                <Page title="Page not found">
+                <Page title="Filter Editor">
                     <div className={classes.root}>
+                        <Typography variant={'h6'}>This section is under construction.</Typography>
+                    <div className={classes.root}>
+                    </div>
                         <Button variant={'outlined'} component={Link} to={APP_CONSTANTS.routes.root} size={'large'}>
                             {'Back to homepage'}
                         </Button>
@@ -30,4 +35,4 @@ class NotFoundPage extends React.Component {
     }
 }
 
-export default withStyles(styles)(NotFoundPage);
+export default withStyles(styles)(FilterEditorPage);

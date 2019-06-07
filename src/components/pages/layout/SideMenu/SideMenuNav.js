@@ -6,6 +6,7 @@ import {SideMenuNavList} from 'components/pages/layout/SideMenu';
 import homeLogo from './home_logo.png';
 import hideoutLogo from './hideout_logo.png';
 import incursionLogo from './incursion_logo.png';
+import filterLogo from './filter_logo.png';
 import APP_CONSTANTS from 'constants/app.constants';
 import Toolbar from '@material-ui/core/Toolbar';
 import {compose} from 'redux';
@@ -61,6 +62,12 @@ class SideMenuNav extends React.Component {
                     link: {to: APP_CONSTANTS.routes.incursions.root},
                     label: 'Incursion rooms',
                     icon: incursionLogo,
+                    avatar: ImageAvatar,
+                },
+                {
+                    link: {to: APP_CONSTANTS.routes.filters.root},
+                    label: 'Filter editor',
+                    icon: filterLogo,
                     avatar: ImageAvatar,
                 },
             ],
