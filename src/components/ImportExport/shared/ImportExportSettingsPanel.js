@@ -7,8 +7,10 @@ import Typography from '@material-ui/core/Typography';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Divider from '@material-ui/core/Divider';
+import TuneIcon from '@material-ui/icons/Tune';
+import {buttonStyles, mergeStyles} from 'utils/themes';
 
-const styles = theme => ({
+const styles = theme => (mergeStyles({
     root: {
         padding: 0,
     },
@@ -18,7 +20,7 @@ const styles = theme => ({
     list: {
         width: '100%',
     },
-});
+}, buttonStyles(theme)));
 
 class ImportExportSettingsPanel extends React.Component {
     static propTypes = {
@@ -35,6 +37,7 @@ class ImportExportSettingsPanel extends React.Component {
             <div>
                 <ExpansionPanel elevation={2}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
+                        <TuneIcon className={classes.leftIcon}/>
                         <Typography className={classes.header}>{title}</Typography>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.root}>

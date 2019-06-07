@@ -164,14 +164,8 @@ class HideoutListFilter extends React.Component {
                     open={showPopper}
                     anchorEl={anchorEl}
                     onClose={this.handleOpenFilterPopper}
-                    anchorOrigin={{
-                        vertical: 'bottom',
-                        horizontal: 'right',
-                    }}
-                    transformOrigin={{
-                        vertical: 'top',
-                        horizontal: 'right',
-                    }}
+                    anchorOrigin={{vertical: 'bottom', horizontal: 'right',}}
+                    transformOrigin={{vertical: 'top', horizontal: 'right',}}
                     elevation={24}
                 >
                     <Paper className={classes.popper} elevation={0}>
@@ -189,12 +183,15 @@ class HideoutListFilter extends React.Component {
                             }
                             <GridListTile className={classes.gridListActions} cols={2}>
                                 <div className={classes.actions}>
-                                    <Button className={classes.button} onClick={this.handleResetFilters}>
+                                    <Button className={classes.button} size={'large'}
+                                            onClick={this.handleResetFilters}>
                                         <SettingsBackupRestoreIcon color="error" className={classes.leftIcon}/>
                                         <Typography variant="button" color="error">Reset filters</Typography>
                                     </Button>
-                                    <Button variant="outlined" className={classes.button}
-                                            onClick={this.handleOpenFilterPopper}>Close</Button>
+                                    <Button variant="outlined" className={classes.button} size={'large'}
+                                            onClick={this.handleOpenFilterPopper}>
+                                        {'Close'}
+                                    </Button>
                                 </div>
                             </GridListTile>
                         </GridList>

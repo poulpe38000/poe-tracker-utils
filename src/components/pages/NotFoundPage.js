@@ -28,7 +28,7 @@ class NotFoundPage extends React.Component {
             <Container>
                 <Page title="Page not found">
                     <div className={classes.root}>
-                        <Button component={Link} to={to}>Back to homepage</Button>
+                        <Button component={Link} to={to} size={'large'}>Back to homepage</Button>
                     </div>
                 </Page>
             </Container>

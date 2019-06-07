@@ -7,7 +7,6 @@ import homeLogo from './home_logo.png';
 import hideoutLogo from './hideout_logo.png';
 import incursionLogo from './incursion_logo.png';
 import APP_CONSTANTS from 'constants/app.constants';
-import Divider from '@material-ui/core/Divider';
 import Toolbar from '@material-ui/core/Toolbar';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
