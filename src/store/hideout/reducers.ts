@@ -1,4 +1,4 @@
-import INITIAL_STATE from 'store/hideout/state';
+import INITIAL_STATE, {IHideoutState} from 'store/hideout/state';
 import {
     HIDEOUT_RESET_DATA,
     HIDEOUT_RESET_FILTERS,
@@ -9,10 +9,11 @@ import {
 import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL, SET_ALL} from 'store/main/actions';
 import {clearObj, getObj, HIDEOUT_UNLOCKED_STORAGE, setObj} from 'utils/storage';
 import {importHideoutData, toggleUnlockedHideout} from 'store/hideout/functions';
+import {AnyAction} from 'redux';
 
 
-function hideoutReducer(state = INITIAL_STATE, action) {
-    let unlocked = state.unlocked.slice();
+function hideoutReducer(state: IHideoutState = INITIAL_STATE, action: AnyAction): IHideoutState {
+    let unlocked: string[] = state.unlocked.slice();
     switch (action.type) {
         case HIDEOUT_TOGGLE_UNLOCKED:
             unlocked = toggleUnlockedHideout(unlocked, action.payload);
@@ -42,7 +43,7 @@ function hideoutReducer(state = INITIAL_STATE, action) {
         case RESET_ALL:
             return {
                 ...state,
-                unlocked: clearObj(HIDEOUT_UNLOCKED_STORAGE, []),
+                unlocked: clearObj<string[]>(HIDEOUT_UNLOCKED_STORAGE, []),
             };
         case SET_ALL:
             return {
@@ -53,7 +54,7 @@ function hideoutReducer(state = INITIAL_STATE, action) {
             try {
                 return {
                     ...state,
-                    unlocked: getObj(HIDEOUT_UNLOCKED_STORAGE, []),
+                    unlocked: getObj<string[]>(HIDEOUT_UNLOCKED_STORAGE, []),
                 };
             } catch (e) {
                 return state;

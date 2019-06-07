@@ -1,8 +1,8 @@
-import INITIAL_STATE from 'store/main/state';
+import INITIAL_STATE, {IMainState} from 'store/main/state';
 import {INITIALIZE_APP, TOGGLE_SIDENAV, TOGGLE_THEME} from 'store/main/actions';
 import {getUseLightThemeSettings, toggleUseLightThemeSettings} from 'utils/storage';
 
-function mainReducer(state = INITIAL_STATE, action) {
+function mainReducer(state: IMainState = INITIAL_STATE, action: any): IMainState {
     switch (action.type) {
         case TOGGLE_SIDENAV:
             return {

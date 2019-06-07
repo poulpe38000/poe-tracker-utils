@@ -1,10 +1,11 @@
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import INCURSION_CONSTANTS from 'constants/incursion.constants';
+import {IIncursionStateRoom} from '../store/incursion/state';
 
-function getRoomsTierBoundaries(rooms) {
-    const roomsKeys = Object.keys(rooms);
-    return roomsKeys.reduce((res, key) => {
-        const roomTiers = rooms[key].map(room => room.tier);
+function getRoomsTierBoundaries(rooms: any): any {
+    const roomsKeys: string[] = Object.keys(rooms);
+    return roomsKeys.reduce((res: any, key: string) => {
+        const roomTiers = rooms[key].map((room: any) => room.tier);
         res[key] = {
             min: Math.min(...roomTiers),
             max: Math.max(...roomTiers)
@@ -13,19 +14,19 @@ function getRoomsTierBoundaries(rooms) {
     }, {});
 }
 
-function sanitizeHideouts(hideouts) {
-    const availableHideouts = HIDEOUT_CONSTANTS.hideouts.map(hideout => hideout.id);
+function sanitizeHideouts(hideouts: string[]): string[] {
+    const availableHideouts: string[] = HIDEOUT_CONSTANTS.hideouts.map((hideout: any) => hideout.id);
     return hideouts.filter(hideout => availableHideouts.find(item => item === hideout));
 }
 
-function sanitizeRooms(rooms, availableRooms) {
+function sanitizeRooms(rooms: IIncursionStateRoom[], availableRooms: any): IIncursionStateRoom[] {
     return rooms
-        .filter(room => !!availableRooms[room.id] && availableRooms[room.id].min <= room.tier)
-        .map(room => ({id: room.id, tier: Math.min(room.tier, availableRooms[room.id].max)}));
+        .filter((room: IIncursionStateRoom) => !!availableRooms[room.id] && availableRooms[room.id].min <= room.tier)
+        .map((room: IIncursionStateRoom) => ({id: room.id, tier: Math.min(room.tier, availableRooms[room.id].max)}));
 }
 
-export function sanitizeTrackerData(data) {
-    let sanitized = {};
+export function sanitizeTrackerData(data: any): any {
+    let sanitized: any = {};
     if (typeof data === 'object') {
         if (
             data.hasOwnProperty('hideout')
@@ -41,7 +42,7 @@ export function sanitizeTrackerData(data) {
                 || (data.incursion.hasOwnProperty('in_progress') && Array.isArray(data.incursion.in_progress))
             )
         ) {
-            const availableRooms = getRoomsTierBoundaries(INCURSION_CONSTANTS.rooms);
+            const availableRooms: any = getRoomsTierBoundaries(INCURSION_CONSTANTS.rooms);
             sanitized = {...sanitized, incursion: {}};
             if (data.incursion.hasOwnProperty('completed') && Array.isArray(data.incursion.completed)) {
                 // Sanitize completed incursion rooms array

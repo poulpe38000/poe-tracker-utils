@@ -1,4 +1,4 @@
-import INITIAL_STATE from 'store/incursion/state';
+import INITIAL_STATE, {IIncursionState, IIncursionStateRoom} from 'store/incursion/state';
 import {
     INCURSION_RESET_COMPLETED_DATA,
     INCURSION_RESET_IN_PROGRESS_DATA,
@@ -10,11 +10,12 @@ import {
 import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL, SET_ALL} from 'store/main/actions';
 import {clearObj, getObj, INCURSION_COMPLETED_STORAGE, INCURSION_IN_PROGRESS_STORAGE, setObj} from 'utils/storage';
 import {importIncursionData, toggleIncursionRoom, validateInProgressIncursion} from 'store/incursion/functions';
+import {AnyAction} from 'redux';
 
 
-function incursionReducer(state = INITIAL_STATE, action) {
-    let completedRooms = state.completed.slice();
-    let inProgressRooms = state.in_progress.slice();
+function incursionReducer(state: IIncursionState = INITIAL_STATE, action: AnyAction): IIncursionState {
+    let completedRooms: IIncursionStateRoom[] = state.completed.slice();
+    let inProgressRooms: IIncursionStateRoom[] = state.in_progress.slice();
     switch (action.type) {
         case INCURSION_ROOM_TOGGLE_IN_PROGRESS:
             inProgressRooms = toggleIncursionRoom(inProgressRooms, action.payload);
@@ -33,7 +34,7 @@ function incursionReducer(state = INITIAL_STATE, action) {
             return {
                 ...state,
                 completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
-                in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
+                in_progress: clearObj<IIncursionStateRoom[]>(INCURSION_IN_PROGRESS_STORAGE, []),
             };
         case INCURSION_UPDATE_SEARCH_TEXT:
             return {
@@ -44,8 +45,8 @@ function incursionReducer(state = INITIAL_STATE, action) {
             try {
                 return {
                     ...state,
-                    completed: getObj(INCURSION_COMPLETED_STORAGE, []),
-                    in_progress: getObj(INCURSION_IN_PROGRESS_STORAGE, []),
+                    completed: getObj<IIncursionStateRoom[]>(INCURSION_COMPLETED_STORAGE, []),
+                    in_progress: getObj<IIncursionStateRoom[]>(INCURSION_IN_PROGRESS_STORAGE, []),
                 };
             } catch (e) {
                 return {...state};
@@ -67,18 +68,18 @@ function incursionReducer(state = INITIAL_STATE, action) {
         case INCURSION_RESET_IN_PROGRESS_DATA:
             return {
                 ...state,
-                in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
+                in_progress: clearObj<IIncursionStateRoom[]>(INCURSION_IN_PROGRESS_STORAGE, []),
             };
         case INCURSION_RESET_COMPLETED_DATA:
             return {
                 ...state,
-                completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
+                completed: clearObj<IIncursionStateRoom[]>(INCURSION_COMPLETED_STORAGE, []),
             };
         case RESET_ALL:
             return {
                 ...state,
-                in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
-                completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
+                in_progress: clearObj<IIncursionStateRoom[]>(INCURSION_IN_PROGRESS_STORAGE, []),
+                completed: clearObj<IIncursionStateRoom[]>(INCURSION_COMPLETED_STORAGE, []),
             };
         case SET_ALL:
             return {

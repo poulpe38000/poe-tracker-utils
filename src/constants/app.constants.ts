@@ -1,4 +1,4 @@
-const APP_CONSTANTS = {
+const APP_CONSTANTS: any = {
     basename: process.env.PUBLIC_URL,
     drawerWidth: 240,
     routes: {

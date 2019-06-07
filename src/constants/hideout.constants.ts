@@ -1,4 +1,4 @@
-const HIDEOUT_CONSTANTS = {
+const HIDEOUT_CONSTANTS: any = {
     hideouts: [
         {
             id: 'backstreet',

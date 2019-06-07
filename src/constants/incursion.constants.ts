@@ -1,4 +1,4 @@
-const INCURSION_CONSTANTS = {
+const INCURSION_CONSTANTS: any = {
         rank: [
             {rank: 1, min: 0, max: 14},
             {rank: 2, min: 15, max: 29},

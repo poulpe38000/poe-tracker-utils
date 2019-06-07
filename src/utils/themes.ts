@@ -1,6 +1,12 @@
 import {createMuiTheme} from '@material-ui/core';
 import {blueGrey, pink} from '@material-ui/core/colors';
 
+declare module '@material-ui/core/styles/createPalette' {
+    // augment background palette with popper background
+    interface TypeBackground {
+        popper?: string
+    }
+}
 
 export const darkTheme = createMuiTheme({
     palette: {
@@ -26,7 +32,7 @@ export const lightTheme = createMuiTheme({
     },
 });
 
-export const buttonStyles = (theme) => ({
+export const buttonStyles = (theme: any) => ({
     button: {
         marginTop: theme.spacing(1),
         marginBottom: theme.spacing(1),
@@ -42,11 +48,11 @@ export const buttonStyles = (theme) => ({
     rightIcon: {marginLeft: theme.spacing(1)},
 });
 
-export const mergeStyles = (...styles) => {
+export const mergeStyles = (...styles: any) => {
     return Object.assign({}, ...styles);
 };
 
-export const transitionFor = (theme, props) => {
+export const transitionFor = (theme: any, props: string | string[]) => {
     return theme.transitions.create(props, {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
