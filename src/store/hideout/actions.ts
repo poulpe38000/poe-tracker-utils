@@ -1,27 +1,17 @@
 import {AnyAction} from 'redux';
 
-export const HIDEOUT_TOGGLE_UNLOCKED = 'HIDEOUT_TOGGLE_UNLOCKED';
-export const HIDEOUT_UPDATE_SEARCH_TEXT = 'HIDEOUT_UPDATE_SEARCH_TEXT';
-export const HIDEOUT_UPDATE_FILTERS = 'HIDEOUT_UPDATE_FILTERS';
-export const HIDEOUT_RESET_FILTERS = 'HIDEOUT_RESET_FILTERS';
-export const HIDEOUT_RESET_DATA = 'HIDEOUT_RESET_DATA';
-
-export function hideoutToggleUnlocked(payload: any): AnyAction {
-    return {type: HIDEOUT_TOGGLE_UNLOCKED, payload};
+export enum ACTION_TYPE {
+    TOGGLE_UNLOCKED = 'HIDEOUT_TOGGLE_UNLOCKED',
+    UPDATE_SEARCH_TEXT = 'HIDEOUT_UPDATE_SEARCH_TEXT',
+    UPDATE_FILTERS = 'HIDEOUT_UPDATE_FILTERS',
+    RESET_FILTERS = 'HIDEOUT_RESET_FILTERS',
+    RESET_DATA = 'HIDEOUT_RESET_DATA',
 }
 
-export function hideoutUpdateSearchText(payload: any): AnyAction {
-    return {type: HIDEOUT_UPDATE_SEARCH_TEXT, payload};
-}
-
-export function hideoutUpdateFilters(payload: any): AnyAction {
-    return {type: HIDEOUT_UPDATE_FILTERS, payload};
-}
-
-export function hideoutResetFilters(): AnyAction {
-    return {type: HIDEOUT_RESET_FILTERS};
-}
-
-export function hideoutResetData(): AnyAction {
-    return {type: HIDEOUT_RESET_DATA};
-}
+export const hideoutActions = {
+    toggleUnlocked: (payload: string): AnyAction => ({type: ACTION_TYPE.TOGGLE_UNLOCKED, payload}),
+    updateSearchText: (payload: string): AnyAction => ({type: ACTION_TYPE.UPDATE_SEARCH_TEXT, payload}),
+    updateFilters: (payload: any): AnyAction => ({type: ACTION_TYPE.UPDATE_FILTERS, payload}),
+    resetFilters: (): AnyAction => ({type: ACTION_TYPE.RESET_FILTERS}),
+    resetData: (): AnyAction => ({type: ACTION_TYPE.RESET_DATA}),
+};

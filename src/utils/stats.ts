@@ -2,7 +2,7 @@ import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import INCURSION_CONSTANTS from 'constants/incursion.constants';
 import countBy from 'lodash/countBy';
 import {getBaseRooms, getTieredRooms} from 'utils/incursion';
-import {IIncursionStateRoom} from '../store/incursion/state';
+import {IIncursionRoom} from 'interfaces/incursion';
 
 export function getHideoutMainStats(unlockedHideouts: string[]): any {
     return {
@@ -31,7 +31,7 @@ export function getHideoutByRarityStats(unlockedHideouts: string[]): any {
         }, {});
 }
 
-export function getIncursionStats(inProgressRooms: IIncursionStateRoom[], completedRooms: IIncursionStateRoom[]) {
+export function getIncursionStats(inProgressRooms: IIncursionRoom[], completedRooms: IIncursionRoom[]) {
     const baseRooms: any = getBaseRooms();
     const tieredRooms: any = getTieredRooms();
 
@@ -40,18 +40,18 @@ export function getIncursionStats(inProgressRooms: IIncursionStateRoom[], comple
     const totalTieredRooms: number = Object.keys(tieredRooms)
         .reduce((result: any[], key: string) => ([...result, ...tieredRooms[key]]), []).length;
 
-    const inProgressFiltered: IIncursionStateRoom[] = inProgressRooms.filter(room => INCURSION_CONSTANTS.rooms[room.id]);
-    const completedFiltered: IIncursionStateRoom[] = completedRooms.filter(room => INCURSION_CONSTANTS.rooms[room.id]);
+    const inProgressFiltered: IIncursionRoom[] = inProgressRooms.filter(room => INCURSION_CONSTANTS.rooms[room.id]);
+    const completedFiltered: IIncursionRoom[] = completedRooms.filter(room => INCURSION_CONSTANTS.rooms[room.id]);
 
-    const totalInProgress: number = inProgressFiltered.reduce((result: number, room: IIncursionStateRoom) => {
+    const totalInProgress: number = inProgressFiltered.reduce((result: number, room: IIncursionRoom) => {
         return result + INCURSION_CONSTANTS.rooms[room.id].filter((item: any) => item.tier <= room.tier).length;
     }, 0);
-    const totalCompleted: number = completedFiltered.reduce((result: number, room: IIncursionStateRoom) => {
+    const totalCompleted: number = completedFiltered.reduce((result: number, room: IIncursionRoom) => {
         return result + INCURSION_CONSTANTS.rooms[room.id].filter((item: any) => item.tier <= room.tier).length;
     }, 0);
 
-    let futureFiltered = completedFiltered.reduce((result: IIncursionStateRoom[], room: IIncursionStateRoom) => {
-        const inProgressOverride: IIncursionStateRoom | undefined = inProgressFiltered.find((item: IIncursionStateRoom) => item.id === room.id && item.tier > room.tier);
+    let futureFiltered = completedFiltered.reduce((result: IIncursionRoom[], room: IIncursionRoom) => {
+        const inProgressOverride: IIncursionRoom | undefined = inProgressFiltered.find((item: IIncursionRoom) => item.id === room.id && item.tier > room.tier);
         if (!!inProgressOverride) {
             return [...result, inProgressOverride];
         }
@@ -59,7 +59,7 @@ export function getIncursionStats(inProgressRooms: IIncursionStateRoom[], comple
     }, []);
     futureFiltered = [
         ...futureFiltered,
-        ...inProgressFiltered.filter((item: IIncursionStateRoom) => completedFiltered.findIndex(compl => compl.id === item.id) === -1)
+        ...inProgressFiltered.filter((item: IIncursionRoom) => completedFiltered.findIndex(compl => compl.id === item.id) === -1)
     ];
     const totalFuture: number = futureFiltered.reduce((result, room) => {
         return result + INCURSION_CONSTANTS.rooms[room.id].filter((item: any) => item.tier <= room.tier).length;

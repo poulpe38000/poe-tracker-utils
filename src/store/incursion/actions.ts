@@ -1,32 +1,20 @@
 import {AnyAction} from 'redux';
+import {IIncursionRoom} from 'interfaces/incursion';
 
-export const INCURSION_ROOM_TOGGLE_IN_PROGRESS = 'INCURSION_ROOM_TOGGLE_IN_PROGRESS';
-export const INCURSION_ROOM_TOGGLE_COMPLETED = 'INCURSION_ROOM_TOGGLE_COMPLETED';
-export const INCURSION_ROOM_VALIDATE_IN_PROGRESS = 'INCURSION_ROOM_VALIDATE_IN_PROGRESS';
-export const INCURSION_UPDATE_SEARCH_TEXT = 'INCURSION_UPDATE_SEARCH_TEXT';
-export const INCURSION_RESET_IN_PROGRESS_DATA = 'INCURSION_RESET_IN_PROGRESS_DATA';
-export const INCURSION_RESET_COMPLETED_DATA = 'INCURSION_RESET_COMPLETED_DATA';
-
-export function incursionRoomToggleInProgress(id: string, tier: number): AnyAction {
-    return {type: INCURSION_ROOM_TOGGLE_IN_PROGRESS, payload: {id, tier}};
+export enum ACTION_TYPE {
+    TOGGLE_IN_PROGRESS = 'INCURSION_ROOM_TOGGLE_IN_PROGRESS',
+    TOGGLE_COMPLETED = 'INCURSION_ROOM_TOGGLE_COMPLETED',
+    VALIDATE_IN_PROGRESS = 'INCURSION_ROOM_VALIDATE_IN_PROGRESS',
+    UPDATE_SEARCH_TEXT = 'INCURSION_UPDATE_SEARCH_TEXT',
+    RESET_IN_PROGRESS_DATA = 'INCURSION_RESET_IN_PROGRESS_DATA',
+    RESET_COMPLETED_DATA = 'INCURSION_RESET_COMPLETED_DATA',
 }
 
-export function incursionRoomToggleCompleted(id: string, tier: number): AnyAction {
-    return {type: INCURSION_ROOM_TOGGLE_COMPLETED, payload: {id, tier}};
-}
-
-export function incursionRoomValidateInProgress(): AnyAction {
-    return {type: INCURSION_ROOM_VALIDATE_IN_PROGRESS};
-}
-
-export function incursionUpdateSearchText(payload: string): AnyAction {
-    return {type: INCURSION_UPDATE_SEARCH_TEXT, payload};
-}
-
-export function incursionResetInProgressData(): AnyAction {
-    return {type: INCURSION_RESET_IN_PROGRESS_DATA};
-}
-
-export function incursionResetCompletedData(): AnyAction {
-    return {type: INCURSION_RESET_COMPLETED_DATA};
-}
+export const incursionActions = {
+    toggleInProgress: (payload: IIncursionRoom): AnyAction => ({type: ACTION_TYPE.TOGGLE_IN_PROGRESS, payload}),
+    toggleCompleted: (payload: IIncursionRoom): AnyAction => ({type: ACTION_TYPE.TOGGLE_COMPLETED, payload}),
+    validateInProgress: (): AnyAction => ({type: ACTION_TYPE.VALIDATE_IN_PROGRESS}),
+    updateSearchText: (payload: string): AnyAction => ({type: ACTION_TYPE.UPDATE_SEARCH_TEXT, payload}),
+    resetInProgressData: (): AnyAction => ({type: ACTION_TYPE.RESET_IN_PROGRESS_DATA}),
+    resetCompletedData: (): AnyAction => ({type: ACTION_TYPE.RESET_COMPLETED_DATA}),
+};

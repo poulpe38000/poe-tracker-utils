@@ -18,7 +18,7 @@ import {
 } from '@material-ui/core';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
-import {hideoutResetFilters, hideoutUpdateFilters} from 'store/hideout/actions';
+import {hideoutActions} from 'store/hideout/actions';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 import * as PropTypes from 'prop-types';
 import {compose} from 'redux';
@@ -78,14 +78,14 @@ class HideoutListFilter extends React.Component {
 
 
     handleChange = filterKey => event => {
-        this.props.hideoutUpdateFilters({
+        this.props.updateFilters({
             [filterKey]: event.target.value
         });
     };
 
 
     handleResetFilters = () => {
-        this.props.hideoutResetFilters();
+        this.props.resetFilters();
     };
 
     renderDropDown(filter, index, fallback = '') {
@@ -207,10 +207,10 @@ export default compose(
         state => ({
             filters: state.hideout.filters,
         }),
-        dispatch => ({
-            hideoutUpdateFilters: filters => (dispatch(hideoutUpdateFilters(filters))),
-            hideoutResetFilters: () => (dispatch(hideoutResetFilters())),
-        })
+        {
+            updateFilters: hideoutActions.updateFilters,
+            resetFilters: hideoutActions.resetFilters,
+        }
     ),
     withStyles(styles)
 )(HideoutListFilter);

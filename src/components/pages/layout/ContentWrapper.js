@@ -45,7 +45,7 @@ class ContentWrapper extends React.Component {
 export default compose(
     connect(
         state => ({
-            sidenavExpanded: state.main.sidenavExpanded,
+            sidenavExpanded: state.sidenavExpanded,
         }),
     ),
     withStyles(styles),

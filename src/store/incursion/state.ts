@@ -1,18 +1,7 @@
-export interface IIncursionStateRoom {
-    id: string;
-    tier: number;
-}
+import {IIncursionRoom} from 'interfaces/incursion';
 
 export interface IIncursionState {
     searchText: string,
-    completed: IIncursionStateRoom[],
-    in_progress: IIncursionStateRoom[],
+    completed: IIncursionRoom[],
+    in_progress: IIncursionRoom[],
 }
-
-const INITIAL_STATE: IIncursionState = {
-    searchText: '',
-    completed: [],
-    in_progress: [],
-};
-
-export default INITIAL_STATE;

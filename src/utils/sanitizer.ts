@@ -1,6 +1,6 @@
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import INCURSION_CONSTANTS from 'constants/incursion.constants';
-import {IIncursionStateRoom} from '../store/incursion/state';
+import {IIncursionRoom} from 'interfaces/incursion';
 
 function getRoomsTierBoundaries(rooms: any): any {
     const roomsKeys: string[] = Object.keys(rooms);
@@ -19,10 +19,10 @@ function sanitizeHideouts(hideouts: string[]): string[] {
     return hideouts.filter(hideout => availableHideouts.find(item => item === hideout));
 }
 
-function sanitizeRooms(rooms: IIncursionStateRoom[], availableRooms: any): IIncursionStateRoom[] {
+function sanitizeRooms(rooms: IIncursionRoom[], availableRooms: any): IIncursionRoom[] {
     return rooms
-        .filter((room: IIncursionStateRoom) => !!availableRooms[room.id] && availableRooms[room.id].min <= room.tier)
-        .map((room: IIncursionStateRoom) => ({id: room.id, tier: Math.min(room.tier, availableRooms[room.id].max)}));
+        .filter((room: IIncursionRoom) => !!availableRooms[room.id] && availableRooms[room.id].min <= room.tier)
+        .map((room: IIncursionRoom) => ({id: room.id, tier: Math.min(room.tier, availableRooms[room.id].max)}));
 }
 
 export function sanitizeTrackerData(data: any): any {

@@ -2,7 +2,7 @@ import React from 'react';
 import clsx from 'clsx';
 import {connect} from 'react-redux';
 import {Drawer, withStyles, withWidth} from '@material-ui/core';
-import {toggleSidenav} from 'store/main/actions';
+import {rootActions} from 'store/actions';
 import {compose} from 'redux';
 import {SideMenuExpander, SideMenuNav} from 'components/pages/layout/SideMenu';
 import {isWidthDown, isWidthUp} from '@material-ui/core/withWidth';
@@ -71,11 +71,11 @@ class SideMenu extends React.Component {
 export default compose(
     connect(
         state => ({
-            sidenavExpanded: state.main.sidenavExpanded,
+            sidenavExpanded: state.sidenavExpanded,
         }),
-        dispatch => ({
-            toggleSidenav: () => dispatch(toggleSidenav())
-        }),
+        {
+            toggleSidenav: rootActions.toggleSidenav,
+        },
     ),
     withStyles(styles),
     withWidth()

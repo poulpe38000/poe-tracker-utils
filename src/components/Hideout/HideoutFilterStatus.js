@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {hideoutUpdateFilters} from 'store/hideout/actions';
+import {hideoutActions} from 'store/hideout/actions';
 import {Chip, withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 import {compose} from 'redux';
@@ -27,11 +27,11 @@ class HideoutFilterStatus extends React.Component {
         switch (type) {
             case 'string':
                 filters[key] = '';
-                this.props.hideoutUpdateFilters(filters);
+                this.props.updateFilters(filters);
                 break;
             case 'array':
                 filters[key] = filters[key].filter(item => item !== value);
-                this.props.hideoutUpdateFilters(filters);
+                this.props.updateFilters(filters);
                 break;
             default:
                 break;
@@ -92,9 +92,9 @@ export default compose(
         state => ({
             filters: state.hideout.filters,
         }),
-        dispatch => ({
-            hideoutUpdateFilters: filters => (dispatch(hideoutUpdateFilters(filters))),
-        })
+        {
+            updateFilters: hideoutActions.updateFilters,
+        }
     ),
     withStyles(styles)
 )(HideoutFilterStatus);

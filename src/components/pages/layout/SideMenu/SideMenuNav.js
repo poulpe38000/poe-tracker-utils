@@ -11,7 +11,7 @@ import APP_CONSTANTS from 'constants/app.constants';
 import Toolbar from '@material-ui/core/Toolbar';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import {toggleSidenav} from 'store/main/actions';
+import {rootActions} from 'store/actions';
 import {isWidthDown} from '@material-ui/core/withWidth';
 import noop from 'lodash/noop';
 import * as PropTypes from 'prop-types';
@@ -121,9 +121,9 @@ export default compose(
     withRouter,
     connect(
         null,
-        dispatch => ({
-            toggleSidenav: () => dispatch(toggleSidenav())
-        }),
+        {
+            toggleSidenav: rootActions.toggleSidenav
+        },
     ),
     withStyles(styles),
     withWidth(),

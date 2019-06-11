@@ -2,7 +2,7 @@ import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {AppBar, Toolbar, Typography, withStyles} from '@material-ui/core';
-import {toggleSidenav} from 'store/main/actions';
+import {rootActions} from 'store/actions';
 import {TopBarMenuButton, TopBarStats} from 'components/pages/layout/TopBar';
 
 const styles = theme => ({
@@ -42,9 +42,9 @@ class TopBar extends React.Component {
 
 export default compose(
     connect(null,
-        dispatch => ({
-            toggleSidenav: () => dispatch(toggleSidenav())
-        }),
+        {
+            toggleSidenav: rootActions.toggleSidenav
+        },
     ),
     withStyles(styles),
 )(TopBar);

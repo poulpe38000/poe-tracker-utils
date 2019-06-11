@@ -1,7 +1,7 @@
 import React from 'react';
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import {connect} from 'react-redux';
-import {hideoutToggleUnlocked} from 'store/hideout/actions';
+import {hideoutActions} from 'store/hideout/actions';
 import {Checkbox, ListItem, Typography, withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
 import {compose} from 'redux';
@@ -36,7 +36,7 @@ class HideoutListItem extends React.Component {
     };
 
     hideoutToggleUnlocked = (hideoutId) => () => {
-        this.props.hideoutToggleUnlocked(hideoutId);
+        this.props.toggleUnlocked(hideoutId);
     };
 
     render() {
@@ -71,9 +71,9 @@ class HideoutListItem extends React.Component {
 export default compose(
     connect(
         null,
-        dispatch => ({
-            hideoutToggleUnlocked: hideoutId => (dispatch(hideoutToggleUnlocked(hideoutId))),
-        }),
+        {
+            toggleUnlocked: hideoutActions.toggleUnlocked,
+        },
     ),
     withStyles(styles)
 )(HideoutListItem);

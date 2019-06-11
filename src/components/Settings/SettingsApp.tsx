@@ -8,17 +8,17 @@ import {
     ListItemSecondaryAction,
     ListItemText,
     Paper,
-    Switch, Theme,
+    Switch,
+    Theme,
     Typography,
     withStyles
 } from '@material-ui/core';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import StorageIcon from '@material-ui/icons/Storage';
 import {connect} from 'react-redux';
-import {setAll, toggleTheme} from 'store/main/actions';
+import {rootActions} from 'store/actions';
 import Divider from '@material-ui/core/Divider';
 import {IAppState} from '../../store';
-import {Dispatch} from 'redux';
 
 interface Props {
     classes: {
@@ -110,10 +110,10 @@ class SettingsApp extends React.Component<Props, States> {
 
 export default connect(
     (state: IAppState) => ({
-        useLightTheme: state.main.useLightTheme,
+        useLightTheme: state.useLightTheme,
     }),
-    (dispatch: Dispatch) => ({
-        toggleTheme: () => (dispatch(toggleTheme())),
-        setAll: () => (dispatch(setAll())),
-    }),
+    {
+        toggleTheme: rootActions.toggleTheme,
+        setAll: rootActions.setAll,
+    },
 )(withStyles(styles)(SettingsApp));

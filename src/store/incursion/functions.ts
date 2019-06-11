@@ -1,6 +1,6 @@
-import {IIncursionStateRoom} from './state';
+import {IIncursionRoom} from 'interfaces/incursion';
 
-export function toggleIncursionRoom(roomsList: IIncursionStateRoom[], room: IIncursionStateRoom): IIncursionStateRoom[] {
+export function toggleIncursionRoom(roomsList: IIncursionRoom[], room: IIncursionRoom): IIncursionRoom[] {
     const roomAlreadySet = roomsList.find(item => item.id === room.id);
     if (!roomAlreadySet) {
         return [...roomsList, room];
@@ -11,7 +11,7 @@ export function toggleIncursionRoom(roomsList: IIncursionStateRoom[], room: IInc
         : cleanRoomsList;
 }
 
-export function validateInProgressIncursion(inProgressRooms: IIncursionStateRoom[], completedRooms: IIncursionStateRoom[]): IIncursionStateRoom[] {
+export function validateInProgressIncursion(inProgressRooms: IIncursionRoom[], completedRooms: IIncursionRoom[]): IIncursionRoom[] {
     inProgressRooms.forEach(inProgressRoom => {
         const completedRoomIndex = completedRooms.findIndex((room) => room.id === inProgressRoom.id);
         if (completedRoomIndex !== -1) {
@@ -25,7 +25,7 @@ export function validateInProgressIncursion(inProgressRooms: IIncursionStateRoom
     return completedRooms;
 }
 
-export function importIncursionData(roomsList: IIncursionStateRoom[], data: any, options: any, keys: any): IIncursionStateRoom[] {
+export function importIncursionData(roomsList: IIncursionRoom[], data: any, options: any, keys: any): IIncursionRoom[] {
     const ignoreImport = options && !!options[keys.ignoreKey];
     if (!ignoreImport) {
         return data && data.incursion && data.incursion[keys.dataKey]

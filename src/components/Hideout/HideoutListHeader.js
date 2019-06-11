@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {FormControl, IconButton, InputAdornment, TextField, Toolbar, Typography, withStyles} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import ClearIcon from '@material-ui/icons/Clear';
-import {hideoutUpdateSearchText} from 'store/hideout/actions';
+import {hideoutActions} from 'store/hideout/actions';
 import * as PropTypes from 'prop-types';
 import {HideoutListFilter} from 'components/Hideout';
 import Fade from '@material-ui/core/Fade';
@@ -44,16 +44,16 @@ class HideoutListHeader extends React.Component {
     }
 
     componentWillUnmount() {
-        this.props.hideoutUpdateSearchText('');
+        this.props.updateSearchText('');
     }
 
     handleToggleSearch = () => {
         this.setState({showSearchBar: !this.state.showSearchBar});
-        this.props.hideoutUpdateSearchText('');
+        this.props.updateSearchText('');
     };
 
     handleSearchTextUpdate = (event) => {
-        this.props.hideoutUpdateSearchText(event.target.value);
+        this.props.updateSearchText(event.target.value);
     };
 
     render() {
@@ -112,9 +112,9 @@ export default compose(
         state => ({
             searchText: state.hideout.searchText,
         }),
-        dispatch => ({
-            hideoutUpdateSearchText: searchText => (dispatch(hideoutUpdateSearchText(searchText))),
-        })
+        {
+            updateSearchText: hideoutActions.updateSearchText,
+        }
     ),
     withStyles(styles)
 )(HideoutListHeader);

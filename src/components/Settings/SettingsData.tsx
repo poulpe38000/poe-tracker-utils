@@ -13,13 +13,12 @@ import {
 } from '@material-ui/core';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 import {connect} from 'react-redux';
-import {resetAll} from 'store/main/actions';
-import {incursionResetCompletedData, incursionResetInProgressData} from 'store/incursion/actions';
-import {hideoutResetData} from 'store/hideout/actions';
+import {rootActions} from 'store/actions';
+import {incursionActions} from 'store/incursion/actions';
+import {hideoutActions} from 'store/hideout/actions';
 import {withSnackbar, WithSnackbarProps} from 'notistack';
 import Divider from '@material-ui/core/Divider';
 import {displaySnackbar} from 'utils/snackbar';
-import {Dispatch} from 'redux';
 
 interface Props extends StyledComponentProps, WithSnackbarProps {
     classes: any;
@@ -82,7 +81,8 @@ class SettingsData extends React.Component<Props> {
                             />
                         </ListItem>
                         <Divider/>
-                        <ListItem button disableRipple className={classes.listItem} onClick={this.handleResetInProgressIncursions}>
+                        <ListItem button disableRipple className={classes.listItem}
+                                  onClick={this.handleResetInProgressIncursions}>
                             <ListItemIcon>
                                 <SettingsBackupRestoreIcon/>
                             </ListItemIcon>
@@ -91,7 +91,8 @@ class SettingsData extends React.Component<Props> {
                             />
                         </ListItem>
                         <Divider/>
-                        <ListItem button disableRipple className={classes.listItem} onClick={this.handleResetCompletedIncursions}>
+                        <ListItem button disableRipple className={classes.listItem}
+                                  onClick={this.handleResetCompletedIncursions}>
                             <ListItemIcon>
                                 <SettingsBackupRestoreIcon/>
                             </ListItemIcon>
@@ -116,11 +117,11 @@ class SettingsData extends React.Component<Props> {
 }
 
 export default connect(
-        null,
-        (dispatch: Dispatch) => ({
-            incursionResetCompletedData: () => (dispatch(incursionResetCompletedData())),
-            incursionResetInProgressData: () => (dispatch(incursionResetInProgressData())),
-            hideoutResetData: () => (dispatch(hideoutResetData())),
-            resetAll: () => (dispatch(resetAll())),
-        }),
-    )(withStyles(styles)(withSnackbar(SettingsData)));
+    null,
+    {
+        incursionResetCompletedData: incursionActions.resetCompletedData,
+        incursionResetInProgressData: incursionActions.resetInProgressData,
+        hideoutResetData: hideoutActions.resetData,
+        resetAll: rootActions.resetAll,
+    },
+)(withStyles(styles)(withSnackbar(SettingsData)));
