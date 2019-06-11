@@ -21,22 +21,22 @@ class SettingsData extends React.Component<Props> {
 
     displaySnackbar = displaySnackbar(this.props.enqueueSnackbar);
 
-    handleResetHideouts = () => {
+    handleResetHideouts = (): void => {
         this.props.hideoutResetData();
         this.displaySnackbar('Hideouts data reset');
     };
 
-    handleResetInProgressIncursions = () => {
+    handleResetInProgressIncursions = (): void => {
         this.props.incursionResetInProgressData();
         this.displaySnackbar('In-progress incursions data reset');
     };
 
-    handleResetCompletedIncursions = () => {
+    handleResetCompletedIncursions = (): void => {
         this.props.incursionResetCompletedData();
         this.displaySnackbar('Completed incursions data reset');
     };
 
-    handleResetAll = () => {
+    handleResetAll = (): void => {
         this.props.resetAll();
         this.displaySnackbar('All tracker data reset');
     };

@@ -34,11 +34,11 @@ interface States {
 const styles = (theme: Theme) => (mergeStyles(rootStyles(theme), itemStyles()));
 
 class SettingsApp extends React.Component<Props, States> {
-    state = {
+    state: States = {
         allowStorage: getLocalStorageSettings()
     };
 
-    componentWillUnmount() {
+    componentWillUnmount(): void {
         if (!this.state.allowStorage) {
             clearStorage();
         } else {
@@ -46,11 +46,11 @@ class SettingsApp extends React.Component<Props, States> {
         }
     }
 
-    handleToggleTheme = () => {
+    handleToggleTheme = (): void => {
         this.props.toggleTheme();
     };
 
-    handleToggleStorage = () => {
+    handleToggleStorage = (): void => {
         this.setState({
             allowStorage: toggleLocalStorageSettings()
         });

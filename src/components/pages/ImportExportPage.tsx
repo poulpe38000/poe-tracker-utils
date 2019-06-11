@@ -2,7 +2,12 @@ import React from "react";
 import {ImportExportTabContent, ImportExportTabs} from 'components/ImportExport';
 import Container from '@material-ui/core/Container';
 
-class ImportExportPage extends React.Component {
+interface States {
+    value: number,
+    tabs: {label: string}[]
+}
+
+class ImportExportPage extends React.Component<{}, States> {
     state = {
         value: 0,
         tabs: [
@@ -11,7 +16,7 @@ class ImportExportPage extends React.Component {
         ]
     };
 
-    handleTabChange = (event, value) => {
+    handleTabChange = (event: Event, value: number): void => {
         this.setState({
             value: value
         });
