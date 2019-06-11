@@ -1,25 +1,22 @@
 import React from 'react';
-import {withStyles} from '@material-ui/core';
-import * as PropTypes from 'prop-types';
+import {createStyles, Theme, withStyles} from '@material-ui/core';
 
-import PageTitle from 'components/pages/layout/Page/PageTitle';
+import PageTitle from 'components/layout/Page/PageTitle';
 
-const styles = theme => ({
+interface Props {
+    classes: any,
+    title?: string,
+}
+
+const styles = ({spacing}: Theme) => createStyles({
     root: {
-        paddingTop: theme.spacing(2),
-        paddingBottom: theme.spacing(2),
+        paddingTop: spacing(2),
+        paddingBottom: spacing(2),
         flexGrow: 1,
     },
 });
 
-class Page extends React.Component {
-    static propTypes = {
-        title: PropTypes.string,
-    };
-    static defaultProps = {
-        title: '',
-    };
-
+class Page extends React.Component<Props> {
     componentDidMount() {
         window.scrollTo(0, 0);
     }

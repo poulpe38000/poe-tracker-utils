@@ -1,17 +1,21 @@
 import React from 'react';
-import {compose} from 'redux';
-import {withStyles, withWidth} from '@material-ui/core';
+import {createStyles, withStyles, withWidth} from '@material-ui/core';
 import {isWidthUp} from '@material-ui/core/withWidth';
 import HideoutStats from 'components/Hideout/HideoutStats/HideoutStats';
 import IncursionStats from 'components/Incursion/IncursionStats/IncursionStats';
+import {Breakpoint} from '@material-ui/core/styles/createBreakpoints';
 
-const styles = {
+interface Props {
+    classes: any,
+    width: Breakpoint
+}
+const styles = createStyles({
     stat: {
         textAlign: 'right',
     },
-};
+});
 
-class TopBarStats extends React.Component {
+class TopBarStats extends React.Component<Props> {
 
     render() {
         const {classes, width} = this.props;
@@ -32,7 +36,4 @@ class TopBarStats extends React.Component {
     }
 }
 
-export default compose(
-    withStyles(styles),
-    withWidth()
-)(TopBarStats);
+export default withStyles(styles)(withWidth()(TopBarStats));

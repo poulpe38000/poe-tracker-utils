@@ -1,6 +1,6 @@
 import React from "react";
 import {SettingsData, SettingsApp} from 'components/Settings';
-import {Page} from 'components/pages/layout/Page';
+import {Page} from 'components/layout/Page';
 import Container from '@material-ui/core/Container';
 
 const SettingsPage: React.FunctionComponent<{}> = () => (

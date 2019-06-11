@@ -1,23 +1,25 @@
 import React from 'react';
 import MenuIcon from '@material-ui/icons/Menu';
-import * as PropTypes from 'prop-types';
 import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 import IconButton from '@material-ui/core/IconButton';
 import withStyles from '@material-ui/core/styles/withStyles';
-import {compose} from 'redux';
+import {createStyles, Theme} from '@material-ui/core';
+import {Breakpoint} from '@material-ui/core/styles/createBreakpoints';
 
-const styles = theme => ({
+interface Props {
+    classes: any,
+    width: Breakpoint,
+    onClick(event: React.MouseEvent<HTMLElement>): void,
+}
+
+const styles = ({palette, spacing}: Theme) => createStyles({
     button: {
-        marginRight: theme.spacing(2),
-        color: theme.palette.primary.contrastText,
+        marginRight: spacing(2),
+        color: palette.primary.contrastText,
     },
 });
 
-class TopBarMenuButton extends React.Component {
-    static propTypes = {
-        onClick: PropTypes.func.isRequired,
-    };
-
+class TopBarMenuButton extends React.Component<Props> {
     render() {
         const {classes, width, onClick} = this.props;
         return (
@@ -32,7 +34,4 @@ class TopBarMenuButton extends React.Component {
     }
 }
 
-export default compose(
-    withStyles(styles),
-    withWidth()
-)(TopBarMenuButton);
+export default withStyles(styles)(withWidth()(TopBarMenuButton));

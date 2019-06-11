@@ -1,29 +1,36 @@
 import React from 'react';
 import clsx from 'clsx';
 import {connect} from 'react-redux';
-import {Drawer, withStyles, withWidth} from '@material-ui/core';
+import {createStyles, Drawer, Theme, withStyles, withWidth} from '@material-ui/core';
 import {rootActions} from 'store/actions';
-import {compose} from 'redux';
-import {SideMenuExpander, SideMenuNav} from 'components/pages/layout/SideMenu';
 import {isWidthDown, isWidthUp} from '@material-ui/core/withWidth';
 import APP_CONSTANTS from 'constants/app.constants';
 import {transitionFor} from 'utils/themes';
+import SideMenuNav from 'components/layout/SideMenu/SideMenuNav';
+import SideMenuExpander from 'components/layout/SideMenu/SideMenuExpander';
+import {Breakpoint} from '@material-ui/core/styles/createBreakpoints';
+import {IAppState} from 'store/state';
 
-const drawerWidth = APP_CONSTANTS.drawerWidth;
+interface Props {
+    classes: any,
+    width: Breakpoint,
+    sidenavExpanded: boolean,
+    toggleSidenav: Function,
+}
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({
     root: {
-        width: drawerWidth,
+        width: APP_CONSTANTS.drawerWidth,
         backgroundColor: theme.palette.background.paper,
     },
     drawer: {
-        width: drawerWidth,
+        width: APP_CONSTANTS.drawerWidth,
         flexShrink: 0,
         whiteSpace: 'nowrap',
     },
     drawerOpen: {
         overflowX: 'hidden',
-        width: drawerWidth,
+        width: APP_CONSTANTS.drawerWidth,
         transition: transitionFor(theme, 'width'),
     },
     drawerClose: {
@@ -37,7 +44,7 @@ const styles = theme => ({
     }
 });
 
-class SideMenu extends React.Component {
+class SideMenu extends React.Component<Props> {
 
     handleToggleMenu = () => {
         this.props.toggleSidenav();
@@ -68,15 +75,11 @@ class SideMenu extends React.Component {
     }
 }
 
-export default compose(
-    connect(
-        state => ({
+export default connect(
+        (state: IAppState) => ({
             sidenavExpanded: state.sidenavExpanded,
         }),
         {
             toggleSidenav: rootActions.toggleSidenav,
         },
-    ),
-    withStyles(styles),
-    withWidth()
-)(SideMenu);
+    )(withStyles(styles)(withWidth()(SideMenu)));

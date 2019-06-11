@@ -1,16 +1,16 @@
-import {Typography, withStyles} from '@material-ui/core';
 import React from 'react';
-import * as PropTypes from 'prop-types';
+import {createStyles, Typography, withStyles} from '@material-ui/core';
 
-const styles = {
+interface Props {
+    classes: any,
+    title: string,
+}
+
+const styles = createStyles({
     pageTitle: {textAlign: 'center'},
-};
+});
 
-class PageTitle extends React.Component {
-    static propTypes = {
-        title: PropTypes.string.isRequired,
-    };
-
+class PageTitle extends React.Component<Props> {
     render() {
         const {classes, title} = this.props;
         return (

@@ -1,5 +1,5 @@
 import React from "react";
-import {Page} from 'components/pages/layout/Page';
+import {Page} from 'components/layout/Page';
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
 import {createStyles, Theme, withStyles} from '@material-ui/core';

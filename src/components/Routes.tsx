@@ -4,7 +4,7 @@ import {createStyles, Theme, withStyles} from '@material-ui/core';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 import APP_CONSTANTS from 'constants/app.constants';
-import ContentWrapper from 'components/pages/layout/ContentWrapper';
+import ContentWrapper from 'components/layout/ContentWrapper';
 import {
     FilterEditorPage,
     HideoutsPage,

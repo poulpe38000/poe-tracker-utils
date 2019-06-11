@@ -1,5 +1,5 @@
 import React from "react";
-import {Page} from 'components/pages/layout/Page';
+import {Page} from 'components/layout/Page';
 import Container from '@material-ui/core/Container';
 
 const HomePage: React.FunctionComponent<{}> = () => (

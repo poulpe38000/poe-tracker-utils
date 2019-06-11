@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {Button, Container, createStyles, Theme, withStyles} from '@material-ui/core';
 
 import APP_CONSTANTS from 'constants/app.constants';
-import {Page} from 'components/pages/layout/Page';
+import {Page} from 'components/layout/Page';
 
 interface Props {
     classes: any;

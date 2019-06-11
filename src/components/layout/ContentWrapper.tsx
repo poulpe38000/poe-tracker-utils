@@ -1,21 +1,24 @@
 import React from 'react';
-import {withStyles} from '@material-ui/core';
-import {compose} from 'redux';
+import {createStyles, Theme, withStyles} from '@material-ui/core';
 import {connect} from 'react-redux';
 import clsx from 'clsx';
 
 import APP_CONSTANTS from 'constants/app.constants';
 import {transitionFor} from 'utils/themes';
+import {IAppState} from 'store/state';
 
-const drawerWidth = APP_CONSTANTS.drawerWidth;
+interface Props {
+    classes: any,
+    sidenavExpanded: boolean
+}
 
-const styles = theme => ({
+const styles = (theme: Theme) => createStyles({
     root: {
         flexGrow: 1,
     },
     drawerOpen: {
         [theme.breakpoints.up('sm')]: {
-            paddingLeft: drawerWidth,
+            paddingLeft: APP_CONSTANTS.drawerWidth,
         },
         transition: transitionFor(theme, 'padding-left'),
     },
@@ -27,7 +30,7 @@ const styles = theme => ({
     },
 });
 
-class ContentWrapper extends React.Component {
+class ContentWrapper extends React.Component<Props> {
 
     render() {
         const {classes, sidenavExpanded, children} = this.props;
@@ -42,11 +45,8 @@ class ContentWrapper extends React.Component {
     }
 }
 
-export default compose(
-    connect(
-        state => ({
+export default connect(
+        (state: IAppState) => ({
             sidenavExpanded: state.sidenavExpanded,
         }),
-    ),
-    withStyles(styles),
-)(ContentWrapper);
+    )(withStyles(styles)(ContentWrapper));

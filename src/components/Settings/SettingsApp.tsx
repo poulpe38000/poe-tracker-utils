@@ -17,8 +17,8 @@ import StorageIcon from '@material-ui/icons/Storage';
 import {connect} from 'react-redux';
 import {rootActions} from 'store/actions';
 import Divider from '@material-ui/core/Divider';
-import {IAppState} from '../../store';
-import {mergeStyles} from '../../utils/themes';
+import {IAppState} from 'store/state';
+import {mergeStyles} from 'utils/themes';
 import {itemStyles, rootStyles} from './shared';
 
 interface Props {

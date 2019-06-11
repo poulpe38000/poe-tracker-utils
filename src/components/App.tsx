@@ -8,10 +8,10 @@ import {BrowserRouter} from 'react-router-dom';
 import APP_CONSTANTS from 'constants/app.constants';
 import {darkTheme, lightTheme} from 'utils/themes';
 import {rootActions} from 'store/actions';
-import {SideMenu} from 'components/pages/layout/SideMenu';
-import {TopBar} from 'components/pages/layout/TopBar';
+import {SideMenu} from 'components/layout/SideMenu';
+import {TopBar} from 'components/layout/TopBar';
 import Routes from 'components/Routes';
-import {IAppState} from 'store';
+import {IAppState} from 'store/state';
 
 interface Props {
     classes: any;

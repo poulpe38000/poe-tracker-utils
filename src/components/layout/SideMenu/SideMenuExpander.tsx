@@ -4,15 +4,20 @@ import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import {withStyles} from '@material-ui/core';
-import * as PropTypes from 'prop-types';
+import {createStyles, Theme, withStyles} from '@material-ui/core';
 import {IconAvatar} from 'components/shared';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
-const styles = theme => ({
+interface Props {
+    classes: any,
+    expanded: boolean,
+    onClick(event: React.MouseEvent<HTMLElement>): void,
+}
+
+const styles = ({spacing}: Theme) => createStyles({
     root: {
-        paddingLeft: theme.spacing(1.5),
-        paddingRight: theme.spacing(1.5),
+        paddingLeft: spacing(1.5),
+        paddingRight: spacing(1.5),
     },
     avatar: {
         background: 'transparent',
@@ -20,12 +25,7 @@ const styles = theme => ({
     }
 });
 
-class SideMenuExpander extends React.Component {
-
-    static propTypes = {
-        expanded: PropTypes.bool.isRequired,
-        onClick: PropTypes.func.isRequired,
-    };
+class SideMenuExpander extends React.Component<Props> {
 
     render() {
         const {classes, expanded, onClick} = this.props;

@@ -5,7 +5,7 @@ import {compose} from 'redux';
 import cloneDeep from 'lodash/cloneDeep';
 import {ExportActions, ExportSettings} from 'components/ImportExport/ExportData';
 import {isWidthDown} from '@material-ui/core/withWidth';
-import {Page} from 'components/pages/layout/Page';
+import {Page} from 'components/layout/Page';
 import Box from '@material-ui/core/Box';
 import {withSnackbar} from 'notistack';
 import {displaySnackbar} from 'utils/snackbar';
