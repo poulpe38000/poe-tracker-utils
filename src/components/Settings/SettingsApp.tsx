@@ -1,7 +1,6 @@
 import React from 'react';
 import {clearStorage, getLocalStorageSettings, toggleLocalStorageSettings} from 'utils/storage';
 import {
-    createStyles,
     List,
     ListItem,
     ListItemIcon,
@@ -19,12 +18,11 @@ import {connect} from 'react-redux';
 import {rootActions} from 'store/actions';
 import Divider from '@material-ui/core/Divider';
 import {IAppState} from '../../store';
+import {mergeStyles} from '../../utils/themes';
+import {itemStyles, rootStyles} from './shared';
 
 interface Props {
-    classes: {
-        root: string;
-        listItem: string;
-    };
+    classes: any;
     useLightTheme: boolean;
     setAll: Function;
     toggleTheme: Function;
@@ -33,17 +31,7 @@ interface States {
     allowStorage: boolean;
 }
 
-const styles = ({spacing}: Theme) => createStyles({
-    root: {
-        marginTop: spacing(2),
-        marginBottom: spacing(2),
-    },
-    listItem: {
-        '&:hover': {
-            backgroundColor: 'inherit',
-        }
-    },
-});
+const styles = (theme: Theme) => (mergeStyles(rootStyles(theme), itemStyles()));
 
 class SettingsApp extends React.Component<Props, States> {
     state = {
