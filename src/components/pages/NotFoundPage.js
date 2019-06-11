@@ -6,28 +6,25 @@ import {withStyles} from '@material-ui/core';
 import Container from '@material-ui/core/Container';
 import APP_CONSTANTS from 'constants/app.constants';
 
-const styles = theme => ({
+const styles = ({spacing}) => ({
     root: {
-        marginTop: theme.spacing(5),
+        marginTop: spacing(5),
         textAlign: 'center',
     }
 });
 
-class NotFoundPage extends React.Component {
-    render() {
-        const {classes} = this.props;
-        return (
-            <Container>
-                <Page title="Page not found">
-                    <div className={classes.root}>
-                        <Button variant={'outlined'} component={Link} to={APP_CONSTANTS.routes.root} size={'large'}>
-                            {'Back to homepage'}
-                        </Button>
-                    </div>
-                </Page>
-            </Container>
-        );
-    }
+function NotFoundPage({classes}) {
+    return (
+        <Container>
+            <Page title="Page not found">
+                <div className={classes.root}>
+                    <Button variant={'outlined'} component={Link} to={APP_CONSTANTS.routes.root} size={'large'}>
+                        {'Back to homepage'}
+                    </Button>
+                </div>
+            </Page>
+        </Container>
+    );
 }
 
 export default withStyles(styles)(NotFoundPage);

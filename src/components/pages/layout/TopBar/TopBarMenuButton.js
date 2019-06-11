@@ -6,10 +6,10 @@ import IconButton from '@material-ui/core/IconButton';
 import withStyles from '@material-ui/core/styles/withStyles';
 import {compose} from 'redux';
 
-const styles = theme => ({
+const styles = ({palette, spacing}) => ({
     button: {
-        marginRight: theme.spacing(2),
-        color: theme.palette.primary.contrastText,
+        marginRight: spacing(2),
+        color: palette.primary.contrastText,
     },
 });
 

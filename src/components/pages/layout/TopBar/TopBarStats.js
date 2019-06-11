@@ -11,25 +11,21 @@ const styles = {
     },
 };
 
-class TopBarStats extends React.Component {
-
-    render() {
-        const {classes, width} = this.props;
-        return (
-            <React.Fragment>
-                {isWidthUp('xs', width, false) && (
-                    <div>
-                        <div className={classes.stat}>
-                            <HideoutStats/>
-                        </div>
-                        <div className={classes.stat}>
-                            <IncursionStats/>
-                        </div>
+function TopBarStats({classes, width}) {
+    return (
+        <React.Fragment>
+            {isWidthUp('xs', width, false) && (
+                <div>
+                    <div className={classes.stat}>
+                        <HideoutStats/>
                     </div>
-                )}
-            </React.Fragment>
-        );
-    }
+                    <div className={classes.stat}>
+                        <IncursionStats/>
+                    </div>
+                </div>
+            )}
+        </React.Fragment>
+    );
 }
 
 export default compose(

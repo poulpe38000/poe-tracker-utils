@@ -1,14 +1,9 @@
 import React from 'react';
-import * as PropTypes from 'prop-types';
 import withStyles from '@material-ui/core/styles/withStyles';
 import Avatar from '@material-ui/core/Avatar';
+import * as PropTypes from 'prop-types';
 
-const styles = {
-    avatar: {
-        background: 'transparent',
-        color: 'inherit',
-    }
-};
+import {styles} from './shared';
 
 class ImageAvatar extends React.Component {
 

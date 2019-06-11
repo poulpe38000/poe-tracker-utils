@@ -5,14 +5,14 @@ import {AppBar, Toolbar, Typography, withStyles} from '@material-ui/core';
 import {toggleSidenav} from 'store/main/actions';
 import {TopBarMenuButton, TopBarStats} from 'components/pages/layout/TopBar';
 
-const styles = theme => ({
+const styles = ({zIndex, breakpoints, spacing}) => ({
     root: {
-        zIndex: theme.zIndex.drawer + 1,
+        zIndex: zIndex.drawer + 1,
     },
     toolbar: {
-        [theme.breakpoints.down('sm')]: {
-            paddingLeft: theme.spacing(1),
-            paddingRight: theme.spacing(1),
+        [breakpoints.down('sm')]: {
+            paddingLeft: spacing(1),
+            paddingRight: spacing(1),
         },
     },
     title: {flexGrow: 1},

@@ -9,7 +9,7 @@ import {transitionFor} from 'utils/themes';
 
 const drawerWidth = APP_CONSTANTS.drawerWidth;
 
-const styles = theme => ({
+const styles = (theme) => ({
     root: {
         flexGrow: 1,
     },
@@ -27,19 +27,15 @@ const styles = theme => ({
     },
 });
 
-class ContentWrapper extends React.Component {
-
-    render() {
-        const {classes, sidenavExpanded, children} = this.props;
-        return (
-            <div className={clsx(classes.root, {
-                [classes.drawerOpen]: sidenavExpanded,
-                [classes.drawerClose]: !sidenavExpanded,
-            })}>
-                {children}
-            </div>
-        );
-    }
+function ContentWrapper({classes, sidenavExpanded, children}) {
+    return (
+        <div className={clsx(classes.root, {
+            [classes.drawerOpen]: sidenavExpanded,
+            [classes.drawerClose]: !sidenavExpanded,
+        })}>
+            {children}
+        </div>
+    );
 }
 
 export default compose(

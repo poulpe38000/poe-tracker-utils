@@ -7,32 +7,28 @@ import Container from '@material-ui/core/Container';
 import APP_CONSTANTS from 'constants/app.constants';
 import Typography from '@material-ui/core/Typography';
 
-const styles = theme => ({
+const styles = ({spacing}) => ({
     root: {
-        marginTop: theme.spacing(5),
+        marginTop: spacing(5),
         textAlign: 'center',
     }
 });
 
-class FilterEditorPage extends React.Component {
-
-    render() {
-        const {classes} = this.props;
-        return (
-            <Container>
-                <Page title="Filter Editor">
-                    <div className={classes.root}>
-                        <Typography variant={'h6'}>This section is under construction.</Typography>
+function FilterEditorPage({classes}) {
+    return (
+        <Container>
+            <Page title="Filter Editor">
+                <div className={classes.root}>
+                    <Typography variant={'h6'}>{'This section is under construction.'}</Typography>
                     <div className={classes.root}>
                     </div>
-                        <Button variant={'outlined'} component={Link} to={APP_CONSTANTS.routes.root} size={'large'}>
-                            {'Back to homepage'}
-                        </Button>
-                    </div>
-                </Page>
-            </Container>
-        );
-    }
+                    <Button variant={'outlined'} component={Link} to={APP_CONSTANTS.routes.root} size={'large'}>
+                        {'Back to homepage'}
+                    </Button>
+                </div>
+            </Page>
+        </Container>
+    );
 }
 
 export default withStyles(styles)(FilterEditorPage);
