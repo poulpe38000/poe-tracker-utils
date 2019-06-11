@@ -1,9 +1,8 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import {CssBaseline, Fade, withStyles} from '@material-ui/core';
 import {MuiThemeProvider} from '@material-ui/core/styles';
-import {CssBaseline} from '@material-ui/core';
 import {SnackbarProvider} from 'notistack';
-import Fade from '@material-ui/core/Fade';
 import {BrowserRouter} from 'react-router-dom';
 
 import APP_CONSTANTS from 'constants/app.constants';
@@ -12,15 +11,20 @@ import {initializeApp} from 'store/main/actions';
 import {SideMenu} from 'components/pages/layout/SideMenu';
 import {TopBar} from 'components/pages/layout/TopBar';
 import Routes from 'components/Routes';
-import withStyles from '@material-ui/core/styles/withStyles';
-import {compose} from 'redux';
+import {IAppState} from 'store';
+import {Dispatch} from 'redux';
 
-const styles = {
+interface Props {
+    classes: any;
+    useLightTheme: boolean,
+    initializeApp: Function,
+}
+
+const styles: any = {
     variantDefault: {minWidth: 'auto'}
 };
 
-class App extends React.Component {
-
+class App extends React.Component<Props, {}> {
     componentDidMount() {
         this.props.initializeApp();
     }
@@ -50,14 +54,11 @@ class App extends React.Component {
     }
 }
 
-export default compose(
-    connect(
-        state => ({
-            useLightTheme: state.main.useLightTheme,
-        }),
-        dispatch => ({
-            initializeApp: () => (dispatch(initializeApp())),
-        }),
-    ),
-    withStyles(styles),
-)(App);
+export default connect(
+    (state: IAppState) => ({
+        useLightTheme: state.main.useLightTheme,
+    }),
+    (dispatch: Dispatch) => ({
+        initializeApp: () => (dispatch(initializeApp())),
+    }),
+)(withStyles(styles)(App));

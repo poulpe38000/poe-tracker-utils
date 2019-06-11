@@ -1,4 +1,4 @@
-import {createMuiTheme} from '@material-ui/core';
+import {createMuiTheme, createStyles, Theme} from '@material-ui/core';
 import {blueGrey, pink} from '@material-ui/core/colors';
 
 declare module '@material-ui/core/styles/createPalette' {
@@ -8,7 +8,7 @@ declare module '@material-ui/core/styles/createPalette' {
     }
 }
 
-export const darkTheme = createMuiTheme({
+export const darkTheme: Theme = createMuiTheme({
     palette: {
         primary: {main: blueGrey[600]},
         secondary: {main: pink[300]},
@@ -21,7 +21,7 @@ export const darkTheme = createMuiTheme({
     },
 });
 
-export const lightTheme = createMuiTheme({
+export const lightTheme: Theme = createMuiTheme({
     palette: {
         primary: {main: blueGrey[600]},
         secondary: {main: pink[300]},
@@ -32,29 +32,29 @@ export const lightTheme = createMuiTheme({
     },
 });
 
-export const buttonStyles = (theme: any) => ({
+export const buttonStyles = ({breakpoints, spacing}: Theme) => createStyles({
     button: {
-        marginTop: theme.spacing(1),
-        marginBottom: theme.spacing(1),
-        marginLeft: theme.spacing(2),
+        marginTop: spacing(1),
+        marginBottom: spacing(1),
+        marginLeft: spacing(2),
         '&:first:child': {
             marginLeft: 0,
         },
-        [theme.breakpoints.down('xs')]: {
+        [breakpoints.down('xs')]: {
             marginLeft: 0,
         }
     },
-    leftIcon: {marginRight: theme.spacing(1)},
-    rightIcon: {marginLeft: theme.spacing(1)},
+    leftIcon: {marginRight: spacing(1)},
+    rightIcon: {marginLeft: spacing(1)},
 });
 
 export const mergeStyles = (...styles: any) => {
     return Object.assign({}, ...styles);
 };
 
-export const transitionFor = (theme: any, props: string | string[]) => {
-    return theme.transitions.create(props, {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
+export const transitionFor = ({transitions}: Theme, props: string | string[]) => {
+    return transitions.create(props, {
+        easing: transitions.easing.sharp,
+        duration: transitions.duration.leavingScreen,
     })
 };

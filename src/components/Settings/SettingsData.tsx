@@ -1,19 +1,38 @@
 import React from 'react';
-import {List, ListItem, ListItemIcon, ListItemText, Paper, Typography, withStyles} from '@material-ui/core';
+import {
+    createStyles,
+    List,
+    ListItem,
+    ListItemIcon,
+    ListItemText,
+    Paper,
+    StyledComponentProps,
+    Theme,
+    Typography,
+    withStyles
+} from '@material-ui/core';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 import {connect} from 'react-redux';
 import {resetAll} from 'store/main/actions';
 import {incursionResetCompletedData, incursionResetInProgressData} from 'store/incursion/actions';
 import {hideoutResetData} from 'store/hideout/actions';
-import {compose} from 'redux';
-import {withSnackbar} from 'notistack';
+import {withSnackbar, WithSnackbarProps} from 'notistack';
 import Divider from '@material-ui/core/Divider';
 import {displaySnackbar} from 'utils/snackbar';
+import {Dispatch} from 'redux';
 
-const styles = theme => ({
+interface Props extends StyledComponentProps, WithSnackbarProps {
+    classes: any;
+    incursionResetCompletedData: Function;
+    incursionResetInProgressData: Function;
+    hideoutResetData: Function;
+    resetAll: Function;
+}
+
+const styles = ({spacing}: Theme) => createStyles({
     root: {
-        marginTop: theme.spacing(2),
-        marginBottom: theme.spacing(2),
+        marginTop: spacing(2),
+        marginBottom: spacing(2),
     },
     listItem: {
         '&:hover': {
@@ -22,9 +41,10 @@ const styles = theme => ({
     },
 });
 
-class SettingsData extends React.Component {
+class SettingsData extends React.Component<Props> {
 
     displaySnackbar = displaySnackbar(this.props.enqueueSnackbar);
+
 
     handleResetHideouts = () => {
         this.props.hideoutResetData();
@@ -95,16 +115,12 @@ class SettingsData extends React.Component {
     }
 }
 
-export default compose(
-    connect(
+export default connect(
         null,
-        dispatch => ({
+        (dispatch: Dispatch) => ({
             incursionResetCompletedData: () => (dispatch(incursionResetCompletedData())),
             incursionResetInProgressData: () => (dispatch(incursionResetInProgressData())),
             hideoutResetData: () => (dispatch(hideoutResetData())),
             resetAll: () => (dispatch(resetAll())),
         }),
-    ),
-    withStyles(styles),
-    withSnackbar,
-)(SettingsData);
+    )(withStyles(styles)(withSnackbar(SettingsData)));

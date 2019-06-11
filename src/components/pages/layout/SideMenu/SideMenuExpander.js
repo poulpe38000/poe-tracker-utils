@@ -6,8 +6,6 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import {withStyles} from '@material-ui/core';
 import * as PropTypes from 'prop-types';
-import Tooltip from '@material-ui/core/Tooltip';
-import Typography from '@material-ui/core/Typography';
 import {IconAvatar} from 'components/shared';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
@@ -31,25 +29,16 @@ class SideMenuExpander extends React.Component {
 
     render() {
         const {classes, expanded, onClick} = this.props;
-        const tooltipLabel = (<Typography variant="body1">{'Expand menu'}</Typography>);
-        const emptyTooltipLabel = '';
         return (
             <List disablePadding>
-                <Tooltip
-                    title={!expanded ? tooltipLabel : emptyTooltipLabel}
-                    placement="right"
-                    disableTouchListener
-                    enterDelay={300}
-                >
-                    <ListItem className={classes.root} button onClick={onClick}>
-                        <ListItemAvatar>
-                            <IconAvatar
-                                label={expanded ? 'Collapse menu' : 'Expand menu'}
-                                value={expanded ? ChevronLeftIcon : ChevronRightIcon}/>
-                        </ListItemAvatar>
-                        <ListItemText primary={'Collapse menu'}/>
-                    </ListItem>
-                </Tooltip>
+                <ListItem className={classes.root} button onClick={onClick}>
+                    <ListItemAvatar>
+                        <IconAvatar
+                            label={expanded ? 'Collapse menu' : 'Expand menu'}
+                            value={expanded ? ChevronLeftIcon : ChevronRightIcon}/>
+                    </ListItemAvatar>
+                    <ListItemText primary={'Collapse menu'}/>
+                </ListItem>
             </List>
         );
     }

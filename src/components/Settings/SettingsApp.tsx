@@ -1,13 +1,14 @@
 import React from 'react';
 import {clearStorage, getLocalStorageSettings, toggleLocalStorageSettings} from 'utils/storage';
 import {
+    createStyles,
     List,
     ListItem,
     ListItemIcon,
     ListItemSecondaryAction,
     ListItemText,
     Paper,
-    Switch,
+    Switch, Theme,
     Typography,
     withStyles
 } from '@material-ui/core';
@@ -16,11 +17,26 @@ import StorageIcon from '@material-ui/icons/Storage';
 import {connect} from 'react-redux';
 import {setAll, toggleTheme} from 'store/main/actions';
 import Divider from '@material-ui/core/Divider';
+import {IAppState} from '../../store';
+import {Dispatch} from 'redux';
 
-const styles = theme => ({
+interface Props {
+    classes: {
+        root: string;
+        listItem: string;
+    };
+    useLightTheme: boolean;
+    setAll: Function;
+    toggleTheme: Function;
+}
+interface States {
+    allowStorage: boolean;
+}
+
+const styles = ({spacing}: Theme) => createStyles({
     root: {
-        marginTop: theme.spacing(2),
-        marginBottom: theme.spacing(2),
+        marginTop: spacing(2),
+        marginBottom: spacing(2),
     },
     listItem: {
         '&:hover': {
@@ -29,7 +45,7 @@ const styles = theme => ({
     },
 });
 
-class SettingsApp extends React.Component {
+class SettingsApp extends React.Component<Props, States> {
     state = {
         allowStorage: getLocalStorageSettings()
     };
@@ -93,10 +109,10 @@ class SettingsApp extends React.Component {
 }
 
 export default connect(
-    state => ({
+    (state: IAppState) => ({
         useLightTheme: state.main.useLightTheme,
     }),
-    dispatch => ({
+    (dispatch: Dispatch) => ({
         toggleTheme: () => (dispatch(toggleTheme())),
         setAll: () => (dispatch(setAll())),
     }),

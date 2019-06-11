@@ -1,5 +1,10 @@
 import React from 'react';
-import {Route, Switch, withRouter} from 'react-router-dom';
+import {Route, RouteProps, Switch, withRouter} from 'react-router-dom';
+import {createStyles, Theme, withStyles} from '@material-ui/core';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
+
+import APP_CONSTANTS from 'constants/app.constants';
+import ContentWrapper from 'components/pages/layout/ContentWrapper';
 import {
     FilterEditorPage,
     HideoutsPage,
@@ -9,27 +14,31 @@ import {
     NotFoundPage,
     SettingsPage
 } from 'components/pages';
-import APP_CONSTANTS from 'constants/app.constants';
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
-import {compose} from 'redux';
-import {withStyles} from '@material-ui/core';
-import ContentWrapper from 'components/pages/layout/ContentWrapper';
 
+interface Props {
+    classes: {
+        root: string;
+    };
+    location: any;
+}
+interface States {
+    routes: RouteProps[];
+}
 
-const styles = theme => ({
+const styles = ({breakpoints}: Theme) => createStyles({
     root: {
         position: 'absolute',
         top: 64,
         left: 0,
         bottom: 0,
         right: 0,
-        [theme.breakpoints.down('xs')]: {
+        [breakpoints.down('xs')]: {
             top: 56,
         }
     },
 });
 
-class Routes extends React.Component {
+class Routes extends React.Component<Props, States> {
     state = {
         routes: [
             {path: APP_CONSTANTS.routes.root, component: HomePage, exact: true},
@@ -51,7 +60,7 @@ class Routes extends React.Component {
                     <CSSTransition timeout={300} key={location.key} classNames="fade">
                         <ContentWrapper>
                             <Switch location={location}>
-                                {routes.map((route, key) => (<Route key={key} {...route}/>))}
+                                {routes.map((route: RouteProps, key: number) => (<Route key={key} {...route}/>))}
                             </Switch>
                         </ContentWrapper>
                     </CSSTransition>
@@ -61,7 +70,4 @@ class Routes extends React.Component {
     }
 }
 
-export default compose(
-    withRouter,
-    withStyles(styles)
-)(Routes);
+export default withRouter(withStyles(styles)(Routes) as any);
