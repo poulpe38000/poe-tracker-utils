@@ -1,23 +1,27 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "f2eedfd6c158811442a012a6f66f9385",
+    "revision": "49fafc20887cfcddb0cb7f31e481bbc4",
     "url": "/poe-tracker-utils/index.html"
   },
   {
-    "revision": "d5cf27beb7a08d6d246b",
-    "url": "/poe-tracker-utils/static/css/main.45099cd4.chunk.css"
+    "revision": "4ececd944564d33049b1",
+    "url": "/poe-tracker-utils/static/css/main.4469abae.chunk.css"
   },
   {
-    "revision": "a61af6135b13ec556714",
-    "url": "/poe-tracker-utils/static/js/2.b7248671.chunk.js"
+    "revision": "d4c357aa5b66c091a7c3",
+    "url": "/poe-tracker-utils/static/js/2.2074261d.chunk.js"
   },
   {
-    "revision": "d5cf27beb7a08d6d246b",
-    "url": "/poe-tracker-utils/static/js/main.09e8cfdb.chunk.js"
+    "revision": "4ececd944564d33049b1",
+    "url": "/poe-tracker-utils/static/js/main.18bcf270.chunk.js"
   },
   {
     "revision": "29791f338480d964ddc0",
     "url": "/poe-tracker-utils/static/js/runtime~main.0fa18275.js"
+  },
+  {
+    "revision": "fa33744fde161b7eebacfab8ba616df7",
+    "url": "/poe-tracker-utils/static/media/filter_logo.fa33744f.png"
   },
   {
     "revision": "0d340437a23a610d70d098a684ba7f96",
