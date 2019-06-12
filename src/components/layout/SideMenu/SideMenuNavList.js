@@ -1,11 +1,11 @@
 import React from 'react';
-import {List} from '@material-ui/core';
-import {SideMenuNavItem} from 'components/pages/layout/SideMenu';
+import List from '@material-ui/core/List';
 import noop from 'lodash/noop';
 import * as PropTypes from 'prop-types';
 
-class SideMenuNavList extends React.Component {
+import SideMenuNavItem from 'components/layout/SideMenu/SideMenuNavItem';
 
+class SideMenuNavList extends React.Component {
     static propTypes = {
         items: PropTypes.array.isRequired,
         expanded: PropTypes.bool,

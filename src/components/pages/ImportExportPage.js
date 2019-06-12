@@ -1,15 +1,16 @@
 import React from "react";
-import {ImportExportTabContent, ImportExportTabs} from 'components/ImportExport';
 import Container from '@material-ui/core/Container';
+
+import {ImportExportTabContent, ImportExportTabs} from 'components/ImportExport';
 
 class ImportExportPage extends React.Component {
     state = {
         value: 0,
-        tabs: [
-            {label: 'Import Data'},
-            {label: 'Export Data'},
-        ]
     };
+    tabs = [
+        {label: 'Import Data'},
+        {label: 'Export Data'},
+    ];
 
     handleTabChange = (event, value) => {
         this.setState({
@@ -18,10 +19,10 @@ class ImportExportPage extends React.Component {
     };
 
     render() {
-        const {value, tabs} = this.state;
+        const {value} = this.state;
         return (
             <Container maxWidth="lg">
-                <ImportExportTabs tabs={tabs} value={value} onChange={this.handleTabChange}/>
+                <ImportExportTabs tabs={this.tabs} value={value} onChange={this.handleTabChange}/>
                 <ImportExportTabContent value={value}/>
             </Container>
         );

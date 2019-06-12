@@ -1,27 +1,32 @@
 import React from 'react';
-import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
-import {connect} from 'react-redux';
-import {hideoutToggleUnlocked} from 'store/hideout/actions';
-import {Checkbox, ListItem, Typography, withStyles} from '@material-ui/core';
-import * as PropTypes from 'prop-types';
 import {compose} from 'redux';
+import {connect} from 'react-redux';
+import Box from '@material-ui/core/Box';
+import Checkbox from '@material-ui/core/Checkbox';
+import ListItem from '@material-ui/core/ListItem';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+import * as PropTypes from 'prop-types';
 
-const styles = theme => ({
+import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
+import {hideoutActions} from 'store/hideout/actions';
+
+const styles = ({breakpoints, spacing}) => ({
     root: {display: 'flex',},
     itemTextContainer: {
         flex: '1 1 100%',
         display: 'flex',
         flexDirection: 'row',
-        [theme.breakpoints.down('xs')]: {
+        [breakpoints.down('xs')]: {
             flexDirection: 'column'
         }
     },
     itemText: {
         flex: '1 1 100%',
         alignSelf: 'center',
-        paddingLeft: theme.spacing(1),
-        paddingRight: theme.spacing(1),
-        [theme.breakpoints.down('xs')]: {
+        paddingLeft: spacing(1),
+        paddingRight: spacing(1),
+        [breakpoints.down('xs')]: {
             alignSelf: 'flex-start'
         }
     },
@@ -36,7 +41,7 @@ class HideoutListItem extends React.Component {
     };
 
     hideoutToggleUnlocked = (hideoutId) => () => {
-        this.props.hideoutToggleUnlocked(hideoutId);
+        this.props.toggleUnlocked(hideoutId);
     };
 
     render() {
@@ -50,7 +55,7 @@ class HideoutListItem extends React.Component {
                     onChange={this.hideoutToggleUnlocked(hideout.id)}
                     value="checked"
                 />
-                <div className={classes.itemTextContainer}>
+                <Box className={classes.itemTextContainer}>
                     <Typography variant="subtitle2" className={classes.itemText}>
                         {hideout.name}
                     </Typography>
@@ -62,7 +67,7 @@ class HideoutListItem extends React.Component {
                     <Typography variant="caption" className={classes.itemText}>
                         {!!hideoutLocation && <em>Location: {hideoutLocation}</em>}
                     </Typography>
-                </div>
+                </Box>
             </ListItem>
         );
     }
@@ -71,9 +76,9 @@ class HideoutListItem extends React.Component {
 export default compose(
     connect(
         null,
-        dispatch => ({
-            hideoutToggleUnlocked: hideoutId => (dispatch(hideoutToggleUnlocked(hideoutId))),
-        }),
+        {
+            toggleUnlocked: hideoutActions.toggleUnlocked,
+        },
     ),
     withStyles(styles)
 )(HideoutListItem);

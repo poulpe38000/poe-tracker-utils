@@ -1,21 +1,31 @@
 import React from 'react';
-import {Route, Switch, withRouter} from 'react-router-dom';
-import {HideoutsPage, HomePage, ImportExportPage, IncursionsPage, NotFoundPage, SettingsPage} from 'components/pages';
-import APP_CONSTANTS from 'constants/app.constants';
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import {compose} from 'redux';
-import {withStyles} from '@material-ui/core';
-import ContentWrapper from 'components/pages/layout/ContentWrapper';
+import {Route, Switch, withRouter} from 'react-router-dom';
+import CSSTransition from 'react-transition-group/CSSTransition';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
+import withStyles from '@material-ui/core/styles/withStyles';
+
+import APP_CONSTANTS from 'constants/app.constants';
+import {
+    FilterEditorPage,
+    HideoutsPage,
+    HomePage,
+    ImportExportPage,
+    IncursionsPage,
+    NotFoundPage,
+    SettingsPage
+} from 'components/pages';
+import ContentWrapper from 'components/layout/ContentWrapper';
 
 
-const styles = theme => ({
+const styles = ({breakpoints}) => ({
     root: {
         position: 'absolute',
         top: 64,
         left: 0,
         bottom: 0,
         right: 0,
-        [theme.breakpoints.down('xs')]: {
+        [breakpoints.down('xs')]: {
             top: 56,
         }
     },
@@ -27,6 +37,7 @@ class Routes extends React.Component {
             {path: APP_CONSTANTS.routes.root, component: HomePage, exact: true},
             {path: APP_CONSTANTS.routes.hideouts.root, component: HideoutsPage},
             {path: APP_CONSTANTS.routes.incursions.root, component: IncursionsPage},
+            {path: APP_CONSTANTS.routes.filters.root, component: FilterEditorPage},
             {path: APP_CONSTANTS.routes.import_export.root, component: ImportExportPage},
             {path: APP_CONSTANTS.routes.settings.root, component: SettingsPage},
             {component: NotFoundPage},

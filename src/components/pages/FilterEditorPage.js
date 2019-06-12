@@ -2,6 +2,7 @@ import React from "react";
 import {Link} from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
+import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import APP_CONSTANTS from 'constants/app.constants';
@@ -14,11 +15,14 @@ const styles = ({spacing}) => ({
     }
 });
 
-function NotFoundPage({classes}) {
+function FilterEditorPage({classes}) {
     return (
         <Container>
-            <Page title="Page not found">
+            <Page title="Filter Editor">
                 <div className={classes.root}>
+                    <Typography variant={'h6'}>{'This section is under construction.'}</Typography>
+                    <div className={classes.root}>
+                    </div>
                     <Button variant={'outlined'} component={Link} to={APP_CONSTANTS.routes.root} size={'large'}>
                         {'Back to homepage'}
                     </Button>
@@ -28,4 +32,4 @@ function NotFoundPage({classes}) {
     );
 }
 
-export default withStyles(styles)(NotFoundPage);
+export default withStyles(styles)(FilterEditorPage);

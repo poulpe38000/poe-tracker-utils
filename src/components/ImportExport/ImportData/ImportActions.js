@@ -1,11 +1,9 @@
 import React from 'react'
-import {Button, withStyles, withWidth} from '@material-ui/core';
+import {Button, withStyles} from '@material-ui/core';
 import Box from '@material-ui/core/Box';
-import {isWidthDown} from '@material-ui/core/withWidth';
 import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
 import {buttonStyles, mergeStyles} from 'utils/themes';
-import {compose} from 'redux';
 import * as PropTypes from 'prop-types';
 
 const styles = theme => (mergeStyles({
@@ -28,17 +26,17 @@ class ImportActions extends React.Component {
     };
 
     render() {
-        const {classes, width, importEnabled, onImport, onAttachFile} = this.props;
+        const {classes, importEnabled, onImport, onAttachFile} = this.props;
         return (
             <Box className={classes.actions}>
                 <Button variant="contained" color="primary" className={classes.button}
-                        size={isWidthDown('xs', width) ? 'medium' : 'large'}
+                        size={'large'}
                         onClick={onAttachFile}>
                     <AttachFileIcon className={classes.leftIcon}/>
                     Load File
                 </Button>
                 <Button variant="contained" color="primary" className={classes.button}
-                        size={isWidthDown('xs', width) ? 'medium' : 'large'}
+                        size={'large'}
                         onClick={onImport} disabled={!importEnabled}>
                     <CloudUploadIcon className={classes.leftIcon}/>
                     Import data
@@ -48,7 +46,4 @@ class ImportActions extends React.Component {
     }
 }
 
-export default compose(
-    withStyles(styles),
-    withWidth()
-)(ImportActions);
+export default withStyles(styles)(ImportActions);

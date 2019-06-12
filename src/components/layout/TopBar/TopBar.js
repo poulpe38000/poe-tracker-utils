@@ -1,18 +1,23 @@
 import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import {AppBar, Toolbar, Typography, withStyles} from '@material-ui/core';
-import {toggleSidenav} from 'store/main/actions';
-import {TopBarMenuButton, TopBarStats} from 'components/pages/layout/TopBar';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 
-const styles = theme => ({
+import {rootActions} from 'store/root/actions';
+import TopBarMenuButton from 'components/layout/TopBar/TopBarMenuButton';
+import TopBarStats from 'components/layout/TopBar/TopBarStats';
+
+const styles = ({zIndex, breakpoints, spacing}) => ({
     root: {
-        zIndex: theme.zIndex.drawer + 1,
+        zIndex: zIndex.drawer + 1,
     },
     toolbar: {
-        [theme.breakpoints.down('sm')]: {
-            paddingLeft: theme.spacing(1),
-            paddingRight: theme.spacing(1),
+        [breakpoints.down('sm')]: {
+            paddingLeft: spacing(1),
+            paddingRight: spacing(1),
         },
     },
     title: {flexGrow: 1},
@@ -41,10 +46,11 @@ class TopBar extends React.Component {
 }
 
 export default compose(
-    connect(null,
-        dispatch => ({
-            toggleSidenav: () => dispatch(toggleSidenav())
-        }),
+    connect(
+        null,
+        {
+            toggleSidenav: rootActions.toggleSidenav,
+        },
     ),
     withStyles(styles),
 )(TopBar);

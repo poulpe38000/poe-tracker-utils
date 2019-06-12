@@ -1,9 +1,9 @@
 import React, {createRef} from 'react'
 import {connect} from "react-redux";
-import {importData} from 'store/main/actions';
+import {rootActions} from 'store/root/actions';
 import {sanitizeTrackerData} from 'utils/sanitizer';
 import {ImportActions, ImportDropZone, ImportSettings} from 'components/ImportExport/ImportData';
-import {Page} from 'components/pages/layout/Page';
+import {Page} from 'components/layout/Page';
 import Box from '@material-ui/core/Box';
 import {compose} from 'redux';
 import {withSnackbar} from 'notistack';
@@ -98,9 +98,9 @@ class ImportPage extends React.Component {
 export default compose(
     connect(
         null,
-        dispatch => ({
-            importData: (payload) => dispatch(importData(payload)),
-        }),
+        {
+            importData: rootActions.importData,
+        },
     ),
     withSnackbar,
 )(ImportPage);

@@ -1,19 +1,27 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {Divider, List, ListItem, Paper, Typography, withStyles} from '@material-ui/core';
-import ListSubheader from '@material-ui/core/ListSubheader';
-import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
-import {HideoutFilterStatus, HideoutListHeader, HideoutListItem} from 'components/Hideout';
 import {compose} from 'redux';
+import {connect} from 'react-redux';
+import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListSubheader from '@material-ui/core/ListSubheader';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 
-const styles = theme => ({
+import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
+import HideoutFilterStatus from 'components/Hideout/HideoutFilterStatus';
+import HideoutListHeader from 'components/Hideout/HideoutListHeader';
+import HideoutListItem from 'components/Hideout/HideoutListItem';
+
+const styles = ({breakpoints}) => ({
     list: {
         paddingTop: 0,
     },
     header: {
         lineHeight: 'inherit',
         top: 64,
-        [theme.breakpoints.down('xs')]: {
+        [breakpoints.down('xs')]: {
             top: 56,
         }
     },

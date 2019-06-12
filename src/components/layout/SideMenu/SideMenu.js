@@ -1,29 +1,30 @@
 import React from 'react';
-import clsx from 'clsx';
-import {connect} from 'react-redux';
-import {Drawer, withStyles, withWidth} from '@material-ui/core';
-import {toggleSidenav} from 'store/main/actions';
 import {compose} from 'redux';
-import {SideMenuExpander, SideMenuNav} from 'components/pages/layout/SideMenu';
-import {isWidthDown, isWidthUp} from '@material-ui/core/withWidth';
+import {connect} from 'react-redux';
+import clsx from 'clsx';
+import Drawer from '@material-ui/core/Drawer';
+import withStyles from '@material-ui/core/styles/withStyles';
+import withWidth, {isWidthDown, isWidthUp} from '@material-ui/core/withWidth';
+
 import APP_CONSTANTS from 'constants/app.constants';
+import {rootActions} from 'store/root/actions';
 import {transitionFor} from 'utils/themes';
+import SideMenuNav from 'components/layout/SideMenu/SideMenuNav';
+import SideMenuExpander from 'components/layout/SideMenu/SideMenuExpander';
 
-const drawerWidth = APP_CONSTANTS.drawerWidth;
-
-const styles = theme => ({
+const styles = (theme) => ({
     root: {
-        width: drawerWidth,
+        width: APP_CONSTANTS.drawerWidth,
         backgroundColor: theme.palette.background.paper,
     },
     drawer: {
-        width: drawerWidth,
+        width: APP_CONSTANTS.drawerWidth,
         flexShrink: 0,
         whiteSpace: 'nowrap',
     },
     drawerOpen: {
         overflowX: 'hidden',
-        width: drawerWidth,
+        width: APP_CONSTANTS.drawerWidth,
         transition: transitionFor(theme, 'width'),
     },
     drawerClose: {
@@ -71,11 +72,11 @@ class SideMenu extends React.Component {
 export default compose(
     connect(
         state => ({
-            sidenavExpanded: state.main.sidenavExpanded,
+            sidenavExpanded: state.sidenavExpanded,
         }),
-        dispatch => ({
-            toggleSidenav: () => dispatch(toggleSidenav())
-        }),
+        {
+            toggleSidenav: rootActions.toggleSidenav,
+        },
     ),
     withStyles(styles),
     withWidth()

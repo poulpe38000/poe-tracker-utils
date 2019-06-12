@@ -1,11 +1,9 @@
 import React from 'react'
-import {Button, withStyles, withWidth} from '@material-ui/core';
+import {Button, withStyles} from '@material-ui/core';
 import GetAppIcon from '@material-ui/icons/GetApp';
 import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
 import {buttonStyles, mergeStyles} from 'utils/themes';
-import {compose} from 'redux';
-import {isWidthDown} from '@material-ui/core/withWidth';
 import Box from '@material-ui/core/Box';
 import * as PropTypes from 'prop-types';
 
@@ -30,18 +28,18 @@ class ExportActions extends React.Component {
     };
 
     render() {
-        const {classes, width, onDownload, onCopy, exportText, exportEnabled} = this.props;
+        const {classes, onDownload, onCopy, exportText, exportEnabled} = this.props;
         return (
             <Box className={classes.actions}>
                 <CopyToClipboard text={exportText} className={classes.button} onCopy={onCopy}>
                     <Button variant="contained" color="primary" disabled={!exportEnabled}
-                            size={isWidthDown('xs', width) ? 'medium' : 'large'}>
+                            size={'large'}>
                         <FileCopyOutlinedIcon className={classes.leftIcon}/>
                         Copy data
                     </Button>
                 </CopyToClipboard>
                 <Button variant="contained" color="primary" className={classes.button}
-                        size={isWidthDown('xs', width) ? 'medium' : 'large'}
+                        size={'large'}
                         onClick={onDownload} disabled={!exportEnabled}>
                     <GetAppIcon className={classes.leftIcon}/>
                     Download file
@@ -51,7 +49,4 @@ class ExportActions extends React.Component {
     }
 }
 
-export default compose(
-    withStyles(styles),
-    withWidth(),
-)(ExportActions);
+export default withStyles(styles)(ExportActions);

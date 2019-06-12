@@ -4,6 +4,7 @@ import {ImportPage} from 'components/ImportExport/ImportData';
 import {ExportPage} from 'components/ImportExport/ExportData';
 import {compose} from 'redux';
 import PropTypes from 'prop-types';
+import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 const styles = {
     root: {
@@ -20,10 +21,14 @@ class ImportExportTabContent extends React.Component {
     render() {
         const {classes, value} = this.props;
         return (
-            <div className={classes.root}>
-                {value === 0 && <ImportPage/>}
-                {value === 1 && <ExportPage/>}
-            </div>
+            <TransitionGroup>
+                <CSSTransition timeout={300} key={value} classNames="fade">
+                    <div className={classes.root}>
+                        {value === 0 && <ImportPage/>}
+                        {value === 1 && <ExportPage/>}
+                    </div>
+                </CSSTransition>
+            </TransitionGroup>
         );
     }
 }

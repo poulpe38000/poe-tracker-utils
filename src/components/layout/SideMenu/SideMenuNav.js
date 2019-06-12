@@ -1,36 +1,38 @@
 import React from 'react';
-import {Typography, withStyles, withWidth} from '@material-ui/core';
+import {compose} from 'redux';
+import {connect} from 'react-redux';
+import {withRouter} from 'react-router-dom';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
-import {SideMenuNavList} from 'components/pages/layout/SideMenu';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
+import noop from 'lodash/noop';
+import * as PropTypes from 'prop-types';
+
+import APP_CONSTANTS from 'constants/app.constants';
 import homeLogo from './home_logo.png';
 import hideoutLogo from './hideout_logo.png';
 import incursionLogo from './incursion_logo.png';
-import APP_CONSTANTS from 'constants/app.constants';
-import Divider from '@material-ui/core/Divider';
-import Toolbar from '@material-ui/core/Toolbar';
-import {compose} from 'redux';
-import {connect} from 'react-redux';
-import {toggleSidenav} from 'store/main/actions';
-import {isWidthDown} from '@material-ui/core/withWidth';
-import noop from 'lodash/noop';
-import * as PropTypes from 'prop-types';
-import {withRouter} from 'react-router-dom';
+import filterLogo from './filter_logo.png';
+import {rootActions} from 'store/root/actions';
 import {IconAvatar, ImageAvatar} from 'components/shared';
-import AppBar from '@material-ui/core/AppBar';
+import SideMenuNavList from 'components/layout/SideMenu/SideMenuNavList';
 
-const styles = theme => ({
+const styles = ({mixins, breakpoints, spacing}) => ({
     root: {
-        paddingTop: theme.spacing(1),
+        paddingTop: spacing(1),
         flexGrow: 1,
         display: 'flex',
         flexDirection: 'column',
-        [theme.breakpoints.down('xs')]: {
+        [breakpoints.down('xs')]: {
             paddingTop: 0,
         },
     },
     toolbarSpacer: {
-        ...theme.mixins.toolbar,
+        ...mixins.toolbar,
     },
     spacer: {
         flex: '1 1 auto',
@@ -62,6 +64,12 @@ class SideMenuNav extends React.Component {
                     link: {to: APP_CONSTANTS.routes.incursions.root},
                     label: 'Incursion rooms',
                     icon: incursionLogo,
+                    avatar: ImageAvatar,
+                },
+                {
+                    link: {to: APP_CONSTANTS.routes.filters.root},
+                    label: 'Filter editor',
+                    icon: filterLogo,
                     avatar: ImageAvatar,
                 },
             ],
@@ -115,9 +123,9 @@ export default compose(
     withRouter,
     connect(
         null,
-        dispatch => ({
-            toggleSidenav: () => dispatch(toggleSidenav())
-        }),
+        {
+            toggleSidenav: rootActions.toggleSidenav,
+        },
     ),
     withStyles(styles),
     withWidth(),

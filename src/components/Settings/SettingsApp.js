@@ -1,33 +1,25 @@
 import React from 'react';
-import {clearStorage, getLocalStorageSettings, toggleLocalStorageSettings} from 'utils/storage';
-import {
-    List,
-    ListItem,
-    ListItemIcon,
-    ListItemSecondaryAction,
-    ListItemText,
-    Paper,
-    Switch,
-    Typography,
-    withStyles
-} from '@material-ui/core';
+import {compose} from 'redux';
+import {connect} from 'react-redux';
 import InvertColorsIcon from '@material-ui/icons/InvertColors';
 import StorageIcon from '@material-ui/icons/Storage';
-import {connect} from 'react-redux';
-import {setAll, toggleTheme} from 'store/main/actions';
 import Divider from '@material-ui/core/Divider';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Paper from '@material-ui/core/Paper';
+import Switch from '@material-ui/core/Switch';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 
-const styles = theme => ({
-    root: {
-        marginTop: theme.spacing(2),
-        marginBottom: theme.spacing(2),
-    },
-    listItem: {
-        '&:hover': {
-            backgroundColor: 'inherit',
-        }
-    },
-});
+import {rootActions} from 'store/root/actions';
+import {clearStorage, getLocalStorageSettings, toggleLocalStorageSettings} from 'utils/storage';
+import {mergeStyles} from 'utils/themes';
+import {itemStyles, rootStyles} from 'components/Settings/shared';
+
+const styles = (theme) => (mergeStyles(rootStyles(theme), itemStyles(theme)));
 
 class SettingsApp extends React.Component {
     state = {
@@ -57,14 +49,14 @@ class SettingsApp extends React.Component {
         const {allowStorage} = this.state;
         return (
             <React.Fragment>
-                <Typography variant="h6">Application Settings</Typography>
+                <Typography variant="h6">{'Application Settings'}</Typography>
                 <Paper className={classes.root} elevation={2}>
                     <List disablePadding>
-                        <ListItem button disableRipple className={classes.listItem} onClick={this.handleToggleTheme}>
+                        <ListItem button disableRipple className={classes.item} onClick={this.handleToggleTheme}>
                             <ListItemIcon>
-                                <InvertColorsIcon />
+                                <InvertColorsIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Use light theme" />
+                            <ListItemText primary={'Use light theme'}/>
                             <ListItemSecondaryAction>
                                 <Switch
                                     onChange={this.handleToggleTheme}
@@ -73,11 +65,11 @@ class SettingsApp extends React.Component {
                             </ListItemSecondaryAction>
                         </ListItem>
                         <Divider/>
-                        <ListItem button disableRipple className={classes.listItem} onClick={this.handleToggleStorage}>
+                        <ListItem button disableRipple className={classes.item} onClick={this.handleToggleStorage}>
                             <ListItemIcon>
-                                <StorageIcon />
+                                <StorageIcon/>
                             </ListItemIcon>
-                            <ListItemText primary="Allow local storage" />
+                            <ListItemText primary={'Allow local storage'}/>
                             <ListItemSecondaryAction>
                                 <Switch
                                     onChange={this.handleToggleStorage}
@@ -92,12 +84,15 @@ class SettingsApp extends React.Component {
     }
 }
 
-export default connect(
-    state => ({
-        useLightTheme: state.main.useLightTheme,
-    }),
-    dispatch => ({
-        toggleTheme: () => (dispatch(toggleTheme())),
-        setAll: () => (dispatch(setAll())),
-    }),
-)(withStyles(styles)(SettingsApp));
+export default compose(
+    connect(
+        state => ({
+            useLightTheme: state.useLightTheme,
+        }),
+        {
+            toggleTheme: rootActions.toggleTheme,
+            setAll: rootActions.setAll,
+        },
+    ),
+    withStyles(styles),
+)(SettingsApp);

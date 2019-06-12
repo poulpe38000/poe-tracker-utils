@@ -1,19 +1,19 @@
 import React from 'react';
+import {compose} from 'redux';
 import {connect} from 'react-redux';
-import {MuiThemeProvider} from '@material-ui/core/styles';
-import {CssBaseline} from '@material-ui/core';
-import {SnackbarProvider} from 'notistack';
-import Fade from '@material-ui/core/Fade';
 import {BrowserRouter} from 'react-router-dom';
+import {SnackbarProvider} from 'notistack';
+import {ThemeProvider} from '@material-ui/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import Fade from '@material-ui/core/Fade';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 import APP_CONSTANTS from 'constants/app.constants';
 import {darkTheme, lightTheme} from 'utils/themes';
-import {initializeApp} from 'store/main/actions';
-import {SideMenu} from 'components/pages/layout/SideMenu';
-import {TopBar} from 'components/pages/layout/TopBar';
+import {rootActions} from 'store/root/actions';
+import {SideMenu} from 'components/layout/SideMenu';
+import {TopBar} from 'components/layout/TopBar';
 import Routes from 'components/Routes';
-import withStyles from '@material-ui/core/styles/withStyles';
-import {compose} from 'redux';
 
 const styles = {
     variantDefault: {minWidth: 'auto'}
@@ -29,7 +29,7 @@ class App extends React.Component {
         const {classes, useLightTheme} = this.props;
         return (
             <BrowserRouter basename={APP_CONSTANTS.basename}>
-                <MuiThemeProvider theme={useLightTheme ? lightTheme : darkTheme}>
+                <ThemeProvider theme={useLightTheme ? lightTheme : darkTheme}>
                     <CssBaseline/>
                     <SnackbarProvider
                         maxSnack={1}
@@ -44,7 +44,7 @@ class App extends React.Component {
                         <SideMenu/>
                         <Routes/>
                     </SnackbarProvider>
-                </MuiThemeProvider>
+                </ThemeProvider>
             </BrowserRouter>
         );
     }
@@ -53,11 +53,11 @@ class App extends React.Component {
 export default compose(
     connect(
         state => ({
-            useLightTheme: state.main.useLightTheme,
+            useLightTheme: state.useLightTheme,
         }),
-        dispatch => ({
-            initializeApp: () => (dispatch(initializeApp())),
-        }),
+        {
+            initializeApp: rootActions.initializeApp,
+        },
     ),
     withStyles(styles),
 )(App);
