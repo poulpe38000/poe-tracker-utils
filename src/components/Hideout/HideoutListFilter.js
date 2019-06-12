@@ -20,7 +20,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import {hideoutResetFilters, hideoutUpdateFilters} from 'store/hideout/actions';
+import {hideoutActions} from 'store/hideout/actions';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 
 const styles = (theme) => (mergeStyles({
@@ -78,14 +78,14 @@ class HideoutListFilter extends React.Component {
 
 
     handleChange = filterKey => event => {
-        this.props.hideoutUpdateFilters({
+        this.props.updateFilters({
             [filterKey]: event.target.value
         });
     };
 
 
     handleResetFilters = () => {
-        this.props.hideoutResetFilters();
+        this.props.resetFilters();
     };
 
     renderDropDown(filter, index, fallback = '') {
@@ -208,8 +208,8 @@ export default compose(
             filters: state.hideout.filters,
         }),
         {
-            hideoutUpdateFilters: hideoutUpdateFilters,
-            hideoutResetFilters: hideoutResetFilters,
+            updateFilters: hideoutActions.updateFilters,
+            resetFilters: hideoutActions.resetFilters,
         },
     ),
     withStyles(styles)

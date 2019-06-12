@@ -14,7 +14,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import {hideoutUpdateSearchText} from 'store/hideout/actions';
+import {hideoutActions} from 'store/hideout/actions';
 import HideoutListFilter from 'components/Hideout/HideoutListFilter';
 
 const styles = ({palette}) => ({
@@ -54,16 +54,16 @@ class HideoutListHeader extends React.Component {
     }
 
     componentWillUnmount() {
-        this.props.hideoutUpdateSearchText('');
+        this.props.updateSearchText('');
     }
 
     handleToggleSearch = () => {
         this.setState({showSearchBar: !this.state.showSearchBar});
-        this.props.hideoutUpdateSearchText('');
+        this.props.updateSearchText('');
     };
 
     handleSearchTextUpdate = (event) => {
-        this.props.hideoutUpdateSearchText(event.target.value);
+        this.props.updateSearchText(event.target.value);
     };
 
     render() {
@@ -123,7 +123,7 @@ export default compose(
             searchText: state.hideout.searchText,
         }),
         {
-            hideoutUpdateSearchText: hideoutUpdateSearchText,
+            updateSearchText: hideoutActions.updateSearchText,
         },
     ),
     withStyles(styles)

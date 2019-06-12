@@ -1,25 +1,15 @@
-export const HIDEOUT_TOGGLE_UNLOCKED = 'HIDEOUT_TOGGLE_UNLOCKED';
-export const HIDEOUT_UPDATE_SEARCH_TEXT = 'HIDEOUT_UPDATE_SEARCH_TEXT';
-export const HIDEOUT_UPDATE_FILTERS = 'HIDEOUT_UPDATE_FILTERS';
-export const HIDEOUT_RESET_FILTERS = 'HIDEOUT_RESET_FILTERS';
-export const HIDEOUT_RESET_DATA = 'HIDEOUT_RESET_DATA';
+export const ACTION_TYPE = {
+    TOGGLE_UNLOCKED: 'HIDEOUT_TOGGLE_UNLOCKED',
+    UPDATE_SEARCH_TEXT: 'HIDEOUT_UPDATE_SEARCH_TEXT',
+    UPDATE_FILTERS: 'HIDEOUT_UPDATE_FILTERS',
+    RESET_FILTERS: 'HIDEOUT_RESET_FILTERS',
+    RESET_DATA: 'HIDEOUT_RESET_DATA',
+};
 
-export function hideoutToggleUnlocked(payload) {
-    return {type: HIDEOUT_TOGGLE_UNLOCKED, payload};
-}
-
-export function hideoutUpdateSearchText(payload) {
-    return {type: HIDEOUT_UPDATE_SEARCH_TEXT, payload};
-}
-
-export function hideoutUpdateFilters(payload) {
-    return {type: HIDEOUT_UPDATE_FILTERS, payload};
-}
-
-export function hideoutResetFilters() {
-    return {type: HIDEOUT_RESET_FILTERS};
-}
-
-export function hideoutResetData() {
-    return {type: HIDEOUT_RESET_DATA};
-}
+export const hideoutActions = {
+    toggleUnlocked: (payload) => ({type: ACTION_TYPE.TOGGLE_UNLOCKED, payload}),
+    updateSearchText: (payload) => ({type: ACTION_TYPE.UPDATE_SEARCH_TEXT, payload}),
+    updateFilters: (payload) => ({type: ACTION_TYPE.UPDATE_FILTERS, payload}),
+    resetFilters: () => ({type: ACTION_TYPE.RESET_FILTERS}),
+    resetData: () => ({type: ACTION_TYPE.RESET_DATA}),
+};

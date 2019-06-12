@@ -9,7 +9,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 import {resetAll} from 'store/main/actions';
 import {incursionResetCompletedData, incursionResetInProgressData} from 'store/incursion/actions';
-import {hideoutResetData} from 'store/hideout/actions';
+import {hideoutActions} from 'store/hideout/actions';
 import {displaySnackbar} from 'utils/snackbar';
 import {rootStyles} from 'components/Settings/shared';
 import SettingsDataItem from 'components/Settings/SettingsDataItem';
@@ -71,7 +71,7 @@ export default compose(
         {
             incursionResetCompletedData: incursionResetCompletedData,
             incursionResetInProgressData: incursionResetInProgressData,
-            hideoutResetData: hideoutResetData,
+            hideoutResetData: hideoutActions.resetData,
             resetAll: resetAll,
         },
     ),

@@ -5,7 +5,7 @@ import Chip from '@material-ui/core/Chip';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import {hideoutUpdateFilters} from 'store/hideout/actions';
+import {hideoutActions} from 'store/hideout/actions';
 
 const styles = ({spacing}) => ({
     root: {
@@ -29,11 +29,11 @@ class HideoutFilterStatus extends React.Component {
         switch (type) {
             case 'string':
                 filters[key] = '';
-                this.props.hideoutUpdateFilters(filters);
+                this.props.updateFilters(filters);
                 break;
             case 'array':
                 filters[key] = filters[key].filter(item => item !== value);
-                this.props.hideoutUpdateFilters(filters);
+                this.props.updateFilters(filters);
                 break;
             default:
                 break;
@@ -95,7 +95,7 @@ export default compose(
             filters: state.hideout.filters,
         }),
         {
-            hideoutUpdateFilters: hideoutUpdateFilters,
+            updateFilters: hideoutActions.updateFilters,
         },
     ),
     withStyles(styles)

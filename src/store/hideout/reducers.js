@@ -1,11 +1,5 @@
 import INITIAL_STATE from 'store/hideout/state';
-import {
-    HIDEOUT_RESET_DATA,
-    HIDEOUT_RESET_FILTERS,
-    HIDEOUT_TOGGLE_UNLOCKED,
-    HIDEOUT_UPDATE_FILTERS,
-    HIDEOUT_UPDATE_SEARCH_TEXT
-} from 'store/hideout/actions';
+import {ACTION_TYPE as HIDEOUT_ACTION} from 'store/hideout/actions';
 import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL, SET_ALL} from 'store/main/actions';
 import {clearObj, getObj, HIDEOUT_UNLOCKED_STORAGE, setObj} from 'utils/storage';
 import {importHideoutData, toggleUnlockedHideout} from 'store/hideout/functions';
@@ -14,18 +8,18 @@ import {importHideoutData, toggleUnlockedHideout} from 'store/hideout/functions'
 function hideoutReducer(state = INITIAL_STATE, action) {
     let unlocked = state.unlocked.slice();
     switch (action.type) {
-        case HIDEOUT_TOGGLE_UNLOCKED:
+        case HIDEOUT_ACTION.TOGGLE_UNLOCKED:
             unlocked = toggleUnlockedHideout(unlocked, action.payload);
             return {
                 ...state,
                 unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked),
             };
-        case HIDEOUT_UPDATE_SEARCH_TEXT:
+        case HIDEOUT_ACTION.UPDATE_SEARCH_TEXT:
             return {
                 ...state,
                 searchText: action.payload,
             };
-        case HIDEOUT_UPDATE_FILTERS:
+        case HIDEOUT_ACTION.UPDATE_FILTERS:
             return {
                 ...state,
                 filters: {
@@ -33,12 +27,12 @@ function hideoutReducer(state = INITIAL_STATE, action) {
                     ...action.payload,
                 }
             };
-        case HIDEOUT_RESET_FILTERS:
+        case HIDEOUT_ACTION.RESET_FILTERS:
             return {
                 ...state,
                 filters: {},
             };
-        case HIDEOUT_RESET_DATA:
+        case HIDEOUT_ACTION.RESET_DATA:
         case RESET_ALL:
             return {
                 ...state,

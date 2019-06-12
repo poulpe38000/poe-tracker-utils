@@ -9,7 +9,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
-import {hideoutToggleUnlocked} from 'store/hideout/actions';
+import {hideoutActions} from 'store/hideout/actions';
 
 const styles = ({breakpoints, spacing}) => ({
     root: {display: 'flex',},
@@ -41,7 +41,7 @@ class HideoutListItem extends React.Component {
     };
 
     hideoutToggleUnlocked = (hideoutId) => () => {
-        this.props.hideoutToggleUnlocked(hideoutId);
+        this.props.toggleUnlocked(hideoutId);
     };
 
     render() {
@@ -77,7 +77,7 @@ export default compose(
     connect(
         null,
         {
-            hideoutToggleUnlocked: hideoutToggleUnlocked,
+            toggleUnlocked: hideoutActions.toggleUnlocked,
         },
     ),
     withStyles(styles)
