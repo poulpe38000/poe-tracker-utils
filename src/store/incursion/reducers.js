@@ -33,6 +33,28 @@ function incursionReducer(state = INITIAL_STATE.incursion, action) {
                 ...state,
                 searchText: action.payload,
             };
+        case INCURSION_ACTION.RESET_IN_PROGRESS_DATA:
+            return {
+                ...state,
+                in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
+            };
+        case INCURSION_ACTION.RESET_COMPLETED_DATA:
+            return {
+                ...state,
+                completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
+            };
+        case ROOT_ACTION.RESET_ALL:
+            return {
+                ...state,
+                in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
+                completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
+            };
+        case ROOT_ACTION.SET_ALL:
+            return {
+                ...state,
+                in_progress: setObj(INCURSION_IN_PROGRESS_STORAGE, state.in_progress),
+                completed: setObj(INCURSION_COMPLETED_STORAGE, state.completed),
+            };
         case ROOT_ACTION.INITIALIZE_APP:
             try {
                 return {
@@ -56,28 +78,6 @@ function incursionReducer(state = INITIAL_STATE.incursion, action) {
                 ...state,
                 completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
                 in_progress: setObj(INCURSION_IN_PROGRESS_STORAGE, inProgressRooms),
-            };
-        case INCURSION_ACTION.RESET_IN_PROGRESS_DATA:
-            return {
-                ...state,
-                in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
-            };
-        case INCURSION_ACTION.RESET_COMPLETED_DATA:
-            return {
-                ...state,
-                completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
-            };
-        case ROOT_ACTION.RESET_ALL:
-            return {
-                ...state,
-                in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
-                completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
-            };
-        case ROOT_ACTION.SET_ALL:
-            return {
-                ...state,
-                in_progress: setObj(INCURSION_IN_PROGRESS_STORAGE, state.in_progress),
-                completed: setObj(INCURSION_COMPLETED_STORAGE, state.completed),
             };
         default :
             return state;

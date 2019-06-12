@@ -1,69 +1,38 @@
 import {ACTION_TYPE as HIDEOUT_ACTION} from 'store/hideout/actions';
 import {ACTION_TYPE as ROOT_ACTION} from 'store/root/actions';
-import {clearObj, getObj, HIDEOUT_UNLOCKED_STORAGE, setObj} from 'utils/storage';
-import {importHideoutData, toggleUnlockedHideout} from 'store/hideout/functions';
+import {
+    importData,
+    initializeApp,
+    resetData,
+    resetFilters,
+    setData,
+    toggleUnlocked,
+    updateFilters,
+    updateSearchText
+} from 'store/hideout/functions';
 import INITIAL_STATE from 'store/root/state';
 
 
-function hideoutReducer(state = INITIAL_STATE.hideout, action) {
-    let unlocked = state.unlocked.slice();
+export default function hideoutReducer(state = INITIAL_STATE.hideout, action) {
     switch (action.type) {
         case HIDEOUT_ACTION.TOGGLE_UNLOCKED:
-            unlocked = toggleUnlockedHideout(unlocked, action.payload);
-            return {
-                ...state,
-                unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked),
-            };
+            return toggleUnlocked(state, action);
         case HIDEOUT_ACTION.UPDATE_SEARCH_TEXT:
-            return {
-                ...state,
-                searchText: action.payload,
-            };
+            return updateSearchText(state, action);
         case HIDEOUT_ACTION.UPDATE_FILTERS:
-            return {
-                ...state,
-                filters: {
-                    ...state.filters,
-                    ...action.payload,
-                }
-            };
+            return updateFilters(state, action);
         case HIDEOUT_ACTION.RESET_FILTERS:
-            return {
-                ...state,
-                filters: {},
-            };
+            return resetFilters(state);
         case HIDEOUT_ACTION.RESET_DATA:
         case ROOT_ACTION.RESET_ALL:
-            return {
-                ...state,
-                unlocked: clearObj(HIDEOUT_UNLOCKED_STORAGE, []),
-            };
+            return resetData(state);
         case ROOT_ACTION.SET_ALL:
-            return {
-                ...state,
-                unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked),
-            };
+            return setData(state);
         case ROOT_ACTION.INITIALIZE_APP:
-            try {
-                return {
-                    ...state,
-                    unlocked: getObj(HIDEOUT_UNLOCKED_STORAGE, []),
-                };
-            } catch (e) {
-                return state;
-            }
+            return initializeApp(state);
         case ROOT_ACTION.IMPORT_DATA:
-            unlocked = importHideoutData(unlocked, action.payload.data, action.payload.opts, {
-                ignoreKey: 'ignoreHideouts',
-                dataKey: 'unlocked'
-            });
-            return {
-                ...state,
-                unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked),
-            };
+            return importData(state, action);
         default:
             return state;
     }
 }
-
-export default hideoutReducer;
