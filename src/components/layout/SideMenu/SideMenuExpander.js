@@ -31,25 +31,37 @@ class SideMenuExpander extends React.Component {
 
     render() {
         const {classes, expanded, onClick} = this.props;
-        const tooltipLabel = (<Typography variant="body1">{'Expand menu'}</Typography>);
-        const emptyTooltipLabel = '';
         return (
             <List disablePadding>
-                <Tooltip
-                    title={!expanded ? tooltipLabel : emptyTooltipLabel}
-                    placement="right"
-                    disableTouchListener
-                    enterDelay={300}
-                >
-                    <ListItem className={classes.root} button onClick={onClick}>
-                        <ListItemAvatar>
-                            <IconAvatar
-                                label={expanded ? 'Collapse menu' : 'Expand menu'}
-                                value={expanded ? ChevronLeftIcon : ChevronRightIcon}/>
-                        </ListItemAvatar>
-                        <ListItemText primary={'Collapse menu'}/>
-                    </ListItem>
-                </Tooltip>
+                {expanded
+                    ? (
+                        <ListItem className={classes.root} button onClick={onClick}>
+                            <ListItemAvatar>
+                                <IconAvatar
+                                    label={'Collapse menu'}
+                                    value={ChevronLeftIcon}/>
+                            </ListItemAvatar>
+                            <ListItemText primary={'Collapse menu'}/>
+                        </ListItem>
+                    )
+                    : (
+                        <Tooltip
+                            title={(<Typography variant="body1">{'Expand menu'}</Typography>)}
+                            placement="right"
+                            disableTouchListener
+                            enterDelay={300}
+                        >
+                            <ListItem className={classes.root} button onClick={onClick}>
+                                <ListItemAvatar>
+                                    <IconAvatar
+                                        label={'Expand menu'}
+                                        value={ChevronRightIcon}/>
+                                </ListItemAvatar>
+                                <ListItemText primary={'Collapse menu'}/>
+                            </ListItem>
+                        </Tooltip>
+                    )
+                }
             </List>
         );
     }
