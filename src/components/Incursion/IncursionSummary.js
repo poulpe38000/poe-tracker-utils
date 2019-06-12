@@ -5,11 +5,7 @@ import ClearIcon from '@material-ui/icons/Clear';
 import SearchIcon from '@material-ui/icons/Search';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 import {connect} from 'react-redux';
-import {
-    incursionResetInProgressData,
-    incursionRoomValidateInProgress,
-    incursionUpdateSearchText
-} from 'store/incursion/actions';
+import {incursionActions} from 'store/incursion/actions';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 import {compose} from 'redux';
 import {withSnackbar} from 'notistack';
@@ -42,17 +38,17 @@ class IncursionSummary extends React.Component {
     displaySnackbar = displaySnackbar(this.props.enqueueSnackbar);
 
     handleValidateInProgress = () => {
-        this.props.incursionRoomValidateInProgress();
+        this.props.validateInProgress();
         this.displaySnackbar('Current incursion rooms added to the completed incursion rooms');
     };
     handleResetInProgress = () => {
-        this.props.incursionResetInProgressData();
+        this.props.resetInProgressData();
         this.displaySnackbar('Current incursion rooms successfully reset');
     };
 
-    handleToggleSearch = () => this.props.incursionUpdateSearchText('');
+    handleToggleSearch = () => this.props.updateSearchText('');
 
-    handleSearchTextUpdate = (event) => this.props.incursionUpdateSearchText(event.target.value);
+    handleSearchTextUpdate = (event) => this.props.updateSearchText(event.target.value);
 
     render() {
         const {classes, searchText} = this.props;
@@ -103,9 +99,9 @@ export default compose(
             searchText: state.incursion.searchText,
         }),
         {
-            incursionUpdateSearchText: incursionUpdateSearchText,
-            incursionRoomValidateInProgress: incursionRoomValidateInProgress,
-            incursionResetInProgressData: incursionResetInProgressData,
+            updateSearchText: incursionActions.updateSearchText,
+            validateInProgress: incursionActions.validateInProgress,
+            resetInProgressData: incursionActions.resetInProgressData,
         },
     ),
     withStyles(styles),

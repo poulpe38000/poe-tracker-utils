@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Checkbox, ListItem, Typography, withStyles} from '@material-ui/core';
-import {incursionRoomToggleCompleted, incursionRoomToggleInProgress} from 'store/incursion/actions';
+import {incursionActions} from 'store/incursion/actions';
 
 const styles = theme => ({
     root: {display: 'flex',},
@@ -49,11 +49,11 @@ class IncursionRoom extends React.Component {
     };
 
     toggleCompleted = (id, tier) => () => {
-        this.props.incursionRoomToggleCompleted(id, tier);
+        this.props.toggleCompleted({id, tier});
     };
 
     toggleInProgress = (id, tier) => () => {
-        this.props.incursionRoomToggleInProgress(id, tier);
+        this.props.toggleInProgress({id, tier});
     };
 
     render() {
@@ -107,7 +107,7 @@ export default connect(
         inProgress: state.incursion.in_progress,
     }),
     {
-        incursionRoomToggleCompleted: incursionRoomToggleCompleted,
-        incursionRoomToggleInProgress: incursionRoomToggleInProgress,
+        toggleCompleted: incursionActions.toggleCompleted,
+        toggleInProgress: incursionActions.toggleInProgress,
     },
 )(withStyles(styles)(IncursionRoom));

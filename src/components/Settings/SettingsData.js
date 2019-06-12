@@ -8,7 +8,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import {resetAll} from 'store/main/actions';
-import {incursionResetCompletedData, incursionResetInProgressData} from 'store/incursion/actions';
+import {incursionActions} from 'store/incursion/actions';
 import {hideoutActions} from 'store/hideout/actions';
 import {displaySnackbar} from 'utils/snackbar';
 import {rootStyles} from 'components/Settings/shared';
@@ -69,8 +69,8 @@ export default compose(
     connect(
         null,
         {
-            incursionResetCompletedData: incursionResetCompletedData,
-            incursionResetInProgressData: incursionResetInProgressData,
+            incursionResetCompletedData: incursionActions.resetCompletedData,
+            incursionResetInProgressData: incursionActions.resetInProgressData,
             hideoutResetData: hideoutActions.resetData,
             resetAll: resetAll,
         },

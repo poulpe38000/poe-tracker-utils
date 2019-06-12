@@ -1,12 +1,5 @@
 import INITIAL_STATE from 'store/incursion/state';
-import {
-    INCURSION_RESET_COMPLETED_DATA,
-    INCURSION_RESET_IN_PROGRESS_DATA,
-    INCURSION_ROOM_TOGGLE_COMPLETED,
-    INCURSION_ROOM_TOGGLE_IN_PROGRESS,
-    INCURSION_ROOM_VALIDATE_IN_PROGRESS,
-    INCURSION_UPDATE_SEARCH_TEXT
-} from 'store/incursion/actions';
+import {ACTION_TYPE as INCURSION_ACTION} from 'store/incursion/actions';
 import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL, SET_ALL} from 'store/main/actions';
 import {clearObj, getObj, INCURSION_COMPLETED_STORAGE, INCURSION_IN_PROGRESS_STORAGE, setObj} from 'utils/storage';
 import {importIncursionData, toggleIncursionRoom, validateInProgressIncursion} from 'store/incursion/functions';
@@ -16,26 +9,26 @@ function incursionReducer(state = INITIAL_STATE, action) {
     let completedRooms = state.completed.slice();
     let inProgressRooms = state.in_progress.slice();
     switch (action.type) {
-        case INCURSION_ROOM_TOGGLE_IN_PROGRESS:
+        case INCURSION_ACTION.TOGGLE_IN_PROGRESS:
             inProgressRooms = toggleIncursionRoom(inProgressRooms, action.payload);
             return {
                 ...state,
                 in_progress: setObj(INCURSION_IN_PROGRESS_STORAGE, inProgressRooms),
             };
-        case INCURSION_ROOM_TOGGLE_COMPLETED:
+        case INCURSION_ACTION.TOGGLE_COMPLETED:
             completedRooms = toggleIncursionRoom(completedRooms, action.payload);
             return {
                 ...state,
                 completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
             };
-        case INCURSION_ROOM_VALIDATE_IN_PROGRESS:
+        case INCURSION_ACTION.VALIDATE_IN_PROGRESS:
             completedRooms = validateInProgressIncursion(inProgressRooms, completedRooms);
             return {
                 ...state,
                 completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
                 in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
             };
-        case INCURSION_UPDATE_SEARCH_TEXT:
+        case INCURSION_ACTION.UPDATE_SEARCH_TEXT:
             return {
                 ...state,
                 searchText: action.payload,
@@ -64,12 +57,12 @@ function incursionReducer(state = INITIAL_STATE, action) {
                 completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
                 in_progress: setObj(INCURSION_IN_PROGRESS_STORAGE, inProgressRooms),
             };
-        case INCURSION_RESET_IN_PROGRESS_DATA:
+        case INCURSION_ACTION.RESET_IN_PROGRESS_DATA:
             return {
                 ...state,
                 in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
             };
-        case INCURSION_RESET_COMPLETED_DATA:
+        case INCURSION_ACTION.RESET_COMPLETED_DATA:
             return {
                 ...state,
                 completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
