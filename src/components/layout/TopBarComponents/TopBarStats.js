@@ -1,35 +1,27 @@
 import React from 'react';
-import {compose} from 'redux';
 import withStyles from '@material-ui/core/styles/withStyles';
-import withWidth, {isWidthUp} from '@material-ui/core/withWidth';
 
 import HideoutStats from 'components/Hideout/HideoutStats/HideoutStats';
 import IncursionStats from 'components/Incursion/IncursionStats/IncursionStats';
+import Box from '@material-ui/core/Box';
 
 const styles = {
-    stat: {
+    item: {
         textAlign: 'right',
     },
 };
 
-function TopBarStats({classes, width}) {
+function TopBarStats({classes}) {
     return (
-        <React.Fragment>
-            {isWidthUp('xs', width, false) && (
-                <div>
-                    <div className={classes.stat}>
-                        <HideoutStats/>
-                    </div>
-                    <div className={classes.stat}>
-                        <IncursionStats/>
-                    </div>
-                </div>
-            )}
-        </React.Fragment>
+        <Box>
+            <Box className={classes.item}>
+                <HideoutStats/>
+            </Box>
+            <Box className={classes.item}>
+                <IncursionStats/>
+            </Box>
+        </Box>
     );
 }
 
-export default compose(
-    withStyles(styles),
-    withWidth()
-)(TopBarStats);
+export default withStyles(styles)(TopBarStats);

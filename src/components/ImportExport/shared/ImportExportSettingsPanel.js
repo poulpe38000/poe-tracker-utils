@@ -1,6 +1,7 @@
 import React from 'react'
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import TuneIcon from '@material-ui/icons/Tune';
+import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
@@ -36,7 +37,7 @@ class ImportExportSettingsPanel extends React.Component {
     render() {
         const {classes, title, children} = this.props;
         return (
-            <div>
+            <Box>
                 <ExpansionPanel elevation={2}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
                         <TuneIcon className={classes.leftIcon}/>
@@ -53,7 +54,7 @@ class ImportExportSettingsPanel extends React.Component {
                         </List>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
-            </div>
+            </Box>
         );
     }
 }

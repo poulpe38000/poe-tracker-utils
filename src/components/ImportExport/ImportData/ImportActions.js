@@ -31,7 +31,7 @@ class ImportActions extends React.Component {
         const {classes, importEnabled, onImport, onAttachFile} = this.props;
         return (
             <Box className={classes.actions}>
-                <Button variant="contained" color="primary" className={classes.button}
+                <Button variant="outlined" className={classes.button}
                         size={'large'}
                         onClick={onAttachFile}>
                     <AttachFileIcon className={classes.leftIcon}/>

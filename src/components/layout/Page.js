@@ -1,4 +1,5 @@
 import React from 'react';
+import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
@@ -27,10 +28,10 @@ class Page extends React.Component {
     render() {
         const {classes, title, children} = this.props;
         return (
-            <div className={classes.root}>
+            <Box className={classes.root}>
                 {!!title && <PageTitle title={title}/>}
                 {children}
-            </div>
+            </Box>
         );
     }
 }

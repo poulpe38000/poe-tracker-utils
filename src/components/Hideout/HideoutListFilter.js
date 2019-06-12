@@ -185,10 +185,10 @@ class HideoutListFilter extends React.Component {
                                 <Box className={classes.actions}>
                                     <Button className={classes.button} size={'large'}
                                             onClick={this.handleResetFilters}>
-                                        <SettingsBackupRestoreIcon color="error" className={classes.leftIcon}/>
-                                        <Typography variant="button" color="error">Reset filters</Typography>
+                                        <SettingsBackupRestoreIcon color={'error'} className={classes.leftIcon}/>
+                                        <Typography variant={'button'} color={'error'}>{'Reset filters'}</Typography>
                                     </Button>
-                                    <Button variant="outlined" className={classes.button} size={'large'}
+                                    <Button variant={'outlined'} className={classes.button} size={'large'}
                                             onClick={this.handleOpenFilterPopper}>
                                         {'Close'}
                                     </Button>

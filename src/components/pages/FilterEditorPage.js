@@ -1,5 +1,6 @@
 import React from "react";
 import Link from 'react-router-dom/Link';
+import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
@@ -19,14 +20,13 @@ function FilterEditorPage({classes}) {
     return (
         <Container>
             <Page title="Filter Editor">
-                <div className={classes.root}>
+                <Box className={classes.root}>
                     <Typography variant={'h6'}>{'This section is under construction.'}</Typography>
-                    <div className={classes.root}>
-                    </div>
-                    <Button variant={'outlined'} component={Link} to={APP_CONSTANTS.routes.root} size={'large'}>
+                    <Box className={classes.root}/>
+                    <Button variant="contained" color="primary" component={Link} to={APP_CONSTANTS.routes.root} size={'large'}>
                         {'Back to homepage'}
                     </Button>
-                </div>
+                </Box>
             </Page>
         </Container>
     );

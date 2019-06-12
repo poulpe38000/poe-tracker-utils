@@ -13,6 +13,7 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import {incursionActions} from 'store/incursion/actions';
@@ -87,11 +88,11 @@ class IncursionSummary extends React.Component {
                     />
                 </FormControl>
                 <Box className={classes.actions}>
-                    <Button variant="outlined" onClick={this.handleResetInProgress} className={classes.button}>
-                        <SettingsBackupRestoreIcon className={classes.leftIcon}/>
-                        Reset Current Incursion
+                    <Button size={'large'} onClick={this.handleResetInProgress} className={classes.button}>
+                        <SettingsBackupRestoreIcon color={'error'} className={classes.leftIcon}/>
+                        <Typography variant={'button'} color={'error'}>{'Reset Current Incursion'}</Typography>
                     </Button>
-                    <Button variant="outlined" onClick={this.handleValidateInProgress} className={classes.button}>
+                    <Button variant={'contained'} color={'primary'} size={'large'} onClick={this.handleValidateInProgress} className={classes.button}>
                         <CheckIcon className={classes.leftIcon}/>
                         Complete Current Incursion
                     </Button>

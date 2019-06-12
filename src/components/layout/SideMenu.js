@@ -3,8 +3,9 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
 import withStyles from '@material-ui/core/styles/withStyles';
-import withWidth, {isWidthDown, isWidthUp} from '@material-ui/core/withWidth';
+import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 
 import APP_CONSTANTS from 'constants/app.constants';
 import {rootActions} from 'store/root/actions';
@@ -63,7 +64,9 @@ class SideMenu extends React.Component {
                 }}
             >
                 <SideMenuNav expanded={sidenavExpanded}/>
-                {isWidthUp('sm', width) && <SideMenuExpander expanded={sidenavExpanded} onClick={this.handleToggleMenu}/>}
+                <Hidden xsDown>
+                    <SideMenuExpander expanded={sidenavExpanded} onClick={this.handleToggleMenu}/>
+                </Hidden>
             </Drawer>
         );
     }

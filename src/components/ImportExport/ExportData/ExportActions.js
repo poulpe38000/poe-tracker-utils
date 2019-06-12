@@ -34,7 +34,7 @@ class ExportActions extends React.Component {
         return (
             <Box className={classes.actions}>
                 <CopyToClipboard text={exportText} className={classes.button} onCopy={onCopy}>
-                    <Button variant="contained" color="primary" disabled={!exportEnabled}
+                    <Button variant="outlined" disabled={!exportEnabled}
                             size={'large'}>
                         <FileCopyOutlinedIcon className={classes.leftIcon}/>
                         Copy data

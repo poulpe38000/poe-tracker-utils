@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
+import Box from '@material-ui/core/Box';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
 
@@ -16,11 +17,11 @@ class HideoutStats extends React.Component {
             <Tooltip title={
                 <React.Fragment>
                     {Object.keys(byRarityStats).map((rarity) => (
-                        <div key={rarity}>
+                        <Box key={rarity}>
                             <Typography variant="caption">
                                 {HIDEOUT_CONSTANTS.rarity[rarity]}: {byRarityStats[rarity].unlocked}/{byRarityStats[rarity].total}
                             </Typography>
-                        </div>
+                        </Box>
                     ))}
                 </React.Fragment>
             }>

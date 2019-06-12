@@ -2,6 +2,7 @@ import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import clsx from 'clsx';
+import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import APP_CONSTANTS from 'constants/app.constants';
@@ -27,12 +28,12 @@ const styles = (theme) => ({
 
 function ContentWrapper({classes, sidenavExpanded, children}) {
     return (
-        <div className={clsx(classes.root, {
+        <Box className={clsx(classes.root, {
             [classes.drawerOpen]: sidenavExpanded,
             [classes.drawerClose]: !sidenavExpanded,
         })}>
             {children}
-        </div>
+        </Box>
     );
 }
 

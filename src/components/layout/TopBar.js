@@ -2,6 +2,7 @@ import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import AppBar from '@material-ui/core/AppBar';
+import Hidden from '@material-ui/core/Hidden';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -34,11 +35,15 @@ class TopBar extends React.Component {
         return (
             <AppBar position="fixed" className={classes.root}>
                 <Toolbar className={classes.toolbar}>
-                    <TopBarMenuButton onClick={this.handleOpenMenu}/>
+                    <Hidden mdUp>
+                        <TopBarMenuButton onClick={this.handleOpenMenu}/>
+                    </Hidden>
                     <Typography variant="h6" color="inherit" className={classes.title}>
                         PoE Tracker Utils
                     </Typography>
-                    <TopBarStats/>
+                    <Hidden xsDown>
+                        <TopBarStats/>
+                    </Hidden>
                 </Toolbar>
             </AppBar>
         );
