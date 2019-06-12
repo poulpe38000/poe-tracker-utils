@@ -1,21 +1,29 @@
 import React from 'react';
+import {compose} from 'redux';
 import {connect} from 'react-redux';
-import {FormControl, IconButton, InputAdornment, TextField, Toolbar, Typography, withStyles} from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
 import ClearIcon from '@material-ui/icons/Clear';
-import {hideoutUpdateSearchText} from 'store/hideout/actions';
-import * as PropTypes from 'prop-types';
-import {HideoutListFilter} from 'components/Hideout';
+import Box from '@material-ui/core/Box';
 import Fade from '@material-ui/core/Fade';
-import {compose} from 'redux';
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import TextField from '@material-ui/core/TextField';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+import * as PropTypes from 'prop-types';
 
-const styles = theme => ({
+import {hideoutUpdateSearchText} from 'store/hideout/actions';
+import HideoutListFilter from 'components/Hideout/HideoutListFilter';
+
+const styles = ({palette}) => ({
     spacer: {
         flex: '0 0 auto',
         flexGrow: 1,
     },
     actions: {
-        color: theme.palette.text.secondary,
+        color: palette.text.secondary,
         display: 'flex'
     },
     title: {
@@ -24,8 +32,6 @@ const styles = theme => ({
 });
 
 class HideoutListHeader extends React.Component {
-    state = {showSearchBar: false};
-
     static propTypes = {
         title: PropTypes.string,
         filterOptions: PropTypes.array,
@@ -36,6 +42,10 @@ class HideoutListHeader extends React.Component {
         title: '',
         filterOptions: [],
         searchable: true,
+    };
+
+    state = {
+        showSearchBar: false,
     };
 
     constructor(props) {
@@ -62,7 +72,7 @@ class HideoutListHeader extends React.Component {
         const filtrable = filterOptions.length > 0;
         return (
             <Toolbar>
-                <div className={classes.title}>
+                <Box className={classes.title}>
                     {(searchable && showSearchBar) ? (
                         <Fade in={showSearchBar}>
                             <FormControl fullWidth>
@@ -92,16 +102,16 @@ class HideoutListHeader extends React.Component {
                     ) : (
                         <Typography variant="h6">{title}</Typography>
                     )}
-                </div>
-                <div className={classes.spacer}/>
-                <div className={classes.actions}>
+                </Box>
+                <Box className={classes.spacer}/>
+                <Box className={classes.actions}>
                     {searchable && (
                         <IconButton aria-label="Search" onClick={this.handleToggleSearch}>
                             <SearchIcon/>
                         </IconButton>
                     )}
                     {filtrable && <HideoutListFilter filterOptions={filterOptions}/>}
-                </div>
+                </Box>
             </Toolbar>
         );
     }
@@ -112,9 +122,9 @@ export default compose(
         state => ({
             searchText: state.hideout.searchText,
         }),
-        dispatch => ({
-            hideoutUpdateSearchText: searchText => (dispatch(hideoutUpdateSearchText(searchText))),
-        })
+        {
+            hideoutUpdateSearchText: hideoutUpdateSearchText,
+        },
     ),
     withStyles(styles)
 )(HideoutListHeader);

@@ -1,8 +1,9 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
-import Typography from '@material-ui/core/Typography';
 import Tooltip from '@material-ui/core/Tooltip';
+import Typography from '@material-ui/core/Typography';
+
+import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import {getHideoutByRarityStats, getHideoutMainStats} from 'utils/stats';
 
 class HideoutStats extends React.Component {

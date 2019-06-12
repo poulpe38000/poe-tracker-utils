@@ -1,19 +1,21 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import {hideoutUpdateFilters} from 'store/hideout/actions';
-import {Chip, withStyles} from '@material-ui/core';
-import * as PropTypes from 'prop-types';
 import {compose} from 'redux';
+import {connect} from 'react-redux';
+import Chip from '@material-ui/core/Chip';
+import withStyles from '@material-ui/core/styles/withStyles';
+import * as PropTypes from 'prop-types';
 
-const styles = theme => ({
+import {hideoutUpdateFilters} from 'store/hideout/actions';
+
+const styles = ({spacing}) => ({
     root: {
         display: 'flex',
         justifyContent: 'flex-end',
         flexWrap: 'wrap',
-        padding: theme.spacing(.5),
+        padding: spacing(.5),
     },
     chip: {
-        margin: theme.spacing(.5),
+        margin: spacing(.5),
     },
 });
 
@@ -92,9 +94,9 @@ export default compose(
         state => ({
             filters: state.hideout.filters,
         }),
-        dispatch => ({
-            hideoutUpdateFilters: filters => (dispatch(hideoutUpdateFilters(filters))),
-        })
+        {
+            hideoutUpdateFilters: hideoutUpdateFilters,
+        },
     ),
     withStyles(styles)
 )(HideoutFilterStatus);

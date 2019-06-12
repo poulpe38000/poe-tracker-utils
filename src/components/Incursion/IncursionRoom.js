@@ -106,8 +106,8 @@ export default connect(
         completed: state.incursion.completed,
         inProgress: state.incursion.in_progress,
     }),
-    dispatch => ({
-        incursionRoomToggleCompleted: (roomKey, tier) => (dispatch(incursionRoomToggleCompleted(roomKey, tier))),
-        incursionRoomToggleInProgress: (roomKey, tier) => (dispatch(incursionRoomToggleInProgress(roomKey, tier))),
-    }),
+    {
+        incursionRoomToggleCompleted: incursionRoomToggleCompleted,
+        incursionRoomToggleInProgress: incursionRoomToggleInProgress,
+    },
 )(withStyles(styles)(IncursionRoom));

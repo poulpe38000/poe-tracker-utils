@@ -98,9 +98,9 @@ class ImportPage extends React.Component {
 export default compose(
     connect(
         null,
-        dispatch => ({
-            importData: (payload) => dispatch(importData(payload)),
-        }),
+        {
+            importData: importData,
+        },
     ),
     withSnackbar,
 )(ImportPage);

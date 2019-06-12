@@ -102,11 +102,11 @@ export default compose(
         state => ({
             searchText: state.incursion.searchText,
         }),
-        dispatch => ({
-            incursionUpdateSearchText: (payload) => dispatch(incursionUpdateSearchText(payload)),
-            incursionRoomValidateInProgress: () => dispatch(incursionRoomValidateInProgress()),
-            incursionResetInProgressData: () => dispatch(incursionResetInProgressData()),
-        })
+        {
+            incursionUpdateSearchText: incursionUpdateSearchText,
+            incursionRoomValidateInProgress: incursionRoomValidateInProgress,
+            incursionResetInProgressData: incursionResetInProgressData,
+        },
     ),
     withStyles(styles),
     withSnackbar,

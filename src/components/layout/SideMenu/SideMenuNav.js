@@ -123,9 +123,9 @@ export default compose(
     withRouter,
     connect(
         null,
-        dispatch => ({
-            toggleSidenav: () => dispatch(toggleSidenav())
-        }),
+        {
+            toggleSidenav: toggleSidenav,
+        },
     ),
     withStyles(styles),
     withWidth(),

@@ -1,29 +1,29 @@
 import React from 'react';
+import {compose} from 'redux';
 import {connect} from 'react-redux';
-import {
-    Button,
-    Checkbox,
-    FormControl,
-    GridList,
-    GridListTile,
-    IconButton,
-    InputLabel,
-    ListItemText,
-    MenuItem,
-    Paper,
-    Popover,
-    Select,
-    Typography,
-    withStyles
-} from '@material-ui/core';
 import FilterListIcon from '@material-ui/icons/FilterList';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import Checkbox from '@material-ui/core/Checkbox';
+import FormControl from '@material-ui/core/FormControl';
+import GridList from '@material-ui/core/GridList';
+import GridListTile from '@material-ui/core/GridListTile';
+import IconButton from '@material-ui/core/IconButton';
+import InputLabel from '@material-ui/core/InputLabel';
+import ListItemText from '@material-ui/core/ListItemText';
+import MenuItem from '@material-ui/core/MenuItem';
+import Paper from '@material-ui/core/Paper';
+import Popover from '@material-ui/core/Popover';
+import Select from '@material-ui/core/Select';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+import * as PropTypes from 'prop-types';
+
 import {hideoutResetFilters, hideoutUpdateFilters} from 'store/hideout/actions';
 import {buttonStyles, mergeStyles} from 'utils/themes';
-import * as PropTypes from 'prop-types';
-import {compose} from 'redux';
 
-const styles = theme => (mergeStyles({
+const styles = (theme) => (mergeStyles({
     popper: {
         padding: theme.spacing(2),
         backgroundColor: theme.palette.background.popper
@@ -93,7 +93,7 @@ class HideoutListFilter extends React.Component {
         const filterKeys = Object.keys(filter.filterOptions);
         return (
             <GridListTile key={index}>
-                <div className={classes.selectRoot}>
+                <Box className={classes.selectRoot}>
                     <FormControl className={classes.selectFormControl} key={index}>
                         <InputLabel shrink htmlFor={filter.id}>{filter.label}</InputLabel>
                         <Select
@@ -112,7 +112,7 @@ class HideoutListFilter extends React.Component {
                             ))}
                         </Select>
                     </FormControl>
-                </div>
+                </Box>
             </GridListTile>
         );
     }
@@ -125,7 +125,7 @@ class HideoutListFilter extends React.Component {
         };
         return (
             <GridListTile key={index}>
-                <div className={classes.selectRoot}>
+                <Box className={classes.selectRoot}>
                     <FormControl className={classes.selectFormControl} key={index}>
                         <InputLabel shrink htmlFor={filter.id}>{filter.label}</InputLabel>
                         <Select
@@ -146,7 +146,7 @@ class HideoutListFilter extends React.Component {
                             ))}
                         </Select>
                     </FormControl>
-                </div>
+                </Box>
             </GridListTile>
         );
     }
@@ -182,7 +182,7 @@ class HideoutListFilter extends React.Component {
                                 })
                             }
                             <GridListTile className={classes.gridListActions} cols={2}>
-                                <div className={classes.actions}>
+                                <Box className={classes.actions}>
                                     <Button className={classes.button} size={'large'}
                                             onClick={this.handleResetFilters}>
                                         <SettingsBackupRestoreIcon color="error" className={classes.leftIcon}/>
@@ -192,7 +192,7 @@ class HideoutListFilter extends React.Component {
                                             onClick={this.handleOpenFilterPopper}>
                                         {'Close'}
                                     </Button>
-                                </div>
+                                </Box>
                             </GridListTile>
                         </GridList>
                     </Paper>
@@ -207,10 +207,10 @@ export default compose(
         state => ({
             filters: state.hideout.filters,
         }),
-        dispatch => ({
-            hideoutUpdateFilters: filters => (dispatch(hideoutUpdateFilters(filters))),
-            hideoutResetFilters: () => (dispatch(hideoutResetFilters())),
-        })
+        {
+            hideoutUpdateFilters: hideoutUpdateFilters,
+            hideoutResetFilters: hideoutResetFilters,
+        },
     ),
     withStyles(styles)
 )(HideoutListFilter);
