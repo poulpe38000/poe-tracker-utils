@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import {resetAll} from 'store/main/actions';
+import {rootActions} from 'store/main/actions';
 import {incursionActions} from 'store/incursion/actions';
 import {hideoutActions} from 'store/hideout/actions';
 import {displaySnackbar} from 'utils/snackbar';
@@ -72,7 +72,7 @@ export default compose(
             incursionResetCompletedData: incursionActions.resetCompletedData,
             incursionResetInProgressData: incursionActions.resetInProgressData,
             hideoutResetData: hideoutActions.resetData,
-            resetAll: resetAll,
+            resetAll: rootActions.resetAll,
         },
     ),
     withStyles(rootStyles),

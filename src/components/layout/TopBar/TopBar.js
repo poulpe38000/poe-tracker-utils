@@ -6,7 +6,7 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import {toggleSidenav} from 'store/main/actions';
+import {rootActions} from 'store/main/actions';
 import TopBarMenuButton from 'components/layout/TopBar/TopBarMenuButton';
 import TopBarStats from 'components/layout/TopBar/TopBarStats';
 
@@ -48,7 +48,9 @@ class TopBar extends React.Component {
 export default compose(
     connect(
         null,
-        {toggleSidenav: toggleSidenav},
+        {
+            toggleSidenav: rootActions.toggleSidenav,
+        },
     ),
     withStyles(styles),
 )(TopBar);

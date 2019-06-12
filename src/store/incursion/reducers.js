@@ -1,6 +1,6 @@
 import INITIAL_STATE from 'store/incursion/state';
 import {ACTION_TYPE as INCURSION_ACTION} from 'store/incursion/actions';
-import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL, SET_ALL} from 'store/main/actions';
+import {ACTION_TYPE as ROOT_ACTION} from 'store/main/actions';
 import {clearObj, getObj, INCURSION_COMPLETED_STORAGE, INCURSION_IN_PROGRESS_STORAGE, setObj} from 'utils/storage';
 import {importIncursionData, toggleIncursionRoom, validateInProgressIncursion} from 'store/incursion/functions';
 
@@ -33,7 +33,7 @@ function incursionReducer(state = INITIAL_STATE, action) {
                 ...state,
                 searchText: action.payload,
             };
-        case INITIALIZE_APP:
+        case ROOT_ACTION.INITIALIZE_APP:
             try {
                 return {
                     ...state,
@@ -43,7 +43,7 @@ function incursionReducer(state = INITIAL_STATE, action) {
             } catch (e) {
                 return {...state};
             }
-        case IMPORT_DATA:
+        case ROOT_ACTION.IMPORT_DATA:
             completedRooms = importIncursionData(completedRooms, action.payload.data, action.payload.opts, {
                 ignoreKey: 'ignoreCompletedIncursions',
                 dataKey: 'completed'
@@ -67,13 +67,13 @@ function incursionReducer(state = INITIAL_STATE, action) {
                 ...state,
                 completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
             };
-        case RESET_ALL:
+        case ROOT_ACTION.RESET_ALL:
             return {
                 ...state,
                 in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
                 completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
             };
-        case SET_ALL:
+        case ROOT_ACTION.SET_ALL:
             return {
                 ...state,
                 in_progress: setObj(INCURSION_IN_PROGRESS_STORAGE, state.in_progress),

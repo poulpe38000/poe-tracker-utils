@@ -1,6 +1,6 @@
 import INITIAL_STATE from 'store/hideout/state';
 import {ACTION_TYPE as HIDEOUT_ACTION} from 'store/hideout/actions';
-import {IMPORT_DATA, INITIALIZE_APP, RESET_ALL, SET_ALL} from 'store/main/actions';
+import {ACTION_TYPE as ROOT_ACTION} from 'store/main/actions';
 import {clearObj, getObj, HIDEOUT_UNLOCKED_STORAGE, setObj} from 'utils/storage';
 import {importHideoutData, toggleUnlockedHideout} from 'store/hideout/functions';
 
@@ -33,17 +33,17 @@ function hideoutReducer(state = INITIAL_STATE, action) {
                 filters: {},
             };
         case HIDEOUT_ACTION.RESET_DATA:
-        case RESET_ALL:
+        case ROOT_ACTION.RESET_ALL:
             return {
                 ...state,
                 unlocked: clearObj(HIDEOUT_UNLOCKED_STORAGE, []),
             };
-        case SET_ALL:
+        case ROOT_ACTION.SET_ALL:
             return {
                 ...state,
                 unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked),
             };
-        case INITIALIZE_APP:
+        case ROOT_ACTION.INITIALIZE_APP:
             try {
                 return {
                     ...state,
@@ -52,7 +52,7 @@ function hideoutReducer(state = INITIAL_STATE, action) {
             } catch (e) {
                 return state;
             }
-        case IMPORT_DATA:
+        case ROOT_ACTION.IMPORT_DATA:
             unlocked = importHideoutData(unlocked, action.payload.data, action.payload.opts, {
                 ignoreKey: 'ignoreHideouts',
                 dataKey: 'unlocked'

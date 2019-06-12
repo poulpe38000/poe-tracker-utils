@@ -14,7 +14,7 @@ import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import {setAll, toggleTheme} from 'store/main/actions';
+import {rootActions} from 'store/main/actions';
 import {clearStorage, getLocalStorageSettings, toggleLocalStorageSettings} from 'utils/storage';
 import {mergeStyles} from 'utils/themes';
 import {itemStyles, rootStyles} from 'components/Settings/shared';
@@ -90,8 +90,8 @@ export default compose(
             useLightTheme: state.main.useLightTheme,
         }),
         {
-            toggleTheme: toggleTheme,
-            setAll: setAll,
+            toggleTheme: rootActions.toggleTheme,
+            setAll: rootActions.setAll,
         },
     ),
     withStyles(styles),

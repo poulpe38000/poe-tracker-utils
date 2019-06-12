@@ -10,7 +10,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 import APP_CONSTANTS from 'constants/app.constants';
 import {darkTheme, lightTheme} from 'utils/themes';
-import {initializeApp} from 'store/main/actions';
+import {rootActions} from 'store/main/actions';
 import {SideMenu} from 'components/layout/SideMenu';
 import {TopBar} from 'components/layout/TopBar';
 import Routes from 'components/Routes';
@@ -56,7 +56,7 @@ export default compose(
             useLightTheme: state.main.useLightTheme,
         }),
         {
-            initializeApp: initializeApp,
+            initializeApp: rootActions.initializeApp,
         },
     ),
     withStyles(styles),

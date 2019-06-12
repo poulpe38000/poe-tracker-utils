@@ -7,7 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import withWidth, {isWidthDown, isWidthUp} from '@material-ui/core/withWidth';
 
 import APP_CONSTANTS from 'constants/app.constants';
-import {toggleSidenav} from 'store/main/actions';
+import {rootActions} from 'store/main/actions';
 import {transitionFor} from 'utils/themes';
 import SideMenuNav from 'components/layout/SideMenu/SideMenuNav';
 import SideMenuExpander from 'components/layout/SideMenu/SideMenuExpander';
@@ -75,7 +75,7 @@ export default compose(
             sidenavExpanded: state.main.sidenavExpanded,
         }),
         {
-            toggleSidenav: toggleSidenav,
+            toggleSidenav: rootActions.toggleSidenav,
         },
     ),
     withStyles(styles),
