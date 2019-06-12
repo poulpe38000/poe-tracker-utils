@@ -1,9 +1,7 @@
 import React from 'react';
-import {compose} from 'redux';
 import MenuIcon from '@material-ui/icons/Menu';
 import IconButton from '@material-ui/core/IconButton';
 import withStyles from '@material-ui/core/styles/withStyles';
-import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 import * as PropTypes from 'prop-types';
 
 const styles = ({palette, spacing}) => ({
@@ -19,20 +17,13 @@ class TopBarMenuButton extends React.Component {
     };
 
     render() {
-        const {classes, width, onClick} = this.props;
+        const {classes, onClick} = this.props;
         return (
-            <React.Fragment>
-                {isWidthDown('xs', width) && (
-                    <IconButton aria-label="Menu" onClick={onClick} className={classes.button}>
-                        <MenuIcon/>
-                    </IconButton>
-                )}
-            </React.Fragment>
+            <IconButton aria-label="Menu" onClick={onClick} className={classes.button}>
+                <MenuIcon/>
+            </IconButton>
         );
     }
 }
 
-export default compose(
-    withStyles(styles),
-    withWidth()
-)(TopBarMenuButton);
+export default withStyles(styles)(TopBarMenuButton);

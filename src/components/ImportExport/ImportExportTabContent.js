@@ -1,10 +1,12 @@
 import React from "react";
+import TransitionGroup from 'react-transition-group/TransitionGroup';
+import CSSTransition from 'react-transition-group/CSSTransition';
+import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
+import PropTypes from 'prop-types';
+
 import {ImportPage} from 'components/ImportExport/ImportData';
 import {ExportPage} from 'components/ImportExport/ExportData';
-import {compose} from 'redux';
-import PropTypes from 'prop-types';
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 const styles = {
     root: {
@@ -23,16 +25,14 @@ class ImportExportTabContent extends React.Component {
         return (
             <TransitionGroup>
                 <CSSTransition timeout={300} key={value} classNames="fade">
-                    <div className={classes.root}>
+                    <Box className={classes.root}>
                         {value === 0 && <ImportPage/>}
                         {value === 1 && <ExportPage/>}
-                    </div>
+                    </Box>
                 </CSSTransition>
             </TransitionGroup>
         );
     }
 }
 
-export default compose(
-    withStyles(styles),
-)(ImportExportTabContent);
+export default withStyles(styles)(ImportExportTabContent);

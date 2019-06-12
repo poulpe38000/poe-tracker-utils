@@ -1,11 +1,13 @@
 import React from 'react'
-import {TextField, withStyles, withWidth} from '@material-ui/core';
-import {isWidthDown} from '@material-ui/core/withWidth';
-import Dropzone from 'react-dropzone';
 import {compose} from 'redux';
-import {ImportDragZone} from 'components/ImportExport/ImportData';
+import Dropzone from 'react-dropzone';
 import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
+import withStyles from '@material-ui/core/styles/withStyles';
+import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 import * as PropTypes from 'prop-types';
+
+import ImportDragZone from 'components/ImportExport/ImportData/ImportDragZone';
 
 const styles = {
     dragContainer: {

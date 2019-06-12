@@ -1,11 +1,13 @@
 import React from 'react'
-import {Button, withStyles} from '@material-ui/core';
-import GetAppIcon from '@material-ui/icons/GetApp';
-import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
 import {CopyToClipboard} from 'react-copy-to-clipboard';
-import {buttonStyles, mergeStyles} from 'utils/themes';
+import FileCopyOutlinedIcon from '@material-ui/icons/FileCopyOutlined';
+import GetAppIcon from '@material-ui/icons/GetApp';
 import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
+
+import {buttonStyles, mergeStyles} from 'utils/themes';
 
 const styles = theme => (mergeStyles({
     actions: {
@@ -32,7 +34,7 @@ class ExportActions extends React.Component {
         return (
             <Box className={classes.actions}>
                 <CopyToClipboard text={exportText} className={classes.button} onCopy={onCopy}>
-                    <Button variant="contained" color="primary" disabled={!exportEnabled}
+                    <Button variant="outlined" disabled={!exportEnabled}
                             size={'large'}>
                         <FileCopyOutlinedIcon className={classes.leftIcon}/>
                         Copy data

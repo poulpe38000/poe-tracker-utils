@@ -3,14 +3,15 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 import clsx from 'clsx';
 import Drawer from '@material-ui/core/Drawer';
+import Hidden from '@material-ui/core/Hidden';
 import withStyles from '@material-ui/core/styles/withStyles';
-import withWidth, {isWidthDown, isWidthUp} from '@material-ui/core/withWidth';
+import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 
 import APP_CONSTANTS from 'constants/app.constants';
 import {rootActions} from 'store/root/actions';
 import {transitionFor} from 'utils/themes';
-import SideMenuNav from 'components/layout/SideMenu/SideMenuNav';
-import SideMenuExpander from 'components/layout/SideMenu/SideMenuExpander';
+import SideMenuNav from 'components/layout/SideMenuComponents/SideMenuNav';
+import SideMenuExpander from 'components/layout/SideMenuComponents/SideMenuExpander';
 
 const styles = (theme) => ({
     root: {
@@ -30,7 +31,7 @@ const styles = (theme) => ({
     drawerClose: {
         overflowX: 'hidden',
         width: theme.spacing(8) + 1,
-        transition: transitionFor(theme, 'width'),
+        transition: transitionFor(theme, 'width', 'leavingScreen'),
     },
     avatar: {
         background: 'transparent',
@@ -63,7 +64,9 @@ class SideMenu extends React.Component {
                 }}
             >
                 <SideMenuNav expanded={sidenavExpanded}/>
-                {isWidthUp('sm', width) && <SideMenuExpander expanded={sidenavExpanded} onClick={this.handleToggleMenu}/>}
+                <Hidden xsDown>
+                    <SideMenuExpander expanded={sidenavExpanded} onClick={this.handleToggleMenu}/>
+                </Hidden>
             </Drawer>
         );
     }

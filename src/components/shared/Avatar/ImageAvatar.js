@@ -6,7 +6,6 @@ import * as PropTypes from 'prop-types';
 import {styles} from './shared';
 
 class ImageAvatar extends React.Component {
-
     static propTypes = {
         label: PropTypes.string.isRequired,
         value: PropTypes.string.isRequired,
@@ -15,7 +14,7 @@ class ImageAvatar extends React.Component {
     render() {
         const {classes, label, value} = this.props;
         return (
-            <Avatar className={classes.avatar} alt={label} src={value}/>
+            <Avatar className={classes.root} alt={label} src={value}/>
         );
     }
 }

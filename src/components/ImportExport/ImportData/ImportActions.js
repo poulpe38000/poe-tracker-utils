@@ -1,12 +1,14 @@
 import React from 'react'
-import {Button, withStyles} from '@material-ui/core';
-import Box from '@material-ui/core/Box';
-import CloudUploadIcon from '@material-ui/icons/CloudUpload';
 import AttachFileIcon from '@material-ui/icons/AttachFile';
-import {buttonStyles, mergeStyles} from 'utils/themes';
+import CloudUploadIcon from '@material-ui/icons/CloudUpload';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-const styles = theme => (mergeStyles({
+import {buttonStyles, mergeStyles} from 'utils/themes';
+
+const styles = (theme) => (mergeStyles({
     actions: {
         paddingTop: theme.spacing(2),
         display: 'flex',
@@ -29,7 +31,7 @@ class ImportActions extends React.Component {
         const {classes, importEnabled, onImport, onAttachFile} = this.props;
         return (
             <Box className={classes.actions}>
-                <Button variant="contained" color="primary" className={classes.button}
+                <Button variant="outlined" className={classes.button}
                         size={'large'}
                         onClick={onAttachFile}>
                     <AttachFileIcon className={classes.leftIcon}/>

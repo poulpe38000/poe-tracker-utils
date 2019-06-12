@@ -1,17 +1,26 @@
 import React from 'react';
-import {Button, FormControl, IconButton, InputAdornment, Paper, TextField, withStyles} from '@material-ui/core';
+import {compose} from 'redux';
+import {connect} from 'react-redux';
+import {withSnackbar} from 'notistack';
 import CheckIcon from '@material-ui/icons/Check';
 import ClearIcon from '@material-ui/icons/Clear';
 import SearchIcon from '@material-ui/icons/Search';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
-import {connect} from 'react-redux';
-import {incursionActions} from 'store/incursion/actions';
-import {buttonStyles, mergeStyles} from 'utils/themes';
-import {compose} from 'redux';
-import {withSnackbar} from 'notistack';
-import {displaySnackbar} from 'utils/snackbar';
+import Box from '@material-ui/core/Box';
+import Button from '@material-ui/core/Button';
+import FormControl from '@material-ui/core/FormControl';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 
-const styles = theme => (mergeStyles({
+import {incursionActions} from 'store/incursion/actions';
+import {displaySnackbar} from 'utils/snackbar';
+import {buttonStyles, mergeStyles} from 'utils/themes';
+
+const styles = (theme) => (mergeStyles({
     root: {
         ...theme.mixins.gutters(),
         paddingTop: theme.spacing(2),
@@ -78,16 +87,16 @@ class IncursionSummary extends React.Component {
                         }}
                     />
                 </FormControl>
-                <div className={classes.actions}>
-                    <Button variant="outlined" onClick={this.handleResetInProgress} className={classes.button}>
-                        <SettingsBackupRestoreIcon className={classes.leftIcon}/>
-                        Reset Current Incursion
+                <Box className={classes.actions}>
+                    <Button size={'large'} onClick={this.handleResetInProgress} className={classes.button}>
+                        <SettingsBackupRestoreIcon color={'error'} className={classes.leftIcon}/>
+                        <Typography variant={'button'} color={'error'}>{'Reset Current Incursion'}</Typography>
                     </Button>
-                    <Button variant="outlined" onClick={this.handleValidateInProgress} className={classes.button}>
+                    <Button variant={'contained'} color={'primary'} size={'large'} onClick={this.handleValidateInProgress} className={classes.button}>
                         <CheckIcon className={classes.leftIcon}/>
                         Complete Current Incursion
                     </Button>
-                </div>
+                </Box>
             </Paper>
         );
     }

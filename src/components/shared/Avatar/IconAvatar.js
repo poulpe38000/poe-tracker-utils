@@ -15,7 +15,7 @@ class IconAvatar extends React.Component {
         const {classes, label, value} = this.props;
         const AvatarIcon = value;
         return (
-            <Avatar className={classes.avatar} alt={label}>
+            <Avatar className={classes.root} alt={label}>
                 <AvatarIcon/>
             </Avatar>
         );

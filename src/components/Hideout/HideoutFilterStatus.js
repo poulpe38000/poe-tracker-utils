@@ -1,6 +1,7 @@
 import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
+import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
@@ -73,7 +74,7 @@ class HideoutFilterStatus extends React.Component {
         return (
             <React.Fragment>
                 {chipList.length > 0 && (
-                    <div className={classes.root}>
+                    <Box className={classes.root}>
                         {chipList.map(chip => (
                             <Chip
                                 color="primary"
@@ -82,7 +83,7 @@ class HideoutFilterStatus extends React.Component {
                                 className={classes.chip}
                             />
                         ))}
-                    </div>
+                    </Box>
                 )}
             </React.Fragment>
         )

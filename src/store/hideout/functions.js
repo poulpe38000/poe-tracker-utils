@@ -1,11 +1,11 @@
-import {clearObj, getObj, HIDEOUT_UNLOCKED_STORAGE, setObj} from 'utils/storage';
+import {clearObj, getObj, STORAGE_KEYS, setObj} from 'utils/storage';
 import INITIAL_STATE from 'store/root/state';
 
 export function toggleUnlocked(state, action) {
     const unlocked = toggleUnlockedHideout(state.unlocked.slice(), action.payload);
     return {
         ...state,
-        unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked),
+        unlocked: setObj(STORAGE_KEYS.HIDEOUT_UNLOCKED_STORAGE, unlocked),
     };
 }
 
@@ -36,7 +36,7 @@ export function resetFilters(state) {
 export function resetData(state) {
     return {
         ...state,
-        unlocked: clearObj(HIDEOUT_UNLOCKED_STORAGE, INITIAL_STATE.hideout.unlocked),
+        unlocked: clearObj(STORAGE_KEYS.HIDEOUT_UNLOCKED_STORAGE, INITIAL_STATE.hideout.unlocked),
     };
 }
 
@@ -44,7 +44,7 @@ export function setData(state) {
     const unlocked = state.unlocked.slice();
     return {
         ...state,
-        unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked),
+        unlocked: setObj(STORAGE_KEYS.HIDEOUT_UNLOCKED_STORAGE, unlocked),
     };
 }
 
@@ -52,7 +52,7 @@ export function initializeApp(state) {
     try {
         return {
             ...state,
-            unlocked: getObj(HIDEOUT_UNLOCKED_STORAGE, INITIAL_STATE.hideout.unlocked),
+            unlocked: getObj(STORAGE_KEYS.HIDEOUT_UNLOCKED_STORAGE, INITIAL_STATE.hideout.unlocked),
         };
     } catch (e) {
         return state;
@@ -66,7 +66,7 @@ export function importData(state, action) {
     });
     return {
         ...state,
-        unlocked: setObj(HIDEOUT_UNLOCKED_STORAGE, unlocked),
+        unlocked: setObj(STORAGE_KEYS.HIDEOUT_UNLOCKED_STORAGE, unlocked),
     };
 }
 

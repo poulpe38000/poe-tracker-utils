@@ -1,7 +1,7 @@
 import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import {BrowserRouter} from 'react-router-dom';
+import BrowserRouter from 'react-router-dom/BrowserRouter';
 import {SnackbarProvider} from 'notistack';
 import {ThemeProvider} from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -11,8 +11,8 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import APP_CONSTANTS from 'constants/app.constants';
 import {darkTheme, lightTheme} from 'utils/themes';
 import {rootActions} from 'store/root/actions';
-import {SideMenu} from 'components/layout/SideMenu';
-import {TopBar} from 'components/layout/TopBar';
+import SideMenu from 'components/layout/SideMenu';
+import TopBar from 'components/layout/TopBar';
 import Routes from 'components/Routes';
 
 const styles = {

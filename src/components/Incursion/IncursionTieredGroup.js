@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {IncursionRoom} from 'components/Incursion';
+
+import IncursionRoom from 'components/Incursion/IncursionRoom';
 
 class IncursionTieredGroup extends React.Component {
     static propTypes = {

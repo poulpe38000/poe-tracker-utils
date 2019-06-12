@@ -1,20 +1,23 @@
 import React from 'react'
-import {Grid, Paper, Typography, withStyles} from '@material-ui/core';
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-const styles = theme => ({
+const styles = ({spacing}) => ({
     root: {
         position: 'absolute',
         top: 0,
         left: 0,
         bottom: 0,
         right: 0,
-        borderRadius: theme.spacing(2),
+        borderRadius: spacing(2),
     },
     dragActive: {
         borderStyle: 'dashed',
-        borderWidth: theme.spacing(.5),
-        borderRadius: theme.spacing(2),
+        borderWidth: spacing(.5),
+        borderRadius: spacing(2),
         height: '100%',
         opacity: .3
     },

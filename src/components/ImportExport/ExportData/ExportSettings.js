@@ -1,6 +1,8 @@
 import React from 'react'
 import * as PropTypes from 'prop-types';
-import {ImportExportSettingsItem, ImportExportSettingsPanel} from 'components/ImportExport/shared';
+
+import ImportExportSettingsItem from 'components/ImportExport/shared/ImportExportSettingsItem';
+import ImportExportSettingsPanel from 'components/ImportExport/shared/ImportExportSettingsPanel';
 
 
 class ExportSettings extends React.Component {

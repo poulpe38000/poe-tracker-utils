@@ -1,13 +1,16 @@
 import React, {createRef} from 'react'
+import {compose} from 'redux';
 import {connect} from "react-redux";
+import {withSnackbar} from 'notistack';
+import Box from '@material-ui/core/Box';
+
 import {rootActions} from 'store/root/actions';
 import {sanitizeTrackerData} from 'utils/sanitizer';
-import {ImportActions, ImportDropZone, ImportSettings} from 'components/ImportExport/ImportData';
-import {Page} from 'components/layout/Page';
-import Box from '@material-ui/core/Box';
-import {compose} from 'redux';
-import {withSnackbar} from 'notistack';
 import {displaySnackbar} from 'utils/snackbar';
+import Page from 'components/layout/Page';
+import ImportSettings from 'components/ImportExport/ImportData/ImportSettings';
+import ImportDropZone from 'components/ImportExport/ImportData/ImportDropZone';
+import ImportActions from 'components/ImportExport/ImportData/ImportActions';
 
 class ImportPage extends React.Component {
     state = {

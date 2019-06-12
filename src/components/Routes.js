@@ -1,8 +1,11 @@
 import React from 'react';
 import {compose} from 'redux';
-import {Route, Switch, withRouter} from 'react-router-dom';
+import Route from 'react-router-dom/Route';
+import Switch from 'react-router-dom/Switch';
+import withRouter from 'react-router-dom/withRouter';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
+import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import APP_CONSTANTS from 'constants/app.constants';
@@ -48,7 +51,7 @@ class Routes extends React.Component {
         const {classes, location} = this.props;
         const {routes} = this.state;
         return (
-            <div className={classes.root}>
+            <Box className={classes.root}>
                 <TransitionGroup>
                     <CSSTransition timeout={300} key={location.key} classNames="fade">
                         <ContentWrapper>
@@ -58,7 +61,7 @@ class Routes extends React.Component {
                         </ContentWrapper>
                     </CSSTransition>
                 </TransitionGroup>
-            </div>
+            </Box>
         );
     }
 }

@@ -1,5 +1,5 @@
 export const styles = {
-    avatar: {
+    root: {
         background: 'transparent',
         color: 'inherit',
     }

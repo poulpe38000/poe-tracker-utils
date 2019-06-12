@@ -1,10 +1,11 @@
 import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import withRouter from 'react-router-dom/withRouter';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
 import AppBar from '@material-ui/core/AppBar';
+import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -19,7 +20,7 @@ import incursionLogo from './incursion_logo.png';
 import filterLogo from './filter_logo.png';
 import {rootActions} from 'store/root/actions';
 import {IconAvatar, ImageAvatar} from 'components/shared';
-import SideMenuNavList from 'components/layout/SideMenu/SideMenuNavList';
+import SideMenuNavList from 'components/layout/SideMenuComponents/SideMenuNavList';
 
 const styles = ({mixins, breakpoints, spacing}) => ({
     root: {
@@ -101,19 +102,19 @@ class SideMenuNav extends React.Component {
                         </Typography>
                     </Toolbar>
                 </AppBar>
-                <div className={classes.root}>
+                <Box className={classes.root}>
                     <SideMenuNavList
                         items={this.items.pages}
                         expanded={!isWidthDown('xs', width) && expanded}
                         onClick={isWidthDown('xs', width) ? toggleSidenav : noop}
                     />
-                    <div className={classes.spacer}/>
+                    <Box className={classes.spacer}/>
                     <SideMenuNavList
                         items={this.items.settings}
                         expanded={!isWidthDown('xs', width) && expanded}
                         onClick={isWidthDown('xs', width) ? toggleSidenav : noop}
                     />
-                </div>
+                </Box>
             </React.Fragment>
         );
     }

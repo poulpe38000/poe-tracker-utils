@@ -1,7 +1,7 @@
 import React from "react";
 import Container from '@material-ui/core/Container';
 
-import {Page} from 'components/layout/Page';
+import Page from 'components/layout/Page';
 import {IncursionBaseList, IncursionSummary, IncursionTieredList} from 'components/Incursion';
 
 export default function IncursionsPage() {
