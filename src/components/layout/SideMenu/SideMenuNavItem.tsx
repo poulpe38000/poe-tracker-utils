@@ -1,20 +1,27 @@
 import React from 'react';
-import {NavLink} from 'react-router-dom';
-import {ListItem, ListItemText, withStyles} from '@material-ui/core';
-import * as PropTypes from 'prop-types';
+import {NavLink, NavLinkProps} from 'react-router-dom';
+import {createStyles, ListItem, ListItemText, Theme, withStyles} from '@material-ui/core';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import {IconAvatar, ImageAvatar} from 'components/shared';
 
-const styles = theme => ({
+interface Props {
+    classes: any,
+    label: string,
+    icon: any,
+    avatar: any,
+    link: any,
+    expanded?: boolean,
+}
+
+const styles = ({palette, spacing}: Theme) => createStyles({
     root: {
-        paddingLeft: theme.spacing(1.5),
-        paddingRight: theme.spacing(1.5),
+        paddingLeft: spacing(1.5),
+        paddingRight: spacing(1.5),
     },
     active: {
-        backgroundColor: theme.palette.primary.light,
-        color: theme.palette.primary.contrastText,
+        backgroundColor: palette.primary.light,
+        color: palette.primary.contrastText,
         pointerEvents: 'none',
     },
     avatar: {
@@ -23,21 +30,21 @@ const styles = theme => ({
     }
 });
 
-const MenuNavLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />);
+const MenuNavLink = React.forwardRef<any, NavLinkProps>((props: NavLinkProps, ref: any) => <NavLink innerRef={ref} {...props} />);
 
-class SideMenuNavItem extends React.Component {
+class SideMenuNavItem extends React.Component<Props> {
 
-    static propTypes = {
-        label: PropTypes.string.isRequired,
-        icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-        avatar: PropTypes.oneOf([IconAvatar, ImageAvatar]),
-        link: PropTypes.object.isRequired,
-        expanded: PropTypes.bool,
-    };
-
-    static defaultProps = {
-        expanded: false,
-    };
+    // static propTypes = {
+    //     label: PropTypes.string.isRequired,
+    //     icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]).isRequired,
+    //     avatar: PropTypes.oneOf([IconAvatar, ImageAvatar]).isRequired,
+    //     link: PropTypes.object.isRequired,
+    //     expanded: PropTypes.bool,
+    // };
+    //
+    // static defaultProps = {
+    //     expanded: false,
+    // };
 
     render() {
         const {classes, link, avatar, label, icon, expanded} = this.props;

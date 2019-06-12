@@ -1,16 +1,15 @@
 import React from 'react';
 import {List} from '@material-ui/core';
 import noop from 'lodash/noop';
-import * as PropTypes from 'prop-types';
 import SideMenuNavItem from 'components/layout/SideMenu/SideMenuNavItem';
 
-class SideMenuNavList extends React.Component {
+interface Props {
+    items: any[],
+    expanded: boolean,
+    onClick(event: React.MouseEvent<HTMLElement>): void,
+}
 
-    static propTypes = {
-        items: PropTypes.array.isRequired,
-        expanded: PropTypes.bool,
-        onClick: PropTypes.func,
-    };
+class SideMenuNavList extends React.Component<Props> {
 
     static defaultProps = {
         expanded: false,
