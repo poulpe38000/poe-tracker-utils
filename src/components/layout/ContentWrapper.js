@@ -21,7 +21,7 @@ const styles = (theme) => ({
         [theme.breakpoints.up('sm')]: {
             paddingLeft: theme.spacing(8) + 1,
         },
-        transition: transitionFor(theme, 'padding-left'),
+        transition: transitionFor(theme, 'padding-left', 'leavingScreen'),
     },
 });
 

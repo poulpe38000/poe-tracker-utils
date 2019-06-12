@@ -1,5 +1,8 @@
 import React from 'react'
-import {ListItem, ListItemSecondaryAction, ListItemText, Switch} from '@material-ui/core';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Switch from '@material-ui/core/Switch';
 import * as PropTypes from 'prop-types';
 
 

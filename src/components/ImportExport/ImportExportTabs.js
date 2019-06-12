@@ -1,15 +1,19 @@
 import React from 'react';
-import {AppBar, Tab, Tabs, withStyles} from '@material-ui/core';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import APP_CONSTANTS from 'constants/app.constants';
 import clsx from 'clsx';
-import {transitionFor} from 'utils/themes';
+import AppBar from '@material-ui/core/AppBar';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
+
+import APP_CONSTANTS from 'constants/app.constants';
+import {transitionFor} from 'utils/themes';
 
 const drawerWidth = APP_CONSTANTS.drawerWidth;
 
-const styles = theme => ({
+const styles = (theme) => ({
     root: {
         zIndex: theme.zIndex.appBar - 1,
         top: 64,
@@ -31,7 +35,7 @@ const styles = theme => ({
             left: theme.spacing(8) + 1,
             width: `calc(100% - ${theme.spacing(8) + 1}px)`,
         },
-        transition: transitionFor(theme, ['left', 'width']),
+        transition: transitionFor(theme, ['left', 'width'], 'leavingScreen'),
     },
     indicator: {
         backgroundColor: theme.palette.primary.contrastText,

@@ -1,10 +1,11 @@
 import React from "react";
 import withStyles from '@material-ui/core/styles/withStyles';
+import TransitionGroup from 'react-transition-group/TransitionGroup';
+import CSSTransition from 'react-transition-group/CSSTransition';
+import PropTypes from 'prop-types';
+
 import {ImportPage} from 'components/ImportExport/ImportData';
 import {ExportPage} from 'components/ImportExport/ExportData';
-import {compose} from 'redux';
-import PropTypes from 'prop-types';
-import {CSSTransition, TransitionGroup} from 'react-transition-group';
 
 const styles = {
     root: {
@@ -33,6 +34,4 @@ class ImportExportTabContent extends React.Component {
     }
 }
 
-export default compose(
-    withStyles(styles),
-)(ImportExportTabContent);
+export default withStyles(styles)(ImportExportTabContent);

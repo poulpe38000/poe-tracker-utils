@@ -1,11 +1,11 @@
 import React from "react";
-import {Link} from 'react-router-dom';
+import Link from 'react-router-dom/Link';
 import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import APP_CONSTANTS from 'constants/app.constants';
-import {Page} from 'components/layout/Page';
+import Page from 'components/layout/Page';
 
 const styles = ({spacing}) => ({
     root: {

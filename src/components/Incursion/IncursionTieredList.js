@@ -1,8 +1,10 @@
 import React from 'react';
-import {IncursionListContainer, IncursionTieredGroup} from 'components/Incursion';
-import {Divider} from '@material-ui/core';
 import {connect} from 'react-redux';
+import Divider from '@material-ui/core/Divider';
+
 import {filteredIncursionData, getTieredRooms} from 'utils/incursion';
+import IncursionListContainer from 'components/Incursion/IncursionListContainer';
+import IncursionTieredGroup from 'components/Incursion/IncursionTieredGroup';
 
 function acceptFilter(rooms) {
     return rooms.length > 1;

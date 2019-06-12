@@ -1,7 +1,9 @@
 import React from 'react';
-import {IncursionRoom, IncursionListContainer} from 'components/Incursion';
 import {connect} from 'react-redux';
+
 import {filteredIncursionData, getBaseRooms} from 'utils/incursion';
+import IncursionListContainer from 'components/Incursion/IncursionListContainer';
+import IncursionRoom from 'components/Incursion/IncursionRoom';
 
 function acceptFilter(rooms) {
     return rooms.length === 1;

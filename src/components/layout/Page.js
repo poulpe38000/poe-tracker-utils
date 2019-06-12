@@ -2,7 +2,7 @@ import React from 'react';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import PageTitle from 'components/layout/Page/PageTitle';
+import PageTitle from 'components/layout/PageComponents/PageTitle';
 
 const styles = ({spacing}) => ({
     root: {

@@ -1,6 +1,8 @@
 import React from 'react';
 import {compose} from 'redux';
-import {Route, Switch, withRouter} from 'react-router-dom';
+import Route from 'react-router-dom/Route';
+import Switch from 'react-router-dom/Switch';
+import withRouter from 'react-router-dom/withRouter';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import withStyles from '@material-ui/core/styles/withStyles';

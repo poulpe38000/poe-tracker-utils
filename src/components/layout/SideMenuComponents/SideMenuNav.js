@@ -1,7 +1,7 @@
 import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import {withRouter} from 'react-router-dom';
+import withRouter from 'react-router-dom/withRouter';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
 import AppBar from '@material-ui/core/AppBar';
@@ -19,7 +19,7 @@ import incursionLogo from './incursion_logo.png';
 import filterLogo from './filter_logo.png';
 import {rootActions} from 'store/root/actions';
 import {IconAvatar, ImageAvatar} from 'components/shared';
-import SideMenuNavList from 'components/layout/SideMenu/SideMenuNavList';
+import SideMenuNavList from 'components/layout/SideMenuComponents/SideMenuNavList';
 
 const styles = ({mixins, breakpoints, spacing}) => ({
     root: {

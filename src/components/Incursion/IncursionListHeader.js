@@ -1,21 +1,23 @@
 import React from 'react';
-import {Typography, withStyles} from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
+import Box from '@material-ui/core/Box';
 import Divider from '@material-ui/core/Divider';
 import ListSubheader from '@material-ui/core/ListSubheader';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 
-const styles = theme => ({
+const styles = ({breakpoints, spacing}) => ({
     header: {
         lineHeight: 'inherit',
         top: 64,
-        [theme.breakpoints.down('xs')]: {
+        [breakpoints.down('xs')]: {
             top: 56,
         }
     },
     root: {
         display: 'flex',
-        paddingTop: theme.spacing(1),
-        paddingBottom: theme.spacing(1),
+        paddingTop: spacing(1),
+        paddingBottom: spacing(1),
     },
     itemCheckbox: {
         width: '64px',
@@ -30,13 +32,13 @@ class IncursionListHeader extends React.Component {
         return (
             <ListSubheader disableGutters className={classes.header}>
                 <Paper elevation={0} className={classes.root}>
-                    <div className={classes.itemCheckbox}>
+                    <Box className={classes.itemCheckbox}>
                         <Typography variant="caption">Current</Typography>
-                    </div>
-                    <div className={classes.itemCheckbox}>
+                    </Box>
+                    <Box className={classes.itemCheckbox}>
                         <Typography variant="caption">Completed</Typography>
-                    </div>
-                    <div/>
+                    </Box>
+                    <Box/>
                 </Paper>
                 <Divider/>
             </ListSubheader>

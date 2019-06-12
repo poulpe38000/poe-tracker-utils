@@ -7,8 +7,8 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import {rootActions} from 'store/root/actions';
-import TopBarMenuButton from 'components/layout/TopBar/TopBarMenuButton';
-import TopBarStats from 'components/layout/TopBar/TopBarStats';
+import TopBarMenuButton from 'components/layout/TopBarComponents/TopBarMenuButton';
+import TopBarStats from 'components/layout/TopBarComponents/TopBarStats';
 
 const styles = ({zIndex, breakpoints, spacing}) => ({
     root: {

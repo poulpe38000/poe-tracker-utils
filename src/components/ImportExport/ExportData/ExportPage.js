@@ -1,14 +1,16 @@
 import React from 'react'
-import {connect} from "react-redux";
-import {TextField, withWidth} from '@material-ui/core';
 import {compose} from 'redux';
-import cloneDeep from 'lodash/cloneDeep';
-import {ExportActions, ExportSettings} from 'components/ImportExport/ExportData';
-import {isWidthDown} from '@material-ui/core/withWidth';
-import {Page} from 'components/layout/Page';
-import Box from '@material-ui/core/Box';
+import {connect} from "react-redux";
 import {withSnackbar} from 'notistack';
+import cloneDeep from 'lodash/cloneDeep';
+import Box from '@material-ui/core/Box';
+import TextField from '@material-ui/core/TextField';
+import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
+
 import {displaySnackbar} from 'utils/snackbar';
+import Page from 'components/layout/Page';
+import ExportSettings from 'components/ImportExport/ExportData/ExportSettings';
+import ExportActions from 'components/ImportExport/ExportData/ExportActions';
 
 class ExportPage extends React.Component {
     state = {

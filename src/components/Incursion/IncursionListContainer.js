@@ -1,13 +1,16 @@
 import React from 'react';
-import {List, Paper, Typography, withStyles} from '@material-ui/core';
-import {IncursionListHeader} from 'components/Incursion';
+import List from '@material-ui/core/List';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 
+import IncursionListHeader from 'components/Incursion/IncursionListHeader';
 
-const styles = theme => ({
+const styles = ({spacing}) => ({
     root: {
-        marginTop: theme.spacing(2),
-        marginBottom: theme.spacing(2),
+        marginTop: spacing(2),
+        marginBottom: spacing(2),
     },
     list: {
         paddingTop: 0,

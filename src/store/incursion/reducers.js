@@ -1,6 +1,6 @@
 import {ACTION_TYPE as INCURSION_ACTION} from 'store/incursion/actions';
 import {ACTION_TYPE as ROOT_ACTION} from 'store/root/actions';
-import {clearObj, getObj, INCURSION_COMPLETED_STORAGE, INCURSION_IN_PROGRESS_STORAGE, setObj} from 'utils/storage';
+import {clearObj, getObj, setObj, STORAGE_KEYS} from 'utils/storage';
 import {importIncursionData, toggleIncursionRoom, validateInProgressIncursion} from 'store/incursion/functions';
 import INITIAL_STATE from 'store/root/state';
 
@@ -13,20 +13,20 @@ function incursionReducer(state = INITIAL_STATE.incursion, action) {
             inProgressRooms = toggleIncursionRoom(inProgressRooms, action.payload);
             return {
                 ...state,
-                in_progress: setObj(INCURSION_IN_PROGRESS_STORAGE, inProgressRooms),
+                in_progress: setObj(STORAGE_KEYS.INCURSION_IN_PROGRESS_STORAGE, inProgressRooms),
             };
         case INCURSION_ACTION.TOGGLE_COMPLETED:
             completedRooms = toggleIncursionRoom(completedRooms, action.payload);
             return {
                 ...state,
-                completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
+                completed: setObj(STORAGE_KEYS.INCURSION_COMPLETED_STORAGE, completedRooms),
             };
         case INCURSION_ACTION.VALIDATE_IN_PROGRESS:
             completedRooms = validateInProgressIncursion(inProgressRooms, completedRooms);
             return {
                 ...state,
-                completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
-                in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
+                completed: setObj(STORAGE_KEYS.INCURSION_COMPLETED_STORAGE, completedRooms),
+                in_progress: clearObj(STORAGE_KEYS.INCURSION_IN_PROGRESS_STORAGE, []),
             };
         case INCURSION_ACTION.UPDATE_SEARCH_TEXT:
             return {
@@ -36,31 +36,31 @@ function incursionReducer(state = INITIAL_STATE.incursion, action) {
         case INCURSION_ACTION.RESET_IN_PROGRESS_DATA:
             return {
                 ...state,
-                in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
+                in_progress: clearObj(STORAGE_KEYS.INCURSION_IN_PROGRESS_STORAGE, []),
             };
         case INCURSION_ACTION.RESET_COMPLETED_DATA:
             return {
                 ...state,
-                completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
+                completed: clearObj(STORAGE_KEYS.INCURSION_COMPLETED_STORAGE, []),
             };
         case ROOT_ACTION.RESET_ALL:
             return {
                 ...state,
-                in_progress: clearObj(INCURSION_IN_PROGRESS_STORAGE, []),
-                completed: clearObj(INCURSION_COMPLETED_STORAGE, []),
+                in_progress: clearObj(STORAGE_KEYS.INCURSION_IN_PROGRESS_STORAGE, []),
+                completed: clearObj(STORAGE_KEYS.INCURSION_COMPLETED_STORAGE, []),
             };
         case ROOT_ACTION.SET_ALL:
             return {
                 ...state,
-                in_progress: setObj(INCURSION_IN_PROGRESS_STORAGE, state.in_progress),
-                completed: setObj(INCURSION_COMPLETED_STORAGE, state.completed),
+                in_progress: setObj(STORAGE_KEYS.INCURSION_IN_PROGRESS_STORAGE, state.in_progress),
+                completed: setObj(STORAGE_KEYS.INCURSION_COMPLETED_STORAGE, state.completed),
             };
         case ROOT_ACTION.INITIALIZE_APP:
             try {
                 return {
                     ...state,
-                    completed: getObj(INCURSION_COMPLETED_STORAGE, []),
-                    in_progress: getObj(INCURSION_IN_PROGRESS_STORAGE, []),
+                    completed: getObj(STORAGE_KEYS.INCURSION_COMPLETED_STORAGE, []),
+                    in_progress: getObj(STORAGE_KEYS.INCURSION_IN_PROGRESS_STORAGE, []),
                 };
             } catch (e) {
                 return {...state};
@@ -76,8 +76,8 @@ function incursionReducer(state = INITIAL_STATE.incursion, action) {
             });
             return {
                 ...state,
-                completed: setObj(INCURSION_COMPLETED_STORAGE, completedRooms),
-                in_progress: setObj(INCURSION_IN_PROGRESS_STORAGE, inProgressRooms),
+                completed: setObj(STORAGE_KEYS.INCURSION_COMPLETED_STORAGE, completedRooms),
+                in_progress: setObj(STORAGE_KEYS.INCURSION_IN_PROGRESS_STORAGE, inProgressRooms),
             };
         default :
             return state;

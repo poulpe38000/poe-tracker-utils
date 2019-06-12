@@ -46,9 +46,9 @@ export const mergeStyles = (...styles) => {
     return Object.assign({}, ...styles);
 };
 
-export const transitionFor = (theme, props) => {
+export const transitionFor = (theme, props, duration = 'enteringScreen') => {
     return theme.transitions.create(props, {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
+        easing: theme.transitions.easing.easeInOut,
+        duration: theme.transitions.duration[duration],
     })
 };

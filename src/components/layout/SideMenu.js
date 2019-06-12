@@ -9,8 +9,8 @@ import withWidth, {isWidthDown, isWidthUp} from '@material-ui/core/withWidth';
 import APP_CONSTANTS from 'constants/app.constants';
 import {rootActions} from 'store/root/actions';
 import {transitionFor} from 'utils/themes';
-import SideMenuNav from 'components/layout/SideMenu/SideMenuNav';
-import SideMenuExpander from 'components/layout/SideMenu/SideMenuExpander';
+import SideMenuNav from 'components/layout/SideMenuComponents/SideMenuNav';
+import SideMenuExpander from 'components/layout/SideMenuComponents/SideMenuExpander';
 
 const styles = (theme) => ({
     root: {
@@ -30,7 +30,7 @@ const styles = (theme) => ({
     drawerClose: {
         overflowX: 'hidden',
         width: theme.spacing(8) + 1,
-        transition: transitionFor(theme, 'width'),
+        transition: transitionFor(theme, 'width', 'leavingScreen'),
     },
     avatar: {
         background: 'transparent',
