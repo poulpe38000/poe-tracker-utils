@@ -17,7 +17,7 @@ import homeLogo from './home_logo.png';
 import hideoutLogo from './hideout_logo.png';
 import incursionLogo from './incursion_logo.png';
 import filterLogo from './filter_logo.png';
-import {rootActions} from 'store/main/actions';
+import {rootActions} from 'store/root/actions';
 import {IconAvatar, ImageAvatar} from 'components/shared';
 import SideMenuNavList from 'components/layout/SideMenu/SideMenuNavList';
 

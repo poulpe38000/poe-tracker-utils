@@ -1,11 +1,11 @@
-import INITIAL_STATE from 'store/hideout/state';
 import {ACTION_TYPE as HIDEOUT_ACTION} from 'store/hideout/actions';
-import {ACTION_TYPE as ROOT_ACTION} from 'store/main/actions';
+import {ACTION_TYPE as ROOT_ACTION} from 'store/root/actions';
 import {clearObj, getObj, HIDEOUT_UNLOCKED_STORAGE, setObj} from 'utils/storage';
 import {importHideoutData, toggleUnlockedHideout} from 'store/hideout/functions';
+import INITIAL_STATE from 'store/root/state';
 
 
-function hideoutReducer(state = INITIAL_STATE, action) {
+function hideoutReducer(state = INITIAL_STATE.hideout, action) {
     let unlocked = state.unlocked.slice();
     switch (action.type) {
         case HIDEOUT_ACTION.TOGGLE_UNLOCKED:

@@ -1,10 +1,11 @@
 import {combineReducers, createStore} from 'redux';
-import mainReducer from 'store/main/reducers';
+import {sidenavExpandedReducer, useLightThemeReducer} from 'store/root/reducers';
 import incursionReducer from 'store/incursion/reducers';
 import hideoutReducer from 'store/hideout/reducers';
 
 const store = createStore(combineReducers({
-    main: mainReducer,
+    useLightTheme: useLightThemeReducer,
+    sidenavExpanded: sidenavExpandedReducer,
     incursion: incursionReducer,
     hideout: hideoutReducer,
 }));

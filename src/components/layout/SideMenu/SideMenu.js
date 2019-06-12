@@ -7,7 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import withWidth, {isWidthDown, isWidthUp} from '@material-ui/core/withWidth';
 
 import APP_CONSTANTS from 'constants/app.constants';
-import {rootActions} from 'store/main/actions';
+import {rootActions} from 'store/root/actions';
 import {transitionFor} from 'utils/themes';
 import SideMenuNav from 'components/layout/SideMenu/SideMenuNav';
 import SideMenuExpander from 'components/layout/SideMenu/SideMenuExpander';
@@ -72,7 +72,7 @@ class SideMenu extends React.Component {
 export default compose(
     connect(
         state => ({
-            sidenavExpanded: state.main.sidenavExpanded,
+            sidenavExpanded: state.sidenavExpanded,
         }),
         {
             toggleSidenav: rootActions.toggleSidenav,

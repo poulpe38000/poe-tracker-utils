@@ -14,7 +14,7 @@ import Switch from '@material-ui/core/Switch';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import {rootActions} from 'store/main/actions';
+import {rootActions} from 'store/root/actions';
 import {clearStorage, getLocalStorageSettings, toggleLocalStorageSettings} from 'utils/storage';
 import {mergeStyles} from 'utils/themes';
 import {itemStyles, rootStyles} from 'components/Settings/shared';
@@ -87,7 +87,7 @@ class SettingsApp extends React.Component {
 export default compose(
     connect(
         state => ({
-            useLightTheme: state.main.useLightTheme,
+            useLightTheme: state.useLightTheme,
         }),
         {
             toggleTheme: rootActions.toggleTheme,

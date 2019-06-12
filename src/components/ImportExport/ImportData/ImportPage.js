@@ -1,6 +1,6 @@
 import React, {createRef} from 'react'
 import {connect} from "react-redux";
-import {rootActions} from 'store/main/actions';
+import {rootActions} from 'store/root/actions';
 import {sanitizeTrackerData} from 'utils/sanitizer';
 import {ImportActions, ImportDropZone, ImportSettings} from 'components/ImportExport/ImportData';
 import {Page} from 'components/layout/Page';

@@ -39,7 +39,7 @@ function ContentWrapper({classes, sidenavExpanded, children}) {
 export default compose(
     connect(
         state => ({
-            sidenavExpanded: state.main.sidenavExpanded,
+            sidenavExpanded: state.sidenavExpanded,
         }),
     ),
     withStyles(styles),

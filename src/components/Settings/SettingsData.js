@@ -7,7 +7,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import {rootActions} from 'store/main/actions';
+import {rootActions} from 'store/root/actions';
 import {incursionActions} from 'store/incursion/actions';
 import {hideoutActions} from 'store/hideout/actions';
 import {displaySnackbar} from 'utils/snackbar';

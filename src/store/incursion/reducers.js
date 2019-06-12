@@ -1,11 +1,11 @@
-import INITIAL_STATE from 'store/incursion/state';
 import {ACTION_TYPE as INCURSION_ACTION} from 'store/incursion/actions';
-import {ACTION_TYPE as ROOT_ACTION} from 'store/main/actions';
+import {ACTION_TYPE as ROOT_ACTION} from 'store/root/actions';
 import {clearObj, getObj, INCURSION_COMPLETED_STORAGE, INCURSION_IN_PROGRESS_STORAGE, setObj} from 'utils/storage';
 import {importIncursionData, toggleIncursionRoom, validateInProgressIncursion} from 'store/incursion/functions';
+import INITIAL_STATE from 'store/root/state';
 
 
-function incursionReducer(state = INITIAL_STATE, action) {
+function incursionReducer(state = INITIAL_STATE.incursion, action) {
     let completedRooms = state.completed.slice();
     let inProgressRooms = state.in_progress.slice();
     switch (action.type) {
