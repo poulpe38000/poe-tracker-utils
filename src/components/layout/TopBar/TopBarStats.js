@@ -1,7 +1,8 @@
 import React from 'react';
 import {compose} from 'redux';
-import {withStyles, withWidth} from '@material-ui/core';
-import {isWidthUp} from '@material-ui/core/withWidth';
+import withStyles from '@material-ui/core/styles/withStyles';
+import withWidth, {isWidthUp} from '@material-ui/core/withWidth';
+
 import HideoutStats from 'components/Hideout/HideoutStats/HideoutStats';
 import IncursionStats from 'components/Incursion/IncursionStats/IncursionStats';
 

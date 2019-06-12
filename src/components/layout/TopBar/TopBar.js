@@ -1,9 +1,14 @@
 import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import {AppBar, Toolbar, Typography, withStyles} from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+
 import {toggleSidenav} from 'store/main/actions';
-import {TopBarMenuButton, TopBarStats} from 'components/pages/layout/TopBar';
+import TopBarMenuButton from 'components/layout/TopBar/TopBarMenuButton';
+import TopBarStats from 'components/layout/TopBar/TopBarStats';
 
 const styles = ({zIndex, breakpoints, spacing}) => ({
     root: {
@@ -41,10 +46,9 @@ class TopBar extends React.Component {
 }
 
 export default compose(
-    connect(null,
-        dispatch => ({
-            toggleSidenav: () => dispatch(toggleSidenav())
-        }),
+    connect(
+        null,
+        {toggleSidenav: toggleSidenav},
     ),
     withStyles(styles),
 )(TopBar);

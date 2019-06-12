@@ -1,10 +1,10 @@
 import React from 'react';
+import {compose} from 'redux';
 import MenuIcon from '@material-ui/icons/Menu';
-import * as PropTypes from 'prop-types';
-import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 import IconButton from '@material-ui/core/IconButton';
 import withStyles from '@material-ui/core/styles/withStyles';
-import {compose} from 'redux';
+import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
+import * as PropTypes from 'prop-types';
 
 const styles = ({palette, spacing}) => ({
     button: {

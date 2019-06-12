@@ -13,7 +13,7 @@ import APP_CONSTANTS from 'constants/app.constants';
 import {CSSTransition, TransitionGroup} from 'react-transition-group';
 import {compose} from 'redux';
 import {withStyles} from '@material-ui/core';
-import ContentWrapper from 'components/pages/layout/ContentWrapper';
+import ContentWrapper from 'components/layout/ContentWrapper';
 
 
 const styles = theme => ({

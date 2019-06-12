@@ -1,6 +1,6 @@
 import React from 'react';
-import withStyles from '@material-ui/core/styles/withStyles';
 import Avatar from '@material-ui/core/Avatar';
+import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
 import {styles} from './shared';

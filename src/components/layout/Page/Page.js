@@ -1,13 +1,13 @@
 import React from 'react';
-import {withStyles} from '@material-ui/core';
+import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import PageTitle from 'components/pages/layout/Page/PageTitle';
+import PageTitle from 'components/layout/Page/PageTitle';
 
-const styles = theme => ({
+const styles = ({spacing}) => ({
     root: {
-        paddingTop: theme.spacing(2),
-        paddingBottom: theme.spacing(2),
+        paddingTop: spacing(2),
+        paddingBottom: spacing(2),
         flexGrow: 1,
     },
 });

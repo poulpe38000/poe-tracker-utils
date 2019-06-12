@@ -1,20 +1,23 @@
 import React from 'react';
 import {NavLink} from 'react-router-dom';
-import {ListItem, ListItemText, withStyles} from '@material-ui/core';
-import * as PropTypes from 'prop-types';
+import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemText from '@material-ui/core/ListItemText';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
+import * as PropTypes from 'prop-types';
+
 import {IconAvatar, ImageAvatar} from 'components/shared';
 
-const styles = theme => ({
+const styles = ({palette, spacing}) => ({
     root: {
-        paddingLeft: theme.spacing(1.5),
-        paddingRight: theme.spacing(1.5),
+        paddingLeft: spacing(1.5),
+        paddingRight: spacing(1.5),
     },
     active: {
-        backgroundColor: theme.palette.primary.light,
-        color: theme.palette.primary.contrastText,
+        backgroundColor: palette.primary.light,
+        color: palette.primary.contrastText,
         pointerEvents: 'none',
     },
     avatar: {

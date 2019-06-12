@@ -1,7 +1,12 @@
 import React from 'react';
-import {Divider, ListItem, ListItemIcon, ListItemText, withStyles} from '@material-ui/core';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
+import Divider from '@material-ui/core/Divider';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
+
 import {itemStyles} from 'components/Settings/shared';
 
 class SettingsDataItem extends React.Component {

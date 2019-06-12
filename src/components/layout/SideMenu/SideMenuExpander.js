@@ -3,15 +3,16 @@ import ChevronRightIcon from '@material-ui/icons/ChevronRight';
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
-import {withStyles} from '@material-ui/core';
-import * as PropTypes from 'prop-types';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import {IconAvatar} from 'components/shared';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import withStyles from '@material-ui/core/styles/withStyles';
+import * as PropTypes from 'prop-types';
 
-const styles = theme => ({
+import {IconAvatar} from 'components/shared';
+
+const styles = (theme) => ({
     root: {
         paddingLeft: theme.spacing(1.5),
         paddingRight: theme.spacing(1.5),
@@ -23,7 +24,6 @@ const styles = theme => ({
 });
 
 class SideMenuExpander extends React.Component {
-
     static propTypes = {
         expanded: PropTypes.bool.isRequired,
         onClick: PropTypes.func.isRequired,

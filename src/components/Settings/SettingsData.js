@@ -1,15 +1,18 @@
 import React from 'react';
-import {List, Paper, Typography, withStyles} from '@material-ui/core';
-import {connect} from 'react-redux';
 import {compose} from 'redux';
+import {connect} from 'react-redux';
 import {withSnackbar} from 'notistack';
+import List from '@material-ui/core/List';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 import {resetAll} from 'store/main/actions';
 import {incursionResetCompletedData, incursionResetInProgressData} from 'store/incursion/actions';
 import {hideoutResetData} from 'store/hideout/actions';
 import {displaySnackbar} from 'utils/snackbar';
-import {SettingsDataItem} from 'components/Settings/index';
 import {rootStyles} from 'components/Settings/shared';
+import SettingsDataItem from 'components/Settings/SettingsDataItem';
 
 class SettingsData extends React.Component {
 
@@ -65,12 +68,12 @@ class SettingsData extends React.Component {
 export default compose(
     connect(
         null,
-        dispatch => ({
-            incursionResetCompletedData: () => (dispatch(incursionResetCompletedData())),
-            incursionResetInProgressData: () => (dispatch(incursionResetInProgressData())),
-            hideoutResetData: () => (dispatch(hideoutResetData())),
-            resetAll: () => (dispatch(resetAll())),
-        }),
+        {
+            incursionResetCompletedData: incursionResetCompletedData,
+            incursionResetInProgressData: incursionResetInProgressData,
+            hideoutResetData: hideoutResetData,
+            resetAll: resetAll,
+        },
     ),
     withStyles(rootStyles),
     withSnackbar,

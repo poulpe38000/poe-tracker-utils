@@ -1,5 +1,6 @@
-import {Typography, withStyles} from '@material-ui/core';
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
 const styles = {

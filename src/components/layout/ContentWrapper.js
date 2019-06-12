@@ -1,13 +1,11 @@
 import React from 'react';
-import {withStyles} from '@material-ui/core';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
 import clsx from 'clsx';
+import withStyles from '@material-ui/core/styles/withStyles';
 
 import APP_CONSTANTS from 'constants/app.constants';
 import {transitionFor} from 'utils/themes';
-
-const drawerWidth = APP_CONSTANTS.drawerWidth;
 
 const styles = (theme) => ({
     root: {
@@ -15,7 +13,7 @@ const styles = (theme) => ({
     },
     drawerOpen: {
         [theme.breakpoints.up('sm')]: {
-            paddingLeft: drawerWidth,
+            paddingLeft: APP_CONSTANTS.drawerWidth,
         },
         transition: transitionFor(theme, 'padding-left'),
     },
