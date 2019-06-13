@@ -17,8 +17,23 @@ const styles = (theme) => (mergeStyles({
     root: {
         padding: 0,
     },
-    header: {
+    title: {
         fontWeight: theme.typography.fontWeightMedium,
+    },
+    subtitle: {
+        fontStyle: 'italic',
+    },
+    headerItem: {
+        display: 'flex',
+        flexGrow: 1,
+        alignItems: 'center',
+        '& > *': {
+            flex: '1 1 100%',
+        },
+        [theme.breakpoints.down('xs')]: {
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+        }
     },
     list: {
         width: '100%',
@@ -28,20 +43,25 @@ const styles = (theme) => (mergeStyles({
 class ImportExportSettingsPanel extends React.Component {
     static propTypes = {
         title: PropTypes.string,
+        subtitle: PropTypes.string,
     };
 
     static defaultProps = {
         title: 'Advanced settings',
+        subtitle: null,
     };
 
     render() {
-        const {classes, title, children} = this.props;
+        const {classes, title, subtitle, children} = this.props;
         return (
             <Box>
                 <ExpansionPanel elevation={2}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
                         <TuneIcon className={classes.leftIcon}/>
-                        <Typography className={classes.header}>{title}</Typography>
+                        <Box className={classes.headerItem}>
+                            <Typography className={classes.title}>{title}</Typography>
+                            {subtitle && <Typography className={classes.subtitle} variant={'body2'}>{subtitle}</Typography>}
+                        </Box>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails className={classes.root}>
                         <List disablePadding className={classes.list}>

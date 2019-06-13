@@ -7,7 +7,11 @@ import ImportExportSettingsPanel from 'components/ImportExport/shared/ImportExpo
 
 class ExportSettings extends React.Component {
     static propTypes = {
-        opts: PropTypes.object.isRequired,
+        opts: PropTypes.shape({
+            includeHideouts: PropTypes.bool,
+            includeInProgressIncursions: PropTypes.bool,
+            includeCompletedIncursions: PropTypes.bool,
+        }).isRequired,
         onClick: PropTypes.func.isRequired
     };
 
@@ -23,17 +27,30 @@ class ExportSettings extends React.Component {
         this.props.onClick(value);
     };
 
+    getSubtitle() {
+        const {includeHideouts, includeInProgressIncursions, includeCompletedIncursions} = this.props.opts;
+        if (!(includeHideouts || includeInProgressIncursions || includeCompletedIncursions)) {
+            return 'No data export selected'
+        }
+        if (includeHideouts && includeInProgressIncursions && includeCompletedIncursions) {
+            return 'Export complete tracker data'
+        }
+        return 'Partial data export';
+    }
+
     render() {
-        const {opts} = this.props;
+        const {includeHideouts, includeInProgressIncursions, includeCompletedIncursions} = this.props.opts;
+        const subtitle = this.getSubtitle();
         return (
-            <ImportExportSettingsPanel>
-                <ImportExportSettingsItem label="Export Hideouts" value={opts.includeHideouts}
+            <ImportExportSettingsPanel title={'Export settings'} subtitle={subtitle}>
+                <ImportExportSettingsItem label="Export Hideouts"
+                                          value={includeHideouts}
                                           onClick={this.handleSettingsSwitch('includeHideouts')}/>
                 <ImportExportSettingsItem label="Export In-Progress Incursions"
-                                          value={opts.includeInProgressIncursions}
+                                          value={includeInProgressIncursions}
                                           onClick={this.handleSettingsSwitch('includeInProgressIncursions')}/>
                 <ImportExportSettingsItem label="Export Completed Incursions"
-                                          value={opts.includeCompletedIncursions}
+                                          value={includeCompletedIncursions}
                                           onClick={this.handleSettingsSwitch('includeCompletedIncursions')}/>
             </ImportExportSettingsPanel>
         );

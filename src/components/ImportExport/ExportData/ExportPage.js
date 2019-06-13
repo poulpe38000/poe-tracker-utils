@@ -30,6 +30,9 @@ class ExportPage extends React.Component {
 
     getExportText = () => {
         const {includeHideouts, includeInProgressIncursions, includeCompletedIncursions} = this.state;
+        if (!(includeHideouts || includeInProgressIncursions || includeCompletedIncursions)) {
+            return '';
+        }
         const exportValue = cloneDeep(this.props.exportData);
         !includeHideouts && delete exportValue.hideout;
         !includeInProgressIncursions && delete exportValue.incursion.in_progress;
