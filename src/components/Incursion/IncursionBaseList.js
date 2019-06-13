@@ -5,33 +5,29 @@ import {filteredIncursionData, getBaseRooms} from 'utils/incursion';
 import IncursionListContainer from 'components/Incursion/IncursionListContainer';
 import IncursionRoom from 'components/Incursion/IncursionRoom';
 
-function acceptFilter(rooms) {
-    return rooms.length === 1;
-}
-
 class IncursionBaseList extends React.Component {
-    state = {
-        roomsList: getBaseRooms(),
-    };
+    constructor(props) {
+        super(props);
+        this.roomsList = getBaseRooms();
+    }
 
     render() {
         const {searchText} = this.props;
-        const {roomsList} = this.state;
-        const data = filteredIncursionData(roomsList, acceptFilter, searchText);
+        const data = filteredIncursionData(this.roomsList, searchText);
         const roomsKeys = Object.keys(data);
         return (
             <React.Fragment>
                 {roomsKeys.length > 0 && (
                     <IncursionListContainer title={'Non-upgradeable rooms'}>
-                        {roomsKeys.map((roomsKey) => {
-                            const rooms = data[roomsKey];
-                            return (
-                                <React.Fragment key={roomsKey}>
-                                    {rooms.map((room) => (
-                                        <IncursionRoom key={room.id} roomKey={roomsKey} room={room}/>))}
-                                </React.Fragment>
-                            );
-                        })}
+                        {roomsKeys
+                            .map((roomsKey) => (
+                                    <React.Fragment key={roomsKey}>
+                                        {data[roomsKey].map((room) => (
+                                            <IncursionRoom key={room.id} roomKey={roomsKey} room={room}/>))}
+                                    </React.Fragment>
+                                )
+                            )
+                        }
                     </IncursionListContainer>
                 )}
             </React.Fragment>

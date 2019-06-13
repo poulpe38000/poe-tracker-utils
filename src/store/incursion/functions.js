@@ -1,8 +1,9 @@
 import {clearObj, getObj, setObj, STORAGE_KEYS} from 'utils/storage';
 import INITIAL_STATE from 'store/root/state';
+import {cloneRooms, validateInProgressIncursion} from 'utils/incursion';
 
 export function toggleInProgress(state, action) {
-    const inProgressRooms = toggleIncursionRoom(state.in_progress.slice(), action.payload);
+    const inProgressRooms = toggleIncursionRoom(cloneRooms(state.in_progress), action.payload);
     return {
         ...state,
         in_progress: setObj(STORAGE_KEYS.INCURSION_IN_PROGRESS_STORAGE, inProgressRooms),
@@ -10,7 +11,7 @@ export function toggleInProgress(state, action) {
 }
 
 export function toggleCompleted(state, action) {
-    const completedRooms = toggleIncursionRoom(state.completed.slice(), action.payload);
+    const completedRooms = toggleIncursionRoom(cloneRooms(state.completed), action.payload);
     return {
         ...state,
         completed: setObj(STORAGE_KEYS.INCURSION_COMPLETED_STORAGE, completedRooms),
@@ -18,7 +19,10 @@ export function toggleCompleted(state, action) {
 }
 
 export function validateInProgress(state) {
-    const completedRooms = validateInProgressIncursion(state.in_progress.slice(), state.completed.slice());
+    const completedRooms = validateInProgressIncursion(
+        cloneRooms(state.in_progress),
+        cloneRooms(state.completed)
+    );
     return {
         ...state,
         in_progress: clearObj(STORAGE_KEYS.INCURSION_IN_PROGRESS_STORAGE, INITIAL_STATE.incursion.in_progress),
@@ -76,14 +80,20 @@ export function initializeApp(state) {
 }
 
 export function importData(state, action) {
-    const inProgressRooms = importIncursionData(state.in_progress.slice(), action.payload.data, action.payload.opts, {
-        ignoreKey: 'ignoreInProgressIncursions',
-        dataKey: 'in_progress'
-    });
-    const completedRooms = importIncursionData(state.completed.slice(), action.payload.data, action.payload.opts, {
-        ignoreKey: 'ignoreCompletedIncursions',
-        dataKey: 'completed'
-    });
+    const inProgressRooms = importIncursionData(
+        cloneRooms(state.in_progress),
+        action.payload.data,
+        action.payload.opts,
+        {ignoreKey: 'ignoreInProgressIncursions', dataKey: 'in_progress'},
+        INITIAL_STATE.incursion.in_progress
+    );
+    const completedRooms = importIncursionData(
+        cloneRooms(state.completed),
+        action.payload.data,
+        action.payload.opts,
+        {ignoreKey: 'ignoreCompletedIncursions', dataKey: 'completed'},
+        INITIAL_STATE.incursion.completed
+    );
     return {
         ...state,
         in_progress: setObj(STORAGE_KEYS.INCURSION_IN_PROGRESS_STORAGE, inProgressRooms),
@@ -96,37 +106,21 @@ export function importData(state, action) {
 PRIVATE FUNCTIONS
  */
 
-export function toggleIncursionRoom(roomsList, room) {
-    const roomAlreadySet = roomsList.find(item => item.id === room.id);
-    if (!roomAlreadySet) {
-        return [...roomsList, room];
+function toggleIncursionRoom(roomsList, room) {
+    const currentTier = roomsList[room.id];
+    if (currentTier === undefined || currentTier !== room.tier) {
+        return {...roomsList, [room.id]: room.tier};
     }
-    const cleanRoomsList = roomsList.filter(item => item.id !== room.id);
-    return roomAlreadySet.tier !== room.tier
-        ? [...cleanRoomsList, room]
-        : cleanRoomsList;
+    delete roomsList[room.id];
+    return roomsList;
 }
 
-export function validateInProgressIncursion(inProgressRooms, completedRooms) {
-    inProgressRooms.forEach(inProgressRoom => {
-        const completedRoomIndex = completedRooms.findIndex((room) => room.id === inProgressRoom.id);
-        if (completedRoomIndex !== -1) {
-            if (completedRooms[completedRoomIndex].tier < inProgressRoom.tier) {
-                completedRooms[completedRoomIndex].tier = inProgressRoom.tier;
-            }
-        } else {
-            completedRooms.push(inProgressRoom);
-        }
-    });
-    return completedRooms;
-}
-
-export function importIncursionData(roomsList, data, options, keys) {
+function importIncursionData(roomsList, data, options, keys, fallback) {
     const ignoreImport = options && !!options[keys.ignoreKey];
     if (!ignoreImport) {
         return data && data.incursion && data.incursion[keys.dataKey]
             ? data.incursion[keys.dataKey]
-            : [];
+            : fallback;
     }
     return roomsList;
 }

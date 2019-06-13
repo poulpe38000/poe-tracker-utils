@@ -9,9 +9,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 const styles = ({breakpoints, spacing}) => ({
     header: {
         lineHeight: 'inherit',
-        top: 64,
+        top: 64 + 64,
         [breakpoints.down('xs')]: {
-            top: 56,
+            top: 56 + 56,
         }
     },
     root: {

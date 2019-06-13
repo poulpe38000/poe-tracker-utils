@@ -6,7 +6,11 @@ import ImportExportSettingsPanel from 'components/ImportExport/shared/ImportExpo
 
 class ImportSettings extends React.Component {
     static propTypes = {
-        opts: PropTypes.object.isRequired,
+        opts: PropTypes.shape({
+            ignoreHideouts: PropTypes.bool,
+            ignoreInProgressIncursions: PropTypes.bool,
+            ignoreCompletedIncursions: PropTypes.bool,
+        }).isRequired,
         onClick: PropTypes.func.isRequired
     };
 
@@ -22,17 +26,30 @@ class ImportSettings extends React.Component {
         this.props.onClick(value);
     };
 
+    getSubtitle() {
+        const {ignoreHideouts, ignoreInProgressIncursions, ignoreCompletedIncursions} = this.props.opts;
+        if (!(ignoreHideouts || ignoreInProgressIncursions || ignoreCompletedIncursions)) {
+            return 'Overwrite all existing tracker data'
+        }
+        if (ignoreHideouts && ignoreInProgressIncursions && ignoreCompletedIncursions) {
+            return 'No data import selected'
+        }
+        return 'Partial data import';
+    }
+
     render() {
-        const {opts} = this.props;
+        const {ignoreHideouts, ignoreInProgressIncursions, ignoreCompletedIncursions} = this.props.opts;
+        const subtitle = this.getSubtitle();
         return (
-            <ImportExportSettingsPanel>
-                <ImportExportSettingsItem label="Import Hideouts" value={!opts.ignoreHideouts}
+            <ImportExportSettingsPanel title={'Import settings'} subtitle={subtitle}>
+                <ImportExportSettingsItem label="Import Hideouts"
+                                          value={!ignoreHideouts}
                                           onClick={this.handleSettingsSwitch('ignoreHideouts')}/>
                 <ImportExportSettingsItem label="Import In-Progress Incursions"
-                                          value={!opts.ignoreInProgressIncursions}
+                                          value={!ignoreInProgressIncursions}
                                           onClick={this.handleSettingsSwitch('ignoreInProgressIncursions')}/>
                 <ImportExportSettingsItem label="Import Completed Incursions"
-                                          value={!opts.ignoreCompletedIncursions}
+                                          value={!ignoreCompletedIncursions}
                                           onClick={this.handleSettingsSwitch('ignoreCompletedIncursions')}/>
             </ImportExportSettingsPanel>
         );

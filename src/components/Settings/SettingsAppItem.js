@@ -14,7 +14,7 @@ import {itemStyles} from 'components/Settings/shared';
 class SettingsAppItem extends React.Component {
     static propTypes = {
         primaryText: PropTypes.string.isRequired,
-        icon: PropTypes.element.isRequired,
+        icon: PropTypes.elementType.isRequired,
         value: PropTypes.bool.isRequired,
         onClick: PropTypes.func.isRequired,
         noDivider: PropTypes.bool

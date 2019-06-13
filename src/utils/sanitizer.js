@@ -19,9 +19,13 @@ function sanitizeHideouts(hideouts) {
 }
 
 function sanitizeRooms(rooms, availableRooms) {
-    return rooms
-        .filter(room => !!availableRooms[room.id] && availableRooms[room.id].min <= room.tier)
-        .map(room => ({id: room.id, tier: Math.min(room.tier, availableRooms[room.id].max)}));
+    return Object
+        .keys(rooms)
+        .filter(roomKey => !!availableRooms[roomKey] && availableRooms[roomKey].min <= rooms[roomKey])
+        .reduce((result, roomKey) => ({
+            ...result,
+            [roomKey]: Math.min(rooms[roomKey], availableRooms[roomKey].max)
+        }), {});
 }
 
 export function sanitizeTrackerData(data) {
@@ -37,29 +41,29 @@ export function sanitizeTrackerData(data) {
         if (
             data.hasOwnProperty('incursion')
             && (
-                (data.incursion.hasOwnProperty('completed') && Array.isArray(data.incursion.completed))
-                || (data.incursion.hasOwnProperty('in_progress') && Array.isArray(data.incursion.in_progress))
+                (data.incursion.hasOwnProperty('in_progress') && typeof data.incursion.in_progress === 'object')
+                || (data.incursion.hasOwnProperty('completed') && typeof data.incursion.completed === 'object')
             )
         ) {
             const availableRooms = getRoomsTierBoundaries(INCURSION_CONSTANTS.rooms);
             sanitized = {...sanitized, incursion: {}};
-            if (data.incursion.hasOwnProperty('completed') && Array.isArray(data.incursion.completed)) {
-                // Sanitize completed incursion rooms array
-                sanitized = {
-                    ...sanitized,
-                    incursion: {
-                        ...sanitized.incursion,
-                        completed: sanitizeRooms(data.incursion.completed, availableRooms)
-                    }
-                };
-            }
-            if (data.incursion.hasOwnProperty('in_progress') && Array.isArray(data.incursion.in_progress)) {
+            if (data.incursion.hasOwnProperty('in_progress') && typeof data.incursion.in_progress === 'object') {
                 // Sanitize in progress incursion rooms array
                 sanitized = {
                     ...sanitized,
                     incursion: {
                         ...sanitized.incursion,
                         in_progress: sanitizeRooms(data.incursion.in_progress, availableRooms)
+                    }
+                };
+            }
+            if (data.incursion.hasOwnProperty('completed') && typeof data.incursion.completed === 'object') {
+                // Sanitize completed incursion rooms array
+                sanitized = {
+                    ...sanitized,
+                    incursion: {
+                        ...sanitized.incursion,
+                        completed: sanitizeRooms(data.incursion.completed, availableRooms)
                     }
                 };
             }

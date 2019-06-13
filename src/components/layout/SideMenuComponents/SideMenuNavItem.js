@@ -1,5 +1,5 @@
 import React from 'react';
-import NavLink from 'react-router-dom/NavLink';
+import {NavLink} from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';

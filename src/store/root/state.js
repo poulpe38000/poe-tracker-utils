@@ -7,8 +7,8 @@ const HIDEOUT_INITIAL_STATE = {
 
 const INCURSION_INITIAL_STATE = {
     searchText: '',
-    completed: [],
-    in_progress: [],
+    completed: {},
+    in_progress: {}
 };
 
 const INITIAL_STATE = {

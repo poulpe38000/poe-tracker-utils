@@ -58,7 +58,7 @@ class HideoutListHeader extends React.Component {
     }
 
     handleToggleSearch = () => {
-        this.setState({showSearchBar: !this.state.showSearchBar});
+        this.setState((prevState) => ({showSearchBar: !prevState.showSearchBar}));
         this.props.updateSearchText('');
     };
 
