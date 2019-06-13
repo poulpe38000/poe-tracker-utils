@@ -21,23 +21,24 @@ const INCURSION_CONSTANTS = {
             pits: [{id: 'pits', name: 'Pits', tier: 0, mods: [], notable: []}],
             tombs: [{id: 'tombs', name: 'Tombs', tier: 0, mods: [], notable: []}],
             tunnels: [{id: 'tunnels', name: 'Tunnels', tier: 0, mods: [], notable: []}],
-            chamber_of_iron: [
-                {
-                    id: 'armourers_workshop', name: 'Armourer\'s Workshop', tier: 1,
-                    mods: ['10% more Monster Life'],
-                    notable: ['Contains chests full of armour'],
-                },
-                {
-                    id: 'armoury', name: 'Armoury', tier: 2,
-                    mods: ['20% more Monster Life'],
-                    notable: ['Contains chests full of armour'],
-                },
-                {
-                    id: 'chamber_of_iron', name: 'Chamber of Iron', tier: 3,
-                    mods: ['30% more Monster Life'],
-                    notable: ['Contains chests full of armour', 'Crafting recipe'],
-                },
-            ],
+            chamber_of_iron:
+                [
+                    {
+                        id: 'armourers_workshop', name: 'Armourer\'s Workshop', tier: 1,
+                        mods: ['10% more Monster Life'],
+                        notable: ['Contains chests full of armour'],
+                    },
+                    {
+                        id: 'armoury', name: 'Armoury', tier: 2,
+                        mods: ['20% more Monster Life'],
+                        notable: ['Contains chests full of armour'],
+                    },
+                    {
+                        id: 'chamber_of_iron', name: 'Chamber of Iron', tier: 3,
+                        mods: ['30% more Monster Life'],
+                        notable: ['Contains chests full of armour', 'Crafting recipe: Animate Guardian'],
+                    },
+                ],
             crucible_of_flame:
                 [
                     {
@@ -89,7 +90,7 @@ const INCURSION_CONSTANTS = {
                     {
                         id: 'hybridisation_chamber', name: 'Hybridisation Chamber', tier: 3,
                         mods: ['Augments the Omnitect with minions'],
-                        notable: ['Contains a magic item with a Citaqualotl Incursion mod or Coward\'s Chains', 'Crafting recipe'],
+                        notable: ['Contains a magic item with a Citaqualotl Incursion mod or Coward\'s Chains', 'Crafting recipe: Minions Rank 3'],
                     },
                 ],
             house_of_the_others:
@@ -179,7 +180,7 @@ const INCURSION_CONSTANTS = {
                     {
                         id: 'locus_of_corruption', name: 'Locus of Corruption', tier: 3,
                         mods: ['-10% maximum Player Resistances'],
-                        notable: ['Contains an Altar of Corruption', 'Crafting recipe'],
+                        notable: ['Contains an Altar of Corruption', 'Crafting recipe: Reduced Damage over Time'],
                     },
                 ],
             wealth_of_the_vaal:
@@ -269,7 +270,7 @@ const INCURSION_CONSTANTS = {
                     {
                         id: 'sanctum_of_immortality', name: 'Sanctum of Immortality', tier: 3,
                         mods: ['Non-Unique Monsters in this Area Regenerate 8% of Maximum Life per second'],
-                        notable: ['Contains a magic item with a Guatelitzi Incursion mod or Mask of the Spirit Drinker', 'Crafting recipe'],
+                        notable: ['Contains a magic item with a Guatelitzi Incursion mod or Mask of the Spirit Drinker', 'Crafting recipe: Leech Rank 2'],
                     },
                 ],
             toxic_grove:
@@ -287,7 +288,7 @@ const INCURSION_CONSTANTS = {
                     {
                         id: 'toxic_grove', name: 'Toxic Grove', tier: 3,
                         mods: ['Area is Overgrown with Caustic Plants'],
-                        notable: ['Contains a magic item with a Tacati Incursion mod or Apep\'s Slumber', 'Crafting recipe'],
+                        notable: ['Contains a magic item with a Tacati Incursion mod or Apep\'s Slumber', 'Crafting recipe: Chaos Damage Rank 3'],
                     },
                 ],
             throne_of_atziri:
@@ -395,7 +396,7 @@ const INCURSION_CONSTANTS = {
                     {
                         id: 'defense_research_lab', name: 'Defense Research Lab', tier: 3,
                         mods: ['Adds Labyrinth Traps to the Temple'],
-                        notable: ['Contains a magic item with a Matatl Incursion mod or Architect\'s Hand', 'Crafting recipe'],
+                        notable: ['Contains a magic item with a Matatl Incursion mod or Architect\'s Hand', 'Crafting recipe: Traps and Mines Rank 2'],
                     },
                 ],
             glittering_halls:
@@ -431,7 +432,7 @@ const INCURSION_CONSTANTS = {
                     {
                         id: 'hall_of_champions', name: 'Hall of Champions', tier: 3,
                         mods: ['20% increased Monster Damage'],
-                        notable: ['Contains chests full of weapons', 'Crafting recipe'],
+                        notable: ['Contains chests full of weapons', 'Crafting recipe: Accuracy Rank 3'],
                     },
                 ],
             factory:
@@ -464,7 +465,7 @@ const INCURSION_CONSTANTS = {
                             'Adds Vaal-infused Totems to the Temple',
                             'The Omnitect is assisted by Omnitect\'s Guardians',
                         ],
-                        notable: ['Crafting recipe'],
+                        notable: ['Crafting recipe: Criticals Rank 3'],
                     },
                 ],
         },
