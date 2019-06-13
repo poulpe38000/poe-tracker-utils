@@ -1,12 +1,15 @@
 import {createMuiTheme} from '@material-ui/core';
 import {blueGrey, pink} from '@material-ui/core/colors';
 
+const defaultPalette = {
+    primary: {main: blueGrey[600]},
+    secondary: {main: pink[300]},
+    type: 'dark',
+};
 
 export const darkTheme = createMuiTheme({
     palette: {
-        primary: {main: blueGrey[600]},
-        secondary: {main: pink[300]},
-        type: 'dark',
+        ...defaultPalette,
         background: {
             default: '#121212',
             paper: '#242424',
@@ -17,8 +20,7 @@ export const darkTheme = createMuiTheme({
 
 export const lightTheme = createMuiTheme({
     palette: {
-        primary: {main: blueGrey[600]},
-        secondary: {main: pink[300]},
+        ...defaultPalette,
         type: 'light',
         background: {
             popper: '#fff',

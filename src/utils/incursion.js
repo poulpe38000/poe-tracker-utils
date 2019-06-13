@@ -1,35 +1,47 @@
 import INCURSION_CONSTANTS from 'constants/incursion.constants';
 
 export function getBaseRooms() {
-    const roomsKeys = Object.keys(INCURSION_CONSTANTS.rooms);
-    return roomsKeys.reduce((result, roomsKey) => {
-        if (INCURSION_CONSTANTS.rooms[roomsKey].length === 1) {
-            result[roomsKey] = INCURSION_CONSTANTS.rooms[roomsKey];
-        }
-        return result;
-    }, {});
+    return getRooms(baseRoomFilter);
 }
 
 export function getTieredRooms() {
-    const roomsKeys = Object.keys(INCURSION_CONSTANTS.rooms);
-    return roomsKeys.reduce((result, roomsKey) => {
-        if (INCURSION_CONSTANTS.rooms[roomsKey].length > 1) {
-            result[roomsKey] = INCURSION_CONSTANTS.rooms[roomsKey];
-        }
-        return result;
-    }, {});
+    return getRooms(tieredRoomFilter);
 }
 
-function findText(text, rooms) {
-    return text === '' || rooms.some(room => room.name.toLowerCase().search(text.toLowerCase()) !== -1);
-}
-
-export function filteredIncursionData(rooms, accept, searchText) {
-    return Object.keys(rooms)
+export function filteredIncursionData(rooms, searchText) {
+    return Object
+        .keys(rooms)
         .reduce((result, roomsKey) => {
-            if (accept(rooms[roomsKey]) && findText(searchText, rooms[roomsKey])) {
+            if (findText(searchText, rooms[roomsKey])) {
                 result[roomsKey] = rooms[roomsKey];
             }
             return result;
         }, {});
+}
+
+export function baseRoomFilter(rooms) {
+    return rooms.length === 1;
+}
+
+export function tieredRoomFilter(rooms) {
+    return rooms.length > 1;
+}
+
+function getRooms(accept) {
+    return Object
+        .keys(INCURSION_CONSTANTS.rooms)
+        .reduce((result, roomsKey) => {
+            if (accept(INCURSION_CONSTANTS.rooms[roomsKey])) {
+                result[roomsKey] = INCURSION_CONSTANTS.rooms[roomsKey];
+            }
+            return result;
+        }, {});
+}
+
+function findText(text, rooms) {
+    return text === ''
+        || rooms
+            .some((room) => {
+                return room.name.toLowerCase().search(text.toLowerCase()) !== -1
+            });
 }
