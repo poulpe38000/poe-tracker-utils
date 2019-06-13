@@ -1,8 +1,6 @@
 import React from 'react';
 import {compose} from 'redux';
-import Route from 'react-router-dom/Route';
-import Switch from 'react-router-dom/Switch';
-import withRouter from 'react-router-dom/withRouter';
+import {Route, Switch, withRouter} from 'react-router-dom';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import Box from '@material-ui/core/Box';

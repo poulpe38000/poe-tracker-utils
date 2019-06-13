@@ -1,7 +1,7 @@
 import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import BrowserRouter from 'react-router-dom/BrowserRouter';
+import {BrowserRouter} from 'react-router-dom';
 import {SnackbarProvider} from 'notistack';
 import {ThemeProvider} from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -16,7 +16,7 @@ import TopBar from 'components/layout/TopBar';
 import Routes from 'components/Routes';
 
 const styles = {
-    variantDefault: {minWidth: 'auto'}
+    base: {minWidth: 'auto'}
 };
 
 class App extends React.Component {

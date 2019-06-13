@@ -1,7 +1,7 @@
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import INCURSION_CONSTANTS from 'constants/incursion.constants';
 import countBy from 'lodash/countBy';
-import {getBaseRooms, getTieredRooms} from 'utils/incursion';
+import {getBaseRooms, getTieredRooms, validateInProgressIncursion} from 'utils/incursion';
 
 export function getHideoutMainStats(unlockedHideouts) {
     return {
@@ -39,30 +39,11 @@ export function getIncursionStats(inProgressRooms, completedRooms) {
     const totalTieredRooms = Object.keys(tieredRooms)
         .reduce((result, key) => ([...result, ...tieredRooms[key]]), []).length;
 
-    const inProgressFiltered = inProgressRooms.filter(room => INCURSION_CONSTANTS.rooms[room.id]);
-    const completedFiltered = completedRooms.filter(room => INCURSION_CONSTANTS.rooms[room.id]);
+    const totalInProgress = countRooms(inProgressRooms);
+    const totalCompleted = countRooms(completedRooms);
 
-    const totalInProgress = inProgressFiltered.reduce((result, room) => {
-        return result + INCURSION_CONSTANTS.rooms[room.id].filter(item => item.tier <= room.tier).length;
-    }, 0);
-    const totalCompleted = completedFiltered.reduce((result, room) => {
-        return result + INCURSION_CONSTANTS.rooms[room.id].filter(item => item.tier <= room.tier).length;
-    }, 0);
-
-    let futureFiltered = completedFiltered.reduce((result, room) => {
-        const inProgressOverride = inProgressFiltered.find(item => item.id === room.id && item.tier > room.tier);
-        if (!!inProgressOverride) {
-            return [...result, inProgressOverride];
-        }
-        return [...result, room];
-    }, []);
-    futureFiltered = [
-        ...futureFiltered,
-        ...inProgressFiltered.filter(item => completedFiltered.findIndex(compl => compl.id === item.id) === -1)
-    ];
-    const totalFuture = futureFiltered.reduce((result, room) => {
-        return result + INCURSION_CONSTANTS.rooms[room.id].filter(item => item.tier <= room.tier).length;
-    }, 0);
+    const futureCompletedRooms = validateInProgressIncursion(inProgressRooms, completedRooms);
+    const totalFuture = countRooms(futureCompletedRooms);
 
     const currentRank = INCURSION_CONSTANTS.rank.find(rank => totalCompleted >= rank.min && totalCompleted <= rank.max);
     const futureRank = INCURSION_CONSTANTS.rank.find(rank => totalFuture >= rank.min && totalFuture <= rank.max);
@@ -74,4 +55,13 @@ export function getIncursionStats(inProgressRooms, completedRooms) {
         future_rank: futureRank.rank,
         total: totalBaseRooms + totalTieredRooms,
     }
+}
+
+function countRooms(rooms) {
+    return Object
+        .keys(rooms)
+        .reduce((result, roomKey) => (result + INCURSION_CONSTANTS.rooms[roomKey]
+                .filter(item => item.tier <= rooms[roomKey])
+                .length
+        ), 0);
 }

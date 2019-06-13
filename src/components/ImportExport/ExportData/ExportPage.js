@@ -92,8 +92,8 @@ export default compose(
                     unlocked: state.hideout.unlocked,
                 },
                 incursion: {
-                    completed: state.incursion.completed,
                     in_progress: state.incursion.in_progress,
+                    completed: state.incursion.completed,
                 },
             },
         }),

@@ -45,3 +45,21 @@ function findText(text, rooms) {
                 return room.name.toLowerCase().search(text.toLowerCase()) !== -1
             });
 }
+
+export function cloneRooms(rooms) {
+    return Object.assign({}, rooms);
+}
+
+export function validateInProgressIncursion(inProgressRooms, completedRooms) {
+    let futureCompleted = cloneRooms(completedRooms);
+    Object
+        .keys(inProgressRooms)
+        .forEach((roomKey) => {
+            const inProgressTier = inProgressRooms[roomKey],
+                completedTier = futureCompleted[roomKey];
+            if (completedTier === undefined || completedTier < inProgressTier) {
+                futureCompleted[roomKey] = inProgressTier;
+            }
+        });
+    return futureCompleted;
+}

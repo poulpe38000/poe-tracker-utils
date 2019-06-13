@@ -40,19 +40,13 @@ class IncursionRoom extends React.Component {
     };
 
     isInProgress() {
-        return !!this.props.inProgress
-            .find((inProgressRoom) => {
-                return inProgressRoom.id === this.props.roomKey
-                    && inProgressRoom.tier >= this.props.room.tier;
-            });
+        return this.props.inProgress.hasOwnProperty(this.props.roomKey)
+            && this.props.inProgress[this.props.roomKey] >= this.props.room.tier;
     }
 
     isCompleted() {
-        return !!this.props.completed
-            .find((completedRoom) => {
-                return completedRoom.id === this.props.roomKey
-                    && completedRoom.tier >= this.props.room.tier;
-            });
+        return this.props.completed.hasOwnProperty(this.props.roomKey)
+            && this.props.completed[this.props.roomKey] >= this.props.room.tier;
     }
 
     render() {
