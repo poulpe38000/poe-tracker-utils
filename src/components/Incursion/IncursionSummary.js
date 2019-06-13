@@ -11,7 +11,6 @@ import AppBar from '@material-ui/core/AppBar';
 import Box from '@material-ui/core/Box';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Fade from '@material-ui/core/Fade';
-import FormControl from '@material-ui/core/FormControl';
 import Grow from '@material-ui/core/Grow';
 import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
@@ -28,7 +27,9 @@ import * as PropTypes from 'prop-types';
 
 import {incursionActions} from 'store/incursion/actions';
 import {displaySnackbar} from 'utils/snackbar';
-import {buttonStyles, mergeStyles} from 'utils/themes';
+import {buttonStyles, mergeStyles, transitionFor} from 'utils/themes';
+import clsx from 'clsx';
+import InputBase from '@material-ui/core/InputBase';
 
 
 const styles = (theme) => (mergeStyles({
@@ -54,6 +55,26 @@ const styles = (theme) => (mergeStyles({
     },
     popper: {
         backgroundColor: theme.palette.background.popper
+    },
+    searchZone: {
+        display: 'flex',
+    },
+    searchOpen: {
+        backgroundColor: theme.palette.background.popper,
+        borderRadius: theme.spacing(3),
+        paddingLeft: theme.spacing(1),
+        paddingRight: theme.spacing(1),
+        width: 240,
+        transition: transitionFor(theme, ['width', 'background-color', 'padding']),
+    },
+    searchClose: {
+        backgroundColor: 'inherit',
+        borderRadius: theme.spacing(2),
+        paddingLeft: 0,
+        paddingRight: 0,
+        width: theme.spacing(6),
+        overflow: 'hidden',
+        transition: transitionFor(theme, ['width', 'background-color', 'padding'], 'leavingScreen'),
     },
 }, buttonStyles(theme)));
 
@@ -117,41 +138,34 @@ class IncursionSummary extends React.Component {
             <AppBar className={classes.root} elevation={2} position={'sticky'}>
                 <Toolbar>
                     <Box className={classes.title}>
-                        {showSearchBar ? (
-                            <Fade in={showSearchBar}>
-                                <FormControl fullWidth>
-                                    <TextField
-                                        className={classes.margin}
-                                        inputRef={this.searchField}
-                                        onChange={this.handleSearchTextUpdate}
-                                        value={searchText}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <SearchIcon/>
-                                                </InputAdornment>
-                                            ),
-                                            endAdornment: (
-                                                <InputAdornment position="end">
-                                                    <IconButton aria-label="Delete"
-                                                                onClick={this.handleToggleSearch}>
-                                                        <ClearIcon/>
-                                                    </IconButton>
-                                                </InputAdornment>
-                                            )
-                                        }}
-                                    />
-                                </FormControl>
-                            </Fade>
-                        ) : (
-                            <Typography variant="h6">{title}</Typography>
-                        )}
+                        <Typography variant="h6">{title}</Typography>
                     </Box>
                     <Box className={classes.spacer}/>
                     <Box className={classes.actions}>
-                        <IconButton aria-label="Search" onClick={this.handleToggleSearch}>
-                            <SearchIcon/>
-                        </IconButton>
+                        <Box className={clsx(classes.searchZone, {
+                            [classes.searchOpen]: showSearchBar,
+                            [classes.searchClose]: !showSearchBar,
+                        })}>
+                            <IconButton aria-label="Search" onClick={this.handleToggleSearch} disabled={showSearchBar}>
+                                <SearchIcon/>
+                            </IconButton>
+                            {showSearchBar && (
+                                <React.Fragment>
+                                    <InputBase
+                                        placeholder="Search"
+                                        inputRef={this.searchField}
+                                        inputProps={{ 'aria-label': 'Search Google Maps' }}
+                                        onChange={this.handleSearchTextUpdate}
+                                        autoFocus
+                                    />
+                                    <IconButton aria-label="Delete" disableRipple
+                                                onClick={this.handleToggleSearch}>
+                                        <ClearIcon/>
+                                    </IconButton>
+                                </React.Fragment>
+                            )}
+
+                        </Box>
                         <IconButton
                             ref={this.menuAnchorRef}
                             aria-label={'More actions'}
