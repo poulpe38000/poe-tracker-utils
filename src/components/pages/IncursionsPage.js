@@ -8,7 +8,7 @@ export default function IncursionsPage() {
     return (
         <Container>
             <Page>
-                <IncursionSummary/>
+                <IncursionSummary title={'Incursion Tracker'}/>
                 <IncursionBaseList/>
                 <IncursionTieredList/>
             </Page>
