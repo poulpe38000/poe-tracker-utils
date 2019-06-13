@@ -1,6 +1,16 @@
 import {createMuiTheme} from '@material-ui/core';
 import {blueGrey, pink} from '@material-ui/core/colors';
 
+const defaultTheme = {
+    overrides: {
+        MuiPaper: {
+            rounded: {
+                borderRadius: 0,
+            }
+        },
+    },
+};
+
 const defaultPalette = {
     primary: {main: blueGrey[600]},
     secondary: {main: pink[300]},
@@ -8,6 +18,7 @@ const defaultPalette = {
 };
 
 export const darkTheme = createMuiTheme({
+    ...defaultTheme,
     palette: {
         ...defaultPalette,
         background: {
@@ -19,6 +30,7 @@ export const darkTheme = createMuiTheme({
 });
 
 export const lightTheme = createMuiTheme({
+    ...defaultTheme,
     palette: {
         ...defaultPalette,
         type: 'light',
