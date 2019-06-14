@@ -9,6 +9,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 
 import APP_CONSTANTS from 'constants/app.constants';
+import {tabs} from 'components/ImportExport/constants';
 import {transitionFor} from 'utils/themes';
 
 const drawerWidth = APP_CONSTANTS.drawerWidth;
@@ -44,13 +45,12 @@ const styles = (theme) => ({
 
 class ImportExportTabs extends React.Component {
     static propTypes = {
-        tabs: PropTypes.array.isRequired,
-        value: PropTypes.number.isRequired,
+        value: PropTypes.string.isRequired,
         onChange: PropTypes.func.isRequired,
     };
 
     render() {
-        const {onChange, value, classes, tabs, sidenavExpanded} = this.props;
+        const {onChange, value, classes, sidenavExpanded} = this.props;
         return (
             <AppBar position="fixed" className={clsx(classes.root, {
                 [classes.drawerOpen]: sidenavExpanded,
@@ -59,8 +59,8 @@ class ImportExportTabs extends React.Component {
                 <Tabs value={value} variant="fullWidth" onChange={onChange} classes={{
                     indicator: classes.indicator
                 }}>
-                    {tabs.map((tab, key) => (
-                        <Tab key={key} label={tab.label}/>
+                    {tabs.map(({label, hash}, key) => (
+                        <Tab key={key} label={label} value={hash}/>
                     ))}
                 </Tabs>
             </AppBar>
