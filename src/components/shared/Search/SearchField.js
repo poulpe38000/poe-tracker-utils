@@ -27,7 +27,7 @@ const styles = (theme) => (mergeStyles({
     searchCollapsed: {
         minWidth: theme.spacing(6),
         flex: 0,
-        transition: transitionFor(theme, ['flex', 'background-color'], 'complex'),
+        transition: transitionFor(theme, ['flex', 'background-color'], 'standard'),
     },
     input: {
         flexGrow: 1,

@@ -1,20 +1,17 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import * as PropTypes from 'prop-types';
 
-import {filteredIncursionData, getBaseRooms} from 'utils/incursion';
 import IncursionListContainer from 'components/Incursion/IncursionListContainer';
 import IncursionRoom from 'components/Incursion/IncursionRoom';
 
 class IncursionBaseList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.roomsList = getBaseRooms();
-    }
+    static propTypes = {
+        items: PropTypes.object.isRequired,
+    };
 
     render() {
-        const {searchText} = this.props;
-        const data = filteredIncursionData(this.roomsList, searchText);
-        const roomsKeys = Object.keys(data);
+        const {items} = this.props;
+        const roomsKeys = Object.keys(items);
         return (
             <React.Fragment>
                 {roomsKeys.length > 0 && (
@@ -22,7 +19,7 @@ class IncursionBaseList extends React.Component {
                         {roomsKeys
                             .map((roomsKey) => (
                                     <React.Fragment key={roomsKey}>
-                                        {data[roomsKey].map((room) => (
+                                        {items[roomsKey].map((room) => (
                                             <IncursionRoom key={room.id} roomKey={roomsKey} room={room}/>))}
                                     </React.Fragment>
                                 )
@@ -35,8 +32,4 @@ class IncursionBaseList extends React.Component {
     }
 }
 
-export default connect(
-    state => ({
-        searchText: state.incursion.searchText,
-    }),
-)(IncursionBaseList);
+export default IncursionBaseList;
