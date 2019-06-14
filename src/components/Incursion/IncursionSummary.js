@@ -3,59 +3,41 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {withSnackbar} from 'notistack';
 import CheckIcon from '@material-ui/icons/Check';
-import ClearIcon from '@material-ui/icons/Clear';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import SearchIcon from '@material-ui/icons/Search';
 import SettingsBackupRestoreIcon from '@material-ui/icons/SettingsBackupRestore';
 import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
 import ClickAwayListener from '@material-ui/core/ClickAwayListener';
-import Fade from '@material-ui/core/Fade';
-import FormControl from '@material-ui/core/FormControl';
 import Grow from '@material-ui/core/Grow';
 import IconButton from '@material-ui/core/IconButton';
-import InputAdornment from '@material-ui/core/InputAdornment';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
 import Paper from '@material-ui/core/Paper';
 import Popper from '@material-ui/core/Popper';
-import TextField from '@material-ui/core/TextField';
-import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
 import {incursionActions} from 'store/incursion/actions';
 import {displaySnackbar} from 'utils/snackbar';
-import {buttonStyles, mergeStyles} from 'utils/themes';
+import ActionToolbar from 'components/shared/ActionToolbar/ActionToolbar';
+import SearchField from 'components/shared/Search/SearchField';
 
 
-const styles = (theme) => (mergeStyles({
+const styles = ({breakpoints, palette, spacing}) => ({
     root: {
-        backgroundColor: theme.palette.background.paper,
-        color: theme.palette.text.primary,
-        marginBottom: theme.spacing(2),
+        backgroundColor: palette.background.paper,
+        color: palette.text.primary,
+        marginBottom: spacing(2),
         top: 64,
-        [theme.breakpoints.down('xs')]: {
+        [breakpoints.down('xs')]: {
             top: 56,
         },
     },
-    title: {
-        flex: '1 1 auto',
-    },
-    spacer: {
-        flex: '0 0 auto',
-        flexGrow: 1,
-    },
-    actions: {
-        color: theme.palette.text.secondary,
-        display: 'flex'
-    },
     popper: {
-        backgroundColor: theme.palette.background.popper
+        backgroundColor: palette.background.popper
     },
-}, buttonStyles(theme)));
+});
 
 class IncursionSummary extends React.Component {
     static propTypes = {
@@ -67,13 +49,11 @@ class IncursionSummary extends React.Component {
     };
 
     state = {
-        showSearchBar: false,
         menuOpen: false,
     };
 
     constructor(props) {
         super(props);
-        this.searchField = React.createRef();
         this.menuAnchorRef = React.createRef();
     }
 
@@ -91,7 +71,6 @@ class IncursionSummary extends React.Component {
     };
 
     handleToggleSearch = () => {
-        this.setState((prevState) => ({showSearchBar: !prevState.showSearchBar}));
         this.props.updateSearchText('');
     };
 
@@ -112,83 +91,50 @@ class IncursionSummary extends React.Component {
 
     render() {
         const {classes, searchText, title} = this.props;
-        const {showSearchBar, menuOpen} = this.state;
+        const {menuOpen} = this.state;
         return (
             <AppBar className={classes.root} elevation={2} position={'sticky'}>
-                <Toolbar>
-                    <Box className={classes.title}>
-                        {showSearchBar ? (
-                            <Fade in={showSearchBar}>
-                                <FormControl fullWidth>
-                                    <TextField
-                                        className={classes.margin}
-                                        inputRef={this.searchField}
-                                        onChange={this.handleSearchTextUpdate}
-                                        value={searchText}
-                                        InputProps={{
-                                            startAdornment: (
-                                                <InputAdornment position="start">
-                                                    <SearchIcon/>
-                                                </InputAdornment>
-                                            ),
-                                            endAdornment: (
-                                                <InputAdornment position="end">
-                                                    <IconButton aria-label="Delete"
-                                                                onClick={this.handleToggleSearch}>
-                                                        <ClearIcon/>
-                                                    </IconButton>
-                                                </InputAdornment>
-                                            )
-                                        }}
-                                    />
-                                </FormControl>
-                            </Fade>
-                        ) : (
-                            <Typography variant="h6">{title}</Typography>
+                <ActionToolbar title={title}>
+                    <SearchField value={searchText}
+                                 onOpen={this.handleToggleSearch}
+                                 onClose={this.handleToggleSearch}
+                                 onChange={this.handleSearchTextUpdate}/>
+                    <IconButton
+                        ref={this.menuAnchorRef}
+                        aria-label={'More actions'}
+                        aria-controls="incursion-menu"
+                        aria-haspopup="true"
+                        onClick={this.handleMenuOpen}
+                    >
+                        <MoreVertIcon/>
+                    </IconButton>
+                    <Popper open={menuOpen} anchorEl={this.menuAnchorRef.current}
+                            placement={'bottom-end'} transition disablePortal>
+                        {({TransitionProps}) => (
+                            <Grow {...TransitionProps} style={{transformOrigin: 'right top'}}>
+                                <Paper id="incursion-menu" className={classes.popper}>
+                                    <ClickAwayListener onClickAway={this.handleMenuClose}>
+                                        <MenuList disablePadding>
+                                            <MenuItem onClick={this.handleValidateInProgress}>
+                                                <ListItemIcon>
+                                                    <CheckIcon/>
+                                                </ListItemIcon>
+                                                <Typography>{'Complete Current Incursion'}</Typography>
+                                            </MenuItem>
+                                            <MenuItem onClick={this.handleResetInProgress}>
+                                                <ListItemIcon>
+                                                    <SettingsBackupRestoreIcon color={'error'}/>
+                                                </ListItemIcon>
+                                                <Typography
+                                                    color={'error'}>{'Reset Current Incursion'}</Typography>
+                                            </MenuItem>
+                                        </MenuList>
+                                    </ClickAwayListener>
+                                </Paper>
+                            </Grow>
                         )}
-                    </Box>
-                    <Box className={classes.spacer}/>
-                    <Box className={classes.actions}>
-                        <IconButton aria-label="Search" onClick={this.handleToggleSearch}>
-                            <SearchIcon/>
-                        </IconButton>
-                        <IconButton
-                            ref={this.menuAnchorRef}
-                            aria-label={'More actions'}
-                            aria-controls="incursion-menu"
-                            aria-haspopup="true"
-                            onClick={this.handleMenuOpen}
-                        >
-                            <MoreVertIcon/>
-                        </IconButton>
-                        <Popper open={menuOpen} anchorEl={this.menuAnchorRef.current}
-                                placement={'bottom-end'} transition disablePortal>
-                            {({TransitionProps}) => (
-                                <Grow {...TransitionProps} style={{transformOrigin: 'right top'}}>
-                                    <Paper id="incursion-menu" className={classes.popper}>
-                                        <ClickAwayListener onClickAway={this.handleMenuClose}>
-                                            <MenuList disablePadding>
-                                                <MenuItem onClick={this.handleValidateInProgress}>
-                                                    <ListItemIcon>
-                                                        <CheckIcon/>
-                                                    </ListItemIcon>
-                                                    <Typography>{'Complete Current Incursion'}</Typography>
-                                                </MenuItem>
-                                                <MenuItem onClick={this.handleResetInProgress}>
-                                                    <ListItemIcon>
-                                                        <SettingsBackupRestoreIcon color={'error'}/>
-                                                    </ListItemIcon>
-                                                    <Typography
-                                                        color={'error'}>{'Reset Current Incursion'}</Typography>
-                                                </MenuItem>
-                                            </MenuList>
-                                        </ClickAwayListener>
-                                    </Paper>
-                                </Grow>
-                            )}
-                        </Popper>
-                    </Box>
-                </Toolbar>
+                    </Popper>
+                </ActionToolbar>
             </AppBar>
         );
     }

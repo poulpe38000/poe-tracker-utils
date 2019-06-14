@@ -3,7 +3,7 @@ import List from '@material-ui/core/List';
 import noop from 'lodash/noop';
 import * as PropTypes from 'prop-types';
 
-import SideMenuNavItem from 'components/layout/SideMenuComponents/SideMenuNavItem';
+import SideMenuNavItem from 'layout/SideMenuComponents/SideMenuNavItem';
 
 class SideMenuNavList extends React.Component {
     static propTypes = {

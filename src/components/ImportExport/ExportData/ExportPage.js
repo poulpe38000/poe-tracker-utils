@@ -8,7 +8,7 @@ import TextField from '@material-ui/core/TextField';
 import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 
 import {displaySnackbar} from 'utils/snackbar';
-import Page from 'components/layout/Page';
+import Page from 'layout/Page';
 import ExportSettings from 'components/ImportExport/ExportData/ExportSettings';
 import ExportActions from 'components/ImportExport/ExportData/ExportActions';
 

@@ -1,7 +1,7 @@
 import React from "react";
 import Container from '@material-ui/core/Container';
 
-import Page from 'components/layout/Page';
+import Page from 'layout/Page';
 
 export default function HomePage() {
     return (
