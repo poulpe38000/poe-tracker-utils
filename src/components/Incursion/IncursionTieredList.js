@@ -1,22 +1,18 @@
 import React from 'react';
-import {connect} from 'react-redux';
-import Divider from '@material-ui/core/Divider';
+import * as PropTypes from 'prop-types';
 
-import {filteredIncursionData, getTieredRooms} from 'utils/incursion';
 import IncursionListContainer from 'components/Incursion/IncursionListContainer';
 import IncursionTieredGroup from 'components/Incursion/IncursionTieredGroup';
 
 
 class IncursionTieredList extends React.Component {
-    constructor(props) {
-        super(props);
-        this.roomsList = getTieredRooms();
-    }
+    static propTypes = {
+        items: PropTypes.object.isRequired,
+    };
 
     render() {
-        const {searchText} = this.props;
-        const data = filteredIncursionData(this.roomsList, searchText);
-        const roomsKeys = Object.keys(data);
+        const {items} = this.props;
+        const roomsKeys = Object.keys(items);
         return (
             <React.Fragment>
                 {roomsKeys.length > 0 && (
@@ -24,8 +20,11 @@ class IncursionTieredList extends React.Component {
                         {roomsKeys
                             .map((roomsKey, idx) => (
                                     <React.Fragment key={roomsKey}>
-                                        <IncursionTieredGroup roomKey={roomsKey} rooms={data[roomsKey]}/>
-                                        {idx < roomsKeys.length - 1 && <Divider/>}
+                                        <IncursionTieredGroup
+                                            roomKey={roomsKey}
+                                            rooms={items[roomsKey]}
+                                            noDivider={idx === roomsKeys.length - 1}
+                                        />
                                     </React.Fragment>
                                 )
                             )
@@ -38,8 +37,4 @@ class IncursionTieredList extends React.Component {
     }
 }
 
-export default connect(
-    state => ({
-        searchText: state.incursion.searchText,
-    }),
-)(IncursionTieredList);
+export default IncursionTieredList;

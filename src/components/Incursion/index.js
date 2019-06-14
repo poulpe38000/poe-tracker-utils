@@ -1,3 +1,2 @@
 export {default as IncursionSummary} from './IncursionSummary';
-export {default as IncursionBaseList} from './IncursionBaseList';
-export {default as IncursionTieredList} from './IncursionTieredList';
+export {default as IncursionList} from './IncursionList';

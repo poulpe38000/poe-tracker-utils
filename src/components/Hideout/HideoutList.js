@@ -3,16 +3,15 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 import Divider from '@material-ui/core/Divider';
 import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import Paper from '@material-ui/core/Paper';
-import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import HideoutFilterStatus from 'components/Hideout/HideoutFilterStatus';
 import HideoutListHeader from 'components/Hideout/HideoutListHeader';
 import HideoutListItem from 'components/Hideout/HideoutListItem';
+import EmptyResults from 'components/shared/EmptyResults';
 
 const styles = ({breakpoints}) => ({
     list: {
@@ -87,9 +86,7 @@ class HideoutList extends React.Component {
                         </Paper>
                     </ListSubheader>
                     {filteredData.length === 0 && (
-                        <ListItem dense className={classes.notFound}>
-                            <Typography variant="h6"><em>No Hideouts found</em></Typography>
-                        </ListItem>
+                        <EmptyResults/>
                     )}
                     {filteredData
                         .map((hideout, idx) => (
