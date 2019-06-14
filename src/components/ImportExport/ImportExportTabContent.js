@@ -4,9 +4,7 @@ import CSSTransition from 'react-transition-group/CSSTransition';
 import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
-
-import {ImportPage} from 'components/ImportExport/ImportData';
-import {ExportPage} from 'components/ImportExport/ExportData';
+import {tabs} from 'components/ImportExport/constants';
 
 const styles = {
     root: {
@@ -17,7 +15,7 @@ const styles = {
 
 class ImportExportTabContent extends React.Component {
     static propTypes = {
-        value: PropTypes.number.isRequired,
+        value: PropTypes.string.isRequired,
     };
 
     render() {
@@ -26,8 +24,15 @@ class ImportExportTabContent extends React.Component {
             <TransitionGroup>
                 <CSSTransition timeout={300} key={value} classNames="fade">
                     <Box className={classes.root}>
-                        {value === 0 && <ImportPage/>}
-                        {value === 1 && <ExportPage/>}
+                        {tabs.map(({hash, component}, key) => (
+                            <React.Fragment key={key}>
+                                {value === hash && (
+                                    <React.Fragment>
+                                        {component}
+                                    </React.Fragment>
+                                )}
+                            </React.Fragment>
+                        ))}
                     </Box>
                 </CSSTransition>
             </TransitionGroup>
