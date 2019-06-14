@@ -34,12 +34,6 @@ const styles = ({breakpoints, palette, spacing}) => ({
             top: 56,
         },
     },
-    title: {
-        flex: '1 1 auto',
-        overflow: 'hidden',
-        width: 0,
-        whiteSpace: 'nowrap',
-    },
     popper: {
         backgroundColor: palette.background.popper
     },

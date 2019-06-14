@@ -34,7 +34,7 @@ class HideoutListHeader extends React.Component {
 
     render() {
         const {title, filterOptions, searchable, searchText} = this.props;
-        const filtrable = filterOptions.length > 0;
+        const filterable = filterOptions.length > 0;
         return (
             <ActionToolbar title={title}>
                 {searchable && (
@@ -43,7 +43,7 @@ class HideoutListHeader extends React.Component {
                                  onClose={this.handleToggleSearch}
                                  onChange={this.handleSearchTextUpdate}/>
                 )}
-                {filtrable && <HideoutListFilter filterOptions={filterOptions}/>}
+                {filterable && <HideoutListFilter filterOptions={filterOptions}/>}
             </ActionToolbar>
         );
     }
