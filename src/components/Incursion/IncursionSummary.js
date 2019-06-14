@@ -44,6 +44,8 @@ const styles = (theme) => (mergeStyles({
     },
     title: {
         flex: '1 1 auto',
+        overflow: 'hidden',
+        width: 0,
     },
     spacer: {
         flex: '0 0 auto',
@@ -58,24 +60,31 @@ const styles = (theme) => (mergeStyles({
     },
     searchZone: {
         display: 'flex',
+        overflow: 'hidden',
     },
     searchOpen: {
         backgroundColor: theme.palette.background.popper,
         borderRadius: theme.spacing(3),
-        paddingLeft: theme.spacing(1),
-        paddingRight: theme.spacing(1),
         width: 240,
-        transition: transitionFor(theme, ['width', 'background-color', 'padding']),
+        maxWidth: '100%',
+        transition: transitionFor(theme, ['width', 'background-color'], 'complex'),
     },
     searchClose: {
         backgroundColor: 'inherit',
         borderRadius: theme.spacing(2),
-        paddingLeft: 0,
-        paddingRight: 0,
         width: theme.spacing(6),
-        overflow: 'hidden',
-        transition: transitionFor(theme, ['width', 'background-color', 'padding'], 'leavingScreen'),
+        minWidth: '0%',
+        transition: transitionFor(theme, ['width', 'background-color'], 'complex'),
     },
+    input: {
+        flexGrow: 1,
+    },
+    inputButton: {
+        '&:hover': {
+            backgroundColor: 'inherit',
+
+        }
+    }
 }, buttonStyles(theme)));
 
 class IncursionSummary extends React.Component {
@@ -156,9 +165,13 @@ class IncursionSummary extends React.Component {
                                         inputRef={this.searchField}
                                         inputProps={{ 'aria-label': 'Search Google Maps' }}
                                         onChange={this.handleSearchTextUpdate}
+                                        className={classes.input}
                                         autoFocus
                                     />
-                                    <IconButton aria-label="Delete" disableRipple
+                                    <IconButton aria-label="Delete"
+                                                disableRipple
+                                                disableFocusRipple
+                                                className={classes.inputButton}
                                                 onClick={this.handleToggleSearch}>
                                         <ClearIcon/>
                                     </IconButton>
