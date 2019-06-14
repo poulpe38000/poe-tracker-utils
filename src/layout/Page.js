@@ -3,7 +3,7 @@ import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import PageTitle from 'components/layout/PageComponents/PageTitle';
+import PageTitle from 'layout/PageComponents/PageTitle';
 
 const styles = ({spacing}) => ({
     root: {

@@ -15,8 +15,8 @@ import {
     IncursionsPage,
     NotFoundPage,
     SettingsPage
-} from 'components/pages';
-import ContentWrapper from 'components/layout/ContentWrapper';
+} from 'pages';
+import ContentWrapper from 'layout/ContentWrapper';
 
 
 const styles = ({breakpoints}) => ({

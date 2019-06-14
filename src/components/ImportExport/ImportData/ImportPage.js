@@ -7,7 +7,7 @@ import Box from '@material-ui/core/Box';
 import {rootActions} from 'store/root/actions';
 import {sanitizeTrackerData} from 'utils/sanitizer';
 import {displaySnackbar} from 'utils/snackbar';
-import Page from 'components/layout/Page';
+import Page from 'layout/Page';
 import ImportSettings from 'components/ImportExport/ImportData/ImportSettings';
 import ImportDropZone from 'components/ImportExport/ImportData/ImportDropZone';
 import ImportActions from 'components/ImportExport/ImportData/ImportActions';

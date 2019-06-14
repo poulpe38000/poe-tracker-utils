@@ -8,8 +8,6 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import {IconAvatar, ImageAvatar} from 'components/shared';
-
 const styles = ({palette, spacing}) => ({
     root: {
         paddingLeft: spacing(1.5),
@@ -32,8 +30,7 @@ class SideMenuNavItem extends React.Component {
 
     static propTypes = {
         label: PropTypes.string.isRequired,
-        icon: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-        avatar: PropTypes.oneOf([IconAvatar, ImageAvatar]),
+        icon: PropTypes.element.isRequired,
         link: PropTypes.object.isRequired,
         expanded: PropTypes.bool,
     };
@@ -43,10 +40,9 @@ class SideMenuNavItem extends React.Component {
     };
 
     render() {
-        const {classes, link, avatar, label, icon, expanded} = this.props;
+        const {classes, link, label, icon, expanded} = this.props;
         const tooltipLabel = (<Typography variant="body1">{label}</Typography>);
         const emptyTooltipLabel = '';
-        const MenuAvatar = avatar;
         return (
             <Tooltip title={!expanded ? tooltipLabel : emptyTooltipLabel}
                      placement="right"
@@ -60,7 +56,7 @@ class SideMenuNavItem extends React.Component {
                           {...link}
                 >
                     <ListItemAvatar>
-                        <MenuAvatar label={label} value={icon}/>
+                        {icon}
                     </ListItemAvatar>
                     <ListItemText primary={label}/>
                 </ListItem>
