@@ -76,27 +76,27 @@ class HideoutList extends React.Component {
             .filter(hideout => applyFilters(filters, hideout))
             .filter(hideout => findText(searchText, hideout));
         return (
-            <Paper elevation={2}>
-                <List className={classes.list}>
-                    <ListSubheader disableGutters className={classes.header}>
-                        <Paper elevation={0}>
-                            <HideoutListHeader title="Hideouts list" filterOptions={this.filterOptions}/>
-                            <HideoutFilterStatus filterOptions={this.filterOptions}/>
-                            <Divider/>
-                        </Paper>
-                    </ListSubheader>
-                    {filteredData.length === 0 && (
-                        <EmptyResults/>
-                    )}
-                    {filteredData
-                        .map((hideout, idx) => (
-                            <React.Fragment key={hideout.id}>
-                                <HideoutListItem hideout={hideout}/>
-                                {idx < filteredData.length - 1 && <Divider/>}
-                            </React.Fragment>
-                        ))}
-                </List>
-            </Paper>
+            <React.Fragment>
+                <Paper elevation={2}>
+                    <List className={classes.list} disablePadding>
+                        <ListSubheader disableGutters className={classes.header}>
+                            <Paper elevation={0}>
+                                <HideoutListHeader title="Hideouts list" filterOptions={this.filterOptions}/>
+                                <HideoutFilterStatus filterOptions={this.filterOptions}/>
+                                {filteredData.length > 0 && <Divider/>}
+                            </Paper>
+                        </ListSubheader>
+                        {filteredData
+                            .map((hideout, idx) => (
+                                <React.Fragment key={hideout.id}>
+                                    <HideoutListItem hideout={hideout}/>
+                                    {idx < filteredData.length - 1 && <Divider/>}
+                                </React.Fragment>
+                            ))}
+                    </List>
+                </Paper>
+                {filteredData.length === 0 && <EmptyResults/>}
+            </React.Fragment>
         );
     }
 }
