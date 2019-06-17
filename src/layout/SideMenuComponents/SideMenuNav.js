@@ -3,7 +3,6 @@ import {compose} from 'redux';
 import {connect} from 'react-redux';
 import {withRouter} from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
-import Box from '@material-ui/core/Box';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
@@ -14,21 +13,9 @@ import {rootActions} from 'store/root/actions';
 import SideMenuNavList from 'layout/SideMenuComponents/SideMenuNavList';
 import {sideMenuElements} from 'layout/SideMenuComponents/constants';
 
-const styles = ({mixins, breakpoints, spacing}) => ({
-    root: {
-        paddingTop: spacing(1),
-        flexGrow: 1,
-        display: 'flex',
-        flexDirection: 'column',
-        [breakpoints.down('xs')]: {
-            paddingTop: 0,
-        },
-    },
+const styles = ({mixins}) => ({
     toolbarSpacer: {
         ...mixins.toolbar,
-    },
-    spacer: {
-        flex: '1 1 auto',
     },
 });
 
@@ -48,19 +35,11 @@ class SideMenuNav extends React.Component {
                         </Typography>
                     </Toolbar>
                 </AppBar>
-                <Box className={classes.root}>
-                    <SideMenuNavList
-                        items={sideMenuElements.pages}
-                        expanded={!isWidthDown('xs', width) && expanded}
-                        onClick={isWidthDown('xs', width) ? toggleSidenav : noop}
-                    />
-                    <Box className={classes.spacer}/>
-                    <SideMenuNavList
-                        items={sideMenuElements.settings}
-                        expanded={!isWidthDown('xs', width) && expanded}
-                        onClick={isWidthDown('xs', width) ? toggleSidenav : noop}
-                    />
-                </Box>
+                <SideMenuNavList
+                    items={sideMenuElements}
+                    expanded={!isWidthDown('xs', width) && expanded}
+                    onClick={isWidthDown('xs', width) ? toggleSidenav : noop}
+                />
             </React.Fragment>
         );
     }

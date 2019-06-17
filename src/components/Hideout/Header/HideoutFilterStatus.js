@@ -71,9 +71,10 @@ class HideoutFilterStatus extends React.Component {
             <React.Fragment>
                 {chipList.length > 0 && (
                     <Box className={classes.root}>
-                        {chipList.map(chip => (
+                        {chipList.map((chip, key) => (
                             <Chip
-                                color="primary"
+                                key={key}
+                                color="secondary"
                                 label={chip.label}
                                 onDelete={this.handleFilterRemove(chip.key, chip.value, chip.type)}
                                 className={classes.chip}

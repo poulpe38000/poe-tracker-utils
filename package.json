@@ -4,9 +4,9 @@
   "homepage": "https://poulpe38000.github.io/poe-tracker-utils",
   "private": true,
   "dependencies": {
-    "@material-ui/core": "^4.1.0",
-    "@material-ui/icons": "^4.1.0",
-    "@material-ui/styles": "^4.1.0",
+    "@material-ui/core": "^4.1.1",
+    "@material-ui/icons": "^4.2.0",
+    "@material-ui/styles": "^4.1.1",
     "clsx": "^1.0.4",
     "lodash": "^4.17.11",
     "node-sass": "^4.12.0",

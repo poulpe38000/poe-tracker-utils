@@ -32,8 +32,8 @@ const styles = ({breakpoints, spacing}) => ({
         }
     },
     rarity1: {},
-    rarity10: {color: 'yellow'},
-    rarity99: {color: 'red'},
+    rarity10: {color: '#ffcd38'},
+    rarity99: {color: '#f44336'},
 });
 
 class HideoutListItem extends React.Component {

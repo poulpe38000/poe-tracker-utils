@@ -52,7 +52,7 @@ class ImportExportTabs extends React.Component {
     render() {
         const {onChange, value, classes, sidenavExpanded} = this.props;
         return (
-            <AppBar position="fixed" className={clsx(classes.root, {
+            <AppBar elevation={0} position="fixed" className={clsx(classes.root, {
                 [classes.drawerOpen]: sidenavExpanded,
                 [classes.drawerClose]: !sidenavExpanded,
             })}>
