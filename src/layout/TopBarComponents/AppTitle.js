@@ -6,7 +6,12 @@ import * as PropTypes from 'prop-types';
 import APP_CONSTANTS from 'constants/app.constants';
 
 const styles = {
-    root: {flexGrow: 1},
+    root: {
+        flex: '1 1 auto',
+        overflow: 'hidden',
+        width: 0,
+        whiteSpace: 'nowrap',
+    },
 };
 
 class AppTitle extends React.Component {

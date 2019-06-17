@@ -15,7 +15,7 @@ class HideoutListToolbar extends React.Component {
     };
 
     static defaultProps = {
-        title: '',
+        title: 'Hideouts list',
         searchable: true,
     };
 

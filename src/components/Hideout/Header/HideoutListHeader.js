@@ -31,7 +31,7 @@ class HideoutListHeader extends React.Component {
         return (
             <ListSubheader disableGutters className={classes.root}>
                 <Paper elevation={0}>
-                    <HideoutListToolbar title="Hideouts list"/>
+                    <HideoutListToolbar/>
                     <HideoutFilterStatus/>
                     {!noDivider && <Divider/>}
                 </Paper>

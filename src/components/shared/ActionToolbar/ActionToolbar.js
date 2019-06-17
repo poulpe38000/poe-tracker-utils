@@ -1,17 +1,7 @@
 import React from 'react';
 import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
-
-const styles = {
-    title: {
-        flex: '1 1 auto',
-        overflow: 'hidden',
-        width: 0,
-        whiteSpace: 'nowrap',
-    }
-};
+import AppTitle from 'layout/TopBarComponents/AppTitle';
 
 class ActionToolbar extends React.Component {
     static propTypes = {
@@ -23,14 +13,14 @@ class ActionToolbar extends React.Component {
     };
 
     render() {
-        const {classes, title, children} = this.props;
+        const {title, children} = this.props;
         return (
             <Toolbar>
-                <Typography variant="h6" className={classes.title}>{title}</Typography>
+                <AppTitle title={title}/>
                 {children}
             </Toolbar>
         );
     }
 }
 
-export default withStyles(styles)(ActionToolbar);
+export default ActionToolbar;

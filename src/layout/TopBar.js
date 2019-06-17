@@ -29,13 +29,19 @@ ElevationScroll.propTypes = {
 };
 
 class TopBar extends React.Component {
+    static propTypes = {
+        toolbar: PropTypes.element,
+    };
+    static defaultProps = {
+        toolbar: (<AppToolbar/>),
+    };
 
     render() {
-        const {classes} = this.props;
+        const {classes, toolbar} = this.props;
         return (
             <ElevationScroll {...this.props}>
                 <AppBar position="fixed" className={classes.root}>
-                    <AppToolbar/>
+                    {toolbar}
                 </AppBar>
             </ElevationScroll>
         );
