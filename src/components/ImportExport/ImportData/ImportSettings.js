@@ -1,8 +1,8 @@
 import React from 'react'
 import * as PropTypes from 'prop-types';
 
-import ImportExportSettingsItem from 'components/ImportExport/shared/ImportExportSettingsItem';
-import ImportExportSettingsPanel from 'components/ImportExport/shared/ImportExportSettingsPanel';
+import SettingsItem from 'components/ImportExport/Settings/SettingsItem';
+import SettingsPanel from 'components/ImportExport/Settings/SettingsPanel';
 
 class ImportSettings extends React.Component {
     static propTypes = {
@@ -41,17 +41,17 @@ class ImportSettings extends React.Component {
         const {ignoreHideouts, ignoreInProgressIncursions, ignoreCompletedIncursions} = this.props.opts;
         const subtitle = this.getSubtitle();
         return (
-            <ImportExportSettingsPanel title={'Import settings'} subtitle={subtitle}>
-                <ImportExportSettingsItem label="Import Hideouts"
-                                          value={!ignoreHideouts}
-                                          onClick={this.handleSettingsSwitch('ignoreHideouts')}/>
-                <ImportExportSettingsItem label="Import In-Progress Incursions"
-                                          value={!ignoreInProgressIncursions}
-                                          onClick={this.handleSettingsSwitch('ignoreInProgressIncursions')}/>
-                <ImportExportSettingsItem label="Import Completed Incursions"
-                                          value={!ignoreCompletedIncursions}
-                                          onClick={this.handleSettingsSwitch('ignoreCompletedIncursions')}/>
-            </ImportExportSettingsPanel>
+            <SettingsPanel title={'Import settings'} subtitle={subtitle}>
+                <SettingsItem label="Import Hideouts"
+                              value={!ignoreHideouts}
+                              onClick={this.handleSettingsSwitch('ignoreHideouts')}/>
+                <SettingsItem label="Import In-Progress Incursions"
+                              value={!ignoreInProgressIncursions}
+                              onClick={this.handleSettingsSwitch('ignoreInProgressIncursions')}/>
+                <SettingsItem label="Import Completed Incursions"
+                              value={!ignoreCompletedIncursions}
+                              onClick={this.handleSettingsSwitch('ignoreCompletedIncursions')}/>
+            </SettingsPanel>
         );
     }
 }

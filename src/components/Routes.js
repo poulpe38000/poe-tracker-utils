@@ -35,13 +35,13 @@ const styles = ({breakpoints}) => ({
 class Routes extends React.Component {
     state = {
         routes: [
-            {path: APP_CONSTANTS.routes.root, component: HomePage, exact: true},
-            {path: APP_CONSTANTS.routes.hideouts.root, component: HideoutsPage},
-            {path: APP_CONSTANTS.routes.incursions.root, component: IncursionsPage},
-            {path: APP_CONSTANTS.routes.filters.root, component: FilterEditorPage},
-            {path: APP_CONSTANTS.routes.import_export.root, component: ImportExportPage},
-            {path: APP_CONSTANTS.routes.settings.root, component: SettingsPage},
-            {component: NotFoundPage},
+            {route: {path: APP_CONSTANTS.routes.root, component: HomePage, exact: true}},
+            {route: {path: APP_CONSTANTS.routes.hideouts.root, component: HideoutsPage}},
+            {route: {path: APP_CONSTANTS.routes.incursions.root, component: IncursionsPage}},
+            {route: {path: APP_CONSTANTS.routes.filters.root, component: FilterEditorPage}},
+            {route: {path: APP_CONSTANTS.routes.import_export.root, component: ImportExportPage}},
+            {route: {path: APP_CONSTANTS.routes.settings.root, component: SettingsPage}},
+            {route: {component: NotFoundPage}},
         ]
     };
 
@@ -54,7 +54,7 @@ class Routes extends React.Component {
                     <CSSTransition timeout={300} key={location.key} classNames="fade">
                         <ContentWrapper>
                             <Switch location={location}>
-                                {routes.map((route, key) => (<Route key={key} {...route}/>))}
+                                {routes.map((route, key) => (<Route key={key} {...route.route}/>))}
                             </Switch>
                         </ContentWrapper>
                     </CSSTransition>

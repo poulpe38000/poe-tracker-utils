@@ -10,8 +10,8 @@ import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 import APP_CONSTANTS from 'constants/app.constants';
 import {rootActions} from 'store/root/actions';
 import {transitionFor} from 'utils/themes';
-import SideMenuNav from 'layout/SideMenuComponents/SideMenuNav';
-import SideMenuExpander from 'layout/SideMenuComponents/SideMenuExpander';
+import MenuNav from 'layout/SideMenuComponents/MenuNav';
+import MenuExpander from 'layout/SideMenuComponents/MenuExpander';
 
 const styles = (theme) => ({
     root: {
@@ -63,9 +63,9 @@ class SideMenu extends React.Component {
                     }),
                 }}
             >
-                <SideMenuNav expanded={sidenavExpanded}/>
+                <MenuNav expanded={sidenavExpanded}/>
                 <Hidden xsDown>
-                    <SideMenuExpander expanded={sidenavExpanded} onClick={this.handleToggleMenu}/>
+                    <MenuExpander expanded={sidenavExpanded} onClick={this.handleToggleMenu}/>
                 </Hidden>
             </Drawer>
         );

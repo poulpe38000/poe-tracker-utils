@@ -1,5 +1,5 @@
 import {createMuiTheme} from '@material-ui/core';
-import {blueGrey, pink} from '@material-ui/core/colors';
+import {blueGrey, teal} from '@material-ui/core/colors';
 
 const defaultTheme = {
     overrides: {
@@ -13,7 +13,7 @@ const defaultTheme = {
 
 const defaultPalette = {
     primary: {main: blueGrey[600]},
-    secondary: {main: pink[300]},
+    secondary: {main: teal[500]},
     type: 'dark',
 };
 
