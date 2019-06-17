@@ -7,8 +7,6 @@ import {
     NotFoundPage,
     SettingsPage
 } from 'pages';
-import {default as HideoutToolbar} from 'components/Hideout/Header/Toolbar';
-import {default as IncursionToolbar} from 'components/Incursion/Toolbar/Toolbar';
 
 const routes = {
     root: '/',
@@ -36,14 +34,25 @@ const ROUTES = {
         {
             route: {path: routes.hideouts.root, component: HideoutsPage},
             // toolbar: HideoutToolbar,
+            toolbarProps: {title: 'Hideouts unlocks'},
         },
         {
             route: {path: routes.incursions.root, component: IncursionsPage},
-            // toolbar: IncursionToolbar,
+            // toolbar: IncursionToolbar,,
+            toolbarProps: {title: 'Incursion rooms'},
         },
-        {route: {path: routes.filters.root, component: FilterEditorPage}},
-        {route: {path: routes.import_export.root, component: ImportExportPage}},
-        {route: {path: routes.settings.root, component: SettingsPage}},
+        {
+            route: {path: routes.filters.root, component: FilterEditorPage},
+            toolbarProps: {title: 'Filter editor'},
+        },
+        {
+            route: {path: routes.import_export.root, component: ImportExportPage},
+            toolbarProps: {title: 'Import / Export'},
+        },
+        {
+            route: {path: routes.settings.root, component: SettingsPage},
+            toolbarProps: {title: 'Settings'},
+        },
         {route: {component: NotFoundPage}},
     ],
     sideNav: {
