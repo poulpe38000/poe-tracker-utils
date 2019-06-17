@@ -8,7 +8,6 @@ import TextField from '@material-ui/core/TextField';
 import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 
 import {displaySnackbar} from 'utils/snackbar';
-import Page from 'layout/Page';
 import ExportSettings from 'components/ImportExport/ExportData/ExportSettings';
 import ExportActions from 'components/ImportExport/ExportData/ExportActions';
 
@@ -61,7 +60,7 @@ class ExportPage extends React.Component {
         const canExportData = includeHideouts || includeInProgressIncursions || includeCompletedIncursions;
         const exportText = this.getExportText();
         return (
-            <Page>
+            <React.Fragment>
                 <Box>
                     <TextField
                         fullWidth
@@ -82,7 +81,7 @@ class ExportPage extends React.Component {
                     onDownload={this.downloadTrackerFile}
                     onCopy={this.handleCopySuccess}
                 />
-            </Page>
+            </React.Fragment>
         );
     }
 }

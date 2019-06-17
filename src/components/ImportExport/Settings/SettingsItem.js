@@ -5,8 +5,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import Switch from '@material-ui/core/Switch';
 import * as PropTypes from 'prop-types';
 
-
-class ImportExportSettingsItem extends React.Component {
+class SettingsItem extends React.Component {
     static propTypes = {
         label: PropTypes.string.isRequired,
         value: PropTypes.bool.isRequired,
@@ -26,4 +25,4 @@ class ImportExportSettingsItem extends React.Component {
     }
 }
 
-export default ImportExportSettingsItem;
+export default SettingsItem;

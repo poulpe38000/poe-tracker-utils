@@ -3,17 +3,17 @@ import TransitionGroup from 'react-transition-group/TransitionGroup';
 import CSSTransition from 'react-transition-group/CSSTransition';
 import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
+
 import {tabs} from 'components/ImportExport/constants';
 
-const styles = {
+const styles = ({spacing}) => ({
     root: {
-        paddingTop: 48,
-        flexGrow: 1,
+        padding: spacing(2),
     },
-};
+});
 
-class ImportExportTabContent extends React.Component {
+class TabContent extends React.Component {
     static propTypes = {
         value: PropTypes.string.isRequired,
     };
@@ -40,4 +40,4 @@ class ImportExportTabContent extends React.Component {
     }
 }
 
-export default withStyles(styles)(ImportExportTabContent);
+export default withStyles(styles)(TabContent);
