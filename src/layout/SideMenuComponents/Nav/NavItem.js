@@ -14,7 +14,7 @@ const styles = ({palette, spacing}) => ({
         paddingRight: spacing(1.5),
     },
     active: {
-        backgroundColor: palette.primary.light,
+        backgroundColor: palette.secondary.light,
         color: palette.primary.contrastText,
         pointerEvents: 'none',
     },
@@ -26,7 +26,7 @@ const styles = ({palette, spacing}) => ({
 
 const MenuNavLink = React.forwardRef((props, ref) => <NavLink innerRef={ref} {...props} />);
 
-class SideMenuNavItem extends React.Component {
+class NavItem extends React.Component {
 
     static propTypes = {
         label: PropTypes.string.isRequired,
@@ -65,4 +65,4 @@ class SideMenuNavItem extends React.Component {
     }
 }
 
-export default withStyles(styles)(SideMenuNavItem);
+export default withStyles(styles)(NavItem);

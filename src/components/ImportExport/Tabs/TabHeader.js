@@ -14,13 +14,14 @@ class TabHeader extends React.Component {
 
     render() {
         const {onChange, value, width} = this.props;
+        const tabVariant = isWidthDown('xs', width) ? 'fullWidth' : 'standard';
         return (
             <React.Fragment>
-            <Tabs value={value} centered variant={isWidthDown('xs', width) ? 'fullWidth' : 'standard'} onChange={onChange}>
-                {tabs.map(({label, hash}, key) => (
-                    <Tab key={key} label={label} value={hash}/>
-                ))}
-            </Tabs>
+                <Tabs value={value} centered variant={tabVariant} onChange={onChange}>
+                    {tabs.map(({label, hash}, key) => (
+                        <Tab key={key} label={label} value={hash}/>
+                    ))}
+                </Tabs>
             </React.Fragment>
         );
     }

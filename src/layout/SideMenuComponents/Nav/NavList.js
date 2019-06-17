@@ -1,11 +1,11 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
 import List from '@material-ui/core/List';
 import noop from 'lodash/noop';
 import * as PropTypes from 'prop-types';
 
-import SideMenuNavItem from 'layout/SideMenuComponents/SideMenuNavItem';
+import NavItem from 'layout/SideMenuComponents/Nav/NavItem';
 import withStyles from '@material-ui/core/styles/withStyles';
+import NavSpacer from 'layout/SideMenuComponents/Nav/NavSpacer';
 
 const styles = {
     root: {
@@ -13,12 +13,9 @@ const styles = {
         display: 'flex',
         flexDirection: 'column',
     },
-    spacer: {
-        flex: '1 1 auto',
-    },
 };
 
-class SideMenuNavList extends React.Component {
+class NavList extends React.Component {
     static propTypes = {
         items: PropTypes.array.isRequired,
         expanded: PropTypes.bool,
@@ -33,20 +30,13 @@ class SideMenuNavList extends React.Component {
     renderNavItem(key, item) {
         const {expanded, onClick} = this.props;
         return (
-            <SideMenuNavItem key={key}
-                             link={{...item.link, onClick: onClick}}
-                             label={item.label}
-                             icon={item.icon}
-                             avatar={item.avatar}
-                             expanded={expanded}
+            <NavItem key={key}
+                     link={{...item.link, onClick: onClick}}
+                     label={item.label}
+                     icon={item.icon}
+                     avatar={item.avatar}
+                     expanded={expanded}
             />
-        );
-    }
-
-    renderSpacer(key) {
-        const {classes} = this.props;
-        return (
-            <Box key={key} className={classes.spacer}/>
         );
     }
 
@@ -56,7 +46,7 @@ class SideMenuNavList extends React.Component {
             <List component="nav" disablePadding className={classes.root}>
                 {items.map((item, key) => {
                         return item.type === 'spacer'
-                            ? this.renderSpacer(key)
+                            ? (<NavSpacer key={key}/>)
                             : this.renderNavItem(key, item);
                     }
                 )}
@@ -65,4 +55,4 @@ class SideMenuNavList extends React.Component {
     }
 }
 
-export default withStyles(styles)(SideMenuNavList);
+export default withStyles(styles)(NavList);
