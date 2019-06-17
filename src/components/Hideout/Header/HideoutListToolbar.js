@@ -3,20 +3,19 @@ import {connect} from 'react-redux';
 import * as PropTypes from 'prop-types';
 
 import {hideoutActions} from 'store/hideout/actions';
-import HideoutListFilter from 'components/Hideout/HideoutListFilter';
+import HideoutListFilter from 'components/Hideout/Header/Toolbar/HideoutListFilter';
 import ActionToolbar from 'components/shared/ActionToolbar/ActionToolbar';
 import SearchField from 'components/shared/Search/SearchField';
+import {filterOptions} from 'components/Hideout/constants';
 
-class HideoutListHeader extends React.Component {
+class HideoutListToolbar extends React.Component {
     static propTypes = {
         title: PropTypes.string,
-        filterOptions: PropTypes.array,
         searchable: PropTypes.bool,
     };
 
     static defaultProps = {
         title: '',
-        filterOptions: [],
         searchable: true,
     };
 
@@ -33,7 +32,7 @@ class HideoutListHeader extends React.Component {
     };
 
     render() {
-        const {title, filterOptions, searchable, searchText} = this.props;
+        const {title, searchable, searchText} = this.props;
         const filterable = filterOptions.length > 0;
         return (
             <ActionToolbar title={title}>
@@ -43,7 +42,7 @@ class HideoutListHeader extends React.Component {
                                  onClose={this.handleToggleSearch}
                                  onChange={this.handleSearchTextUpdate}/>
                 )}
-                {filterable && <HideoutListFilter filterOptions={filterOptions}/>}
+                {filterable && <HideoutListFilter/>}
             </ActionToolbar>
         );
     }
@@ -56,4 +55,4 @@ export default connect(
     {
         updateSearchText: hideoutActions.updateSearchText,
     },
-)(HideoutListHeader);
+)(HideoutListToolbar);

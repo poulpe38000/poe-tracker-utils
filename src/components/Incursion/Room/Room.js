@@ -1,25 +1,19 @@
 import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
-import Box from '@material-ui/core/Box';
-import Checkbox from '@material-ui/core/Checkbox';
 import ListItem from '@material-ui/core/ListItem';
 import withStyles from '@material-ui/core/styles/withStyles';
-import PropTypes from 'prop-types';
+import * as PropTypes from 'prop-types';
 
 import {incursionActions} from 'store/incursion/actions';
-import IncursionRoomDetails from 'components/Incursion/IncursionRoomDetails';
+import RoomDetails from 'components/Incursion/Room/Details/RoomDetails';
+import RoomCheckbox from 'components/Incursion/Room/RoomCheckbox';
 
 const styles = {
     root: {display: 'flex',},
-    itemCheckbox: {
-        minWidth: '64px',
-        width: '64px',
-        textAlign: 'center',
-    },
 };
 
-class IncursionRoom extends React.Component {
+class Room extends React.Component {
     static propTypes = {
         roomKey: PropTypes.string.isRequired,
         room: PropTypes.object.isRequired,
@@ -55,21 +49,9 @@ class IncursionRoom extends React.Component {
         const isCompleted = this.isCompleted();
         return (
             <ListItem dense disableGutters className={classes.root}>
-                <Box className={classes.itemCheckbox}>
-                    <Checkbox
-                        checked={isInProgress}
-                        onChange={this.toggleInProgress}
-                        value="checked"
-                    />
-                </Box>
-                <Box className={classes.itemCheckbox}>
-                    <Checkbox
-                        checked={isCompleted}
-                        onChange={this.toggleCompleted}
-                        value="checked"
-                    />
-                </Box>
-                <IncursionRoomDetails room={room}/>
+                <RoomCheckbox checked={isInProgress} onChange={this.toggleInProgress}/>
+                <RoomCheckbox checked={isCompleted} onChange={this.toggleCompleted}/>
+                <RoomDetails room={room}/>
             </ListItem>
         );
     }
@@ -87,4 +69,4 @@ export default compose(
         },
     ),
     withStyles(styles),
-)(IncursionRoom);
+)(Room);

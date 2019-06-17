@@ -18,9 +18,9 @@ import Popover from '@material-ui/core/Popover';
 import Select from '@material-ui/core/Select';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import * as PropTypes from 'prop-types';
 
 import {hideoutActions} from 'store/hideout/actions';
+import {filterOptions} from 'components/Hideout/constants';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 
 const styles = (theme) => (mergeStyles({
@@ -59,11 +59,6 @@ const styles = (theme) => (mergeStyles({
 }, buttonStyles(theme)));
 
 class HideoutListFilter extends React.Component {
-
-    static propTypes = {
-        filterOptions: PropTypes.array.isRequired,
-    };
-
     state = {
         anchorEl: null,
         showPopper: false,
@@ -152,7 +147,7 @@ class HideoutListFilter extends React.Component {
     }
 
     render() {
-        const {classes, filterOptions} = this.props;
+        const {classes} = this.props;
         const {anchorEl, showPopper} = this.state;
         return (
             <React.Fragment>

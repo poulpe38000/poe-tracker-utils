@@ -20,12 +20,13 @@ const styles = ({breakpoints, spacing}) => ({
         paddingBottom: spacing(1),
     },
     itemCheckbox: {
+        minWidth: '64px',
         width: '64px',
         textAlign: 'center'
     },
 });
 
-class IncursionListHeader extends React.Component {
+class ListHeader extends React.Component {
 
     render() {
         const {classes} = this.props;
@@ -46,4 +47,4 @@ class IncursionListHeader extends React.Component {
     }
 }
 
-export default withStyles(styles)(IncursionListHeader);
+export default withStyles(styles)(ListHeader);

@@ -1,11 +1,11 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
 
-import IncursionListContainer from 'components/Incursion/IncursionListContainer';
-import IncursionTieredGroup from 'components/Incursion/IncursionTieredGroup';
+import ListContainer from 'components/Incursion/List/ListContainer';
+import RoomTier from 'components/Incursion/Room/RoomTier';
 
 
-class IncursionTieredList extends React.Component {
+class TieredList extends React.Component {
     static propTypes = {
         items: PropTypes.object.isRequired,
     };
@@ -16,11 +16,11 @@ class IncursionTieredList extends React.Component {
         return (
             <React.Fragment>
                 {roomsKeys.length > 0 && (
-                    <IncursionListContainer title={'Upgradeable rooms'}>
+                    <ListContainer title={'Upgradeable rooms'}>
                         {roomsKeys
                             .map((roomsKey, idx) => (
                                     <React.Fragment key={roomsKey}>
-                                        <IncursionTieredGroup
+                                        <RoomTier
                                             roomKey={roomsKey}
                                             rooms={items[roomsKey]}
                                             noDivider={idx === roomsKeys.length - 1}
@@ -29,7 +29,7 @@ class IncursionTieredList extends React.Component {
                                 )
                             )
                         }
-                    </IncursionListContainer>
+                    </ListContainer>
                 )}
             </React.Fragment>
 
@@ -37,4 +37,4 @@ class IncursionTieredList extends React.Component {
     }
 }
 
-export default IncursionTieredList;
+export default TieredList;

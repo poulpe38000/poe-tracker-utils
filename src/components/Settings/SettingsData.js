@@ -12,7 +12,7 @@ import {incursionActions} from 'store/incursion/actions';
 import {hideoutActions} from 'store/hideout/actions';
 import {displaySnackbar} from 'utils/snackbar';
 import {rootStyles} from 'components/Settings/shared';
-import SettingsDataItem from 'components/Settings/SettingsDataItem';
+import SettingsDataItem from 'components/Settings/Data/SettingsDataItem';
 
 class SettingsData extends React.Component {
 

@@ -4,9 +4,9 @@ import {connect} from 'react-redux';
 import Box from '@material-ui/core/Box';
 import Chip from '@material-ui/core/Chip';
 import withStyles from '@material-ui/core/styles/withStyles';
-import * as PropTypes from 'prop-types';
 
 import {hideoutActions} from 'store/hideout/actions';
+import {filterOptions} from 'components/Hideout/constants';
 
 const styles = ({spacing}) => ({
     root: {
@@ -21,10 +21,6 @@ const styles = ({spacing}) => ({
 });
 
 class HideoutFilterStatus extends React.Component {
-    static propTypes = {
-        filterOptions: PropTypes.array.isRequired,
-    };
-
     handleFilterRemove = (key, value, type) => () => {
         const filters = Object.assign({}, this.props.filters);
         switch (type) {
@@ -42,7 +38,7 @@ class HideoutFilterStatus extends React.Component {
     };
 
     render() {
-        const {classes, filters, filterOptions} = this.props;
+        const {classes, filters} = this.props;
 
         const chipList = Object
             .keys(filters)

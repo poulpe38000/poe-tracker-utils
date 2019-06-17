@@ -11,7 +11,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import {rootActions} from 'store/root/actions';
 import {clearStorage, getLocalStorageSettings, toggleLocalStorageSettings} from 'utils/storage';
 import {rootStyles} from 'components/Settings/shared';
-import SettingsAppItem from 'components/Settings/SettingsAppItem';
+import SettingsAppItem from 'components/Settings/App/SettingsAppItem';
 
 class SettingsApp extends React.Component {
     state = {

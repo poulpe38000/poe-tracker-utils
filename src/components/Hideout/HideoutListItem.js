@@ -10,6 +10,7 @@ import * as PropTypes from 'prop-types';
 
 import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
 import {hideoutActions} from 'store/hideout/actions';
+import Divider from '@material-ui/core/Divider';
 
 const styles = ({breakpoints, spacing}) => ({
     root: {display: 'flex',},
@@ -37,7 +38,11 @@ const styles = ({breakpoints, spacing}) => ({
 
 class HideoutListItem extends React.Component {
     static propTypes = {
-        hideout: PropTypes.object.isRequired
+        hideout: PropTypes.object.isRequired,
+        noDivider: PropTypes.bool,
+    };
+    static defaultProps = {
+        noDivider: false,
     };
 
     hideoutToggleUnlocked = (hideoutId) => () => {
@@ -45,30 +50,33 @@ class HideoutListItem extends React.Component {
     };
 
     render() {
-        const {classes, hideout} = this.props;
+        const {classes, hideout, noDivider} = this.props;
         const hideoutLocation = hideout.location.join(', ');
         const hideoutRarity = HIDEOUT_CONSTANTS.rarity[hideout.rarity];
         return (
-            <ListItem dense className={classes.root}>
-                <Checkbox
-                    checked={hideout.unlocked}
-                    onChange={this.hideoutToggleUnlocked(hideout.id)}
-                    value="checked"
-                />
-                <Box className={classes.itemTextContainer}>
-                    <Typography variant="subtitle2" className={classes.itemText}>
-                        {hideout.name}
-                    </Typography>
-                    <Typography variant="caption" className={classes.itemText}>
-                        <em>
-                            Rarity: <span className={classes[`rarity${hideout.rarity}`]}>{hideoutRarity}</span>
-                        </em>
-                    </Typography>
-                    <Typography variant="caption" className={classes.itemText}>
-                        {!!hideoutLocation && <em>Location: {hideoutLocation}</em>}
-                    </Typography>
-                </Box>
-            </ListItem>
+            <React.Fragment>
+                <ListItem dense className={classes.root}>
+                    <Checkbox
+                        checked={hideout.unlocked}
+                        onChange={this.hideoutToggleUnlocked(hideout.id)}
+                        value="checked"
+                    />
+                    <Box className={classes.itemTextContainer}>
+                        <Typography variant="subtitle2" className={classes.itemText}>
+                            {hideout.name}
+                        </Typography>
+                        <Typography variant="caption" className={classes.itemText}>
+                            <em>
+                                Rarity: <span className={classes[`rarity${hideout.rarity}`]}>{hideoutRarity}</span>
+                            </em>
+                        </Typography>
+                        <Typography variant="caption" className={classes.itemText}>
+                            {!!hideoutLocation && <em>Location: {hideoutLocation}</em>}
+                        </Typography>
+                    </Box>
+                </ListItem>
+                {!noDivider && <Divider/>}
+            </React.Fragment>
         );
     }
 }

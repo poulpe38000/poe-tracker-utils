@@ -5,7 +5,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import PropTypes from 'prop-types';
 
-import IncursionListHeader from 'components/Incursion/IncursionListHeader';
+import ListHeader from 'components/Incursion/List/Header/ListHeader';
 
 const styles = ({spacing}) => ({
     root: {
@@ -18,7 +18,7 @@ const styles = ({spacing}) => ({
     },
 });
 
-class IncursionListContainer extends React.Component {
+class ListContainer extends React.Component {
     static propTypes = {
         title: PropTypes.string.isRequired
     };
@@ -30,7 +30,7 @@ class IncursionListContainer extends React.Component {
                 <Typography variant="h6">{title}</Typography>
                 <Paper className={classes.root} elevation={2}>
                     <List className={classes.list}>
-                        <IncursionListHeader/>
+                        <ListHeader/>
                         {children}
                     </List>
                 </Paper>
@@ -39,4 +39,4 @@ class IncursionListContainer extends React.Component {
     }
 }
 
-export default withStyles(styles)(IncursionListContainer);
+export default withStyles(styles)(ListContainer);
