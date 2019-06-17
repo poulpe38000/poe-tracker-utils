@@ -5,8 +5,8 @@ import Button from '@material-ui/core/Button';
 import Container from '@material-ui/core/Container';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import APP_CONSTANTS from 'constants/app.constants';
 import Page from 'layout/Page';
+import ROUTES from 'constants/routes.constants';
 
 const styles = ({spacing}) => ({
     root: {
@@ -20,7 +20,7 @@ function NotFoundPage({classes}) {
         <Container>
             <Page title="Page not found">
                 <Box className={classes.root}>
-                    <Button variant="contained" color="primary" component={Link} to={APP_CONSTANTS.routes.root} size={'large'}>
+                    <Button variant="contained" color="primary" component={Link} to={ROUTES.root} size={'large'}>
                         {'Back to homepage'}
                     </Button>
                 </Box>

@@ -6,8 +6,8 @@ import Container from '@material-ui/core/Container';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import APP_CONSTANTS from 'constants/app.constants';
 import Page from 'layout/Page';
+import ROUTES from 'constants/routes.constants';
 
 const styles = ({spacing}) => ({
     root: {
@@ -23,7 +23,7 @@ function FilterEditorPage({classes}) {
                 <Box className={classes.root}>
                     <Typography variant={'h6'}>{'This section is under construction.'}</Typography>
                     <Box className={classes.root}/>
-                    <Button variant="contained" color="primary" component={Link} to={APP_CONSTANTS.routes.root} size={'large'}>
+                    <Button variant="contained" color="primary" component={Link} to={ROUTES.root} size={'large'}>
                         {'Back to homepage'}
                     </Button>
                 </Box>

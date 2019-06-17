@@ -5,6 +5,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
 import AppToolbar from 'layout/TopBarComponents/AppToolbar';
+import {compose} from 'redux';
+import {matchPath, withRouter} from 'react-router-dom';
+import ROUTES from 'constants/routes.constants';
 
 const styles = ({zIndex}) => ({
     root: {
@@ -30,22 +33,30 @@ ElevationScroll.propTypes = {
 
 class TopBar extends React.Component {
     static propTypes = {
-        toolbar: PropTypes.element,
+        toolbar: PropTypes.elementType,
+        toolbarProps: PropTypes.object,
     };
     static defaultProps = {
-        toolbar: (<AppToolbar/>),
+        toolbar: AppToolbar,
+        toolbarProps: {},
     };
 
     render() {
-        const {classes, toolbar} = this.props;
+        const {classes, toolbar, toolbarProps, location} = this.props;
+        const matchedRoute = ROUTES.routes.find((route) => matchPath(location.pathname, route.route));
+        const Toolbar = matchedRoute.toolbar || toolbar;
+        const tbProps = matchedRoute.toolbarProps || toolbarProps;
         return (
             <ElevationScroll {...this.props}>
                 <AppBar position="fixed" className={classes.root}>
-                    {toolbar}
+                    <Toolbar {...tbProps}/>
                 </AppBar>
             </ElevationScroll>
         );
     }
 }
 
-export default withStyles(styles)(TopBar);
+export default compose(
+    withRouter,
+    withStyles(styles),
+    )(TopBar);

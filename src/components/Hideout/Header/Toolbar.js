@@ -8,7 +8,7 @@ import ActionToolbar from 'components/shared/ActionToolbar/ActionToolbar';
 import SearchField from 'components/shared/Search/SearchField';
 import {filterOptions} from 'components/Hideout/constants';
 
-class HideoutListToolbar extends React.Component {
+class Toolbar extends React.Component {
     static propTypes = {
         title: PropTypes.string,
         searchable: PropTypes.bool,
@@ -55,4 +55,4 @@ export default connect(
     {
         updateSearchText: hideoutActions.updateSearchText,
     },
-)(HideoutListToolbar);
+)(Toolbar);

@@ -3,7 +3,7 @@ import AppBar from '@material-ui/core/AppBar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import Toolbar from 'components/Incursion/Toolbar';
+import Toolbar from 'components/Incursion/Toolbar/Toolbar';
 
 
 const styles = ({breakpoints, palette, spacing}) => ({
