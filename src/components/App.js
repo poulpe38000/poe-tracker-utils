@@ -27,6 +27,7 @@ class App extends React.Component {
 
     render() {
         const {classes, useLightTheme} = this.props;
+        const scrollableRef = React.createRef();
         return (
             <BrowserRouter basename={APP_CONSTANTS.basename}>
                 <ThemeProvider theme={useLightTheme ? lightTheme : darkTheme}>
@@ -42,7 +43,7 @@ class App extends React.Component {
                     >
                         <TopBar/>
                         <SideMenu/>
-                        <Routes/>
+                        <Routes scrollableRef={scrollableRef}/>
                     </SnackbarProvider>
                 </ThemeProvider>
             </BrowserRouter>

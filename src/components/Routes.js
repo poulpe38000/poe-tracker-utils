@@ -5,6 +5,7 @@ import CSSTransition from 'react-transition-group/CSSTransition';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
+import * as PropTypes from 'prop-types';
 import ContentWrapper from 'layout/ContentWrapper';
 import ROUTES from 'constants/routes.constants';
 
@@ -27,10 +28,21 @@ const styles = ({breakpoints}) => ({
 });
 
 class Routes extends React.Component {
+    static propTypes = {
+        scrollableRef: PropTypes.object
+    };
+    static defaultProps = {
+        scrollableRef: React.createRef(),
+    };
+
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        this.props.scrollableRef.current.scrollTo(0, 0);
+    }
+
     render() {
-        const {classes, location} = this.props;
+        const {classes, location, scrollableRef} = this.props;
         return (
-            <Box className={classes.root}>
+            <Box className={classes.root} ref={scrollableRef}>
                 <TransitionGroup>
                     <CSSTransition timeout={300} key={location.key} classNames="fade">
                         <ContentWrapper>

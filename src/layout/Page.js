@@ -21,10 +21,6 @@ class Page extends React.Component {
         title: '',
     };
 
-    componentDidMount() {
-        window.scrollTo(0, 0);
-    }
-
     render() {
         const {classes, title, children} = this.props;
         return (
