@@ -34,10 +34,12 @@ const styles = (theme) => (mergeStyles({
     baseInput: {
         ...theme.typography.h6,
         paddingLeft: theme.spacing(1),
+        color: 'inherit',
         flexGrow: 1,
     },
     input: {
         padding: 0,
+        color: 'inherit',
     },
     inputButton: {
         marginRight: theme.spacing(2),
@@ -102,6 +104,7 @@ class SearchField extends React.Component {
                                         disableRipple
                                         disableFocusRipple
                                         className={classes.inputButton}
+                                        color="inherit"
                                         onClick={this.handleCollapseSearch}>
                                 <ArrowBackIcon/>
                             </IconButton>
