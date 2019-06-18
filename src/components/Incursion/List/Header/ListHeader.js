@@ -7,19 +7,23 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 const styles = ({breakpoints, spacing}) => ({
-    header: {
+    root: {
         lineHeight: 'inherit',
     },
-    root: {
+    header: {
         display: 'flex',
         paddingTop: spacing(1),
         paddingBottom: spacing(1),
     },
-    itemCheckbox: {
+    checkbox: {
         minWidth: '64px',
         width: '64px',
         textAlign: 'center'
     },
+    description: {
+        paddingLeft: spacing(1),
+        paddingRight: spacing(1),
+    }
 });
 
 class ListHeader extends React.Component {
@@ -27,15 +31,17 @@ class ListHeader extends React.Component {
     render() {
         const {classes} = this.props;
         return (
-            <ListSubheader disableGutters className={classes.header}>
-                <Paper elevation={0} className={classes.root}>
-                    <Box className={classes.itemCheckbox}>
+            <ListSubheader disableGutters className={classes.root}>
+                <Paper elevation={0} className={classes.header}>
+                    <Box className={classes.checkbox}>
                         <Typography variant="caption">Current</Typography>
                     </Box>
-                    <Box className={classes.itemCheckbox}>
+                    <Box className={classes.checkbox}>
                         <Typography variant="caption">Completed</Typography>
                     </Box>
-                    <Box/>
+                    <Box className={classes.description}>
+                        <Typography variant="caption">Incursion room information</Typography>
+                    </Box>
                 </Paper>
                 <Divider/>
             </ListSubheader>
