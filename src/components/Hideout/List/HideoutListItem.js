@@ -1,13 +1,14 @@
 import React from 'react';
 import {compose} from 'redux';
 import {connect} from 'react-redux';
+import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
+
 import {hideoutActions} from 'store/hideout/actions';
-import Divider from '@material-ui/core/Divider';
-import HideoutCheckbox from 'components/Hideout/List/Details/HideoutCheckbox';
 import HideoutDetails from 'components/Hideout/List/Details/HideoutDetails';
+import ListCheckbox from 'components/shared/List/ListCheckbox';
 
 const styles = {
     root: {display: 'flex',},
@@ -31,7 +32,7 @@ class HideoutListItem extends React.Component {
         return (
             <React.Fragment>
                 <ListItem dense disableGutters className={classes.root}>
-                    <HideoutCheckbox checked={hideout.unlocked}
+                    <ListCheckbox checked={hideout.unlocked}
                                      onChange={this.hideoutToggleUnlocked(hideout.id)}/>
                     <HideoutDetails hideout={hideout}/>
                 </ListItem>

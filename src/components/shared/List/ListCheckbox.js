@@ -12,7 +12,7 @@ const styles = {
     },
 };
 
-class HideoutCheckbox extends React.Component {
+class ListCheckbox extends React.Component {
     static propTypes = {
         checked: PropTypes.bool.isRequired,
         onChange: PropTypes.func.isRequired,
@@ -32,4 +32,4 @@ class HideoutCheckbox extends React.Component {
     }
 }
 
-export default withStyles(styles)(HideoutCheckbox);
+export default withStyles(styles)(ListCheckbox);

@@ -73,6 +73,7 @@ class ImportPage extends React.Component {
     render() {
         const {importTextData, ignoreHideouts, ignoreInProgressIncursions, ignoreCompletedIncursions} = this.state;
         const canImportData = !(ignoreHideouts && ignoreInProgressIncursions && ignoreCompletedIncursions) && importTextData.length > 0;
+        const opts = {ignoreHideouts, ignoreInProgressIncursions, ignoreCompletedIncursions};
         const dropzoneRef = createRef();
         return (
             <React.Fragment>
@@ -84,7 +85,7 @@ class ImportPage extends React.Component {
                         onContentChange={this.handleContentDataChange}
                     />
                     <ImportSettings
-                        opts={{ignoreHideouts, ignoreInProgressIncursions, ignoreCompletedIncursions}}
+                        opts={opts}
                         onClick={this.handleToggleSettings}/>
                 </Box>
                 <ImportActions
