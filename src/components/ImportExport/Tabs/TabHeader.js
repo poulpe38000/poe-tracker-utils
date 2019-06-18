@@ -8,7 +8,7 @@ import {tabs} from 'components/ImportExport/constants';
 
 class TabHeader extends React.Component {
     static propTypes = {
-        value: PropTypes.string.isRequired,
+        value: PropTypes.number.isRequired,
         onChange: PropTypes.func.isRequired,
     };
 
@@ -18,8 +18,8 @@ class TabHeader extends React.Component {
         return (
             <React.Fragment>
                 <Tabs value={value} centered variant={tabVariant} onChange={onChange}>
-                    {tabs.map(({label, hash}, key) => (
-                        <Tab key={key} label={label} value={hash}/>
+                    {tabs.map(({label}, index) => (
+                        <Tab key={index} label={label} value={index}/>
                     ))}
                 </Tabs>
             </React.Fragment>
