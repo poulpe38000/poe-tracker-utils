@@ -20,7 +20,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import {hideoutActions} from 'store/hideout/actions';
-import {filterOptions} from 'components/Hideout/constants';
+import {filterOptions} from 'components/Hideout/shared/constants';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 
 const styles = (theme) => (mergeStyles({
@@ -58,7 +58,7 @@ const styles = (theme) => (mergeStyles({
     },
 }, buttonStyles(theme)));
 
-class HideoutListFilter extends React.Component {
+class ListFilter extends React.Component {
     state = {
         anchorEl: null,
         showPopper: false,
@@ -151,7 +151,11 @@ class HideoutListFilter extends React.Component {
         const {anchorEl, showPopper} = this.state;
         return (
             <React.Fragment>
-                <IconButton aria-label="Filter list" onClick={this.handleOpenFilterPopper}>
+                <IconButton
+                    aria-label="Filter list"
+                    onClick={this.handleOpenFilterPopper}
+                    color="inherit"
+                >
                     <FilterListIcon/>
                 </IconButton>
                 <Popover
@@ -208,4 +212,4 @@ export default compose(
         },
     ),
     withStyles(styles)
-)(HideoutListFilter);
+)(ListFilter);

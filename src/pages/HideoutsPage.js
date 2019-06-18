@@ -2,13 +2,13 @@ import React from "react";
 import Container from '@material-ui/core/Container';
 
 import Page from 'layout/Page';
-import {HideoutList} from 'components/Hideout';
+import {HideoutContainer} from 'components/Hideout';
 
 export default function HideoutsPage() {
     return (
         <Container>
             <Page>
-                <HideoutList/>
+                <HideoutContainer/>
             </Page>
         </Container>
     );

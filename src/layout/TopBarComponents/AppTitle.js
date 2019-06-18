@@ -4,10 +4,22 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
 import APP_CONSTANTS from 'constants/app.constants';
+import MenuButton from 'layout/TopBarComponents/MenuButton';
+import Box from '@material-ui/core/Box';
 
-const styles = {
-    root: {flexGrow: 1},
-};
+const styles = ({spacing}) => ({
+    root: {
+        flex: '1 1 auto',
+        overflow: 'hidden',
+        width: 0,
+        whiteSpace: 'nowrap',
+        display: 'flex',
+        alignItems: 'center',
+    },
+    title: {
+        paddingLeft: spacing(1),
+    }
+});
 
 class AppTitle extends React.Component {
     static propTypes = {
@@ -20,9 +32,12 @@ class AppTitle extends React.Component {
     render() {
         const {classes, title} = this.props;
         return (
-            <Typography variant="h6" color="inherit" className={classes.root}>
-                {title}
-            </Typography>
+            <Box className={classes.root}>
+                <MenuButton/>
+                <Typography variant="h6" color="inherit" className={classes.title}>
+                    {title}
+                </Typography>
+            </Box>
         );
     }
 }

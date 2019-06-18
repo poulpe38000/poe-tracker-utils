@@ -1,1 +1,1 @@
-export {default as HideoutList} from './HideoutList';
+export {default as HideoutContainer} from './HideoutContainer';

@@ -1,31 +1,31 @@
 import React from 'react';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
-import APP_CONSTANTS from 'constants/app.constants';
 import homeLogo from 'layout/SideMenuComponents/home_logo.png';
 import {IconAvatar, ImageAvatar} from 'components/shared';
 import hideoutLogo from 'layout/SideMenuComponents/hideout_logo.png';
 import incursionLogo from 'layout/SideMenuComponents/incursion_logo.png';
 import filterLogo from 'layout/SideMenuComponents/filter_logo.png';
+import ROUTES from 'constants/routes.constants';
 
 export const sideMenuElements = [
     {
-        link: {to: APP_CONSTANTS.routes.root, exact: true},
+        link: ROUTES.sideNav.root,
         label: 'Home',
         icon: (<ImageAvatar label={'Home'} value={homeLogo}/>),
     },
     {
-        link: {to: APP_CONSTANTS.routes.hideouts.root},
+        link: ROUTES.sideNav.hideouts,
         label: 'Hideouts unlocks',
         icon: (<ImageAvatar label={'Hideouts unlocks'} value={hideoutLogo}/>),
     },
     {
-        link: {to: APP_CONSTANTS.routes.incursions.root},
+        link: ROUTES.sideNav.incursions,
         label: 'Incursion rooms',
         icon: (<ImageAvatar label={'Incursion rooms'} value={incursionLogo}/>),
     },
     {
-        link: {to: APP_CONSTANTS.routes.filters.root},
+        link: ROUTES.sideNav.filters,
         label: 'Filter editor',
         icon: (<ImageAvatar label={'Filter editor'} value={filterLogo}/>),
     },
@@ -33,12 +33,12 @@ export const sideMenuElements = [
         type: 'spacer',
     },
     {
-        link: {to: APP_CONSTANTS.routes.import_export.root},
+        link: ROUTES.sideNav.import_export,
         label: 'Import / Export',
         icon: (<IconAvatar label={'Import / Export'} value={ImportExportIcon}/>),
     },
     {
-        link: {to: APP_CONSTANTS.routes.settings.root},
+        link: ROUTES.sideNav.settings,
         label: 'Settings',
         icon: (<IconAvatar label={'Settings'} value={SettingsIcon}/>),
     },

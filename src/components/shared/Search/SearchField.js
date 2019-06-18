@@ -1,6 +1,6 @@
 import React from 'react';
 import clsx from 'clsx';
-import ClearIcon from '@material-ui/icons/Clear';
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import SearchIcon from '@material-ui/icons/Search';
 import Box from '@material-ui/core/Box';
 import IconButton from '@material-ui/core/IconButton';
@@ -9,7 +9,8 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import noop from 'lodash/noop';
 import * as PropTypes from 'prop-types';
 
-import {buttonStyles, mergeStyles, transitionFor} from 'utils/themes';
+import {buttonStyles, mergeStyles} from 'utils/themes';
+import Fade from '@material-ui/core/Fade';
 
 
 const styles = (theme) => (mergeStyles({
@@ -20,22 +21,28 @@ const styles = (theme) => (mergeStyles({
         width: theme.spacing(6),
     },
     searchExpanded: {
-        backgroundColor: theme.palette.background.popper,
         flex: '1 1 100%',
-        transition: transitionFor(theme, ['flex', 'background-color'], 'complex'),
+        alignItems: 'center',
     },
     searchCollapsed: {
         minWidth: theme.spacing(6),
         flex: 0,
-        transition: transitionFor(theme, ['flex', 'background-color'], 'standard'),
     },
-    input: {
+    searchContainer: {
+        display: 'flex',
+    },
+    baseInput: {
+        ...theme.typography.h6,
+        paddingLeft: theme.spacing(1),
         flexGrow: 1,
     },
+    input: {
+        padding: 0,
+    },
     inputButton: {
+        marginRight: theme.spacing(2),
         '&:hover': {
             backgroundColor: 'inherit',
-
         }
     }
 }, buttonStyles(theme)));
@@ -83,28 +90,35 @@ class SearchField extends React.Component {
                 [classes.searchExpanded]: expanded,
                 [classes.searchCollapsed]: !expanded,
             })}>
-                <IconButton aria-label="Search" onClick={this.handleExpandSearch} disabled={expanded}>
-                    <SearchIcon/>
-                </IconButton>
-                {expanded && (
-                    <React.Fragment>
-                        <InputBase
-                            placeholder="Search"
-                            value={value}
-                            inputRef={this.searchField}
-                            inputProps={{'aria-label': 'Search Google Maps'}}
-                            onChange={this.handleOnChange}
-                            className={classes.input}
-                            autoFocus
-                        />
-                        <IconButton aria-label="Delete"
-                                    disableRipple
-                                    disableFocusRipple
-                                    className={classes.inputButton}
-                                    onClick={this.handleCollapseSearch}>
-                            <ClearIcon/>
-                        </IconButton>
-                    </React.Fragment>
+                {!expanded ? (
+                    <IconButton aria-label="Search" color="inherit" onClick={this.handleExpandSearch}
+                                disabled={expanded}>
+                        <SearchIcon/>
+                    </IconButton>
+                ) : (
+                    <Fade in>
+                        <Box className={classes.searchContainer}>
+                            <IconButton aria-label="Back"
+                                        disableRipple
+                                        disableFocusRipple
+                                        className={classes.inputButton}
+                                        onClick={this.handleCollapseSearch}>
+                                <ArrowBackIcon/>
+                            </IconButton>
+                            <InputBase
+                                placeholder="Search"
+                                value={value}
+                                inputRef={this.searchField}
+                                inputProps={{'aria-label': 'Search Google Maps'}}
+                                onChange={this.handleOnChange}
+                                className={classes.baseInput}
+                                classes={{
+                                    input: classes.input,
+                                }}
+                                autoFocus
+                            />
+                        </Box>
+                    </Fade>
                 )}
             </Box>
         );
