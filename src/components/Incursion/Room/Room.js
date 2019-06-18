@@ -7,7 +7,7 @@ import * as PropTypes from 'prop-types';
 
 import {incursionActions} from 'store/incursion/actions';
 import RoomDetails from 'components/Incursion/Room/Details/RoomDetails';
-import RoomCheckbox from 'components/Incursion/Room/Details/RoomCheckbox';
+import ListCheckbox from 'components/shared/List/ListCheckbox';
 
 const styles = {
     root: {display: 'flex',},
@@ -49,8 +49,8 @@ class Room extends React.Component {
         const isCompleted = this.isCompleted();
         return (
             <ListItem dense disableGutters className={classes.root}>
-                <RoomCheckbox checked={isInProgress} onChange={this.toggleInProgress}/>
-                <RoomCheckbox checked={isCompleted} onChange={this.toggleCompleted}/>
+                <ListCheckbox checked={isInProgress} onChange={this.toggleInProgress}/>
+                <ListCheckbox checked={isCompleted} onChange={this.toggleCompleted}/>
                 <RoomDetails room={room}/>
             </ListItem>
         );

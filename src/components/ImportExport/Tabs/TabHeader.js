@@ -1,7 +1,6 @@
 import React from 'react';
 import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
-import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 import * as PropTypes from 'prop-types';
 
 import {tabs} from 'components/ImportExport/constants';
@@ -13,11 +12,10 @@ class TabHeader extends React.Component {
     };
 
     render() {
-        const {onChange, value, width} = this.props;
-        const tabVariant = isWidthDown('xs', width) ? 'fullWidth' : 'standard';
+        const {onChange, value} = this.props;
         return (
             <React.Fragment>
-                <Tabs value={value} centered variant={tabVariant} onChange={onChange}>
+                <Tabs value={value} centered variant={'fullWidth'} onChange={onChange}>
                     {tabs.map(({label}, index) => (
                         <Tab key={index} label={label} value={index}/>
                     ))}
@@ -27,4 +25,4 @@ class TabHeader extends React.Component {
     }
 }
 
-export default withWidth()(TabHeader);
+export default TabHeader;

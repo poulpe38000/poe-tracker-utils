@@ -58,7 +58,9 @@ class ExportPage extends React.Component {
         const {width} = this.props;
         const {includeHideouts, includeInProgressIncursions, includeCompletedIncursions} = this.state;
         const canExportData = includeHideouts || includeInProgressIncursions || includeCompletedIncursions;
+        const opts = {includeHideouts, includeInProgressIncursions, includeCompletedIncursions};
         const exportText = this.getExportText();
+        const inputProps = {readOnly: true};
         return (
             <React.Fragment>
                 <Box>
@@ -69,10 +71,10 @@ class ExportPage extends React.Component {
                         value={exportText}
                         margin="normal"
                         variant="outlined"
-                        InputProps={{readOnly: true}}
+                        InputProps={inputProps}
                     />
                     <ExportSettings
-                        opts={{includeHideouts, includeInProgressIncursions, includeCompletedIncursions}}
+                        opts={opts}
                         onClick={this.handleToggleSettings}/>
                 </Box>
                 <ExportActions

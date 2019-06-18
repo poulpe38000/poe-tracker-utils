@@ -22,6 +22,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import {hideoutActions} from 'store/hideout/actions';
 import {filterOptions} from 'components/Hideout/shared/constants';
 import {buttonStyles, mergeStyles} from 'utils/themes';
+import Tooltip from '@material-ui/core/Tooltip';
 
 const styles = (theme) => (mergeStyles({
     popper: {
@@ -151,15 +152,16 @@ class ListFilter extends React.Component {
         const {anchorEl, showPopper} = this.state;
         return (
             <React.Fragment>
-                <IconButton
-                    aria-label="Filter list"
-                    onClick={this.handleOpenFilterPopper}
-                    color="inherit"
-                >
-                    <FilterListIcon/>
-                </IconButton>
+                <Tooltip title={'Filter list'}>
+                    <IconButton
+                        aria-label={'Filter list'}
+                        onClick={this.handleOpenFilterPopper}
+                        color="inherit"
+                    >
+                        <FilterListIcon/>
+                    </IconButton>
+                </Tooltip>
                 <Popover
-                    id="simple-popper"
                     open={showPopper}
                     anchorEl={anchorEl}
                     onClose={this.handleOpenFilterPopper}

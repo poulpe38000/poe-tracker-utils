@@ -39,12 +39,7 @@ class RoomInfo extends React.Component {
         const {classes, infos} = this.props;
         return (
             <Typography variant="caption" className={classes.root}>
-                {infos.length > 0 && (
-                    <React.Fragment>
-                        {infos.map((item, key) => (
-                            <Box key={key} className={classes.detail}>{item}</Box>))}
-                    </React.Fragment>
-                )}
+                {infos.map((item, key) => (<Box key={key} className={classes.detail}>{item}</Box>))}
             </Typography>
         );
     }
