@@ -7,7 +7,7 @@ import * as PropTypes from 'prop-types';
 
 import {incursionActions} from 'store/incursion/actions';
 import RoomDetails from 'components/Incursion/Room/Details/RoomDetails';
-import RoomCheckbox from 'components/Incursion/Room/RoomCheckbox';
+import RoomCheckbox from 'components/Incursion/Room/Details/RoomCheckbox';
 
 const styles = {
     root: {display: 'flex',},

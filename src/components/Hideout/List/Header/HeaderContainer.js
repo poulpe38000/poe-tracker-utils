@@ -4,20 +4,16 @@ import ListSubheader from '@material-ui/core/ListSubheader';
 import Paper from '@material-ui/core/Paper';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
-import Toolbar from 'components/Hideout/Header/Toolbar';
-import HideoutFilterStatus from 'components/Hideout/Header/HideoutFilterStatus';
+import ActiveFilters from 'components/Hideout/List/Header/ActiveFilters';
+import HeaderColumns from 'components/Hideout/List/Header/HeaderColumns';
 
 const styles = ({breakpoints}) => ({
     root: {
         lineHeight: 'inherit',
-        top: 64,
-        [breakpoints.down('xs')]: {
-            top: 56,
-        }
     },
 });
 
-class HideoutListHeader extends React.Component {
+class HeaderContainer extends React.Component {
     static propTypes = {
         noDivider: PropTypes.bool,
     };
@@ -31,8 +27,8 @@ class HideoutListHeader extends React.Component {
         return (
             <ListSubheader disableGutters className={classes.root}>
                 <Paper elevation={0}>
-                    <Toolbar/>
-                    <HideoutFilterStatus/>
+                    <ActiveFilters/>
+                    <HeaderColumns/>
                     {!noDivider && <Divider/>}
                 </Paper>
             </ListSubheader>
@@ -40,4 +36,4 @@ class HideoutListHeader extends React.Component {
     }
 }
 
-export default withStyles(styles)(HideoutListHeader);
+export default withStyles(styles)(HeaderContainer);

@@ -3,16 +3,13 @@ import Toolbar from '@material-ui/core/Toolbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import MenuButton from 'layout/TopBarComponents/MenuButton';
 import AppStats from 'layout/TopBarComponents/AppStats';
 import AppTitle from 'layout/TopBarComponents/AppTitle';
 
-const styles = ({zIndex, breakpoints, spacing}) => ({
+const styles = ({breakpoints, spacing}) => ({
     root: {
-        [breakpoints.down('sm')]: {
-            paddingLeft: spacing(1),
-            paddingRight: spacing(1),
-        },
+        paddingLeft: spacing(1),
+        paddingRight: spacing(1),
     },
 });
 
@@ -22,12 +19,11 @@ class AppToolbar extends React.Component {
     };
 
     render() {
-        const {classes, title} = this.props;
+        const {classes, title, children} = this.props;
         return (
             <Toolbar className={classes.root}>
-                <MenuButton/>
                 <AppTitle title={title}/>
-                <AppStats/>
+                {!!children ? children : (<AppStats/>)}
             </Toolbar>
         );
     }

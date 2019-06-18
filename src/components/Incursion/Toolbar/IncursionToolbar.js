@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 import * as PropTypes from 'prop-types';
 
 import {incursionActions} from 'store/incursion/actions';
-import ActionToolbar from 'components/shared/ActionToolbar/ActionToolbar';
 import SearchField from 'components/shared/Search/SearchField';
 import MoreMenu from 'components/Incursion/Toolbar/MoreMenu';
+import AppToolbar from 'layout/TopBarComponents/AppToolbar';
 
 
-class Toolbar extends React.Component {
+class IncursionToolbar extends React.Component {
     static propTypes = {
         title: PropTypes.string,
     };
@@ -26,13 +26,13 @@ class Toolbar extends React.Component {
     render() {
         const {searchText, title} = this.props;
         return (
-            <ActionToolbar title={title}>
+            <AppToolbar title={title}>
                 <SearchField value={searchText}
                              onOpen={this.handleToggleSearch}
                              onClose={this.handleToggleSearch}
                              onChange={this.handleSearchTextUpdate}/>
                 <MoreMenu/>
-            </ActionToolbar>
+            </AppToolbar>
         );
     }
 }
@@ -44,4 +44,4 @@ export default connect(
     {
         updateSearchText: incursionActions.updateSearchText,
     },
-)(Toolbar);
+)(IncursionToolbar);

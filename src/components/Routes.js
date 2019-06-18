@@ -12,12 +12,16 @@ import ROUTES from 'constants/routes.constants';
 const styles = ({breakpoints}) => ({
     root: {
         position: 'absolute',
-        top: 64,
+        overflowY: 'auto',
         left: 0,
         bottom: 0,
         right: 0,
+        top: 64,
         [breakpoints.down('xs')]: {
             top: 56,
+            '@media (orientation: landscape)': {
+                top: 48,
+            },
         }
     },
 });

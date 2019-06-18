@@ -2,11 +2,10 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {getBaseRooms, getTieredRooms} from 'utils/incursion';
-import IncursionAppBar from 'components/Incursion/IncursionAppBar';
-import BaseList from 'components/Incursion/BaseList';
-import TieredList from 'components/Incursion/TieredList';
+import BaseList from 'components/Incursion/List/BaseList';
+import TieredList from 'components/Incursion/List/TieredList';
 import EmptyResults from 'components/shared/EmptyResults';
-import {filterIncursions} from 'components/Incursion/functions';
+import {filterIncursions} from 'components/Incursion/shared/functions';
 
 class IncursionContainer extends React.Component {
     constructor(props) {
@@ -25,7 +24,6 @@ class IncursionContainer extends React.Component {
         const tieredData = filterIncursions(this.tieredRoomsList, searchText);
         return (
             <React.Fragment>
-                <IncursionAppBar/>
                 <BaseList items={baseData}/>
                 <TieredList items={tieredData}/>
                 {!this.dataDisplayed(baseData, tieredData) && <EmptyResults/>}

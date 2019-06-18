@@ -11,14 +11,10 @@ const styles = ({breakpoints, palette, spacing}) => ({
         backgroundColor: palette.background.paper,
         color: palette.text.primary,
         marginBottom: spacing(2),
-        top: 64,
-        [breakpoints.down('xs')]: {
-            top: 56,
-        },
     },
 });
 
-class IncursionAppBar extends React.Component {
+class IncursionHeader extends React.Component {
     static propTypes = {
         title: PropTypes.string,
     };
@@ -33,4 +29,4 @@ class IncursionAppBar extends React.Component {
     }
 }
 
-export default withStyles(styles)(IncursionAppBar);
+export default withStyles(styles)(IncursionHeader);

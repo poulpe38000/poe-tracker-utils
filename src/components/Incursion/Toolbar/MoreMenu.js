@@ -73,6 +73,7 @@ class MoreMenu extends React.Component {
                     aria-controls="incursion-menu"
                     aria-haspopup="true"
                     onClick={this.handleMenuOpen}
+                    color="inherit"
                 >
                     <MoreVertIcon/>
                 </IconButton>
