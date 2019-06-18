@@ -11,6 +11,7 @@ import * as PropTypes from 'prop-types';
 
 import {buttonStyles, mergeStyles} from 'utils/themes';
 import Fade from '@material-ui/core/Fade';
+import Tooltip from '@material-ui/core/Tooltip';
 
 
 const styles = (theme) => (mergeStyles({
@@ -55,12 +56,14 @@ class SearchField extends React.Component {
         onChange: PropTypes.func,
         onOpen: PropTypes.func,
         onClose: PropTypes.func,
+        label: PropTypes.string,
     };
 
     static defaultProps = {
         onChange: noop,
         onOpen: noop,
         onClose: noop,
+        label: 'Search',
     };
 
     state = {
@@ -85,7 +88,7 @@ class SearchField extends React.Component {
     handleOnChange = (event) => this.props.onChange(event);
 
     render() {
-        const {classes, value} = this.props;
+        const {classes, value, label} = this.props;
         const {expanded} = this.state;
         return (
             <Box className={clsx(classes.searchZone, {
@@ -93,33 +96,33 @@ class SearchField extends React.Component {
                 [classes.searchCollapsed]: !expanded,
             })}>
                 {!expanded ? (
-                    <IconButton aria-label="Search" color="inherit" onClick={this.handleExpandSearch}
-                                disabled={expanded}>
-                        <SearchIcon/>
-                    </IconButton>
+                    <Tooltip title={label}>
+                        <IconButton aria-label={label}
+                                    onClick={this.handleExpandSearch}
+                                    color={'inherit'}>
+                            <SearchIcon/>
+                        </IconButton>
+                    </Tooltip>
                 ) : (
                     <Fade in>
                         <Box className={classes.searchContainer}>
-                            <IconButton aria-label="Back"
+                            <IconButton aria-label={'Back'}
                                         disableRipple
                                         disableFocusRipple
                                         className={classes.inputButton}
-                                        color="inherit"
+                                        color={'inherit'}
                                         onClick={this.handleCollapseSearch}>
                                 <ArrowBackIcon/>
                             </IconButton>
                             <InputBase
-                                placeholder="Search"
+                                placeholder={label}
                                 value={value}
                                 inputRef={this.searchField}
-                                inputProps={{'aria-label': 'Search Google Maps'}}
+                                inputProps={{'aria-label': label}}
                                 onChange={this.handleOnChange}
                                 className={classes.baseInput}
-                                classes={{
-                                    input: classes.input,
-                                }}
-                                autoFocus
-                            />
+                                classes={{input: classes.input}}
+                                autoFocus/>
                         </Box>
                     </Fade>
                 )}
