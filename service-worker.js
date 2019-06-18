@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/poe-tracker-utils/precache-manifest.c4656df3465d2d49f698e08497d8c324.js"
+  "/poe-tracker-utils/precache-manifest.0360fe4b65711097f1241d0dcb511a2d.js"
 );
 
 self.addEventListener('message', (event) => {
