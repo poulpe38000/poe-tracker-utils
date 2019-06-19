@@ -1,18 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
-
-const styles = ({spacing}) => ({
-    paneContainer: {
-        flexGrow: 1,
-    },
-    pane: {
-        flex: '1 1 100%',
-        marginLeft: spacing(1),
-        marginRight: spacing(1),
-    },
-});
 
 class Action extends React.Component {
     static propTypes = {
@@ -107,4 +95,4 @@ class Action extends React.Component {
     }
 }
 
-export default withStyles(styles)(Action);
+export default Action;
