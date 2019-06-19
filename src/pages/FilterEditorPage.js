@@ -20,6 +20,7 @@ function FilterEditorPage({classes}) {
     return (
         <Container>
             <Page title="Filter Editor">
+                {/*<FilterContainer/>*/}
                 <Box className={classes.root}>
                     <Typography variant={'h6'}>{'This section is under construction.'}</Typography>
                     <Box className={classes.root}/>
