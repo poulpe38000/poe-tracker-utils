@@ -1,13 +1,13 @@
 import React from 'react';
+import {matchPath, withRouter} from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger/useScrollTrigger';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
+import ROUTES from 'constants/routes.constants';
 import AppToolbar from 'layout/TopBarComponents/AppToolbar';
 import {compose} from 'redux';
-import {matchPath, withRouter} from 'react-router-dom';
-import ROUTES from 'constants/routes.constants';
 
 const styles = ({zIndex}) => ({
     root: {
@@ -16,10 +16,11 @@ const styles = ({zIndex}) => ({
 });
 
 function ElevationScroll(props) {
-    const {children} = props;
+    const {children, scrollTarget} = props;
     const trigger = useScrollTrigger({
         disableHysteresis: true,
         threshold: 0,
+        target: (scrollTarget && scrollTarget.current) ? scrollTarget.current : undefined,
     });
 
     return React.cloneElement(children, {
@@ -29,12 +30,14 @@ function ElevationScroll(props) {
 
 ElevationScroll.propTypes = {
     children: PropTypes.node.isRequired,
+    scrollTarget: PropTypes.object,
 };
 
 class TopBar extends React.Component {
     static propTypes = {
         toolbar: PropTypes.elementType,
         toolbarProps: PropTypes.object,
+        scrollTarget: PropTypes.object,
     };
     static defaultProps = {
         toolbar: AppToolbar,

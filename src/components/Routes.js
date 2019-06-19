@@ -6,8 +6,9 @@ import TransitionGroup from 'react-transition-group/TransitionGroup';
 import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
-import ContentWrapper from 'layout/ContentWrapper';
+
 import ROUTES from 'constants/routes.constants';
+import ContentWrapper from 'layout/ContentWrapper';
 
 
 const styles = ({breakpoints}) => ({
@@ -36,7 +37,8 @@ class Routes extends React.Component {
     };
 
     componentDidUpdate(prevProps, prevState, snapshot) {
-        this.props.scrollableRef.current.scrollTo(0, 0);
+        const {scrollableRef} = this.props;
+        scrollableRef && scrollableRef.current && scrollableRef.current.scrollTo(0, 0);
     }
 
     render() {

@@ -20,6 +20,10 @@ const styles = {
 };
 
 class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.scrollableRef = React.createRef();
+    }
 
     componentDidMount() {
         this.props.initializeApp();
@@ -27,7 +31,6 @@ class App extends React.Component {
 
     render() {
         const {classes, useLightTheme} = this.props;
-        const scrollableRef = React.createRef();
         return (
             <BrowserRouter basename={APP_CONSTANTS.basename}>
                 <ThemeProvider theme={useLightTheme ? lightTheme : darkTheme}>
@@ -41,9 +44,9 @@ class App extends React.Component {
                         autoHideDuration={4000}
                         preventDuplicate={true}
                     >
-                        <TopBar/>
+                        <TopBar scrollTarget={this.scrollableRef}/>
                         <SideMenu/>
-                        <Routes scrollableRef={scrollableRef}/>
+                        <Routes scrollableRef={this.scrollableRef}/>
                     </SnackbarProvider>
                 </ThemeProvider>
             </BrowserRouter>
