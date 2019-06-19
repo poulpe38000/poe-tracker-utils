@@ -57,7 +57,7 @@ class SettingsPanel extends React.Component {
         const {classes, title, subtitle, children} = this.props;
         return (
             <Box>
-                <ExpansionPanel elevation={2} className={classes.root} square>
+                <ExpansionPanel elevation={1} className={classes.root} square>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
                         <SettingsHeader title={title} subtitle={subtitle}/>
                     </ExpansionPanelSummary>
