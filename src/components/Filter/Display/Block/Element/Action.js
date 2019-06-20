@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 
 class Action extends React.Component {
     static propTypes = {
-        element: PropTypes.object.isRequired,
+        element: PropTypes.array.isRequired,
         type: PropTypes.string.isRequired,
     };
 
@@ -29,7 +29,7 @@ class Action extends React.Component {
         }
     }
 
-    renderColor(element) {
+    renderColor = (element) => {
         return (
             <Typography variant={'body1'}>
                 <strong>{element[0]}</strong> <span style={{
@@ -41,49 +41,49 @@ class Action extends React.Component {
             }}/>
             </Typography>
         );
-    }
-    renderFontSize(element) {
+    };
+    renderFontSize = (element) => {
         return (
             <Typography variant={'body1'}>
-                <strong>{element[0]}</strong> <em style={{fontSize: `${element[1][0]*100/32}%`}}>{element[1][0]}</em>
+                <strong>{element[0]}</strong> <em style={{fontSize: `${element[1][0]*2/3}px`}}>{element[1][0]}</em>
             </Typography>
         );
-    }
-    renderAlertSound(element) {
+    };
+    renderAlertSound = (element) => {
         return (
             <Typography variant={'body1'}>
                 <strong>{element[0]}</strong> {element[1].map(el => `"${el}"`).join(' ')}
             </Typography>
         );
-    }
-    renderSimple(element) {
+    };
+    renderSimple = (element) => {
         return (
             <Typography variant={'body1'}>
                 <strong>{element[0]}</strong>
             </Typography>
         );
-    }
-    renderAlertSoundFile(element) {
+    };
+    renderAlertSoundFile = (element) => {
         return (
             <Typography variant={'body1'}>
                 <strong>{element[0]}</strong> {element[1].join(' ')}
             </Typography>
         );
-    }
-    renderIcon(element) {
+    };
+    renderIcon = (element) => {
         return (
             <Typography variant={'body1'}>
                 <strong>{element[0]}</strong> {element[1].join(' ')}
             </Typography>
         );
-    }
-    renderEffect(element) {
+    };
+    renderEffect = (element) => {
         return (
             <Typography variant={'body1'}>
                 <strong>{element[0]}</strong> {element[1].join(' ')}
             </Typography>
         );
-    }
+    };
 
     render() {
         const {element, type} = this.props;

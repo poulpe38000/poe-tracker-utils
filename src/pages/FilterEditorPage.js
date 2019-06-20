@@ -8,6 +8,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 import Page from 'layout/Page';
 import ROUTES from 'constants/routes.constants';
+import FilterContainer from 'components/Filter/FilterContainer';
 
 const styles = ({spacing}) => ({
     root: {

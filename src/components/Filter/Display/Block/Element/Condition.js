@@ -4,7 +4,7 @@ import * as PropTypes from 'prop-types';
 
 class Condition extends React.Component {
     static propTypes = {
-        element: PropTypes.object.isRequired,
+        element: PropTypes.array.isRequired,
         type: PropTypes.string.isRequired,
     };
 
@@ -25,41 +25,41 @@ class Condition extends React.Component {
         }
     }
 
-    renderNumericOperator(element) {
+    renderNumericOperator = (element) => {
         return (
             <Typography variant={'body1'}>
                 <strong>{element[0]}</strong> {element[1].join(' ')}
             </Typography>
         );
-    }
-    renderRarity(element) {
+    };
+    renderRarity = (element) => {
         return (
             <Typography variant={'body1'}>
                 <strong>{element[0]}</strong> {element[1].join(' ')}
             </Typography>
         );
-    }
-    renderText(element) {
+    };
+    renderText = (element) => {
         return (
             <Typography variant={'body1'}>
                 <strong>{element[0]}</strong> {element[1].map(el => `"${el}"`).join(' ')}
             </Typography>
         );
-    }
-    renderSocketGroup(element) {
+    };
+    renderSocketGroup = (element) => {
         return (
             <Typography variant={'body1'}>
                 <strong>{element[0]}</strong> {element[1].join(' ')}
             </Typography>
         );
-    }
-    renderBoolean(element) {
+    };
+    renderBoolean = (element) => {
         return (
             <Typography variant={'body1'}>
                 <strong>{element[0]}</strong> {element[1].join('')}
             </Typography>
         );
-    }
+    };
 
     render() {
         const {element, type} = this.props;

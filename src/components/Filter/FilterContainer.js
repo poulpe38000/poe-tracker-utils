@@ -6,7 +6,15 @@ import Typography from '@material-ui/core/Typography';
 import Paper from '@material-ui/core/Paper';
 import {displaySnackbar} from 'utils/snackbar';
 import {withSnackbar} from 'notistack';
-import ConditionBlock from 'components/Filter/Block/ConditionBlock';
+import ConditionBlock from 'components/Filter/Display/Block/ConditionBlock';
+import {compose} from 'redux';
+import withStyles from '@material-ui/core/styles/withStyles';
+
+const styles = ({spacing}) => ({
+    description: {
+        padding: spacing(2),
+    }
+});
 
 class FilterContainer extends React.Component {
     state = {
@@ -51,6 +59,7 @@ class FilterContainer extends React.Component {
     };
 
     render() {
+        const {classes} = this.props;
         const {filterTextData, filterStruct} = this.state;
         const dropzoneRef = createRef();
         return (
@@ -60,15 +69,16 @@ class FilterContainer extends React.Component {
                                 onDrop={this.onDrop}
                                 onContentChange={this.handleContentDataChange}/>
                 {filterStruct.description && (
-                    <Paper>
-                        <Typography variant={'body1'}>
-                            <pre>{filterStruct.description}</pre>
+                    <Paper className={classes.description}>
+                        <Typography variant={'body1'} component={'pre'}>
+                            {filterStruct.description}
                         </Typography>
                     </Paper>
                 )}
                 {filterStruct.blocks
-                    .map((item) => (
+                    .map((item, key) => (
                             <ConditionBlock
+                                key={key}
                                 blockType={item.type}
                                 description={item.description}
                                 conditions={item.conditions}
@@ -81,4 +91,7 @@ class FilterContainer extends React.Component {
     }
 }
 
-export default withSnackbar(FilterContainer);
+export default compose(
+    withStyles(styles),
+    withSnackbar,
+)(FilterContainer);
