@@ -7,7 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 import * as PropTypes from 'prop-types';
 
-import FilterDragZone from 'components/Filter/FilterDragZone';
+import FilterDragZone from 'components/Filter/Import/FilterDragZone';
 
 const styles = {
     dragContainer: {
