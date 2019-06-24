@@ -1,10 +1,12 @@
 import React from 'react';
+import {compose} from 'redux';
 import {NavLink} from 'react-router-dom';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
+import withWidth, {isWidthUp} from "@material-ui/core/withWidth";
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
@@ -40,11 +42,12 @@ class NavItem extends React.Component {
     };
 
     render() {
-        const {classes, link, label, icon, expanded} = this.props;
+        const {classes, link, label, icon, expanded, width} = this.props;
         const tooltipLabel = (<Typography variant="body1">{label}</Typography>);
         const emptyTooltipLabel = '';
+        const showTooltip = isWidthUp('sm', width) && !expanded;
         return (
-            <Tooltip title={!expanded ? tooltipLabel : emptyTooltipLabel}
+            <Tooltip title={showTooltip ? tooltipLabel : emptyTooltipLabel}
                      placement="right"
                      disableTouchListener
                      enterDelay={300}
@@ -65,4 +68,7 @@ class NavItem extends React.Component {
     }
 }
 
-export default withStyles(styles)(NavItem);
+export default compose(
+    withWidth(),
+    withStyles(styles),
+)(NavItem);
