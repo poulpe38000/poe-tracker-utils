@@ -1,16 +1,13 @@
 import React from "react";
-import Container from '@material-ui/core/Container';
 
 import Page from 'layout/Page';
 import {SettingsApp, SettingsData} from 'components/Settings';
 
 export default function SettingsPage() {
     return (
-        <Container maxWidth="md">
-            <Page>
-                <SettingsApp/>
-                <SettingsData/>
-            </Page>
-        </Container>
+        <Page maxWidth="md">
+            <SettingsApp/>
+            <SettingsData/>
+        </Page>
     );
 }

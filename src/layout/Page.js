@@ -1,5 +1,6 @@
 import React from 'react';
 import Box from '@material-ui/core/Box';
+import Container from "@material-ui/core/Container";
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
@@ -16,18 +17,22 @@ const styles = ({spacing}) => ({
 class Page extends React.Component {
     static propTypes = {
         title: PropTypes.string,
+        maxWidth: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]),
     };
     static defaultProps = {
         title: '',
+        maxWidth: false,
     };
 
     render() {
-        const {classes, title, children} = this.props;
+        const {classes, title, children, ...containerProps} = this.props;
         return (
-            <Box className={classes.root}>
-                {!!title && <PageTitle title={title}/>}
-                {children}
-            </Box>
+            <Container {...containerProps}>
+                <Box className={classes.root}>
+                    {!!title && <PageTitle title={title}/>}
+                    {children}
+                </Box>
+            </Container>
         );
     }
 }

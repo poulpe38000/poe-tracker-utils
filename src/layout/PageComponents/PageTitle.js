@@ -4,7 +4,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
 const styles = {
-    pageTitle: {textAlign: 'center'},
+    title: {textAlign: 'center'},
 };
 
 class PageTitle extends React.Component {
@@ -15,7 +15,7 @@ class PageTitle extends React.Component {
     render() {
         const {classes, title} = this.props;
         return (
-            <Typography variant="h2" className={classes.pageTitle}>
+            <Typography variant="h2" className={classes.title}>
                 {title}
             </Typography>
         );
