@@ -3,7 +3,6 @@ import {compose} from 'redux';
 import {connect} from "react-redux";
 import {withSnackbar} from 'notistack';
 import cloneDeep from 'lodash/cloneDeep';
-import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 
@@ -63,20 +62,18 @@ class ExportPage extends React.Component {
         const inputProps = {readOnly: true};
         return (
             <React.Fragment>
-                <Box>
-                    <TextField
-                        fullWidth
-                        multiline
-                        rows={isWidthDown('xs', width) ? 8 : 16}
-                        value={exportText}
-                        margin="normal"
-                        variant="outlined"
-                        InputProps={inputProps}
-                    />
-                    <ExportSettings
-                        opts={opts}
-                        onClick={this.handleToggleSettings}/>
-                </Box>
+                <TextField
+                    fullWidth
+                    multiline
+                    rows={isWidthDown('xs', width) ? 8 : 16}
+                    value={exportText}
+                    margin="normal"
+                    variant="outlined"
+                    InputProps={inputProps}
+                />
+                <ExportSettings
+                    opts={opts}
+                    onClick={this.handleToggleSettings}/>
                 <ExportActions
                     exportEnabled={canExportData}
                     exportText={exportText}

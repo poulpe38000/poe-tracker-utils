@@ -1,4 +1,5 @@
 import React from 'react';
+import {compose} from 'redux';
 import {matchPath, withRouter} from 'react-router-dom';
 import AppBar from '@material-ui/core/AppBar';
 import useScrollTrigger from '@material-ui/core/useScrollTrigger/useScrollTrigger';
@@ -7,7 +8,6 @@ import * as PropTypes from 'prop-types';
 
 import ROUTES from 'constants/routes.constants';
 import AppToolbar from 'layout/TopBarComponents/AppToolbar';
-import {compose} from 'redux';
 
 const styles = ({zIndex}) => ({
     root: {
@@ -45,12 +45,12 @@ class TopBar extends React.Component {
     };
 
     render() {
-        const {classes, toolbar, toolbarProps, location} = this.props;
+        const {classes, toolbar, toolbarProps, location, ...scrollProps} = this.props;
         const matchedRoute = ROUTES.routes.find((route) => matchPath(location.pathname, route.route));
         const Toolbar = matchedRoute.toolbar || toolbar;
         const tbProps = matchedRoute.toolbarProps || toolbarProps;
         return (
-            <ElevationScroll {...this.props}>
+            <ElevationScroll {...scrollProps}>
                 <AppBar position="fixed" className={classes.root}>
                     <Toolbar {...tbProps}/>
                 </AppBar>
@@ -62,4 +62,4 @@ class TopBar extends React.Component {
 export default compose(
     withRouter,
     withStyles(styles),
-    )(TopBar);
+)(TopBar);

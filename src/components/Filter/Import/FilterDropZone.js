@@ -1,10 +1,8 @@
 import React from 'react'
-import {compose} from 'redux';
 import Dropzone from 'react-dropzone';
 import Box from '@material-ui/core/Box';
 import TextField from '@material-ui/core/TextField';
 import withStyles from '@material-ui/core/styles/withStyles';
-import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 import * as PropTypes from 'prop-types';
 
 import FilterDragZone from 'components/Filter/Import/FilterDragZone';
@@ -13,7 +11,6 @@ const styles = {
     dragContainer: {
         position: 'relative'
     },
-    inputErrorText: {textAlign: 'center'},
 };
 
 class FilterDropZone extends React.Component {
@@ -25,7 +22,7 @@ class FilterDropZone extends React.Component {
     };
 
     render() {
-        const {classes, width, dropzoneRef, importText, onDrop, onContentChange} = this.props;
+        const {classes, dropzoneRef, importText, onDrop, onContentChange} = this.props;
         return (
             <Dropzone ref={dropzoneRef} noClick={true} onDrop={onDrop} multiple={false}>
                 {({getRootProps, getInputProps, isDragActive}) => (
@@ -35,7 +32,7 @@ class FilterDropZone extends React.Component {
                             placeholder="Copy your filter data here, or drag a filter file to import it."
                             fullWidth
                             multiline
-                            rows={isWidthDown('xs', width) ? 8 : 16}
+                            rows={8}
                             value={importText}
                             onChange={onContentChange}
                             margin="normal"
@@ -49,7 +46,4 @@ class FilterDropZone extends React.Component {
     }
 }
 
-export default compose(
-    withStyles(styles),
-    withWidth()
-)(FilterDropZone);
+export default withStyles(styles)(FilterDropZone);

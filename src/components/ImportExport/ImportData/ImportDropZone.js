@@ -13,7 +13,6 @@ const styles = {
     dragContainer: {
         position: 'relative'
     },
-    inputErrorText: {textAlign: 'center'},
 };
 
 class ImportDropZone extends React.Component {

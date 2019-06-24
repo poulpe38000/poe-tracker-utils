@@ -37,3 +37,9 @@ export const actions = {
     MinimapIcon: 'Icon',
     PlayEffect: 'Effect',
 };
+
+export const defaultValues = {
+    textColor: [200, 200, 200, 255],
+    backgroundColor: [0, 0, 0, 203],
+    borderColor: [0, 0, 0, 0],
+};
