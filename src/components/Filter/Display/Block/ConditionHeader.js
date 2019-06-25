@@ -4,14 +4,14 @@ import VisibilityOffIcon from '@material-ui/icons/VisibilityOff';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 import Avatar from '@material-ui/core/Avatar';
-import ListItem from "@material-ui/core/ListItem";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import {ListItemText} from "@material-ui/core";
-import Typography from "@material-ui/core/Typography";
-import Box from "@material-ui/core/Box";
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import {ListItemText} from '@material-ui/core';
+import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 import groundBg from 'components/Filter/shared/groundtile.png';
-import {defaultValues} from "../../shared/constants";
+import {defaultValues} from 'components/Filter/shared/constants';
 
 const styles = ({spacing}) => ({
     root: {

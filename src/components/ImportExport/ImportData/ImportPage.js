@@ -1,6 +1,6 @@
 import React, {createRef} from 'react'
 import {compose} from 'redux';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 import {withSnackbar} from 'notistack';
 import Box from '@material-ui/core/Box';
 

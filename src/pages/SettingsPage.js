@@ -1,13 +1,12 @@
-import React from "react";
+import React from 'react';
 
 import Page from 'layout/Page';
-import {SettingsApp, SettingsData} from 'components/Settings';
+import SettingsContainer from 'components/Settings/SettingsContainer';
 
 export default function SettingsPage() {
     return (
         <Page maxWidth="md">
-            <SettingsApp/>
-            <SettingsData/>
+            <SettingsContainer/>
         </Page>
     );
 }

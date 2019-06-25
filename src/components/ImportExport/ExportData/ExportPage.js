@@ -1,6 +1,6 @@
 import React from 'react'
 import {compose} from 'redux';
-import {connect} from "react-redux";
+import {connect} from 'react-redux';
 import {withSnackbar} from 'notistack';
 import cloneDeep from 'lodash/cloneDeep';
 import TextField from '@material-ui/core/TextField';

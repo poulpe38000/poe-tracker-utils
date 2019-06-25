@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import SwipeableViews from 'react-swipeable-views';
 import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';

@@ -6,7 +6,7 @@ import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 import ListItemText from '@material-ui/core/ListItemText';
 import Tooltip from '@material-ui/core/Tooltip';
 import Typography from '@material-ui/core/Typography';
-import withWidth, {isWidthUp} from "@material-ui/core/withWidth";
+import withWidth, {isWidthUp} from '@material-ui/core/withWidth';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 

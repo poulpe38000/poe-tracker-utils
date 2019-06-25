@@ -4,10 +4,10 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 import Condition from 'components/Filter/Display/Block/Element/Condition';
 import Action from 'components/Filter/Display/Block/Element/Action';
-import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ConditionHeader from "./ConditionHeader";
-import Paper from "@material-ui/core/Paper";
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import Paper from '@material-ui/core/Paper';
+import ConditionHeader from 'components/Filter/Display/Block/ConditionHeader';
 
 const styles = ({spacing}) => ({
     root: {
