@@ -7,7 +7,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import {itemStyles} from 'components/Settings/shared';
+import {itemStyles} from 'components/Settings/constants';
 
 class SettingsDataItem extends React.Component {
     static propTypes = {

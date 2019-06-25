@@ -8,7 +8,7 @@ import Switch from '@material-ui/core/Switch';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import {itemStyles} from 'components/Settings/shared';
+import {itemStyles} from 'components/Settings/constants';
 
 
 class SettingsAppItem extends React.Component {

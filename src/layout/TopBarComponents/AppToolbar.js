@@ -6,7 +6,7 @@ import * as PropTypes from 'prop-types';
 import AppStats from 'layout/TopBarComponents/AppStats';
 import AppTitle from 'layout/TopBarComponents/AppTitle';
 
-const styles = ({breakpoints, spacing}) => ({
+const styles = ({spacing}) => ({
     root: {
         paddingLeft: spacing(1),
         paddingRight: spacing(1),

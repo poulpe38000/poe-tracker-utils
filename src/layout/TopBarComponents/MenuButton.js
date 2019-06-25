@@ -25,7 +25,9 @@ class MenuButton extends React.Component {
         const {classes} = this.props;
         return (
             <Hidden mdUp>
-                <IconButton aria-label="Menu" onClick={this.handleOpenMenu} className={classes.button}>
+                <IconButton aria-label={'Menu'}
+                            onClick={this.handleOpenMenu}
+                            className={classes.button}>
                     <MenuIcon/>
                 </IconButton>
             </Hidden>

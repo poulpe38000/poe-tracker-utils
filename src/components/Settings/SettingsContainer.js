@@ -1,6 +1,7 @@
 import React from 'react';
-import SettingsApp from 'components/Settings/SettingsApp';
-import SettingsData from 'components/Settings/SettingsData';
+
+import SettingsApp from 'components/Settings/App/SettingsApp';
+import SettingsData from 'components/Settings/Data/SettingsData';
 
 class SettingsContainer extends React.Component {
 

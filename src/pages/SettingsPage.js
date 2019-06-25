@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Page from 'layout/Page';
-import SettingsContainer from 'components/Settings/SettingsContainer';
+import {SettingsContainer} from 'components/Settings';
 
 export default function SettingsPage() {
     return (

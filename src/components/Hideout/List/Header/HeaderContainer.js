@@ -7,11 +7,11 @@ import * as PropTypes from 'prop-types';
 import ActiveFilters from 'components/Hideout/List/Header/ActiveFilters';
 import HeaderColumns from 'components/Hideout/List/Header/HeaderColumns';
 
-const styles = ({breakpoints}) => ({
+const styles = {
     root: {
         lineHeight: 'inherit',
     },
-});
+};
 
 class HeaderContainer extends React.Component {
     static propTypes = {
