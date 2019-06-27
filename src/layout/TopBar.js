@@ -36,23 +36,20 @@ ElevationScroll.propTypes = {
 class TopBar extends React.Component {
     static propTypes = {
         toolbar: PropTypes.elementType,
-        toolbarProps: PropTypes.object,
         scrollTarget: PropTypes.object,
     };
     static defaultProps = {
-        toolbar: AppToolbar,
-        toolbarProps: {},
+        toolbar: (<AppToolbar/>),
     };
 
     render() {
-        const {classes, toolbar, toolbarProps, location, ...scrollProps} = this.props;
+        const {classes, toolbar, location, ...scrollProps} = this.props;
         const matchedRoute = ROUTES.routes.find((route) => matchPath(location.pathname, route.route));
-        const Toolbar = (!!matchedRoute && matchedRoute.toolbar) || toolbar;
-        const tbProps = (!!matchedRoute && matchedRoute.toolbarProps) || toolbarProps;
+        const useToolbar = (!!matchedRoute && matchedRoute.toolbar) || toolbar;
         return (
             <ElevationScroll {...scrollProps}>
                 <AppBar position="fixed" className={classes.root}>
-                    <Toolbar {...tbProps}/>
+                    {useToolbar}
                 </AppBar>
             </ElevationScroll>
         );

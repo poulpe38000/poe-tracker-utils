@@ -1,6 +1,9 @@
+import React from 'react';
+
 import {HideoutsPage, HomePage, ImportExportPage, IncursionsPage, NotFoundPage, SettingsPage} from 'pages';
 import HideoutToolbar from 'components/Hideout/Toolbar/HideoutToolbar';
 import IncursionToolbar from 'components/Incursion/Toolbar/IncursionToolbar';
+import AppToolbar from 'layout/TopBarComponents/AppToolbar';
 
 const routes = {
     root: '/',
@@ -19,25 +22,23 @@ const ROUTES = {
         },
         {
             route: {path: routes.hideouts, component: HideoutsPage},
-            toolbar: HideoutToolbar,
-            toolbarProps: {title: 'Hideouts unlocks'},
+            toolbar: (<HideoutToolbar title={'Hideouts unlocks'}/>),
         },
         {
             route: {path: routes.incursions, component: IncursionsPage},
-            toolbar: IncursionToolbar,
-            toolbarProps: {title: 'Incursion rooms'},
+            toolbar: (<IncursionToolbar title={'Incursion rooms'}/>),
         },
         // {
         //     route: {path: routes.filters, component: FilterReaderPage},
-        //     toolbarProps: {title: 'Filter reader'},
+        //     toolbar: (<AppToolbar title={'Filter reader'}/>),
         // },
         {
             route: {path: routes.import_export, component: ImportExportPage},
-            toolbarProps: {title: 'Import / Export'},
+            toolbar: (<AppToolbar title={'Import / Export'}/>),
         },
         {
             route: {path: routes.settings, component: SettingsPage},
-            toolbarProps: {title: 'Settings'},
+            toolbar: (<AppToolbar title={'Settings'}/>),
         },
         {
             route: {component: NotFoundPage},
