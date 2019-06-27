@@ -5,7 +5,7 @@ import HideoutPage from 'components/Hideout/HideoutPage';
 import IncursionPage from 'components/Incursion/IncursionPage';
 import ImportExportPage from 'components/ImportExport/ImportExportPage';
 import NotFoundPage from 'components/NotFound/NotFoundPage';
-import AppToolbar from 'layout/components/TopBar/AppToolbar';
+import AppToolbar from 'components/layout/components/TopBar/AppToolbar';
 import HideoutToolbar from 'components/Hideout/Toolbar/HideoutToolbar';
 import IncursionToolbar from 'components/Incursion/Toolbar/IncursionToolbar';
 import SettingsPage from 'components/Settings/SettingsPage';

@@ -8,7 +8,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
 import ROUTES from 'constants/routes.constants';
-import ContentWrapper from 'layout/ContentWrapper';
+import ContentWrapper from 'components/layout/ContentWrapper';
 
 
 const styles = ({breakpoints}) => ({

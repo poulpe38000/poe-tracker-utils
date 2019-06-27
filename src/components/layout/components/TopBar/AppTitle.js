@@ -1,11 +1,11 @@
 import React from 'react';
+import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
 import APP_CONSTANTS from 'constants/app.constants';
-import MenuButton from 'layout/components/TopBar/MenuButton';
-import Box from '@material-ui/core/Box';
+import MenuButton from 'components/layout/components/TopBar/MenuButton';
 
 const styles = ({spacing}) => ({
     root: {

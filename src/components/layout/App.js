@@ -11,9 +11,9 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import APP_CONSTANTS from 'constants/app.constants';
 import {darkTheme, lightTheme} from 'utils/themes';
 import {rootActions} from 'store/root/actions';
-import SideMenu from 'layout/SideMenu';
-import TopBar from 'layout/TopBar';
-import Routes from 'components/Routes';
+import SideMenu from 'components/layout/SideMenu';
+import TopBar from 'components/layout/TopBar';
+import Routes from 'components/layout/Routes';
 
 const styles = {
     base: {minWidth: 'auto'}

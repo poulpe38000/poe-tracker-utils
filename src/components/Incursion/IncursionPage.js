@@ -5,7 +5,7 @@ import {getBaseRooms, getTieredRooms} from 'utils/incursion';
 import BaseList from 'components/Incursion/List/BaseList';
 import EmptyResults from 'components/shared/EmptyResults';
 import TieredList from 'components/Incursion/List/TieredList';
-import Page from 'layout/Page';
+import Page from 'components/layout/Page';
 import {filterIncursions} from 'components/Incursion/shared/functions';
 
 class IncursionPage extends React.Component {

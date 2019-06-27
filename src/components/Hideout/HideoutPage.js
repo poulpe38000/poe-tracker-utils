@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {filterHideouts, getUnlockedHideoutData} from 'components/Hideout/shared/functions';
 import EmptyResults from 'components/shared/EmptyResults';
 import ListContainer from 'components/Hideout/List/ListContainer';
-import Page from 'layout/Page';
+import Page from 'components/layout/Page';
 
 class HideoutPage extends React.Component {
 

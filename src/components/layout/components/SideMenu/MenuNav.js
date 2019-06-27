@@ -7,9 +7,9 @@ import noop from 'lodash/noop';
 import * as PropTypes from 'prop-types';
 
 import {rootActions} from 'store/root/actions';
-import {sideMenuElements} from 'layout/components/SideMenu/constants';
-import NavList from 'layout/components/SideMenu/Nav/NavList';
-import MenuTopBar from 'layout/components/SideMenu/MenuTopBar';
+import {sideMenuElements} from 'components/layout/components/SideMenu/constants';
+import NavList from 'components/layout/components/SideMenu/Nav/NavList';
+import MenuTopBar from 'components/layout/components/SideMenu/MenuTopBar';
 
 class MenuNav extends React.Component {
     static propTypes = {

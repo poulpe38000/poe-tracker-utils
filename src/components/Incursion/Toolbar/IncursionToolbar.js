@@ -5,7 +5,7 @@ import * as PropTypes from 'prop-types';
 import {incursionActions} from 'store/incursion/actions';
 import SearchField from 'components/shared/Search/SearchField';
 import MoreMenu from 'components/Incursion/Toolbar/MoreMenu';
-import AppToolbar from 'layout/components/TopBar/AppToolbar';
+import AppToolbar from 'components/layout/components/TopBar/AppToolbar';
 
 
 class IncursionToolbar extends React.Component {

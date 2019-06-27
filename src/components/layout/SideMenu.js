@@ -10,8 +10,8 @@ import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 import APP_CONSTANTS from 'constants/app.constants';
 import {rootActions} from 'store/root/actions';
 import {transitionFor} from 'utils/themes';
-import MenuNav from 'layout/components/SideMenu/MenuNav';
-import MenuExpander from 'layout/components/SideMenu/MenuExpander';
+import MenuNav from 'components/layout/components/SideMenu/MenuNav';
+import MenuExpander from 'components/layout/components/SideMenu/MenuExpander';
 
 const styles = (theme) => ({
     root: {

@@ -6,7 +6,7 @@ import {displaySnackbar} from 'utils/snackbar';
 import ConditionBlock from 'components/Filter/Display/Block/ConditionBlock';
 import FilterImport from 'components/Filter/Import/FilterImport';
 import FilterDescription from 'components/Filter/Display/FilterDescription';
-import Page from 'layout/Page';
+import Page from 'components/layout/Page';
 
 class FilterPage extends React.Component {
     state = {

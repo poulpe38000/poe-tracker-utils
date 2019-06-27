@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import Page from 'layout/Page';
+import Page from 'components/layout/Page';
 import ROUTES from 'constants/routes.constants';
 
 const styles = ({spacing}) => ({

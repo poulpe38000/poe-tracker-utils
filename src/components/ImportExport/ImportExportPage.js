@@ -3,7 +3,7 @@ import Paper from '@material-ui/core/Paper';
 
 import TabContent from 'components/ImportExport/Tabs/TabContent';
 import TabHeader from 'components/ImportExport/Tabs/TabHeader';
-import Page from 'layout/Page';
+import Page from 'components/layout/Page';
 
 class ImportExportPage extends React.Component {
     state = {

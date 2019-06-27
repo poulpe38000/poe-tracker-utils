@@ -7,7 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
 import ROUTES from 'constants/routes.constants';
-import AppToolbar from 'layout/components/TopBar/AppToolbar';
+import AppToolbar from 'components/layout/components/TopBar/AppToolbar';
 
 const styles = ({zIndex}) => ({
     root: {

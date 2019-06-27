@@ -2,7 +2,7 @@ import React from 'react';
 
 import SettingsApp from 'components/Settings/App/SettingsApp';
 import SettingsData from 'components/Settings/Data/SettingsData';
-import Page from 'layout/Page';
+import Page from 'components/layout/Page';
 
 class SettingsPage extends React.Component {
 

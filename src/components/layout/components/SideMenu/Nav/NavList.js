@@ -4,8 +4,8 @@ import noop from 'lodash/noop';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import NavItem from 'layout/components/SideMenu/Nav/NavItem';
-import NavSpacer from 'layout/components/SideMenu/Nav/NavSpacer';
+import NavItem from 'components/layout/components/SideMenu/Nav/NavItem';
+import NavSpacer from 'components/layout/components/SideMenu/Nav/NavSpacer';
 
 const styles = {
     root: {
