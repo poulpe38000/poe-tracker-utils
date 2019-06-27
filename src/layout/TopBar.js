@@ -47,8 +47,8 @@ class TopBar extends React.Component {
     render() {
         const {classes, toolbar, toolbarProps, location, ...scrollProps} = this.props;
         const matchedRoute = ROUTES.routes.find((route) => matchPath(location.pathname, route.route));
-        const Toolbar = matchedRoute.toolbar || toolbar;
-        const tbProps = matchedRoute.toolbarProps || toolbarProps;
+        const Toolbar = (!!matchedRoute && matchedRoute.toolbar) || toolbar;
+        const tbProps = (!!matchedRoute && matchedRoute.toolbarProps) || toolbarProps;
         return (
             <ElevationScroll {...scrollProps}>
                 <AppBar position="fixed" className={classes.root}>

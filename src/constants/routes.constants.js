@@ -1,12 +1,4 @@
-import {
-    FilterEditorPage,
-    HideoutsPage,
-    HomePage,
-    ImportExportPage,
-    IncursionsPage,
-    NotFoundPage,
-    SettingsPage
-} from 'pages';
+import {HideoutsPage, HomePage, ImportExportPage, IncursionsPage, NotFoundPage, SettingsPage} from 'pages';
 import HideoutToolbar from 'components/Hideout/Toolbar/HideoutToolbar';
 import IncursionToolbar from 'components/Incursion/Toolbar/IncursionToolbar';
 
@@ -35,10 +27,10 @@ const ROUTES = {
             toolbar: IncursionToolbar,
             toolbarProps: {title: 'Incursion rooms'},
         },
-        {
-            route: {path: routes.filters, component: FilterEditorPage},
-            toolbarProps: {title: 'Filter editor'},
-        },
+        // {
+        //     route: {path: routes.filters, component: FilterReaderPage},
+        //     toolbarProps: {title: 'Filter reader'},
+        // },
         {
             route: {path: routes.import_export, component: ImportExportPage},
             toolbarProps: {title: 'Import / Export'},
@@ -55,7 +47,7 @@ const ROUTES = {
         root: {to: routes.root, exact: true},
         hideouts: {to: routes.hideouts},
         incursions: {to: routes.incursions},
-        filters: {to: routes.filters},
+        // filters: {to: routes.filters},
         import_export: {to: routes.import_export},
         settings: {to: routes.settings},
     },

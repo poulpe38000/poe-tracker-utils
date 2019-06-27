@@ -58,7 +58,7 @@ export function parseFilter(filterText) {
             return res;
         }
         if (!isCommentLine(line) && !isEmptyLine(line) && res.length > 0) {
-            const element = splitKeyValues(line);
+            const element = splitKeyValues(filterComments(line));
             const type = getType(element[0]);
             if (isCondition(element[0])) {
                 res[res.length - 1].conditions.push({element, type});

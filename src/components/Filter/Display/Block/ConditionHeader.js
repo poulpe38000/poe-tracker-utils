@@ -68,7 +68,7 @@ class ConditionHeader extends React.Component {
             fontWeight: 'bold',
             color: this.getColor(defaultValues.textColor),
             backgroundColor: this.getColor(defaultValues.backgroundColor),
-            border: '1px solid ' + this.getColor(defaultValues.textColor),
+            border: '2px solid ' + this.getColor(defaultValues.textColor),
             padding: 5,
         };
         const customFontSize = actions.find(elt => elt.element[0] === 'SetFontSize');
@@ -86,7 +86,7 @@ class ConditionHeader extends React.Component {
         }
         const customBorderColor = actions.find(elt => elt.element[0] === 'SetBorderColor');
         if (customBorderColor) {
-            previewStyle.border = this.getColor(customBorderColor.element[1]);
+            previewStyle.border = '2px solid ' + this.getColor(customBorderColor.element[1]);
         }
         return (
             <Typography style={previewStyle}>Item Preview</Typography>

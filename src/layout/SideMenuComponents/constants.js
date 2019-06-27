@@ -5,7 +5,6 @@ import homeLogo from 'layout/SideMenuComponents/home_logo.png';
 import {IconAvatar, ImageAvatar} from 'components/shared';
 import hideoutLogo from 'layout/SideMenuComponents/hideout_logo.png';
 import incursionLogo from 'layout/SideMenuComponents/incursion_logo.png';
-import filterLogo from 'layout/SideMenuComponents/filter_logo.png';
 import ROUTES from 'constants/routes.constants';
 
 export const sideMenuElements = [
@@ -24,11 +23,11 @@ export const sideMenuElements = [
         label: 'Incursion rooms',
         icon: (<ImageAvatar label={'Incursion rooms'} value={incursionLogo}/>),
     },
-    {
-        link: ROUTES.sideNav.filters,
-        label: 'Filter editor',
-        icon: (<ImageAvatar label={'Filter editor'} value={filterLogo}/>),
-    },
+    // {
+    //     link: ROUTES.sideNav.filters,
+    //     label: 'Filter editor',
+    //     icon: (<ImageAvatar label={'Filter editor'} value={filterLogo}/>),
+    // },
     {
         type: 'spacer',
     },
