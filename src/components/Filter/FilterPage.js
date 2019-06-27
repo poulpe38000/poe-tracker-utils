@@ -1,12 +1,14 @@
 import React from 'react';
+import {withSnackbar} from 'notistack';
+
 import {parseFilter} from 'utils/filter/parser';
 import {displaySnackbar} from 'utils/snackbar';
-import {withSnackbar} from 'notistack';
 import ConditionBlock from 'components/Filter/Display/Block/ConditionBlock';
 import FilterImport from 'components/Filter/Import/FilterImport';
 import FilterDescription from 'components/Filter/Display/FilterDescription';
+import Page from 'layout/Page';
 
-class FilterContainer extends React.Component {
+class FilterPage extends React.Component {
     state = {
         filterStruct: {
             description: '',
@@ -28,7 +30,7 @@ class FilterContainer extends React.Component {
     render() {
         const {filterStruct} = this.state;
         return (
-            <React.Fragment>
+            <Page title="Filter Reader">
                 <FilterImport filterStruct={filterStruct}
                 onLoad={this.handleContentDataLoad}/>
                 {filterStruct.description && (<FilterDescription description={filterStruct.description}/>)}
@@ -43,9 +45,9 @@ class FilterContainer extends React.Component {
                             />
                         )
                     )}
-            </React.Fragment>
+            </Page>
         );
     }
 }
 
-export default withSnackbar(FilterContainer);
+export default withSnackbar(FilterPage);

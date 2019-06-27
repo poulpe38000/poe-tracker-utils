@@ -2,17 +2,18 @@ import React from 'react';
 
 import SettingsApp from 'components/Settings/App/SettingsApp';
 import SettingsData from 'components/Settings/Data/SettingsData';
+import Page from 'layout/Page';
 
-class SettingsContainer extends React.Component {
+class SettingsPage extends React.Component {
 
     render() {
         return (
-            <React.Fragment>
+            <Page maxWidth="md">
                 <SettingsApp/>
                 <SettingsData/>
-            </React.Fragment>
+            </Page>
         );
     }
 }
 
-export default SettingsContainer;
+export default SettingsPage;

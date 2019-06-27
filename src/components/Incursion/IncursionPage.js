@@ -3,11 +3,12 @@ import {connect} from 'react-redux';
 
 import {getBaseRooms, getTieredRooms} from 'utils/incursion';
 import BaseList from 'components/Incursion/List/BaseList';
-import TieredList from 'components/Incursion/List/TieredList';
 import EmptyResults from 'components/shared/EmptyResults';
+import TieredList from 'components/Incursion/List/TieredList';
+import Page from 'layout/Page';
 import {filterIncursions} from 'components/Incursion/shared/functions';
 
-class IncursionContainer extends React.Component {
+class IncursionPage extends React.Component {
     constructor(props) {
         super(props);
         this.baseRoomsList = getBaseRooms();
@@ -23,11 +24,11 @@ class IncursionContainer extends React.Component {
         const baseData = filterIncursions(this.baseRoomsList, searchText);
         const tieredData = filterIncursions(this.tieredRoomsList, searchText);
         return (
-            <React.Fragment>
+            <Page>
                 <BaseList items={baseData}/>
                 <TieredList items={tieredData}/>
                 {!this.dataDisplayed(baseData, tieredData) && <EmptyResults/>}
-            </React.Fragment>
+            </Page>
         );
     }
 }
@@ -36,4 +37,4 @@ export default connect(
     state => ({
         searchText: state.incursion.searchText,
     }),
-)(IncursionContainer);
+)(IncursionPage);

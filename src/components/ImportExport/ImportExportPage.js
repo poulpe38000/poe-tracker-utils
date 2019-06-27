@@ -3,8 +3,9 @@ import Paper from '@material-ui/core/Paper';
 
 import TabContent from 'components/ImportExport/Tabs/TabContent';
 import TabHeader from 'components/ImportExport/Tabs/TabHeader';
+import Page from 'layout/Page';
 
-class ImportExportContainer extends React.Component {
+class ImportExportPage extends React.Component {
     state = {
         value: 0,
     };
@@ -18,12 +19,14 @@ class ImportExportContainer extends React.Component {
     render() {
         const {value} = this.state;
         return (
-            <Paper>
-                <TabHeader value={value} onChange={this.handleTabChange}/>
-                <TabContent value={value} onChange={this.handleTabChange}/>
-            </Paper>
+            <Page maxWidth="md">
+                <Paper>
+                    <TabHeader value={value} onChange={this.handleTabChange}/>
+                    <TabContent value={value} onChange={this.handleTabChange}/>
+                </Paper>
+            </Page>
         );
     }
 }
 
-export default ImportExportContainer;
+export default ImportExportPage;
