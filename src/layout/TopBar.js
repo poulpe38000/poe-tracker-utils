@@ -7,7 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
 import ROUTES from 'constants/routes.constants';
-import AppToolbar from 'layout/TopBarComponents/AppToolbar';
+import AppToolbar from 'layout/components/TopBar/AppToolbar';
 
 const styles = ({zIndex}) => ({
     root: {
@@ -42,14 +42,23 @@ class TopBar extends React.Component {
         toolbar: (<AppToolbar/>),
     };
 
+    renderToolbar() {
+        const {toolbar, location} = this.props;
+        const matchedRoute = ROUTES.routes.find((route) => matchPath(location.pathname, route.route));
+        const customToolbar = (!!matchedRoute && matchedRoute.toolbar) || toolbar;
+        return (
+            <React.Fragment>
+                {customToolbar}
+            </React.Fragment>
+        );
+    }
+
     render() {
         const {classes, toolbar, location, ...scrollProps} = this.props;
-        const matchedRoute = ROUTES.routes.find((route) => matchPath(location.pathname, route.route));
-        const useToolbar = (!!matchedRoute && matchedRoute.toolbar) || toolbar;
         return (
             <ElevationScroll {...scrollProps}>
                 <AppBar position="fixed" className={classes.root}>
-                    {useToolbar}
+                    {this.renderToolbar()}
                 </AppBar>
             </ElevationScroll>
         );

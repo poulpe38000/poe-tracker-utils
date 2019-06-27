@@ -1,11 +1,11 @@
 import React from 'react';
 import List from '@material-ui/core/List';
 import noop from 'lodash/noop';
+import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import NavItem from 'layout/SideMenuComponents/Nav/NavItem';
-import withStyles from '@material-ui/core/styles/withStyles';
-import NavSpacer from 'layout/SideMenuComponents/Nav/NavSpacer';
+import NavItem from 'layout/components/SideMenu/Nav/NavItem';
+import NavSpacer from 'layout/components/SideMenu/Nav/NavSpacer';
 
 const styles = {
     root: {

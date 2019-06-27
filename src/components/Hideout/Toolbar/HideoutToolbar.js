@@ -5,7 +5,7 @@ import * as PropTypes from 'prop-types';
 import {hideoutActions} from 'store/hideout/actions';
 import ListFilter from 'components/Hideout/Toolbar/ListFilter';
 import SearchField from 'components/shared/Search/SearchField';
-import AppToolbar from 'layout/TopBarComponents/AppToolbar';
+import AppToolbar from 'layout/components/TopBar/AppToolbar';
 
 class HideoutToolbar extends React.Component {
     static propTypes = {

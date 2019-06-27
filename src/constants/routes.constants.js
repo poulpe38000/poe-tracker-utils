@@ -3,7 +3,7 @@ import React from 'react';
 import {HideoutsPage, HomePage, ImportExportPage, IncursionsPage, NotFoundPage, SettingsPage} from 'pages';
 import HideoutToolbar from 'components/Hideout/Toolbar/HideoutToolbar';
 import IncursionToolbar from 'components/Incursion/Toolbar/IncursionToolbar';
-import AppToolbar from 'layout/TopBarComponents/AppToolbar';
+import AppToolbar from 'layout/components/TopBar/AppToolbar';
 
 const routes = {
     root: '/',

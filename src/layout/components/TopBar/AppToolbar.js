@@ -3,8 +3,8 @@ import Toolbar from '@material-ui/core/Toolbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import AppStats from 'layout/TopBarComponents/AppStats';
-import AppTitle from 'layout/TopBarComponents/AppTitle';
+import AppStats from 'layout/components/TopBar/AppStats';
+import AppTitle from 'layout/components/TopBar/AppTitle';
 
 const styles = ({spacing}) => ({
     root: {

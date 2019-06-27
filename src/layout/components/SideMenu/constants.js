@@ -1,10 +1,10 @@
 import React from 'react';
 import SettingsIcon from '@material-ui/icons/Settings';
 import ImportExportIcon from '@material-ui/icons/ImportExport';
-import homeLogo from 'layout/SideMenuComponents/home_logo.png';
+import homeLogo from 'layout/components/SideMenu/home_logo.png';
 import {IconAvatar, ImageAvatar} from 'components/shared';
-import hideoutLogo from 'layout/SideMenuComponents/hideout_logo.png';
-import incursionLogo from 'layout/SideMenuComponents/incursion_logo.png';
+import hideoutLogo from 'layout/components/SideMenu/hideout_logo.png';
+import incursionLogo from 'layout/components/SideMenu/incursion_logo.png';
 import ROUTES from 'constants/routes.constants';
 
 export const sideMenuElements = [
