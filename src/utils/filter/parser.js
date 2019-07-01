@@ -1,4 +1,4 @@
-import {conditions, actions} from 'components/Filter/shared/constants';
+import {conditions, actions} from 'components/pages/Filter/shared/constants';
 
 const cleanLines = (lines) => lines.map((line) => line.trim());
 

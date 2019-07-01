@@ -6,7 +6,7 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger/useScrollTrigge
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import ROUTES from 'constants/routes.constants';
+import ROUTES from 'data/routes.constants';
 import AppToolbar from 'components/layout/components/TopBar/AppToolbar';
 
 const styles = ({zIndex}) => ({

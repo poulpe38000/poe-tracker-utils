@@ -1,5 +1,5 @@
-import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
-import INCURSION_CONSTANTS from 'constants/incursion.constants';
+import HIDEOUT_CONSTANTS from 'data/hideout.constants';
+import INCURSION_CONSTANTS from 'data/incursion.constants';
 
 function getRoomsTierBoundaries(rooms) {
     const roomsKeys = Object.keys(rooms);

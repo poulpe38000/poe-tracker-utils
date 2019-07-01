@@ -3,8 +3,8 @@ import Box from '@material-ui/core/Box';
 import Hidden from '@material-ui/core/Hidden';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import HideoutStats from 'components/Hideout/HideoutStats/HideoutStats';
-import IncursionStats from 'components/Incursion/IncursionStats/IncursionStats';
+import HideoutStats from 'components/pages/Hideout/HideoutStats/HideoutStats';
+import IncursionStats from 'components/pages/Incursion/IncursionStats/IncursionStats';
 
 const styles = {
     item: {

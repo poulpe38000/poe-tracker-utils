@@ -1,5 +1,5 @@
-import HIDEOUT_CONSTANTS from 'constants/hideout.constants';
-import INCURSION_CONSTANTS from 'constants/incursion.constants';
+import HIDEOUT_CONSTANTS from 'data/hideout.constants';
+import INCURSION_CONSTANTS from 'data/incursion.constants';
 import countBy from 'lodash/countBy';
 import {getBaseRooms, getTieredRooms, validateInProgressIncursion} from 'utils/incursion';
 

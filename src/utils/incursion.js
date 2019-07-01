@@ -1,4 +1,4 @@
-import INCURSION_CONSTANTS from 'constants/incursion.constants';
+import INCURSION_CONSTANTS from 'data/incursion.constants';
 
 export function getBaseRooms() {
     return getRooms(baseRoomFilter);
