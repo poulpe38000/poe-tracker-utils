@@ -2,7 +2,7 @@ import React from 'react';
 import * as PropTypes from 'prop-types';
 
 import ListContainer from 'components/pages/Incursion/List/ListContainer';
-import RoomTier from 'components/pages/Incursion/Room/RoomTier';
+import RoomTier from 'components/pages/Incursion/List/Room/RoomTier';
 
 
 class TieredList extends React.Component {

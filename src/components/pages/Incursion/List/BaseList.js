@@ -2,7 +2,7 @@ import React from 'react';
 import * as PropTypes from 'prop-types';
 
 import ListContainer from 'components/pages/Incursion/List/ListContainer';
-import Room from 'components/pages/Incursion/Room/Room';
+import Room from 'components/pages/Incursion/List/Room/Room';
 
 class BaseList extends React.Component {
     static propTypes = {

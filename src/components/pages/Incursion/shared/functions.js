@@ -1,9 +1,6 @@
 function findText(text, rooms) {
     return text === ''
-        || rooms
-            .some((room) => {
-                return room.name.toLowerCase().search(text.toLowerCase()) !== -1
-            });
+        || rooms.some((room) => room.name.toLowerCase().search(text.toLowerCase()) !== -1);
 }
 
 export function filterIncursions(rooms, text) {

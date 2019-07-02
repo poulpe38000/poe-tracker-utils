@@ -2,7 +2,7 @@ import React from 'react';
 import Divider from '@material-ui/core/Divider';
 import * as PropTypes from 'prop-types';
 
-import Room from 'components/pages/Incursion/Room/Room';
+import Room from 'components/pages/Incursion/List/Room/Room';
 
 class RoomTier extends React.Component {
     static propTypes = {

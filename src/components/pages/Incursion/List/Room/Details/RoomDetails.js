@@ -1,8 +1,8 @@
 import React from 'react';
 import * as PropTypes from 'prop-types';
 
-import RoomLabel from 'components/pages/Incursion/Room/Details/RoomLabel';
-import RoomInfo from 'components/pages/Incursion/Room/Details/RoomInfo';
+import RoomLabel from 'components/pages/Incursion/List/Room/Details/RoomLabel';
+import RoomInfo from 'components/pages/Incursion/List/Room/Details/RoomInfo';
 import ListDetailsContainer from 'components/shared/List/ListDetailsContainer';
 
 class RoomDetails extends React.Component {

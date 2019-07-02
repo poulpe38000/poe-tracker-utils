@@ -6,7 +6,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
 import {incursionActions} from 'store/incursion/actions';
-import RoomDetails from 'components/pages/Incursion/Room/Details/RoomDetails';
+import RoomDetails from 'components/pages/Incursion/List/Room/Details/RoomDetails';
 import ListCheckbox from 'components/shared/List/ListCheckbox';
 
 const styles = {
@@ -34,13 +34,15 @@ class Room extends React.Component {
     };
 
     isInProgress() {
-        return this.props.inProgress.hasOwnProperty(this.props.roomKey)
-            && this.props.inProgress[this.props.roomKey] >= this.props.room.tier;
+        const {inProgress, roomKey, room} = this.props;
+        return inProgress.hasOwnProperty(roomKey)
+            && inProgress[roomKey] >= room.tier;
     }
 
     isCompleted() {
-        return this.props.completed.hasOwnProperty(this.props.roomKey)
-            && this.props.completed[this.props.roomKey] >= this.props.room.tier;
+        const {completed, roomKey, room} = this.props;
+        return completed.hasOwnProperty(roomKey)
+            && completed[roomKey] >= room.tier;
     }
 
     render() {
