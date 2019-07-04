@@ -3,7 +3,6 @@ import Toolbar from '@material-ui/core/Toolbar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import AppStats from 'components/layout/components/TopBar/AppStats';
 import AppTitle from 'components/layout/components/TopBar/AppTitle';
 
 const styles = ({spacing}) => ({
@@ -23,7 +22,7 @@ class AppToolbar extends React.Component {
         return (
             <Toolbar className={classes.root}>
                 <AppTitle title={title}/>
-                {!!children ? children : (<AppStats/>)}
+                {children}
             </Toolbar>
         );
     }

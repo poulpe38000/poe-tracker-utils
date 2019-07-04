@@ -23,11 +23,6 @@ export const sideMenuElements = [
         label: 'Incursion rooms',
         icon: (<ImageAvatar label={'Incursion rooms'} value={incursionLogo}/>),
     },
-    // {
-    //     link: ROUTES.sideNav.filters,
-    //     label: 'Filter editor',
-    //     icon: (<ImageAvatar label={'Filter editor'} value={filterLogo}/>),
-    // },
     {
         type: 'spacer',
     },
