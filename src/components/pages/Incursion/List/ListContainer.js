@@ -45,6 +45,7 @@ class ListContainer extends React.Component {
                                 {roomsKeys
                                     .map((roomsKey, idx) => (
                                             <RoomTier
+                                                key={roomsKey}
                                                 roomKey={roomsKey}
                                                 rooms={items[roomsKey]}
                                                 noDivider={noDivider || idx === roomsKeys.length - 1}
