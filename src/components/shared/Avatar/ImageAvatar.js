@@ -3,7 +3,7 @@ import Avatar from '@material-ui/core/Avatar';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import {styles} from './shared';
+import {styles} from 'components/shared/Avatar/shared';
 
 class ImageAvatar extends React.Component {
     static propTypes = {
