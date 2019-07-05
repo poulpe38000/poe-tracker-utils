@@ -1,4 +1,4 @@
-const HIDEOUT_CONSTANTS = [
+const HIDEOUTS = [
     {
         id: 'backstreet',
         name: 'Backstreet Hideout',
@@ -243,4 +243,4 @@ const HIDEOUT_CONSTANTS = [
     },
 ];
 
-export default HIDEOUT_CONSTANTS;
+export default HIDEOUTS;

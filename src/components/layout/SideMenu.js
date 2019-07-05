@@ -7,7 +7,7 @@ import Hidden from '@material-ui/core/Hidden';
 import withStyles from '@material-ui/core/styles/withStyles';
 import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 
-import CONSTANTS from 'data/constants';
+import CONSTANTS from 'constants';
 import {rootActions} from 'store/root/actions';
 import {transitionFor} from 'utils/themes';
 import MenuNav from 'components/layout/components/SideMenu/MenuNav';

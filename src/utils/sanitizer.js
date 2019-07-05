@@ -1,5 +1,5 @@
-import HIDEOUT_CONSTANTS from 'data/hideouts';
-import INCURSION_CONSTANTS from 'data/incursion.constants';
+import HIDEOUTS from 'data/hideouts';
+import INCURSION_ROOMS from 'data/incursion-rooms';
 
 function getRoomsTierBoundaries(rooms) {
     const roomsKeys = Object.keys(rooms);
@@ -14,7 +14,7 @@ function getRoomsTierBoundaries(rooms) {
 }
 
 function sanitizeHideouts(hideouts) {
-    const availableHideouts = HIDEOUT_CONSTANTS.map(hideout => hideout.id);
+    const availableHideouts = HIDEOUTS.map(hideout => hideout.id);
     return hideouts.filter(hideout => availableHideouts.find(item => item === hideout));
 }
 
@@ -45,7 +45,7 @@ export function sanitizeTrackerData(data) {
                 || (data.incursion.hasOwnProperty('completed') && typeof data.incursion.completed === 'object')
             )
         ) {
-            const availableRooms = getRoomsTierBoundaries(INCURSION_CONSTANTS.rooms);
+            const availableRooms = getRoomsTierBoundaries(INCURSION_ROOMS);
             sanitized = {...sanitized, incursion: {}};
             if (data.incursion.hasOwnProperty('in_progress') && typeof data.incursion.in_progress === 'object') {
                 // Sanitize in progress incursion rooms array

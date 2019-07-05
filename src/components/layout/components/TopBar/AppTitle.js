@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import CONSTANTS from 'data/constants';
+import CONSTANTS from 'constants';
 import MenuButton from 'components/layout/components/TopBar/MenuButton';
 
 const styles = ({spacing}) => ({

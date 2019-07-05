@@ -1,4 +1,4 @@
-import HIDEOUT_CONSTANTS from 'data/hideouts';
+import HIDEOUTS from 'data/hideouts';
 
 function findText(text, hideout) {
     return text === ''
@@ -26,7 +26,7 @@ export function filterHideouts(data, filters, text) {
 }
 
 export function getUnlockedHideoutData(unlockedHideouts = []) {
-    return HIDEOUT_CONSTANTS
+    return HIDEOUTS
         .map(hideout => ({
                 ...hideout,
                 unlocked: !!unlockedHideouts.find(hideoutId => hideoutId === hideout.id)
