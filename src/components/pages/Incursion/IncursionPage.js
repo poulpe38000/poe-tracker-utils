@@ -2,11 +2,11 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 import {getBaseRooms, getTieredRooms} from 'utils/incursion';
-import BaseList from 'components/pages/Incursion/List/BaseList';
 import EmptyResults from 'components/shared/EmptyResults';
-import TieredList from 'components/pages/Incursion/List/TieredList';
 import Page from 'components/layout/Page';
 import {filterIncursions} from 'components/pages/Incursion/shared/functions';
+import ListContainer from 'components/pages/Incursion/List/ListContainer';
+import RankContainer from 'components/pages/Incursion/Rank/RankContainer';
 
 class IncursionPage extends React.Component {
     constructor(props) {
@@ -25,8 +25,9 @@ class IncursionPage extends React.Component {
         const tieredData = filterIncursions(this.tieredRoomsList, searchText);
         return (
             <Page>
-                <BaseList items={baseData}/>
-                <TieredList items={tieredData}/>
+                <RankContainer/>
+                <ListContainer title={'Non-upgradeable rooms'} items={baseData} noDivider/>
+                <ListContainer title={'Upgradeable rooms'} items={tieredData}/>
                 {!this.dataDisplayed(baseData, tieredData) && <EmptyResults/>}
             </Page>
         );

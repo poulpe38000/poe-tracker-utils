@@ -1,4 +1,4 @@
-import INCURSION_CONSTANTS from 'data/incursion.constants';
+import INCURSION_ROOMS from 'data/incursion-rooms';
 
 export function getBaseRooms() {
     return getRooms(baseRoomFilter);
@@ -18,10 +18,10 @@ export function tieredRoomFilter(rooms) {
 
 function getRooms(accept) {
     return Object
-        .keys(INCURSION_CONSTANTS.rooms)
+        .keys(INCURSION_ROOMS)
         .reduce((result, roomsKey) => {
-            if (accept(INCURSION_CONSTANTS.rooms[roomsKey])) {
-                result[roomsKey] = INCURSION_CONSTANTS.rooms[roomsKey];
+            if (accept(INCURSION_ROOMS[roomsKey])) {
+                result[roomsKey] = INCURSION_ROOMS[roomsKey];
             }
             return result;
         }, {});

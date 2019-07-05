@@ -7,9 +7,9 @@ import Box from '@material-ui/core/Box';
 import {rootActions} from 'store/root/actions';
 import {sanitizeTrackerData} from 'utils/sanitizer';
 import {displaySnackbar} from 'utils/snackbar';
-import ImportSettings from 'components/pages/ImportExport/ImportData/ImportSettings';
-import ImportDropZone from 'components/pages/ImportExport/ImportData/ImportDropZone';
-import ImportActions from 'components/pages/ImportExport/ImportData/ImportActions';
+import ImportSettings from 'components/pages/ImportExport/Import/ImportSettings';
+import ImportDropZone from 'components/pages/ImportExport/Import/ImportDropZone';
+import ImportActions from 'components/pages/ImportExport/Import/ImportActions';
 
 class ImportPage extends React.Component {
     state = {

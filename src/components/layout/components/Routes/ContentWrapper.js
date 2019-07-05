@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import CONSTANTS from 'data/constants';
+import CONSTANTS from 'constants';
 import {transitionFor} from 'utils/themes';
 
 const styles = (theme) => ({

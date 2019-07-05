@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Fade from '@material-ui/core/Fade';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import CONSTANTS from 'data/constants';
+import CONSTANTS from 'constants';
 import {darkTheme, lightTheme} from 'utils/themes';
 import {rootActions} from 'store/root/actions';
 import SideMenu from 'components/layout/SideMenu';

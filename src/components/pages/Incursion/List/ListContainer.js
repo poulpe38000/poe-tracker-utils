@@ -6,11 +6,14 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
 import ListHeader from 'components/pages/Incursion/List/Header/ListHeader';
+import RoomTier from 'components/pages/Incursion/List/Room/RoomTier';
 
 const styles = ({spacing}) => ({
     root: {
         marginTop: spacing(2),
-        marginBottom: spacing(2),
+    },
+    title: {
+        marginTop: spacing(2),
     },
     list: {
         paddingTop: 0,
@@ -20,20 +23,42 @@ const styles = ({spacing}) => ({
 
 class ListContainer extends React.Component {
     static propTypes = {
-        title: PropTypes.string.isRequired
+        title: PropTypes.string.isRequired,
+        items: PropTypes.object,
+        noDivider: PropTypes.bool,
+    };
+
+    static defaultProps = {
+        items: {},
+        noDivider: false,
     };
 
     render() {
-        const {classes, title, children} = this.props;
+        const {classes, title, items, noDivider} = this.props;
+        const roomsKeys = Object.keys(items);
         return (
             <React.Fragment>
-                <Typography variant="h6">{title}</Typography>
-                <Paper className={classes.root} elevation={2}>
-                    <List className={classes.list}>
-                        <ListHeader/>
-                        {children}
-                    </List>
-                </Paper>
+                {roomsKeys.length > 0 && (
+                    <React.Fragment>
+                        <Typography variant="h6" className={classes.title}>{title}</Typography>
+                        <Paper className={classes.root} elevation={2}>
+                            <List className={classes.list}>
+                                <ListHeader/>
+                                {roomsKeys
+                                    .map((roomsKey, idx) => (
+                                            <RoomTier
+                                                key={roomsKey}
+                                                roomKey={roomsKey}
+                                                rooms={items[roomsKey]}
+                                                noDivider={noDivider || idx === roomsKeys.length - 1}
+                                            />
+                                        )
+                                    )
+                                }
+                            </List>
+                        </Paper>
+                    </React.Fragment>
+                )}
             </React.Fragment>
         );
     }

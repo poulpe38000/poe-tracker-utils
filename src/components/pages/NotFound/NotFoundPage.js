@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button';
 import withStyles from '@material-ui/core/styles/withStyles';
 
 import Page from 'components/layout/Page';
-import ROUTES from 'data/routes.constants';
+import ROUTES from 'data/routes';
 
 const styles = ({spacing}) => ({
     root: {

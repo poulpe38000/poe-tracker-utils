@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 
-import CONSTANTS from 'data/constants';
+import CONSTANTS from 'constants';
 
 const styles = ({mixins}) => ({
     toolbar: {

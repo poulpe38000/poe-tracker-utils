@@ -4,7 +4,7 @@ import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import {tabs} from 'components/pages/ImportExport/constants';
+import {tabs} from 'components/pages/ImportExport/shared/constants';
 
 const styles = ({spacing}) => ({
     root: {
@@ -22,8 +22,8 @@ class TabContent extends React.Component {
         const {classes, value, onChange} = this.props;
         return (
             <SwipeableViews index={value} onChangeIndex={onChange}>
-                {tabs.map(({component}, key) => (
-                    <Box key={key} className={classes.root}>
+                {tabs.map(({id, component}) => (
+                    <Box key={id} className={classes.root}>
                         {component}
                     </Box>
                 ))}

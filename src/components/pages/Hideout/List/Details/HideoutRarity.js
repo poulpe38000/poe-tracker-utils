@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import HIDEOUT_CONSTANTS from 'data/hideout.constants';
+import {hideoutRarity} from 'components/pages/Hideout/shared/constants';
 
 const styles = ({breakpoints, spacing}) => ({
     root: {
@@ -31,11 +31,11 @@ class HideoutRarity extends React.Component {
 
     render() {
         const {classes, rarity} = this.props;
-        const hideoutRarity = HIDEOUT_CONSTANTS.rarity[rarity];
+        const rarityLabel = hideoutRarity[rarity];
         return (
             <Typography variant="caption" className={classes.root}>
                 <em>
-                    {'Rarity: '}<span className={clsx(classes.rarity, classes[`rarity${rarity}`])}>{hideoutRarity}</span>
+                    {'Rarity: '}<span className={clsx(classes.rarity, classes[`rarity${rarity}`])}>{rarityLabel}</span>
                 </em>
             </Typography>
         );

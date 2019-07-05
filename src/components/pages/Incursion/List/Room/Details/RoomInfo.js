@@ -37,9 +37,10 @@ class RoomInfo extends React.Component {
 
     render() {
         const {classes, infos} = this.props;
+        const roomInfos = infos.map((item, key) => (<Box key={key} className={classes.detail}>{item}</Box>));
         return (
             <Typography variant="caption" className={classes.root}>
-                {infos.map((item, key) => (<Box key={key} className={classes.detail}>{item}</Box>))}
+                {roomInfos}
             </Typography>
         );
     }

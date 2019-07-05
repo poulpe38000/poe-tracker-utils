@@ -24,9 +24,10 @@ class RoomLabel extends React.Component {
 
     render() {
         const {classes, room} = this.props;
+        const label = this.getLabel(room);
         return (
             <Typography variant="subtitle2" className={classes.root}>
-                {this.getLabel(room)}
+                {label}
             </Typography>
         );
     }

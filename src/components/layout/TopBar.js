@@ -6,7 +6,7 @@ import useScrollTrigger from '@material-ui/core/useScrollTrigger/useScrollTrigge
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import ROUTES from 'data/routes.constants';
+import ROUTES from 'data/routes';
 import AppToolbar from 'components/layout/components/TopBar/AppToolbar';
 
 const styles = ({zIndex}) => ({
@@ -35,7 +35,7 @@ ElevationScroll.propTypes = {
 
 class TopBar extends React.Component {
     static propTypes = {
-        toolbar: PropTypes.elementType,
+        toolbar: PropTypes.object,
         scrollTarget: PropTypes.object,
     };
     static defaultProps = {
@@ -54,7 +54,7 @@ class TopBar extends React.Component {
     }
 
     render() {
-        const {classes, toolbar, location, ...scrollProps} = this.props;
+        const {classes, location, ...scrollProps} = this.props;
         return (
             <ElevationScroll {...scrollProps}>
                 <AppBar position="fixed" className={classes.root}>
