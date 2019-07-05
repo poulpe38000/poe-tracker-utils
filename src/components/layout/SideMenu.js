@@ -7,7 +7,7 @@ import Hidden from '@material-ui/core/Hidden';
 import withStyles from '@material-ui/core/styles/withStyles';
 import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 
-import CONSTANTS from 'constants';
+import AppConstants from 'app-constants';
 import {rootActions} from 'store/root/actions';
 import {transitionFor} from 'utils/themes';
 import MenuNav from 'components/layout/components/SideMenu/MenuNav';
@@ -15,17 +15,17 @@ import MenuExpander from 'components/layout/components/SideMenu/MenuExpander';
 
 const styles = (theme) => ({
     root: {
-        width: CONSTANTS.drawerWidth,
+        width: AppConstants.drawerWidth,
         backgroundColor: theme.palette.background.paper,
     },
     drawer: {
-        width: CONSTANTS.drawerWidth,
+        width: AppConstants.drawerWidth,
         flexShrink: 0,
         whiteSpace: 'nowrap',
     },
     drawerOpen: {
         overflowX: 'hidden',
-        width: CONSTANTS.drawerWidth,
+        width: AppConstants.drawerWidth,
         transition: transitionFor(theme, 'width'),
     },
     drawerClose: {

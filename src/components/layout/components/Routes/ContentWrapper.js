@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import Box from '@material-ui/core/Box';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import CONSTANTS from 'constants';
+import AppConstants from 'app-constants';
 import {transitionFor} from 'utils/themes';
 
 const styles = (theme) => ({
@@ -14,7 +14,7 @@ const styles = (theme) => ({
     },
     drawerOpen: {
         [theme.breakpoints.up('sm')]: {
-            paddingLeft: CONSTANTS.drawerWidth,
+            paddingLeft: AppConstants.drawerWidth,
         },
         transition: transitionFor(theme, 'padding-left'),
     },

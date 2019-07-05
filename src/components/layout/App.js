@@ -8,7 +8,7 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Fade from '@material-ui/core/Fade';
 import withStyles from '@material-ui/core/styles/withStyles';
 
-import CONSTANTS from 'constants';
+import AppConstants from 'app-constants';
 import {darkTheme, lightTheme} from 'utils/themes';
 import {rootActions} from 'store/root/actions';
 import SideMenu from 'components/layout/SideMenu';
@@ -32,7 +32,7 @@ class App extends React.Component {
     render() {
         const {classes, useLightTheme} = this.props;
         return (
-            <BrowserRouter basename={CONSTANTS.basename}>
+            <BrowserRouter basename={AppConstants.basename}>
                 <ThemeProvider theme={useLightTheme ? lightTheme : darkTheme}>
                     <CssBaseline/>
                     <SnackbarProvider
