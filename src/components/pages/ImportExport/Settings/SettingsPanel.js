@@ -9,38 +9,19 @@ import List from '@material-ui/core/List';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import {buttonStyles, mergeStyles} from 'utils/themes';
 import SettingsHeader from 'components/pages/ImportExport/Settings/SettingsHeader';
 
-const styles = (theme) => (mergeStyles({
+const styles = ({palette}) => ({
     root: {
-        backgroundColor: theme.palette.background.popper,
+        backgroundColor: palette.background.popper,
     },
     details: {
         padding: 0,
     },
-    title: {
-        fontWeight: theme.typography.fontWeightMedium,
-    },
-    subtitle: {
-        fontStyle: 'italic',
-    },
-    headerItem: {
-        display: 'flex',
-        flexGrow: 1,
-        alignItems: 'center',
-        '& > *': {
-            flex: '1 1 100%',
-        },
-        [theme.breakpoints.down('xs')]: {
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-        }
-    },
     list: {
         width: '100%',
     },
-}, buttonStyles(theme)));
+});
 
 class SettingsPanel extends React.Component {
     static propTypes = {
