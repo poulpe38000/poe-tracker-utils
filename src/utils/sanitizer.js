@@ -1,4 +1,4 @@
-import HIDEOUT_CONSTANTS from 'data/hideout.constants';
+import HIDEOUT_CONSTANTS from 'data/hideouts';
 import INCURSION_CONSTANTS from 'data/incursion.constants';
 
 function getRoomsTierBoundaries(rooms) {
@@ -14,7 +14,7 @@ function getRoomsTierBoundaries(rooms) {
 }
 
 function sanitizeHideouts(hideouts) {
-    const availableHideouts = HIDEOUT_CONSTANTS.hideouts.map(hideout => hideout.id);
+    const availableHideouts = HIDEOUT_CONSTANTS.map(hideout => hideout.id);
     return hideouts.filter(hideout => availableHideouts.find(item => item === hideout));
 }
 

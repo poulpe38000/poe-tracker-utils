@@ -19,18 +19,20 @@ class Room extends React.Component {
         room: PropTypes.object.isRequired,
     };
 
+    getDispatcherData() {
+        const {roomKey, room} = this.props;
+        return {
+            id: roomKey,
+            tier: room.tier,
+        };
+    }
+
     toggleCompleted = () => {
-        this.props.toggleCompleted({
-            id: this.props.roomKey,
-            tier: this.props.room.tier,
-        });
+        this.props.toggleCompleted(this.getDispatcherData());
     };
 
     toggleInProgress = () => {
-        this.props.toggleInProgress({
-            id: this.props.roomKey,
-            tier: this.props.room.tier,
-        });
+        this.props.toggleInProgress(this.getDispatcherData());
     };
 
     isInProgress() {
