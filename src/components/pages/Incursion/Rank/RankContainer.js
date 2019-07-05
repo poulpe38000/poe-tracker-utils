@@ -10,6 +10,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 
 import RankHeader from 'components/pages/Incursion/Rank/RankHeader';
 import {getIncursionStats} from 'components/pages/Incursion/shared/functions';
+import RankDetails from 'components/pages/Incursion/Rank/RankDetails';
 
 const styles = ({palette}) => ({
     root: {
@@ -29,7 +30,7 @@ class RankContainer extends React.Component {
                         <RankHeader title={'Alva Rank'} stats={stats}/>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
-                        <Box>{'TBD'}</Box>
+                        <RankDetails stats={stats}/>
                     </ExpansionPanelDetails>
                 </ExpansionPanel>
             </Box>

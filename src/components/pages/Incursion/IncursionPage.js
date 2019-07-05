@@ -25,7 +25,7 @@ class IncursionPage extends React.Component {
         const tieredData = filterIncursions(this.tieredRoomsList, searchText);
         return (
             <Page>
-                {/*<RankContainer/>*/}
+                <RankContainer/>
                 <ListContainer title={'Non-upgradeable rooms'} items={baseData} noDivider/>
                 <ListContainer title={'Upgradeable rooms'} items={tieredData}/>
                 {!this.dataDisplayed(baseData, tieredData) && <EmptyResults/>}
