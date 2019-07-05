@@ -33,15 +33,25 @@ export function getIncursionStats(inProgressRooms, completedRooms) {
     const futureCompletedRooms = validateInProgressIncursion(inProgressRooms, completedRooms);
     const totalFuture = countRooms(futureCompletedRooms);
 
-    const currentRank = ranks.find(rank => totalCompleted >= rank.min && totalCompleted <= rank.max);
-    const futureRank = ranks.find(rank => totalFuture >= rank.min && totalFuture <= rank.max);
     return {
         in_progress: totalInProgress,
         completed: totalCompleted,
         future: totalFuture,
+        total: totalBaseRooms + totalTieredRooms,
+    }
+}
+
+export function getIncursionRankStats(inProgressRooms, completedRooms) {
+    const totalCompleted = countRooms(completedRooms);
+
+    const futureCompletedRooms = validateInProgressIncursion(inProgressRooms, completedRooms);
+    const totalFuture = countRooms(futureCompletedRooms);
+
+    const currentRank = ranks.find(rank => totalCompleted >= rank.min && totalCompleted <= rank.max);
+    const futureRank = ranks.find(rank => totalFuture >= rank.min && totalFuture <= rank.max);
+    return {
         current_rank: currentRank.rank,
         future_rank: futureRank.rank,
-        total: totalBaseRooms + totalTieredRooms,
     }
 }
 

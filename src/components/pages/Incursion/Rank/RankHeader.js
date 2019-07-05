@@ -1,12 +1,14 @@
 import React from 'react'
+import {compose} from 'redux';
+import {connect} from 'react-redux';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
-import * as PropTypes from 'prop-types';
 
 import {buttonStyles, mergeStyles} from 'utils/themes';
 import ImageAvatar from 'components/shared/Avatar/ImageAvatar';
 import incursionLogo from 'components/layout/components/SideMenu/incursion_logo.png';
+import {getIncursionRankStats} from 'components/pages/Incursion/shared/functions';
 
 const styles = (theme) => (mergeStyles({
     root: {
@@ -30,22 +32,15 @@ const styles = (theme) => (mergeStyles({
 }, buttonStyles(theme)));
 
 class RankHeader extends React.Component {
-    static propTypes = {
-        title: PropTypes.string,
-        stats: PropTypes.object.isRequired,
-    };
-
-    static defaultProps = {
-        title: 'Advanced settings',
-    };
 
     getSubtitle() {
-        const {stats} = this.props;
+        const {inProgressRooms, completedRooms} = this.props;
+        const stats = getIncursionRankStats(inProgressRooms, completedRooms);
         return `Current Rank: ${stats.current_rank}, Next Rank: ${stats.future_rank}`;
     }
 
     render() {
-        const {classes, title} = this.props;
+        const {classes} = this.props;
         const subtitle = this.getSubtitle();
         return (
             <React.Fragment>
@@ -53,7 +48,7 @@ class RankHeader extends React.Component {
                     <ImageAvatar label={'Incursion rooms'} value={incursionLogo} className={classes.icon}/>
                 </Box>
                 <Box className={classes.root}>
-                    <Typography className={classes.title}>{title}</Typography>
+                    <Typography className={classes.title}>{'Alva Rank'}</Typography>
                     {subtitle && <Typography className={classes.subtitle} variant={'body2'}>{subtitle}</Typography>}
                 </Box>
             </React.Fragment>
@@ -61,4 +56,12 @@ class RankHeader extends React.Component {
     }
 }
 
-export default withStyles(styles)(RankHeader);
+export default compose(
+    connect(
+        state => ({
+            inProgressRooms: state.incursion.in_progress,
+            completedRooms: state.incursion.completed,
+        })
+    ),
+    withStyles(styles),
+)(RankHeader);
