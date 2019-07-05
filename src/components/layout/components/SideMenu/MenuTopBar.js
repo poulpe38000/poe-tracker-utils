@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 
-import CONSTANTS from 'constants';
+import AppConstants from 'constants';
 
 const styles = ({mixins}) => ({
     toolbar: {
@@ -22,7 +22,7 @@ class MenuTopBar extends React.Component {
             <AppBar color="primary" position="static" elevation={elevation}>
                 <Toolbar color="primary" className={classes.toolbar}>
                     <Typography variant="h6" color="inherit">
-                        {CONSTANTS.title}
+                        {AppConstants.title}
                     </Typography>
                 </Toolbar>
             </AppBar>

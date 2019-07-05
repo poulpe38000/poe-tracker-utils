@@ -4,7 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import CONSTANTS from 'constants';
+import AppConstants from 'app-constants';
 import MenuButton from 'components/layout/components/TopBar/MenuButton';
 
 const styles = ({spacing}) => ({
@@ -26,7 +26,7 @@ class AppTitle extends React.Component {
         title: PropTypes.string,
     };
     static defaultProps = {
-        title: CONSTANTS.title,
+        title: AppConstants.title,
     };
 
     render() {
