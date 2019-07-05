@@ -8,7 +8,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import {buttonStyles, mergeStyles} from 'utils/themes';
 import ImageAvatar from 'components/shared/Avatar/ImageAvatar';
 import incursionLogo from 'components/layout/components/SideMenu/incursion_logo.png';
-import {getIncursionRankStats} from 'components/pages/Incursion/shared/functions';
+import {getIncursionRankStats, getRankLabel, isMaxRank} from 'components/pages/Incursion/shared/functions';
 
 const styles = (theme) => (mergeStyles({
     root: {
@@ -36,11 +36,15 @@ class RankHeader extends React.Component {
     getSubtitle() {
         const {inProgressRooms, completedRooms} = this.props;
         const stats = getIncursionRankStats(inProgressRooms, completedRooms);
-        return `Current Rank: ${stats.current_rank}, Next Rank: ${stats.future_rank}`;
+        let subtitle = `Current Rank: ${getRankLabel(stats.current_rank)}`;
+        if (!isMaxRank(stats.current_rank)) {
+            subtitle += `, Next Rank: ${getRankLabel(stats.future_rank)}`;
+        }
+        return subtitle;
     }
 
     render() {
-        const {classes} = this.props;
+        const {classes, expanded} = this.props;
         const subtitle = this.getSubtitle();
         return (
             <React.Fragment>
@@ -49,7 +53,9 @@ class RankHeader extends React.Component {
                 </Box>
                 <Box className={classes.root}>
                     <Typography className={classes.title}>{'Alva Rank'}</Typography>
-                    {subtitle && <Typography className={classes.subtitle} variant={'body2'}>{subtitle}</Typography>}
+                    {!expanded && subtitle && (
+                        <Typography className={classes.subtitle} variant={'body2'}>{subtitle}</Typography>
+                    )}
                 </Box>
             </React.Fragment>
         );

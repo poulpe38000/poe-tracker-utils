@@ -11,7 +11,9 @@ import RoomTier from 'components/pages/Incursion/List/Room/RoomTier';
 const styles = ({spacing}) => ({
     root: {
         marginTop: spacing(2),
-        marginBottom: spacing(2),
+    },
+    title: {
+        marginTop: spacing(2),
     },
     list: {
         paddingTop: 0,
@@ -38,7 +40,7 @@ class ListContainer extends React.Component {
             <React.Fragment>
                 {roomsKeys.length > 0 && (
                     <React.Fragment>
-                        <Typography variant="h6">{title}</Typography>
+                        <Typography variant="h6" className={classes.title}>{title}</Typography>
                         <Paper className={classes.root} elevation={2}>
                             <List className={classes.list}>
                                 <ListHeader/>

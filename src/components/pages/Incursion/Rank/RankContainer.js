@@ -16,14 +16,22 @@ const styles = ({palette}) => ({
 });
 
 class RankContainer extends React.Component {
+    state = {
+        expanded: false
+    };
+
+    handleExpand = (event, expand) => {
+        this.setState({expanded: expand});
+    };
 
     render() {
         const {classes} = this.props;
+        const {expanded} = this.state;
         return (
             <Box>
-                <ExpansionPanel elevation={1} className={classes.root} square>
+                <ExpansionPanel elevation={1} className={classes.root} square onChange={this.handleExpand}>
                     <ExpansionPanelSummary expandIcon={<ExpandMoreIcon/>}>
-                        <RankHeader/>
+                        <RankHeader expanded={expanded}/>
                     </ExpansionPanelSummary>
                     <ExpansionPanelDetails>
                         <RankDetails/>

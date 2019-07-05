@@ -55,6 +55,19 @@ export function getIncursionRankStats(inProgressRooms, completedRooms) {
     }
 }
 
+export function isMaxRank(rank) {
+    const rankArray = ranks.map(elt => elt.rank);
+    const maxRank = Math.max(...rankArray);
+    return maxRank === rank;
+}
+
+export function getRankLabel(rank) {
+    if(isMaxRank(rank)) {
+        return `${rank} (MAX)`;
+    }
+    return rank + '';
+}
+
 function countRooms(rooms) {
     return Object
         .keys(rooms)
