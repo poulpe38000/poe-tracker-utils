@@ -3,7 +3,7 @@ import Tab from '@material-ui/core/Tab';
 import Tabs from '@material-ui/core/Tabs';
 import * as PropTypes from 'prop-types';
 
-import {tabs} from 'components/pages/ImportExport/constants';
+import {tabs} from 'components/pages/ImportExport/shared/constants';
 
 class TabHeader extends React.Component {
     static propTypes = {
@@ -16,8 +16,8 @@ class TabHeader extends React.Component {
         return (
             <React.Fragment>
                 <Tabs value={value} centered variant={'fullWidth'} onChange={onChange}>
-                    {tabs.map(({label}, index) => (
-                        <Tab key={index} label={label} value={index}/>
+                    {tabs.map(({id, label}) => (
+                        <Tab key={id} label={label} value={id}/>
                     ))}
                 </Tabs>
             </React.Fragment>

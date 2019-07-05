@@ -7,8 +7,8 @@ import TextField from '@material-ui/core/TextField';
 import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 
 import {displaySnackbar} from 'utils/snackbar';
-import ExportSettings from 'components/pages/ImportExport/ExportData/ExportSettings';
-import ExportActions from 'components/pages/ImportExport/ExportData/ExportActions';
+import ExportSettings from 'components/pages/ImportExport/Export/ExportSettings';
+import ExportActions from 'components/pages/ImportExport/Export/ExportActions';
 
 class ExportPage extends React.Component {
     state = {

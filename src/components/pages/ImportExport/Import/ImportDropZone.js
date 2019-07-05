@@ -7,7 +7,7 @@ import withStyles from '@material-ui/core/styles/withStyles';
 import withWidth, {isWidthDown} from '@material-ui/core/withWidth';
 import * as PropTypes from 'prop-types';
 
-import ImportDragZone from 'components/pages/ImportExport/ImportData/ImportDragZone';
+import ImportDragZone from 'components/pages/ImportExport/Import/ImportDragZone';
 
 const styles = {
     dragContainer: {

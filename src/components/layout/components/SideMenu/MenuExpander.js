@@ -10,7 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import withStyles from '@material-ui/core/styles/withStyles';
 import * as PropTypes from 'prop-types';
 
-import {IconAvatar} from 'components/shared';
+import IconAvatar from 'components/shared/Avatar/IconAvatar';
 
 const styles = (theme) => ({
     root: {
